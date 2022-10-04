@@ -1,0 +1,36 @@
+# Blender MTL File: 'None'
+# Material Count: 3
+
+newmtl Emissive
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.615177 0.611099 0.550811
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Ke obj\\PastedImage220104-201001.png
+
+newmtl Solid.080
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd appliance_electric_oven.png
+
+newmtl Solid_-_75%.001
+Ns 900.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 0.750000
+illum 9
+map_Kd appliance_electric_oven.png
+map_Kd appliance_electric_oven.png
