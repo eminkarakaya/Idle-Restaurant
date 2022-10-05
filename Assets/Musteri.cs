@@ -28,10 +28,7 @@ public class Musteri : MonoBehaviour
     public IEnumerator MasayaGitme()
     {
         var qwe = FindEmptyChair();
-        Debug.Log(Vector3.Distance(agent.transform.position,oturulcakYer.transform.position));
         agent.SetDestination(qwe.oturulcakYer.position);
-        Debug.Log(qwe);
-        Debug.Log(agent.remainingDistance);
         while(Vector3.Distance(agent.transform.position,oturulcakYer.transform.position) > .3f)
         {
             yield return null;
@@ -69,7 +66,6 @@ public class Musteri : MonoBehaviour
         agent.SetDestination(kapi.position);
         while( Vector3.Distance(agent.transform.position,kapi.transform.position) > 0.5f)
         {
-            Debug.Log("dısari yuruyor");
             yield return null;
         }
         Destroy(this.gameObject);

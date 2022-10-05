@@ -5,28 +5,48 @@ using UnityEngine.AI;
 
 public class Garson : MonoBehaviour
 {
+    private GarsonState _currentState;
+    public GarsonState currentState{
+        get{return _currentState; }
+        set{
+            _currentState = value;
+            _currentState.StartState(action);
+        }
+    }
+    public WalkState walkState;
+    public IdleState idleState;
+    public TasiState tasiState;
+    public YemekleBekleState yemekleBekleState;
+    public Action action;
+    public Transform beklemeYeri;
+    public bool eliDolumu;
     Animator animator;
     Vector3 pizzaPos;
     public Transform hand;
-    NavMeshAgent agent;
-    [SerializeField] Tabak plate;
-    private Tabak _plate;
-    GameObject _pizza;
+    public NavMeshAgent agent;
+    [SerializeField] public Tabak plate;
+    public Tabak _plate;
+    public GameObject _pizza;
     [SerializeField] GameObject masa;
-    [SerializeField] Counter counter;
-    [SerializeField] Chair _chair;
+    public Counter counter;
+    [SerializeField] public Chair _chair;
     Transform garsonPos;
     Transform chairTabakyeri;
-    void Start()
+    void Awake()
     {
+        currentState = idleState;
+        // currentState.StartState(action);
+        action = GetComponent<Action>();
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        StartCoroutine(CountereGit());
+        // StartCoroutine(CountereGit());
     }
-    Chair FindChair()
+    public Chair FindChair()
     {
         if(GameManager.instance.yemekBekleyenChairler.Count == 0)
+        {
             return null;
+        }
         var chair = GameManager.instance.yemekBekleyenChairler[0];
         chairTabakyeri = chair.tabakYeri;
         GameManager.instance.yemekBekleyenChairler.Remove(GameManager.instance.yemekBekleyenChairler[0]);
@@ -34,7 +54,7 @@ public class Garson : MonoBehaviour
         return chair;
     }
    
-    Counter FindCounter()
+    public Counter FindCounter()
     {
         if(GameManager.instance.allCounters.Count == 0)
             return null;
@@ -54,54 +74,89 @@ public class Garson : MonoBehaviour
         this.counter = _counter;
         return _counter;
     }
-    public IEnumerator CountereGit()
+    void Update()
     {
-        while(FindCounter() == null)
-        {
-            yield return null;
-        }
-        var counter = FindCounter();
-        agent.SetDestination(garsonPos.position);
-        while(Vector3.Distance(agent.transform.position,garsonPos.position) > 1f)
-        {
-            Debug.Log(Vector3.Distance(agent.transform.position,garsonPos.position));
-            Debug.Log("siparisi almaya gidiyor " + counter);
-            yield return null;
-        }
-        _plate = Instantiate(plate,hand.position,Quaternion.Euler(new Vector3(-90,0,0)),hand.transform);
-        StartCoroutine(YemegiGotur());
+        RunStateMachine();
     }
-    public IEnumerator YemegiGotur()
+
+    void RunStateMachine()
     {
-        
-        counter.food.transform.SetParent(_plate.transform.GetChild(0).transform);
-        counter.food.transform.localPosition = new Vector3(0,0.06f,0);// Vector3.zero;
-        counter.food = null;
-        counter.isFull = false;
-        var _chair = FindChair();
-        while(_chair == null)
+        GarsonState state = currentState.UpdateState(action);
+        if(currentState != null)
         {
-            _chair = FindChair();
-            yield return null;
+            currentState = state;
         }
-        
-        var chair = _chair;
-        Debug.Log(chairTabakyeri);
-        agent.SetDestination(chairTabakyeri.position);
-        while(Vector3.Distance(agent.transform.position,chairTabakyeri.transform.position) > 1f)
-        {
-            Debug.Log("yemek goturuluyor " + chair);
-            yield return null;
-        }
-        YemegiMasayaBirak();
     }
-    public void YemegiMasayaBirak()
-    {
-        _plate.transform.position = chairTabakyeri.transform.position;
-        _plate.transform.SetParent(null);
-        this._chair.GetMusteri().YemeginGelmesi();
-        this._chair.pizza = _pizza;
-        this._chair.tabak = _plate;
-        StartCoroutine(CountereGit());
-    }
+    // public IEnumerator CountereGit()
+    // {
+    //     if(FindCounter() == null)
+    //     {
+    //         agent.SetDestination(beklemeYeri.position);
+    //         animator.SetBool("yuru",true);
+    //         animator.SetBool("tasi",false);
+    //     }   
+    //     var counter = FindCounter();
+    //     while(counter == null)
+    //     {
+    //         counter = FindCounter();
+    //         Debug.Log(counter);
+    //         yield return null;
+    //     }
+    //     agent.SetDestination(garsonPos.position);
+    //     while(Vector3.Distance(agent.transform.position,garsonPos.position) > 1f)
+    //     {
+    //         Debug.Log("siparisi almaya gidiyor " + counter);
+    //         yield return null;
+    //     }
+    //     _plate = Instantiate(plate,hand.position,Quaternion.Euler(new Vector3(-90,0,0)),hand.transform);
+    //     StartCoroutine(YemegiGotur());
+    // }
+    // public IEnumerator YemegiGotur()
+    // {
+    //     animator.SetBool("tasi",true);
+    //     animator.SetBool("yuru",false);
+    //     counter.food.transform.SetParent(_plate.transform.GetChild(0).transform);
+    //     counter.food.transform.localPosition = new Vector3(0,0.06f,0);// Vector3.zero;
+    //     counter.food = null;
+    //     counter.isFull = false;
+    //     var _chair = FindChair();
+    //     if(_chair == null)
+    //     {
+    //         agent.SetDestination(beklemeYeri.position);
+    //         while(Vector3.Distance(agent.transform.position,beklemeYeri.transform.position) > .3f)
+    //         {
+    //             _chair = FindChair();
+    //             if(_chair != null)
+    //             {
+    //                 var chair = _chair;
+    //                 agent.SetDestination(chairTabakyeri.position);
+    //                 break;
+    //             }
+    //             yield return null;
+    //         }
+    //     }
+    //     while(_chair == null)
+    //     {
+    //         animator.SetBool("dur",true);
+    //         animator.SetBool("tasi",false);
+    //     }
+    //     animator.SetBool("dur",false);
+    //     animator.SetBool("tasi",true);
+    //     agent.SetDestination(chairTabakyeri.transform.position);
+    //     while(Vector3.Distance(agent.transform.position,chairTabakyeri.transform.position) > 1f)
+    //     {
+    //         yield return null;
+    //     }
+    //     YemegiMasayaBirak();
+    // }
+    // public void YemegiMasayaBirak()
+    // {
+    //     _plate.transform.position = chairTabakyeri.transform.position;
+    //     _plate.transform.SetParent(null);
+    //     this._chair.GetMusteri().YemeginGelmesi();
+    //     this._chair.pizza = _pizza;
+    //     this._chair.tabak = _plate;
+    //     Debug.Log("coutneregit");
+    //     StartCoroutine(CountereGit());
+    // }
 }

@@ -5,6 +5,21 @@ using UnityEngine.AI;
 
 public class Asci : MonoBehaviour
 {
+    Action action;
+    private AsciState _currState;
+    public AsciState currState
+    {
+        get => _currState;
+        set{
+            _currState = value;
+            _currState.StartState(action);
+        }
+    }
+    public CountereKoymaState countereKoymaState;
+    public BuzdolabiState buzdolabiState;
+    
+    public PizzaAcmaState pizzaAcmaState;
+    public FirinaKoymaState firinaKoymaState;
     public GameObject pizza;
     public GameObject hamur;
     Vector3 rot = new Vector3(176.847f,120.684f,-48.271f);
@@ -17,7 +32,7 @@ public class Asci : MonoBehaviour
     bool isCooking;
     public Transform ocakTransform;
     public Transform counterPos;
-    private NavMeshAgent _agent;
+    public NavMeshAgent agent;
     public float cookingTime;
     public float cookingTimeTemp;
     public List<Transform> targets;
@@ -25,7 +40,7 @@ public class Asci : MonoBehaviour
     GameObject _pizza;
     void Start()
     {
-        _agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         cookingTimeTemp = cookingTime;
         StartCoroutine(GoToOven());
         targets[3] = counter.asciPos;
@@ -34,11 +49,11 @@ public class Asci : MonoBehaviour
     {
         for (int i = 0; i < targets.Count; i++)
         {
-            _agent.SetDestination(targets[i].position);
+            agent.SetDestination(targets[i].position);
             while(true)
             {
                 yield return null;
-                if(_agent.remainingDistance < 0.0001f)
+                if(agent.remainingDistance < 0.0001f)
                 {
                     
                     if(i == 0)

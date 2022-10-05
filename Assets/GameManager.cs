@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour 
 {
+    public List<int> acilanLeveller;
+    public List<bool> isFull;
     public static GameManager instance {get;private set;}
     public List<Counter> allCounters;
     public List<Masa> allTables;
