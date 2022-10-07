@@ -43,7 +43,7 @@ public class Asci : Unit
     public float cookingTimeTemp;
     public Transform buzdolabi;
     GameObject _hamur;
-    GameObject _pizza;
+    public GameObject _pizza;
     [SerializeField] private float _moveSpeed;
     public float moveSpeed{
         get => _moveSpeed;

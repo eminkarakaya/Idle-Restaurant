@@ -265,10 +265,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b354775ca2cda40866af5e7d0e1516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platePos: {fileID: 2043302668632298249}
+  createdQueueTransform: []
+  _queue: []
+  asciYeri: {fileID: 4402664888500263860}
+  tabakYeri: {fileID: 2043302668632298249}
+  asci: []
+  engel: {fileID: 1355059594309218876}
   isFull: 0
-  garsonPos: {fileID: 0}
-  asciPos: {fileID: 0}
+  garsonPos: {fileID: 9163251912894858694}
   food: {fileID: 0}
 --- !u!1 &2845037475515585779
 GameObject:

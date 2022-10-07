@@ -4,31 +4,42 @@ using UnityEngine;
 
 public class CountereKoymaState : AsciState
 {
-    Asci asci;
-    Counter counter;
+    [SerializeField] Asci asci;
+    [SerializeField] Counter counter;
     public GameObject pizza;
     public override void StartState(Action action)
     {
         asci = GetComponentInParent<Asci>();
+        item = asci.counter;
         counter = asci.counter;
-        asci.agent.SetDestination(counter.asciPos.position);
+        item.CreateQueue(asci);
+        if(item.queue.Count > 1)
+        {
+            asci.queueState.oncekiState = asci.currState;
+            asci.queueState.oncekiAction = asci.action;
+            asci.currState = asci.queueState;
+        }
+        // pizza = asci.pizza;
         action.AsciTasi();
     }
     public override void UpdateState(Action action)
     {
         
-        if(Vector3.Distance(asci.agent.transform.position,counter.asciPos.position) > .4f)
+        asci.agent.SetDestination(item.asciYeri.position);
+        Debug.Log(item + " weodjfad");
+        if(Vector3.Distance(asci.agent.transform.position,counter.asciYeri.position) > .4f)
         {
             return;
         }
-        if(counter.isFull)
-        {
-            asci.counterFullState.pizza = pizza;
-            asci.counterFullState.counter = this.counter;
-            asci.currState = asci.counterFullState;
-        }
+        // if(counter.isFull)
+        // {
+        //     asci.counterFullState.pizza = pizza;
+        //     asci.counterFullState.counter = this.counter;
+        //     asci.currState = asci.counterFullState;
+        // }
+        item.UpdateQueue(asci);
         pizza.transform.SetParent(null);
-        pizza.transform.position = counter.platePos.position;
+        pizza.transform.position = counter.tabakYeri.position;
         counter.food = pizza;
         counter.isFull = true;
         asci.level.yemegiHazirCounterler.Add(counter);  

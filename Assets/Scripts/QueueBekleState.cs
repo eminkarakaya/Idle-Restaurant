@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class QueueBekleState : AsciState
 {
-    Item item;
+    public AsciState oncekiState;
     Asci asci;
     public override void StartState(Action action)
     {
@@ -14,6 +14,10 @@ public class QueueBekleState : AsciState
     }
     public override void UpdateState(Action action)
     {
-           
+        if(item.queue[0] == asci)
+        {
+            asci.agent.isStopped = false;
+            asci.currState = oncekiState;
+        }
     }
 }

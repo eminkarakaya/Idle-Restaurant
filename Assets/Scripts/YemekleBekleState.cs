@@ -12,7 +12,6 @@ public class YemekleBekleState : GarsonState
     public override void StartState(Action action)
     {
         action.YemekleDur();
-        Debug.Log("startstate " + this.name);
     }
     public override void UpdateState(Action action)
     {

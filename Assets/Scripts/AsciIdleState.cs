@@ -25,6 +25,7 @@ public class AsciIdleState : AsciState
             pizza.transform.position = asci.hand.position;
             pizza.transform.SetParent(asci.hand);
             asci.firinaKoymaState.pizza = this.pizza;
+            pizza = null;
             asci.currState = asci.firinaKoymaState;
         }
     }

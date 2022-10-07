@@ -5,7 +5,7 @@ using UnityEngine;
 public class AsciFiriniBeklemeState : AsciState
 {
     public GameObject pizza;
-    Asci asci;
+    public Asci asci;
     public Ocak ocak;
     float time = 5f;
     float _timeTemp;
@@ -26,6 +26,7 @@ public class AsciFiriniBeklemeState : AsciState
             pizza.transform.position = asci.hand.transform.position;
             _timeTemp = time;
             asci.countereKoymaState.pizza = pizza;
+            pizza = null;
             ocak.ocakLight.enabled = false;
             asci.currState = asci.countereKoymaState;
         }

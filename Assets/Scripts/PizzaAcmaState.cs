@@ -18,10 +18,12 @@ public class PizzaAcmaState : AsciState
             asci.queueState.oncekiState = asci.currState;
             asci.queueState.oncekiAction = asci.action;
             asci.currState = asci.queueState;
+            return;
         }
         asci.agent.SetDestination(item.asciYeri.position);
         pizza = asci.pizza;
         action.AsciTasi();
+        
     }
     public override void UpdateState(Action action)
     {

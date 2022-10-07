@@ -5,9 +5,6 @@ using UnityEngine;
 public class IdleState : GarsonState
 {
     Garson garson;
-    void Start()
-    {
-    }
     public override void StartState(Action action)
     {
         garson = GetComponentInParent<Garson>();
@@ -24,7 +21,6 @@ public class IdleState : GarsonState
     public bool FindCounter()
     {
         var counter = garson.FindCounter();
-        Debug.Log( "counter " + counter + " garson " + garson);
         if(counter == null)
         {
             return false;

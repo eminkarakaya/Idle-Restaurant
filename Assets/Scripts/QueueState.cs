@@ -7,7 +7,7 @@ public class QueueState : AsciState
     public Action oncekiAction;
     public AsciState oncekiState;
     Asci asci;
-    private Vector3 _queuePlace;
+    [SerializeField] private Vector3 _queuePlace;
     public Vector3 queuePlace{
         get => _queuePlace;
         set{
@@ -18,26 +18,38 @@ public class QueueState : AsciState
     public override void StartState(Action action)
     {
         asci = GetComponentInParent<Asci>();
-        asci.agent.SetDestination(_queuePlace);
         
         item = oncekiState.item;
-        Debug.Log(item + " item ");
-        Debug.Log(item.queue[0] + " quqeue0 ");
-        if(item.queue[0] == item)
+        if(item.queue[0] == asci)
         {
-            asci.currState = oncekiState;
+            Debug.Log(asci.currState + " " + asci);
+            // asci.currState = oncekiState;
+            // return;
         }
+        _queuePlace = item.createdQueueTransform[item.createdQueueTransform.Count-1].position;
+        asci.agent.SetDestination(_queuePlace);
     }
     public override void UpdateState(Action action)
     {
-       
-        if(Vector3.Distance(asci.transform.position,_queuePlace) < .2f)
+        if(item.queue[0] == asci)
         {
+            Debug.Log(asci.currState + " " + asci);
+            asci.currState = oncekiState;
+            // return;
+        }
+        if(Vector3.Distance(asci.transform.position,_queuePlace) < .4f)
+        {
+            Debug.Log("beklemey");
             action.AsciYemekleDur();
+            asci.queueBekleState.item = item;
+            asci.queueBekleState.oncekiState = oncekiState;
             asci.currState = asci.queueBekleState;
         }
         else
+        {
+
             action.AsciTasi();
+        }
         
     }
 }

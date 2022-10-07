@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023d13213aa6fb64398e7c3665de4519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
 --- !u!1 &491564812
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,6 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4d94f2ebd6b8943a542c436b02aa08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
   hamur: {fileID: 7047953069300288970, guid: 57d3884f169d78f4eae6d8cfe9a87c0d, type: 3}
 --- !u!1 &657778637
 GameObject:
@@ -130,6 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e0fe0d52410c44b97c3c7995e7c972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  pizzaAcmaCounter: {fileID: 0}
   pizzaAcmaTime: 0
   pizza: {fileID: 0}
 --- !u!1 &1106351097
@@ -175,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 441de663483decd4996a14e6bd741952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
   pizza: {fileID: 0}
   counter: {fileID: 0}
 --- !u!1 &1594227948
@@ -220,6 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac7250dc3191504bbd88010f5ef2c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
 --- !u!1 &1769507329
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,6 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d7ba26c47bdc24cb62e556fc40bd2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
   pizza: {fileID: 0}
   ocak: {fileID: 0}
 --- !u!1 &1934273314
@@ -308,6 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1199318f7f012774d8ce56b02e285c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
   pizza: {fileID: 0}
 --- !u!1 &1968185553
 GameObject:
@@ -352,8 +360,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f8d1a4a76e91a46b0585d182488aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
   oncekiAction: {fileID: 0}
   oncekiState: {fileID: 0}
+  _queuePlace: {x: 0, y: 0, z: 0}
 --- !u!1 &2013232215
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,6 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76e81130b4177245ade88777d7c14e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
   pizza: {fileID: 0}
 --- !u!1 &3300796612817049096
 GameObject:
@@ -530,6 +541,10 @@ PrefabInstance:
       propertyPath: pizzaAcmaState
       value: 
       objectReference: {fileID: 491564814}
+    - target: {fileID: 1791865806015391099, guid: 803dfec92647a5e4ea7a7c16b01244c7, type: 3}
+      propertyPath: queueBekleState
+      value: 
+      objectReference: {fileID: 1594227950}
     - target: {fileID: 1791865806015391099, guid: 803dfec92647a5e4ea7a7c16b01244c7, type: 3}
       propertyPath: counterFullState
       value: 

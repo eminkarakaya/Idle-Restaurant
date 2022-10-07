@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class FirinaKoymaState : AsciState
 {
-    [HideInInspector] public GameObject pizza;
+    public GameObject pizza;
     Asci asci;
     Transform firinTransform;
     float offset = .5f;
+    void Start()
+    {
+        
+    }
     public override void StartState(Action action)
     {
         asci = GetComponentInParent<Asci>();
         item = asci.ocak;
         firinTransform = item.asciYeri.transform;
-        item.CreateQueue(asci);
+        if(!item.queue.Contains(asci))
+            item.CreateQueue(asci);
         if(item.queue.Count > 1)
         {
             asci.queueState.oncekiState = asci.currState;
@@ -34,6 +39,8 @@ public class FirinaKoymaState : AsciState
         pizza.transform.position = item.tabakYeri.position;
         pizza.transform.rotation = Quaternion.Euler(new Vector3(-90,0,0));
         asci.firiniBeklemeState.pizza = pizza;
+        pizza = null;
+        
         asci.currState = asci.firiniBeklemeState;
         
     }
