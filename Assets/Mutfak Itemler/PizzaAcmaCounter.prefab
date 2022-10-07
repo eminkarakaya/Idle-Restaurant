@@ -23,12 +23,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905196573}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00508, y: 0, z: -0.00139}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.005079994, y: 0, z: -0.0013900007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1133615308247339099}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2014943385
 GameObject:
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2014943386}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TabakYeri
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1133615308247339099}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1133615306851218858
 GameObject:
@@ -90,7 +90,7 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 1133615308247339099}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1133615306851218839
 MeshFilter:
@@ -172,7 +172,7 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 1133615308247339099}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1133615307517832973
 MeshFilter:
@@ -254,7 +254,7 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 1133615308247339099}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1133615307556340365
 MeshFilter:
@@ -336,7 +336,7 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 1133615308247339099}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1133615307704925747
 MeshFilter:
@@ -417,7 +417,7 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 1133615308247339099}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1133615307772439375
 MeshFilter:
@@ -498,14 +498,14 @@ Transform:
   m_LocalPosition: {x: -3.764, y: 0.477, z: -1.885}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
+  - {fileID: 905196574}
+  - {fileID: 2014943386}
   - {fileID: 1133615308649533700}
   - {fileID: 1133615307517832963}
   - {fileID: 1133615306851218837}
   - {fileID: 1133615307556340355}
   - {fileID: 1133615307772439373}
   - {fileID: 1133615307704925745}
-  - {fileID: 2014943386}
-  - {fileID: 905196574}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -570,8 +570,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1caddfd1026e8145a231f3fd529aba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  createdQueueTransform: []
+  _queue: []
+  asciYeri: {fileID: 905196574}
+  tabakYeri: {fileID: 0}
+  ascilar: []
   time: 2
-  place: {fileID: 2014943386}
+  pizzaYeri: {fileID: 2014943386}
 --- !u!1 &1133615308649533701
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,7 +607,7 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 1133615308247339099}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1133615308649533702
 MeshFilter:
