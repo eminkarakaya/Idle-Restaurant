@@ -80566,7 +80566,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 2.25
-    functionName: RestorantdanCikma
+    functionName: MasadanKalkState
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

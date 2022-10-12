@@ -39,8 +39,16 @@ public class SelectManager : MonoBehaviour
                     {
                         department.selectableCollider.enabled = false;
                         
-                        _kapatilacakPanel = department.acilacakPanel;
-                        department.acilacakPanel.GetComponent<Canvas>().enabled =true;
+                        if(department.isLocked)
+                        {
+                            department.lockedPanel.GetComponent<Canvas>().enabled = true;
+                            _kapatilacakPanel = department.lockedPanel;
+                        }
+                        else
+                        {
+                            _kapatilacakPanel = department.acilacakPanel;
+                            department.acilacakPanel.GetComponent<Canvas>().enabled =true;
+                        }
 
                         CameraMove.instance.MoveTarget(department.camPlace.position);
                         department.oldCamPlace = CameraMove.instance.transform;

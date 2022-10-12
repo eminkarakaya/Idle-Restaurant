@@ -62,7 +62,6 @@ Transform:
   m_Children:
   - {fileID: 1756347877875918220}
   - {fileID: 1433332466}
-  - {fileID: 8329250970082704095}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -120,8 +119,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63767f13e39d0a84d9f62ae25472b5f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camTransform: {fileID: 0}
-  _acilacakPanel: {fileID: 0}
+  _lock: {fileID: 0}
+  buzdolabi: {fileID: 0}
+  asciBeklemeTransform: []
+  counterSayisi: 0
+  pizzaCounterSayisi: 0
+  allCounters: []
+  kullanilanPizzaCounters: []
+  allPizzaCounters: []
+  kullanilanCounters: []
+  asciKapasitesi: 0
+  firinSayisi: 0
+  allFirin: []
+  kullanilanFirinlar: []
+  buzdolabiYerleri: []
+  asciSayisi: 0
+  unlockCost: {fileID: 0}
 --- !u!1 &6759632211312873979
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,65 +217,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1001 &8493005853808730842
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 6038343724238399149}
-    m_Modifications:
-    - target: {fileID: 453252176455555077, guid: 2baaee5a42a38274b91c3f1997689e8d, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 453252176455555077, guid: 2baaee5a42a38274b91c3f1997689e8d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.376317
-      objectReference: {fileID: 0}
-    - target: {fileID: 453252176455555077, guid: 2baaee5a42a38274b91c3f1997689e8d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.078999996
-      objectReference: {fileID: 0}
-    - target: {fileID: 453252176455555077, guid: 2baaee5a42a38274b91c3f1997689e8d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.0240707
-      objectReference: {fileID: 0}
-    - target: {fileID: 453252176455555077, guid: 2baaee5a42a38274b91c3f1997689e8d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 453252176455555077, guid: 2baaee5a42a38274b91c3f1997689e8d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453252176455555077, guid: 2baaee5a42a38274b91c3f1997689e8d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453252176455555077, guid: 2baaee5a42a38274b91c3f1997689e8d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453252176455555077, guid: 2baaee5a42a38274b91c3f1997689e8d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453252176455555077, guid: 2baaee5a42a38274b91c3f1997689e8d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453252176455555077, guid: 2baaee5a42a38274b91c3f1997689e8d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 937196083635684031, guid: 2baaee5a42a38274b91c3f1997689e8d, type: 3}
-      propertyPath: m_Name
-      value: ModernKitchen
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2baaee5a42a38274b91c3f1997689e8d, type: 3}
---- !u!4 &8329250970082704095 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 453252176455555077, guid: 2baaee5a42a38274b91c3f1997689e8d, type: 3}
-  m_PrefabInstance: {fileID: 8493005853808730842}
-  m_PrefabAsset: {fileID: 0}
