@@ -21,10 +21,18 @@ public class QueueState : StateBase
         unit = GetComponentInParent<Unit>();
         unit.bekleImage.gameObject.SetActive(true);
         // asci = GetComponentInParent<Asci>();
-        item = kapi.instance;
         item = oncekiState.item;
+        Debug.Log(oncekiState);
+        Debug.Log(item + " item");
         if(!isUpdate)
+        {
+            Debug.Log(item);
+            Debug.Log(item.createdQueueTransform);
+            Debug.Log(item.queue.Count);
+            Debug.Log(item.createdQueueTransform[item.queue.Count]);
             _queuePlace = item.createdQueueTransform[item.queue.Count].position;
+
+        }
         // Debug.Log(item.createdQueueTransform[item.createdQueueTransform.Count-1].position.normalized + " qwfdvsjkbfasj",item.createdQueueTransform[item.createdQueueTransform.Count-1]);
         isUpdate = false;
         

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Kitchen : Department
 {
+    [SerializeField] bool kuryeMutfagimi;
     [Header("Listeler")]
     public List<Transform> asciBeklemeTransform;
     public List<Counter> allCounters;
@@ -16,7 +17,6 @@ public class Kitchen : Department
     public List<Transform> buzdolabiYerleri;
     [Space(10)]
     [SerializeField] GameObject acilacakItemler;
-    [SerializeField] GameObject _lock;
     public Transform buzdolabi;
     public int counterSayisi;
     public int pizzaCounterSayisi;
@@ -29,7 +29,6 @@ public class Kitchen : Department
     public override Level level {get; set;}
     public override GameObject acilacakPanel { get; set; }
     [SerializeField] public override Transform camPlace { get; set; }
-    public override Collider selectableCollider { get; set; }
     public override Transform oldCamPlace { get; set; }
 
     void Start()
@@ -116,7 +115,10 @@ public class Kitchen : Department
     public void AsciSatinAl()
     {
         var asci = Instantiate(GameManager.instance.asciPrefab,asciBeklemeTransform[asciSayisi].position,Quaternion.identity);
-        
+        if(kuryeMutfagimi)
+        {
+            asci.transform.GetChild(0).GetComponent<Asci>().counterFullState.kuryeAscisimi = true;
+        }
         var counter = GetEmptyCounter();
         asci.transform.GetChild(0).GetComponent<Asci>().counter = counter;
         counter.ascilar.Add(asci);

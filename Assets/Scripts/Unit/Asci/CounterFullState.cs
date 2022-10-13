@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CounterFullState : AsciState
 {
+    public bool kuryeAscisimi;
     float timeOffset = .3f;
     float timeOffsetTemp;
     public override void StartState(Action action)
@@ -25,7 +26,15 @@ public class CounterFullState : AsciState
             asci.pizza.transform.position = asci.counter.tabakYerleri[asci.counter.tabakSayisi-1].position;
             asci.counter.food = asci.pizza;
             asci.counter.isFull = true;
-            asci.level.restaurant.yemegiHazirCounterler.Add(asci.counter);  
+            if(kuryeAscisimi)
+            {
+                asci.level.parkinLot.yemegiHazirCounterler.Add(asci.counter);
+            }
+            else
+            {
+                asci.level.restaurant.yemegiHazirCounterler.Add(asci.counter);
+            }
+            
             asci.pizza.transform.rotation = Quaternion.Euler(new Vector3(-90,0,0));
             asci.counter.UpdateQueue(asci);
             asci.currState = asci.buzdolabiState;

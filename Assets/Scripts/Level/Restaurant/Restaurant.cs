@@ -18,18 +18,18 @@ public class Restaurant : Department
     public override GameObject acilacakPanel { get; set; }
     public override Transform camPlace { get; set; }
     public override Transform oldCamPlace { get; set; }
-    public override Collider selectableCollider { get; set; }
     [SerializeField] private Transform _camTransform;
     [SerializeField] private GameObject _acilacakPanel;
-    [HideInInspector]public int garsonUcreti = 100;
-    [HideInInspector]public int masaUcreti = 100;
-    [HideInInspector]public int garsonMoveUcreti = 100;
-    [HideInInspector] public int musteriSiklikUcreti = 100;
+    public Gold garsonUcreti;
+    public Gold masaUcreti;
+     public Gold garsonMoveUcreti;
+     public Gold musteriSiklikUcreti;
     [HideInInspector] public float frekansAzalisYuzdesi = 3;
     [HideInInspector] public float hareketHiziArtisYuzdesi = 4;
     [HideInInspector] public float frekansNext;
     [HideInInspector] public float moveNext;
     [HideInInspector]public int masaSayisi = 1;
+    [HideInInspector] public int masaKapasitesi = 10;
     [HideInInspector]public int garsonSayisi = 1;
     void Start()
     {
@@ -49,7 +49,7 @@ public class Restaurant : Department
         var garson = Instantiate(GameManager.instance.garsonPrefab,garsonBeklemeYerleri[garsonSayisi].position,Quaternion.identity);
         garson.GetComponentInChildren<Garson>().beklemeYeri = garsonBeklemeYerleri[garsonSayisi];
         garson.GetComponentInChildren<Garson>().level = level;
-        garsonUcreti += 100;
+        garsonUcreti.SetGold(100);
         tumGarsonlar.Add(garson);
         restorantData.UpdateData();
     }
@@ -59,7 +59,7 @@ public class Restaurant : Department
         tumMasalar[masaSayisi].gameObject.SetActive(true);
         emptyChairs.Add(tumMasalar[masaSayisi].transform.GetChild(0).GetComponent<Chair>());
         emptyChairs.Add(tumMasalar[masaSayisi].transform.GetChild(2).GetComponent<Chair>());
-        masaUcreti += 100;
+        masaUcreti.SetGold(100);
         restorantData.UpdateData();
     }
     public void GarsonHareketHiziArttir()
@@ -69,14 +69,14 @@ public class Restaurant : Department
             tumGarsonlar[i].transform.GetChild(0).GetComponent<Garson>().moveSpeed += tumGarsonlar[i].transform.GetChild(0).GetComponent<Garson>().moveSpeed * (hareketHiziArtisYuzdesi/100);            
         }
         moveNext = tumGarsonlar[0].transform.GetChild(0).GetComponent<Garson>().moveSpeed + tumGarsonlar[0].transform.GetChild(0).GetComponent<Garson>().moveSpeed * (hareketHiziArtisYuzdesi/100);            
-        garsonMoveUcreti+=100;
+        garsonMoveUcreti.SetGold(100);
         restorantData.UpdateData();
     }
     public void MusteriSikligiArttir()
     {
         GetComponentInChildren<CustomerCreator>().frequency -= (GetComponentInChildren<CustomerCreator>().frequency * (frekansAzalisYuzdesi/100));
         frekansNext = GetComponentInChildren<CustomerCreator>().frequency - (GetComponentInChildren<CustomerCreator>().frequency * (frekansAzalisYuzdesi/100));
-        musteriSiklikUcreti += 100;
+        musteriSiklikUcreti.SetGold(100);
         restorantData.UpdateData();
     }
 }

@@ -12,6 +12,7 @@ public class Level : MonoBehaviour
     public Restaurant restaurant;
     public List<Kitchen> kitchens;
     public Bulasikhane bulasikhane;
+    public ParkinLot parkinLot;
     
     void OnEnable()
     {

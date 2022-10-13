@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public TextParse [] allTextParse;
     public GameObject garsonPrefab;
     public GameObject asciPrefab;
+    public GameObject motorPrefab;
     public List<int> acilanLeveller;
     public static GameManager instance {get;private set;}
     void Awake()

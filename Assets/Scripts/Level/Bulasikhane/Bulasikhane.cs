@@ -8,7 +8,6 @@ public class Bulasikhane : Department
     public override GameObject acilacakPanel { get; set; }
     public override Transform camPlace { get; set; }
     public override Transform oldCamPlace { get; set; }
-    public override Collider selectableCollider { get; set; }
     public List<BulasikCounter> allCounter;
     public List<BulasikCounter> kullanilanCounters;
     public List<Sink> allSinks;
@@ -16,6 +15,7 @@ public class Bulasikhane : Department
     void Awake()
     {
         level = GetComponentInParent<Level>();
+        selectableCollider = GetComponent<Collider>();
     }
     public BulasikCounter FindBulasikCounter()
     {
