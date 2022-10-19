@@ -7,23 +7,21 @@ public class BulasikciTabakAl : BulasikciState
     public override void StartState(Action action)
     {   
         action.Yuru();
-        // var counter = bulasikci.level.bulasikhane.FindBulasikCounter();
-        if(bulasikci.counter != null)
+        item = bulasikci.bulasikCounter;
+        item.CreateQueue(bulasikci);
+        if(item.queue[0] != bulasikci)
         {
-            bulasikci.agent.SetDestination(bulasikci.counter.asciYeri.position);
-        }
-        else
-        {
-            
+            bulasikci.queueState.oncekiState = bulasikci.currState;
+            bulasikci.currState = bulasikci.queueState;
         }
     }
     public override void UpdateState(Action action)
     {
-        if(Vector3.Distance(bulasikci.agent.transform.position,bulasikci.bulasikCounter.bulasikciYeri.position) < .4f)
+        bulasikci.agent.SetDestination(bulasikci.bulasikCounter.asciYeri.position);
+        if(Vector3.Distance(bulasikci.agent.transform.position,bulasikci.bulasikCounter.asciYeri.position) < .4f)
         {
             if(bulasikci.bulasikCounter.tabaklar.Count == 0)
             {
-                Debug.Log("tabaklar bos");
                 bulasikci.currState = bulasikci.bulasikTabakBekle;
                 return;
             }

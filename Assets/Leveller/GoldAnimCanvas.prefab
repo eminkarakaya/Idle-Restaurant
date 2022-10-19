@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3053723612975029245}
   - component: {fileID: 2538396143524487661}
   - component: {fileID: 556648023161612512}
+  - component: {fileID: 9155543522774090115}
   m_Layer: 0
   m_Name: GoldAnimCanvas
   m_TagString: Untagged
@@ -36,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.091, y: 2.421}
+  m_AnchoredPosition: {x: 0.09100342, y: 2.4210205}
   m_SizeDelta: {x: 0.9155, y: 0.4356}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3053723612975029245
@@ -100,6 +101,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &9155543522774090115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678281819213084791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbd630c51ba07c41ae1a38d42b6c63f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
 --- !u!1001 &5219435265135676604
 PrefabInstance:
   m_ObjectHideFlags: 0

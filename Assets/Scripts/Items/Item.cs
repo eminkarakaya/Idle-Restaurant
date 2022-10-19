@@ -33,6 +33,9 @@ public class Item : MonoBehaviour
         }
         for (int i = 0; i < queue.Count; i++)
         {
+            Debug.Log(queue[i].currState + " pojssıpsadspı Oncekıstates");
+            
+            // queue[i].queueState.oncekiState = queue[i].currState;
             queue[i].queueState.queuePlace = createdQueueTransform[i].position;
             queue[i].queueState.isUpdate = true;
             queue[i].currState = queue[i].queueState;

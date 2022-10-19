@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class CameraMove : MonoBehaviour
 {
+    public Transform camTransform;
     public bool kilitlen;
     public static CameraMove instance {get;private set;}
     public float mapMinX, mapMaxX,mapMinZ,MapMaxZ;
@@ -12,6 +13,9 @@ public class CameraMove : MonoBehaviour
     public Vector3 newPos;
     public Vector3 dragStartPos;
     public Vector3 dragCurrPos;
+    public float zoomMiktari;
+    public float maxZoom;
+    public float minZoom;
     void Awake()
     {
         instance = this;
@@ -52,6 +56,32 @@ public class CameraMove : MonoBehaviour
                 dragCurrPos = ray.GetPoint(enrty);
                 newPos = transform.position + dragStartPos - dragCurrPos;
             }
+        }
+        if(Input.GetAxisRaw("Mouse ScrollWheel") > 0f)
+        {
+            if(zoomMiktari < minZoom)
+            {
+                var zoom = 80f*Time.deltaTime;
+                zoomMiktari += zoom;
+                var vec3 = Vector3.zero;
+                vec3.z += zoom;
+                camTransform.Translate(vec3,Space.Self);
+            }
+            else
+                zoomMiktari = minZoom;
+        }
+        if(Input.GetAxisRaw("Mouse ScrollWheel") < 0f)
+        {
+            if(zoomMiktari > maxZoom)
+            {
+                var zoom = 80f*Time.deltaTime;
+                zoomMiktari -= zoom;
+                var vec3 = Vector3.zero;
+                vec3.z -= zoom;
+                camTransform.Translate(vec3,Space.Self);
+            }
+            else
+                zoomMiktari = maxZoom;
         }
         transform.position = Vector3.Lerp(transform.position,newPos,Time.deltaTime*moveSpeed);
         transform.position = ClampCam(this.transform.position);

@@ -39,8 +39,10 @@ public class Garson : Unit
     }
     void Start()
     {
+        level = FindObjectOfType<Level>();
         agent.speed = moveSpeed;
         currState = idleState;
+        beklemeYeri = level.restaurant.garsonBeklemeYerleri[level.restaurant.garsonSayisi-1];
     }
     void Update()
     {

@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class Sink : Item
 {
-    
+    public bool isFull;
+    public Transform bulasikciYeri;
 }

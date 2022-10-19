@@ -46,8 +46,8 @@ public class SelectManager : MonoBehaviour
                         }
                         else
                         {
-                            _kapatilacakPanel = department.acilacakPanel;
                             department.acilacakPanel.GetComponent<Canvas>().enabled =true;
+                            _kapatilacakPanel = department.acilacakPanel;
                         }
 
                         CameraMove.instance.MoveTarget(department.camPlace.position);

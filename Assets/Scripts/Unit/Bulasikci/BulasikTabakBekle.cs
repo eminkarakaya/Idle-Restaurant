@@ -14,12 +14,13 @@ public class BulasikTabakBekle : BulasikciState
         if(bulasikci.bulasikCounter.tabaklar.Count != 0)
         {
             bulasikci.bekleImage.gameObject.SetActive(false);
-            bulasikci.agent.isStopped = false;
+            // bulasikci.agent.isStopped = false;
+            bulasikci.bulasikCounter.UpdateQueue(bulasikci);
             bulasikci.currState = bulasikci.bulasikciTabakAl;
         }
         else 
         {
-            bulasikci.agent.isStopped = true;
+            // bulasikci.agent.isStopped = true;
         }
     }
 }

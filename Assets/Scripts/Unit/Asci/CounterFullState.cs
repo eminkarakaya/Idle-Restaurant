@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ public class CounterFullState : AsciState
     public override void StartState(Action action)
     {
         asci.bekleImage.gameObject.SetActive(true);
-        action.Idle();
+        action.YemekleDur();
     }
     public override void UpdateState(Action action)
     {
@@ -23,7 +23,7 @@ public class CounterFullState : AsciState
             }
             timeOffsetTemp = 0;
             asci.pizza.transform.SetParent(null);
-            asci.pizza.transform.position = asci.counter.tabakYerleri[asci.counter.tabakSayisi-1].position;
+            asci.pizza.transform.position = asci.counter.tabakYerleri[asci.counter.tabakSayisi].position;
             asci.counter.food = asci.pizza;
             asci.counter.isFull = true;
             if(kuryeAscisimi)
@@ -38,7 +38,7 @@ public class CounterFullState : AsciState
             asci.pizza.transform.rotation = Quaternion.Euler(new Vector3(-90,0,0));
             asci.counter.UpdateQueue(asci);
             asci.currState = asci.buzdolabiState;
-            asci.counter.UpdateQueue(asci);
+            // asci.counter.UpdateQueue(asci);
             asci.bekleImage.gameObject.SetActive(false);
             asci.currState = asci.buzdolabiState;
         }

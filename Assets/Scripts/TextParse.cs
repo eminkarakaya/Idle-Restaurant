@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TextParse : Text
 {
+    Color _color = new Color(49,207,26,255);
     public override Color color { get => base.color; set => base.color = value; }
     public void Check(int value)
     {
@@ -12,7 +13,7 @@ public class TextParse : Text
             color =  Color.red;
         else
         {
-            color = Color.white;
+            color = _color;
         }
     }
 }

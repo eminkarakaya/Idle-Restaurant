@@ -25,7 +25,7 @@ public class RestorantData : MonoBehaviour
         garsonMoveCost.text = GameManager.CaclText(restaurant.garsonMoveUcreti.GetGold());
         garsonSayisiText.text = "Garson Sayısı: " + restaurant.garsonSayisi+ "/" +restaurant.garsonKapasitesi;
         masaSayisiText.text = "Masa Sayısı: " + restaurant.masaSayisi + "/" + restaurant.masaKapasitesi;
-        garsonYurumeHiziText.text = restaurant.tumGarsonlar[0].transform.GetChild(0).GetComponent<Garson>().moveSpeed.ToString();
+        garsonYurumeHiziText.text = restaurant.moveSpeed.ToString();
         garsonYurumeHiziTextNext.text = restaurant.moveNext.ToString();
         musteriGelmeSikligiText.text = restaurant.GetComponentInChildren<CustomerCreator>().frequency.ToString();
         musteriGelmeSikligiTextNext.text = restaurant.frekansNext.ToString();

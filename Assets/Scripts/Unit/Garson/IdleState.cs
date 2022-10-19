@@ -24,7 +24,12 @@ public class IdleState : GarsonState
         {
             garson._chair = garson.FindChair();
         }
-        if(garson._chair != null)
+        if(garson.counter == null)
+        {
+            var counter = garson.FindCounter();
+        }
+        
+        if(garson._chair != null && garson.counter != null)
         {
             garson.bekleImage.gameObject.SetActive(false);
             garson.currState = garson.yemegiCounterdenAlState;

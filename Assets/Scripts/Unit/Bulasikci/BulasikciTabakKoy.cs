@@ -6,7 +6,7 @@ public class BulasikciTabakKoy : BulasikciState
 {
     public Sink FindSink()
     {
-        List<Sink> allSinks = bulasikci.level.bulasikhane.kullanilanSinks;
+        List<Sink> allSinks = bulasikci.bulasikhane.kullanilanSinks;
         var enaz = allSinks[0];
         for (int i = 0; i < allSinks.Count; i++)
         {
@@ -23,11 +23,19 @@ public class BulasikciTabakKoy : BulasikciState
     {
         action.Tasi();
         var sink = FindSink();
+        item = sink;
+        item.CreateQueue(bulasikci);
+        if(item.queue[0] != bulasikci)
+        {
+            bulasikci.queueState.oncekiState = bulasikci.currState;
+            bulasikci.currState = bulasikci.queueState;
+        }
+
         bulasikci.agent.SetDestination(sink.asciYeri.position);
     }
     public override void UpdateState(Action action)
     {
-        if(Vector3.Distance(bulasikci.transform.position,bulasikci.sink.transform.position) < .4f)
+        if(Vector3.Distance(bulasikci.transform.position,bulasikci.sink.bulasikciYeri.transform.position) < .6f)
         {
             bulasikci.currState = bulasikci.bulasikciYikaState;
         }

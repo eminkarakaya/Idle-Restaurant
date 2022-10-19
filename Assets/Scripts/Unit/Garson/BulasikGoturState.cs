@@ -9,16 +9,27 @@ public class BulasikGoturState : GarsonState
     public override void StartState(Action action)
     {
         action.Tasi();
-        bulasikCounter = garson.level.restaurant.bulasikCounter;
+        for (int i = 0; i < garson.level.bulasikhane.Count; i++)
+        {
+            bulasikCounter = garson.level.bulasikhane[i].FindBulasikCounter();
+        }
+        item = bulasikCounter.garsonItem;
+        item.CreateQueue(garson);
+
+        if(item.queue[0] != garson)
+        {
+            garson.queueState.oncekiState = garson.currState;
+            garson.currState = garson.queueState;
+        }
         garson.agent.SetDestination(bulasikCounter.bulasikciYeri.position);
     }
     public override void UpdateState(Action action)
     {
-        if(Vector3.Distance(garson.transform.position,bulasikCounter.bulasikciYeri.position) < .4f)
+        if(Vector3.Distance(garson.transform.position,bulasikCounter.bulasikciYeri.position) < .5f || bulasikCounter.tabaklar.Count > 0)
         {
             garson.bulasikGoturIdle.tabak = tabak;
             garson.bulasikGoturIdle.bulasikCounter = bulasikCounter;
-            garson.currState = garson.bulasikGoturIdle;   
+            garson.currState = garson.bulasikGoturIdle;
         }
     }
 }

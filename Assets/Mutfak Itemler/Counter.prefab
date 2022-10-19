@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b354775ca2cda40866af5e7d0e1516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tabakSayisi: 1
+  tabakSayisi: 0
   tabakKapasitesi: 1
   ascilar: []
   musteriler: []

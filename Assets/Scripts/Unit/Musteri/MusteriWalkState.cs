@@ -26,7 +26,7 @@ public class MusteriWalkState : MusteriState
     }
     public override void UpdateState(Action action)
     {
-         musteri.agent.SetDestination(musteri.chair.oturulcakYer.position);
+        musteri.agent.SetDestination(musteri.chair.oturulcakYer.position);
         if(Vector3.Distance(musteri.agent.transform.position,musteri.oturulcakYer.transform.position) > .3f)
         {
             return;

@@ -12,11 +12,13 @@ public class YemegiCounterdenAlState : GarsonState
     {
         if(garson.counter != null)
         {
+        garson.agent.SetDestination(garson.counter.garsonPos.position);
             if(Vector3.Distance(garson.agent.transform.position,garson.counter.transform.position) < 0.5f)
             {
                 garson.currState = garson.tasiState;
                 return;
             }
+            return;
         }
         var counter = garson.FindCounter();
         if(garson.counter == null)

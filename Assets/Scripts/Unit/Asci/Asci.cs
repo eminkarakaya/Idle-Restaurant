@@ -35,7 +35,11 @@ public class Asci : Unit
         agent.speed = moveSpeed;
         currState = buzdolabiState;
         currState.StartState(action);
+        counter = kitchen.GetEmptyCounter();
+        ocak = kitchen.GetEmptyFirin();
+        pizzaAcmaCounter = kitchen.GetEmptyPizzaAcmaCounter();
     }
+    
     void Update()
     {
         currState.UpdateState(action);

@@ -22,18 +22,10 @@ public class QueueState : StateBase
         unit.bekleImage.gameObject.SetActive(true);
         // asci = GetComponentInParent<Asci>();
         item = oncekiState.item;
-        Debug.Log(oncekiState);
-        Debug.Log(item + " item");
         if(!isUpdate)
         {
-            Debug.Log(item);
-            Debug.Log(item.createdQueueTransform);
-            Debug.Log(item.queue.Count);
-            Debug.Log(item.createdQueueTransform[item.queue.Count]);
             _queuePlace = item.createdQueueTransform[item.queue.Count].position;
-
         }
-        // Debug.Log(item.createdQueueTransform[item.createdQueueTransform.Count-1].position.normalized + " qwfdvsjkbfasj",item.createdQueueTransform[item.createdQueueTransform.Count-1]);
         isUpdate = false;
         
     }
@@ -49,12 +41,11 @@ public class QueueState : StateBase
                 musteri.currState = oncekiState;
             }
         }
-        else if(item.queue[0] == unit)// && unit.isReady)
-        {
-            unit.bekleImage.gameObject.SetActive(false);
-            Debug.Log(unit + " queuemunit");
-            unit.currState = oncekiState;
-        }
+        // else if(item.queue[0] == unit)// && unit.isReady)
+        // {
+        //     unit.bekleImage.gameObject.SetActive(false);
+        //     unit.currState = oncekiState;
+        // }
         unit.agent.SetDestination(_queuePlace);
         if(Vector3.Distance(unit.transform.position,_queuePlace) < .7f)
         {
