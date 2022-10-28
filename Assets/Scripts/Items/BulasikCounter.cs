@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BulasikCounter : Item
 {
-    public GameObject engel;
-    public List <Tabak> tabaklar;
-    public Transform bulasikciYeri;
-    public Item garsonItem;
+    public GameObject barrier;
+    public List <Tabak> plates;
+    public Transform dishwasherPlace;
+    public Item waiterItem;
 }

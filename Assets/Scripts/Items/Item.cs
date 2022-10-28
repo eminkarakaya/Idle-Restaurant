@@ -4,20 +4,15 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Item : MonoBehaviour
 {
-    public int tabakSayisi;
-    public int tabakKapasitesi;
-    public List<GameObject> ascilar;
-    public List<GameObject> musteriler;
-    public List<GameObject> bulasikcilar;
+    public int plateCount;
+    public List<GameObject> chefs;
+    public List<GameObject> customers;
+    public List<GameObject> dishwashers;
     public List<Transform> createdQueueTransform;
     [SerializeField] private List<Unit> _queue;
     public List<Unit> queue { get => _queue; set { _queue = value;}}
-    public Transform asciYeri;
-    public List <Transform> tabakYerleri;
-    void Start()
-    {
-        createdQueueTransform.Add(asciYeri);
-    }
+    public Transform chefPlace;
+    public List <Transform> platePlaces;
     public void CreateQueue(Unit unit)
     {
         if(!queue.Contains(unit))
@@ -33,7 +28,6 @@ public class Item : MonoBehaviour
         }
         for (int i = 0; i < queue.Count; i++)
         {
-            Debug.Log(queue[i].currState + " pojssıpsadspı Oncekıstates");
             
             // queue[i].queueState.oncekiState = queue[i].currState;
             queue[i].queueState.queuePlace = createdQueueTransform[i].position;

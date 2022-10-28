@@ -170,6 +170,10 @@ PrefabInstance:
       propertyPath: tabakYeri
       value: 
       objectReference: {fileID: 8435696764434735963}
+    - target: {fileID: 384558912, guid: 403db70a455322e47b8106be357179a5, type: 3}
+      propertyPath: platePlace
+      value: 
+      objectReference: {fileID: 8435696764434735963}
     - target: {fileID: 3940129039745843743, guid: 403db70a455322e47b8106be357179a5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -243,6 +247,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 384558912, guid: 403db70a455322e47b8106be357179a5, type: 3}
       propertyPath: tabakYeri
+      value: 
+      objectReference: {fileID: 8435696764303206913}
+    - target: {fileID: 384558912, guid: 403db70a455322e47b8106be357179a5, type: 3}
+      propertyPath: platePlace
       value: 
       objectReference: {fileID: 8435696764303206913}
     - target: {fileID: 3940129039745843743, guid: 403db70a455322e47b8106be357179a5, type: 3}

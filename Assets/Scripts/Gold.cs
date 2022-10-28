@@ -6,8 +6,6 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Gold : MonoBehaviour
 {
-    public string ilkYazi;
-    public string sonYazi;
     [SerializeField] private int _gold;
     public TextParse textParse;
     void Start()

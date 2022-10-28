@@ -88,7 +88,6 @@ GameObject:
   - component: {fileID: 2113146141223415864}
   - component: {fileID: 2113146141223415871}
   - component: {fileID: 2113146141223415870}
-  - component: {fileID: 1952973389139642193}
   m_Layer: 0
   m_Name: LockedPanel
   m_TagString: Untagged
@@ -123,7 +122,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113146141223415868}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -177,26 +176,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1952973389139642193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2113146141223415868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be5af5e739b56014a86b73e97e7fdcb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firinSayisi: {fileID: 0}
-  counterSayisi: {fileID: 0}
-  asciSayisi: {fileID: 0}
-  counterAlCost: {fileID: 0}
-  firinAlCost: {fileID: 0}
-  asciAlCost: {fileID: 0}
-  kasaAlText: {fileID: 0}
-  kasaAlCost: {fileID: 0}
 --- !u!1 &2113146141301912152
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,8 +345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340788dd2a2ac76419bc2072e869c736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ilkYazi: 
-  sonYazi: 
   _gold: 30000
   textParse: {fileID: 3028565517181146013}
 --- !u!1 &3028565517333109895
@@ -703,7 +680,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4718ed19598f38948a1c872b133cc19c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 96bac7c1a3f939a45ae2209719988381, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

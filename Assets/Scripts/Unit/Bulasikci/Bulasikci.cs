@@ -5,27 +5,24 @@ using UnityEngine.AI;
 
 public class Bulasikci : Unit
 {
+    public SinkBekleState waitSinkState;
+    public BulasikTabakBekle waitPlateState;
+    public BulasikciTabakAl takePlateState;
+    public BulasikciTabakKoy putPlateState;
+    public BulasikciYikaState washState;
+    [Space(10)]
+    public Bulasikhane scullery;
     public Sink sink;
-    public SinkBekleState sinkBekleState;
-    public BulasikTabakBekle bulasikTabakBekle;
-    public BulasikCounter bulasikCounter;
-    public BulasikciTabakAl bulasikciTabakAl;
-    public BulasikciTabakKoy bulasikciTabakKoy;
-    public BulasikciYikaState bulasikciYikaState;
-    public Bulasikhane bulasikhane;
+    public BulasikCounter dishCounter;
     void Awake()
-    {
-        
+    {  
         level = FindObjectOfType<Level>();
-        // bulasikhane = level.bulasikhane;
-        sink = bulasikhane.GetEmptySink();
     }
     void Start()
     {
-        bulasikCounter = bulasikhane.FindBulasikCounter();
         action = GetComponent<Action>();
         agent = GetComponent<NavMeshAgent>();
-        currState = bulasikciTabakAl;
+        currState = takePlateState;
         currState.StartState(action);
     }
     void Update()

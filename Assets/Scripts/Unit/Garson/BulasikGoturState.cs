@@ -8,28 +8,32 @@ public class BulasikGoturState : GarsonState
     public BulasikCounter bulasikCounter;
     public override void StartState(Action action)
     {
-        action.Tasi();
-        for (int i = 0; i < garson.level.bulasikhane.Count; i++)
+        action.Carry();
+        for (int i = 0; i < waiter.level.scullery.Count; i++)
         {
-            bulasikCounter = garson.level.bulasikhane[i].FindBulasikCounter();
+            bulasikCounter = waiter.level.scullery[i].FindDishCounter();
         }
-        item = bulasikCounter.garsonItem;
-        item.CreateQueue(garson);
+        item = bulasikCounter.waiterItem;
+        item.CreateQueue(waiter);
 
-        if(item.queue[0] != garson)
+        if(item.queue[0] != waiter)
         {
-            garson.queueState.oncekiState = garson.currState;
-            garson.currState = garson.queueState;
+            waiter.queueState.isCarrying = true;
+            waiter.bulasikGoturIdle.tabak = tabak;
+            waiter.bulasikGoturIdle.item = bulasikCounter.waiterItem;
+            waiter.bulasikGoturIdle.bulasikCounter = bulasikCounter;
+            waiter.queueState.previousState = waiter.bulasikGoturIdle;
+            waiter.currState = waiter.queueState;
         }
-        garson.agent.SetDestination(bulasikCounter.bulasikciYeri.position);
+        waiter.agent.SetDestination(bulasikCounter.dishwasherPlace.position);
     }
     public override void UpdateState(Action action)
     {
-        if(Vector3.Distance(garson.transform.position,bulasikCounter.bulasikciYeri.position) < .5f || bulasikCounter.tabaklar.Count > 0)
+        if(Vector3.Distance(waiter.transform.position,bulasikCounter.dishwasherPlace.position) < .5f || bulasikCounter.plates.Count > 0)
         {
-            garson.bulasikGoturIdle.tabak = tabak;
-            garson.bulasikGoturIdle.bulasikCounter = bulasikCounter;
-            garson.currState = garson.bulasikGoturIdle;
+            waiter.bulasikGoturIdle.tabak = tabak;
+            waiter.bulasikGoturIdle.bulasikCounter = bulasikCounter;
+            waiter.currState = waiter.bulasikGoturIdle;
         }
     }
 }

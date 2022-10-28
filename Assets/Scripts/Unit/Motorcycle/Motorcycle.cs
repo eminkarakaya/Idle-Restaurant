@@ -16,6 +16,7 @@ public class Motorcycle : Unit
     public Transform garsonPos;
     public ParkinLot parkinLot;
     public Transform tabakPos;
+    
     void Awake()
     {
         action = GetComponent<Action>();
@@ -31,21 +32,21 @@ public class Motorcycle : Unit
     }
     public Counter FindCounter()
     {
-        if(parkinLot.yemegiHazirCounterler.Count == 0)
+        if(parkinLot.foodReadyCounters.Count == 0)
             return null;
-        Counter nearestCounter = parkinLot.yemegiHazirCounterler[0];
-        float nearestDistance = Vector3.Distance(parkinLot.yemegiHazirCounterler[0].transform.position,this.transform.position);
-        for (int i = 0; i < parkinLot.yemegiHazirCounterler.Count; i++)
+        Counter nearestCounter = parkinLot.foodReadyCounters[0];
+        float nearestDistance = Vector3.Distance(parkinLot.foodReadyCounters[0].transform.position,this.transform.position);
+        for (int i = 0; i < parkinLot.foodReadyCounters.Count; i++)
         {
-            float distance = Vector3.Distance(parkinLot.yemegiHazirCounterler[i].transform.position,transform.position);
+            float distance = Vector3.Distance(parkinLot.foodReadyCounters[i].transform.position,transform.position);
             if(distance < nearestDistance)
             {
-                nearestCounter = parkinLot.yemegiHazirCounterler[i];
+                nearestCounter = parkinLot.foodReadyCounters[i];
             }
         }
         var _counter = nearestCounter;
-        garsonPos = _counter.garsonPos;
-        parkinLot.yemegiHazirCounterler.Remove(nearestCounter);
+        garsonPos = _counter.waiterPos;
+        parkinLot.foodReadyCounters.Remove(nearestCounter);
         this.counter = _counter;
         return _counter;
     }

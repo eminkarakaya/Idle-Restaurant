@@ -6,18 +6,18 @@ public class YemekleBekleState : GarsonState
 {
     void Start()
     {
-        garson = GetComponentInParent<Garson>();
+        waiter = GetComponentInParent<Garson>();
     }
     public override void StartState(Action action)
     {
-        action.YemekleDur();
+        action.WaitWithFood();
     }
     public override void UpdateState(Action action)
     {
-        var chair = garson.FindChair();
+        var chair = waiter.FindChair();
         if(chair != null)
         {
-            garson.currState =  garson.tasiState;
+            waiter.currState =  waiter.tasiState;
         }
         return;
     }

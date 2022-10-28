@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 public class Level : MonoBehaviour
 {
+    public GameObject idleMoneyCanvas;
+    public TextMeshProUGUI earnedIdleMoneyText;
+    public TextMeshProUGUI passedTimeText;
+    public string lastLoginDate;
     public LevelData data;
     public LevelManager levelManager;
     private int _gold;
@@ -12,28 +17,78 @@ public class Level : MonoBehaviour
     public int levelIndex;
     public bool isUnlock;
     public Restaurant restaurant;
-    public List<Kitchen> kitchens;
-    public List<Bulasikhane> bulasikhane;
-    public ParkinLot parkinLot;
+    public Kitchen [] kitchens = new Kitchen[3];
+    public List<Bulasikhane> scullery;
+    public List <ParkinLot> parkinLot;
 
-    void OnEnable()
-    {
-        data = GameManager.instance.gameData.levelDatas[levelIndex];
-        // GameManager.instance.gameData.levelDatas[levelIndex] = data; // data = SaveSystem.LoadLevel();
-        Debug.Log("loaded");
-    }
     void OnApplicationQuit()
     {
-        GameManager.instance.gameData.levelDatas[levelIndex] = data;
+        Save();
+    }
+    void Awake()
+    {
+        restaurant = GetComponentInChildren<Restaurant>();
+        
     }
     void Start()
     {
-        restaurant = GetComponentInChildren<Restaurant>();
-        bulasikhane.Add(GetComponentInChildren<Bulasikhane>());
+        // bulasikhane.Add(GetComponentInChildren<Bulasikhane>());
         // kitchens.Add(GetComponentInChildren<Kitchen>());
         levelManager = FindObjectOfType<LevelManager>();
-        LoadLevel();
+            // if(PlayerPrefs.HasKey("data"))
+            //     LoadLevel();
+        var totalDishwasher =0;
+        for (int i = 0; i < scullery.Count; i++)
+        {
+            totalDishwasher += scullery[i].dishwasherCount;
+        }
+        var totalChef = 0;
+        for (int i = 0; i < kitchens.Length; i++)
+        {
+            if(kitchens[i].kuryeMutfagimi)
+                continue;
+            totalChef += kitchens[i].cookCount;
+        }
+        if(totalDishwasher == 0 ||restaurant.isLocked || totalChef == 0)
+        {
+            idleMoneyCanvas.SetActive(false);
+        }
+
+        earnedIdleMoneyText.text = GameManager.CaclText((CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10)) + "$";
+        TimeSpan t = TimeSpan.FromSeconds( CalcPassingTime() );
+        string str;
+        if(CalcPassingTime() > 86400)
+        {
+            str = t.ToString(@"dd\hh\:mm\:ss\:fff");
+            // string answer = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms", 
+            //     t.Hours, 
+            //     t.Minutes, 
+            //     t.Seconds, 
+            //     t.Milliseconds);
+        }
+        else if(CalcPassingTime() > 3600)
+        {
+            str = t.ToString(@"hh\:mm\:ss\:");
+            // string answer = string.Format("s:{1:D2} d:{2:D2} s",
+            //         t.Minutes, 
+            //         t.Seconds 
+            //         );
+        }
+        else if(CalcPassingTime() > 60)
+        {
+            str = t.ToString(@"mm") + " dk " + t.ToString(@"ss") + " sn";
+            // str = t.ToString(@"mm\:ss") + " sn";
+            // string answer = t.ToString("@d'd, 'hh\:mm\:ss")
+        }
+        else
+        {
+            str = t.ToString(@"ss") + " sn";
+        }
+
+        passedTimeText.text = str;
+        IsRestaurantReady(true);
     }
+
     public void SetGold(int value)
     {
         _gold+= value;
@@ -43,80 +98,250 @@ public class Level : MonoBehaviour
     {
         return _gold;
     }
-
-    public void SaveLevel()
+    public void Save()
     {
-        // SaveSystem.SaveLevel(this);
+        data = new LevelData(this);
+        GameManager.instance.gameData.levelData[levelIndex] = new LevelData(this);
+        GameManager.instance.gameData.para = GameManager.instance.GetMoney();
+        GameManager.instance.gameData.levelData[levelIndex].kitchenCount = kitchens.Length;
+        GameManager.instance.gameData.levelData[levelIndex].goldEarnedPerSec = CalculateEarnedMoneyOfPerSeconds();
+        GameManager.instance.gameData.levelData[levelIndex].lastLoginDate = DateTime.Now.ToString();
+        GameManager.instance.gameData.levelData[levelIndex].parkinLotCount = parkinLot.Count;
+        
+         
+        for (int i = 0; i < GameManager.instance.gameData.levelData[levelIndex].kitchenCount; i++)
+        {
+            if(GameManager.instance.gameData.levelData[levelIndex].kitchenIsLocked == null) 
+                continue;
+            GameManager.instance.gameData.levelData[levelIndex].kitchenIsLocked[i] =  kitchens[i].isLocked;
+            GameManager.instance.gameData.levelData[levelIndex].chefCount[i] =  kitchens[i].cookCount;
+            GameManager.instance.gameData.levelData[levelIndex].counterCount[i] =  kitchens[i].counterCount;
+            GameManager.instance.gameData.levelData[levelIndex].ovenCount[i] =  kitchens[i].ovenCount;
+            GameManager.instance.gameData.levelData[levelIndex].pizzaCounterCount[i] =  kitchens[i].pizzaCounterCount;
+            GameManager.instance.gameData.levelData[levelIndex].pizzaCounterCost[i] =  kitchens[i].pizzaCounterCost.GetGold();
+            GameManager.instance.gameData.levelData[levelIndex].ovenCost[i] =  kitchens[i].ovenCost.GetGold();
+            GameManager.instance.gameData.levelData[levelIndex].counterCost[i] =  kitchens[i].counterCost.GetGold();
+            GameManager.instance.gameData.levelData[levelIndex].chefCost[i] =  kitchens[i].asciCost.GetGold();
+        }
+        GameManager.instance.gameData.levelData[levelIndex].sculleryCount =  scullery.Count;
+        GameManager.instance.gameData.levelData[levelIndex].waiterCount =  restaurant.allWaiters.Count;
+        GameManager.instance.gameData.levelData[levelIndex].waiterSpeed =  restaurant.moveSpeed;
+        GameManager.instance.gameData.levelData[levelIndex].tableCount =  restaurant.tableCount;
+        GameManager.instance.gameData.levelData[levelIndex].restaurantIsLock =  restaurant.isLocked;
+        for (int i = 0; i < GameManager.instance.gameData.levelData[levelIndex].sculleryCount; i++)
+        {
+            GameManager.instance.gameData.levelData[levelIndex].sculleryIsLocked[i] = scullery[i].isLocked;
+            GameManager.instance.gameData.levelData[levelIndex].dishwasherCount[i] = scullery[i].dishwasherCount;
+            GameManager.instance.gameData.levelData[levelIndex].dishCounterCount[i] = scullery[i].dishCounterCount;
+            GameManager.instance.gameData.levelData[levelIndex].sinkCount[i] = scullery[i].sinkCount;
+        }
+        
+        for (int i = 0; i < GameManager.instance.gameData.levelData[levelIndex].parkinLotCount; i++)
+        {
+            GameManager.instance.gameData.levelData[levelIndex].parkingLotIsLocked = parkinLot[i].isLocked;
+            GameManager.instance.gameData.levelData[levelIndex].motorcycleCount[i] = parkinLot[i].allMotorcycle.Count;
+            GameManager.instance.gameData.levelData[levelIndex].motorcycleSpeed[i] = parkinLot[i].hiz;
+        }
+        Debug.Log("saved");
     }
     public void LoadLevel()
     {
-        restaurant.moveSpeed = GameManager.instance.gameData.levelDatas[levelIndex].garsonHizi;
-        for (int i = 0; i < GameManager.instance.gameData.levelDatas[levelIndex].kitchenCount; i++)
+        Debug.Log(GameManager.instance.gameData.levelData[levelIndex].lastLoginDate);
+        lastLoginDate =  GameManager.instance.gameData.levelData[levelIndex].lastLoginDate;
+        restaurant.moveSpeed = GameManager.instance.gameData.levelData[levelIndex].waiterSpeed;
+        for(int i = 0; i < GameManager.instance.gameData.levelData[levelIndex].kitchenCount; i++)
         {
-            // kitchens[i].isLocked = GameManager.instance.gameData.levelDatas[levelIndex].kitchenIsLocked[i];
-            // kitchens[i].counterSayisi = GameManager.instance.gameData.levelDatas[levelIndex].counterSayisi[i];
-            // kitchens[i].pizzaCounterSayisi = GameManager.instance.gameData.levelDatas[levelIndex].pizzaCounterSayisi[i];
-            // kitchens[i].firinSayisi = GameManager.instance.gameData.levelDatas[levelIndex].firinSayisi[i];
-            // kitchens[i].asciSayisi = GameManager.instance.gameData.levelDatas[levelIndex].asciSayisi[i];
-            var temp3 = GameManager.instance.gameData.levelDatas[levelIndex].firinSayisi[i];
-            kitchens[i].firinSayisi = 0;
-            for (int j = 0; j < temp3; j++)
-            {
-                kitchens[i].FirinSatinAl(false);
-            }
-            var temp = GameManager.instance.gameData.levelDatas[levelIndex].asciSayisi[i];
-            kitchens[i].asciSayisi = 0;
-            for (int j = 0; j < temp; j++)
-            {
-                kitchens[i].AsciSatinAl(false);
-            }
-            var temp2 = GameManager.instance.gameData.levelDatas[levelIndex].counterSayisi[i];
-            kitchens[i].counterSayisi = 0;
-            for (int j = 0; j < temp2; j++)
-            {
-                kitchens[i].KasaSatinAl(false);
-            }
-            var temp1 = GameManager.instance.gameData.levelDatas[levelIndex].pizzaCounterSayisi[i];
-            kitchens[i].pizzaCounterSayisi = 0;
-            for (int j = 0; j < temp1; j++)
-            {
-                kitchens[i].PizzaCounterSatinAl(false);
-            }
+            kitchens[i].isLocked = GameManager.instance.gameData.levelData[levelIndex].kitchenIsLocked[i];
+            if(!kitchens[i].isLocked)
+                kitchens[i].@lock.gameObject.SetActive(false);
+            // if(kitchens[i].isLocked)
+            // {
+            //     kitchens[i].counterSayisi = GameManager.instance.gameData.levelDatas[levelIndex].counterSayisi[i];
+            //     kitchens[i].pizzaCounterSayisi = GameManager.instance.gameData.levelDatas[levelIndex].pizzaCounterSayisi[i];
+            //     kitchens[i].firinSayisi = GameManager.instance.gameData.levelDatas[levelIndex].firinSayisi[i];
+            //     kitchens[i].asciSayisi = GameManager.instance.gameData.levelDatas[levelIndex].asciSayisi[i];
+            // }
+            // else
+            // {
+                var temp3 = GameManager.instance.gameData.levelData[levelIndex].ovenCount[i];
+                kitchens[i].ovenCount = 0;
+                for (int j = 0; j < temp3; j++)
+                {
+                    kitchens[i].FirinSatinAl(false);
+                }
+                var temp2 = GameManager.instance.gameData.levelData[levelIndex].counterCount[i];
+                kitchens[i].counterCount = 0;
+                for (int j = 0; j < temp2; j++)
+                {
+                    kitchens[i].BuyCounter(false);
+                }
+                var temp1 = GameManager.instance.gameData.levelData[levelIndex].pizzaCounterCount[i];
+                kitchens[i].pizzaCounterCount = 0;
+                for (int j = 0; j < temp1; j++)
+                {
+                    kitchens[i].PizzaCounterSatinAl(false);
+                }
+                var temp = GameManager.instance.gameData.levelData[levelIndex].chefCount[i];
+                kitchens[i].cookCount = 0;
+                for (int j = 0; j < temp; j++)
+                {
+                    kitchens[i].AsciSatinAl(false);
+                }
+            // }
         }
-        for (int i = 0; i < GameManager.instance.gameData.levelDatas[levelIndex].bulasikhaneCount; i++)
+        
+        for (int i = 0; i < GameManager.instance.gameData.levelData[levelIndex].sculleryCount; i++)
         {   
-            bulasikhane[i].isLocked = GameManager.instance.gameData.levelDatas[levelIndex].bulasikhaneIsLocked[i];
-            var sinktemp = GameManager.instance.gameData.levelDatas[levelIndex].sinkSayisi[i];
-            bulasikhane[i].sinkSayisi = 0;
+            scullery[i].isLocked = GameManager.instance.gameData.levelData[levelIndex].sculleryIsLocked[i];
+            var counterTemp = GameManager.instance.gameData.levelData[levelIndex].dishCounterCount[i];
+            scullery[i].dishCounterCount = 0;
+            for (int j = 0; j < counterTemp; j++)
+            {
+                scullery[i].BulasikCounterSatinAl(false);
+            }
+            var sinktemp = GameManager.instance.gameData.levelData[levelIndex].sinkCount[i];
+            scullery[i].sinkCount = 0;
             for (int j = 0; j < sinktemp; j++)
             {
-                bulasikhane[i].BulasikciSatinAl(false);
+                scullery[i].SinkSatinAl(false);
             }
+            var bulasikciTemp = GameManager.instance.gameData.levelData[levelIndex].dishwasherCount[i];
+            for (int j = 0; j < bulasikciTemp; j++)
+            {
+                scullery[i].BulasikciSatinAl(false);
+            }
+            if(!scullery[i].isLocked )
+                scullery[i].@lock.SetActive(false);
         }
-        var tempchair =  GameManager.instance.gameData.levelDatas[levelIndex].masaSayisi;
-        restaurant.masaSayisi = 0;
+        var tempchair =  GameManager.instance.gameData.levelData[levelIndex].tableCount;
+        restaurant.tableCount = 0;
         for (int i = 0; i < tempchair; i++)
         {
-            restaurant.MasaSatinAl(false);
+            restaurant.BuyTable(false);
         }
-        var garsontemp = GameManager.instance.gameData.levelDatas[levelIndex].garsonSayisi;
-        restaurant.garsonSayisi = 0;
+        restaurant.isLocked =  GameManager.instance.gameData.levelData[levelIndex].restaurantIsLock;
+        var garsontemp = GameManager.instance.gameData.levelData[levelIndex].waiterCount;
+        restaurant.customerCount = 0;
         for (int i = 0; i < garsontemp; i++)
         {
-            restaurant.GarsonSatinAl(false);
+            restaurant.BuyWaiter(false);
+        }   
+        if( !restaurant. isLocked)
+        {
+            restaurant. @lock.SetActive(false);
         }
-        levelIndex = GameManager.instance.gameData.levelDatas[levelIndex].levelIndex;
-        isUnlock = GameManager.instance.gameData.levelDatas[levelIndex].isUnlock;
-        restaurant.moveSpeed = GameManager.instance.gameData.levelDatas[levelIndex].garsonHizi;
-      
-        // garsonSayisi = data.garsonlar;
-        // asciSayisi = data.asciSayisi;
-        // masaSayisi = data.masaSayisi;
-        // asciKapasitesi = data.asciKapasitesi;
-        // garsonKapasitesi = data.garsonKapasitesi;
+        for (int i = 0; i <  GameManager.instance.gameData.levelData[levelIndex].parkinLotCount; i++)
+        {
+            parkinLot[i].isLocked = GameManager.instance.gameData.levelData[levelIndex].parkingLotIsLocked;
+            parkinLot[i].motorcycleCount = GameManager.instance.gameData.levelData[levelIndex].motorcycleCount[i];
+            parkinLot[i].hiz = GameManager.instance.gameData.levelData[levelIndex].motorcycleSpeed[i];
+            var motorTemp = GameManager.instance.gameData.levelData[levelIndex].motorcycleCount[i];
+            for (int j = 0; j < motorTemp; j++)
+            {
+                parkinLot[i].MotorcycleAl(false);
+            }
+            if(!parkinLot[i].isLocked)
+            {
+                parkinLot[i].@lock.SetActive(false);
+                GameManager.instance.SetMoney(parkinLot[i].unlockCost.GetGold());
+                // parkinLot[i].kitchen.UnLock();
+            }
+        }
     }
-    public void MapiAc()
+    GameManager gameManager;
+    public void OpenMap()
     {
-        GameManager.instance.MapiAc();
+        Save();
+        gameManager = FindObjectOfType<GameManager>();
+        GameManager.LoadScene(0);
+
+    }
+    public float CalculateEarnedMoneyOfPerSeconds()
+    {
+        List<float> sort = new List<float>();
+        var kitchenTotal = 0f;
+        if(kitchens.Length == 0)
+            return 0;
+        var kitchenCount = 0;
+        for (int i = 0; i < kitchens.Length; i++)
+        {
+            if(kitchens[i].PizzaMakingTime() == 0)
+                continue;
+            kitchenTotal += kitchens[i].PizzaMakingTime();
+            kitchenCount ++;
+        }
+        kitchenTotal = (kitchenTotal / kitchenCount) / kitchenCount;
+
+        var sculleryTotal = 0f;
+        for (int i = 0; i < scullery.Count; i++)
+        {
+            sculleryTotal = scullery[i].PizzaMakingTime();
+        }        
+        sculleryTotal += (sculleryTotal/scullery.Count) /scullery.Count;
+        sort.Add(kitchenTotal);
+        sort.Add(restaurant.PizzaDistributingTime());
+        sort.Add(sculleryTotal);
+        sort.Sort();
+        return restaurant.earnedMoneyFromCustomer / sort[0];
+    }
+    public void IdleMoneyCanvasActive()
+    {
+        idleMoneyCanvas.SetActive(false);
+        Debug.Log(" kapandı");
+        StartCoroutine(GoldAnim.instance.EarnGoldAnim((int)(CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10),20,GameManager.instance.idleMoneyText.transform));
+    }
+    public int CalcPassingTime()
+    {
+        string dateOld = lastLoginDate;
+        if(string.IsNullOrEmpty(dateOld))
+        {
+            Debug.Log("firstgame");
+        }
+        else
+        {
+            // _Time time = NewTime.GetTime();
+            DateTime _dateNow = Convert.ToDateTime(DateTime.Now);
+            DateTime _dateOld = Convert.ToDateTime(lastLoginDate);
+            TimeSpan diff = _dateNow.Subtract(_dateOld);
+            return (int) diff.TotalSeconds;
+        }
+        
+        return 0;
+    }
+    public bool IsRestaurantReady(bool isStart)
+    {
+        if(restaurant.isLocked)
+            return false;
+        var kitchenCount = 0;
+        for (int i = 0; i < kitchens.Length; i++)
+        {
+            if(!kitchens[i].isLocked && !kitchens[i].kuryeMutfagimi)
+            {
+                kitchenCount++;
+            }
+        }
+        if(kitchenCount == 0)
+            return false;
+        var sculleryCount =0;
+        for (int i = 0; i < scullery.Count; i++)
+        {
+            if(!scullery[i].isLocked)
+                sculleryCount ++;
+        }
+        if(sculleryCount == 0)
+            return false;
+        if(isStart)
+        {
+            StartCoroutine (CustomerCreator.instance.CustomerCreate());
+            return true;
+        }
+        if(sculleryCount == 1 && kitchenCount == 1 && !restaurant.isLocked)
+        {
+            Debug.Log("true");
+            StartCoroutine (CustomerCreator.instance.CustomerCreate());
+            return true;
+        }
+        
+        return false;
     }
 }

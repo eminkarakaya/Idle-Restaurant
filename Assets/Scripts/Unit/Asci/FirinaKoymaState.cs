@@ -5,36 +5,36 @@ using UnityEngine;
 public class FirinaKoymaState : AsciState
 {
     Transform firinTransform;
-    float offset = .5f;
+    float offset = .3f;
     public override void StartState(Action action)
     {
-        item = asci.ocak;
-        firinTransform = item.asciYeri.transform;
-        if(!item.queue.Contains(asci))
-            item.CreateQueue(asci);
+        item = chef.oven;
+        firinTransform = item.chefPlace.transform;
+        if(!item.queue.Contains(chef))
+            item.CreateQueue(chef);
         
-        if(item.queue[0] != asci)//&& item.queue[0] != asci)
+        if(item.queue[0] != chef)//&& item.queue[0] != asci)
         {
-            asci.queueState.oncekiState = asci.currState;
-            asci.queueState.oncekiAction = asci.action;
-            asci.currState = asci.queueState;
+            chef.queueState.isCarrying = true;
+            chef.queueState.previousState = chef.currState;
+            chef.currState = chef.queueState;
         }
-        asci.agent.SetDestination(firinTransform.position);
-        action.Tasi();
+        chef.agent.SetDestination(firinTransform.position);
+        action.Carry();
         
     }
     public override void UpdateState(Action action)
     {
-        if(Vector3.Distance(asci.agent.transform.position,firinTransform.position) > offset)
+        if(Vector3.Distance(chef.agent.transform.position,firinTransform.position) > offset)
         {
             return;
         }
-        asci.pizza.transform.SetParent(null);
-        asci.pizza.transform.position = item.tabakYerleri[item.tabakSayisi-1].position;
-        asci.pizza.transform.rotation = Quaternion.Euler(new Vector3(-90,0,0));
+        chef.pizza.transform.SetParent(null);
+        chef.pizza.transform.position = item.platePlaces[0].position;
+        chef.pizza.transform.rotation = Quaternion.Euler(new Vector3(-90,0,0));
         // asci.pizza = null;
         
-        asci.currState = asci.firiniBeklemeState;
+        chef.currState = chef.waitForOvenState;
         
     }
 }

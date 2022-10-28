@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CanvasLookAtCamera : MonoBehaviour
 {
-    public Transform cam;
+    Transform cam;
     void Start()
     {
         cam = Camera.main.transform;

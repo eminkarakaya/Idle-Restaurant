@@ -7,15 +7,15 @@ public class SinkBekleState : BulasikciState
     public override void StartState(Action action)
     {
         action.Idle();
-        bulasikci.bekleImage.gameObject.SetActive(true);
+        dishwasher.queueImage.gameObject.SetActive(true);
     }
     public override void UpdateState(Action action)
     {
-        if(!bulasikci.sink.isFull)
+        if(!dishwasher.sink.isFull)
         {
-            bulasikci.bekleImage.gameObject.SetActive(false);
-            bulasikci.bulasikCounter.UpdateQueue(bulasikci);
-            bulasikci.currState = bulasikci.bulasikciTabakAl;
+            dishwasher.queueImage.gameObject.SetActive(false);
+            // bulasikci.bulasikCounter.UpdateQueue(bulasikci);
+            dishwasher.currState = dishwasher.putPlateState;
         }
     }
 }

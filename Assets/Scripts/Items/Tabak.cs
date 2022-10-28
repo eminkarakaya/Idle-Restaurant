@@ -5,6 +5,6 @@ using UnityEngine;
 public class Tabak : MonoBehaviour
 {
     public bool isDirty; 
-    public GameObject yemek;
+    public GameObject food;
 }
 

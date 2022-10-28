@@ -4,42 +4,35 @@ using UnityEngine;
 
 public class CountereKoymaState : AsciState
 {
+
     public override void StartState(Action action)
     {
-        item = asci.counter;
+        item = chef.counter;
         
-        item.CreateQueue(asci);
-        if(item.queue[0] != asci)
+        item.CreateQueue(chef);
+        if(item.queue[0] != chef)
         {
-            asci.queueState.oncekiState = asci.currState;
-            // asci.queueState.oncekiAction = action.;
             
-            asci.currState = asci.queueState;
+            chef.queueState.isCarrying = true;            
+            chef.queueState.previousState = chef.currState;            
+            chef.currState = chef.queueState;
         }
-        // pizza = asci.pizza;
-        action.Tasi();
+        action.Carry();
+        
+        StartCoroutine(GameManager.instance.SetDestinationCouroutine(item.chefPlace.position,chef,this));
     }
     public override void UpdateState(Action action)
     {
-        
-        asci.agent.SetDestination(item.asciYeri.position);
-        
-        if(Vector3.Distance(asci.agent.transform.position,asci.counter.asciYeri.position) > .4f)
+        if(Vector3.Distance(chef.agent.transform.position,chef.counter.chefPlace.position) > .4f)
         {
             return;
         }
-            asci.currState = asci.counterFullState;
-        if(asci.counter.isFull)
+            chef.currState = chef.counterFullState;
+        if(chef.counter.isFull)
         {
-            asci.currState = asci.counterFullState;
+            chef.currState = chef.counterFullState;
             return;
         }
-        // if(counter.isFull)
-        // {
-        //     asci.counterFullState.pizza = pizza;
-        //     asci.counterFullState.counter = this.counter;
-        //     asci.currState = asci.counterFullState;
-        // }
         
     }
 }

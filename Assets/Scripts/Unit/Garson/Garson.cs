@@ -5,8 +5,10 @@ using UnityEngine.AI;
 
 public class Garson : Unit
 {
-    public Chair targetKirli;
-    public Transform beklemeYeri;
+    [HideInInspector] public Chair targetKirli;
+    public Transform waitingPlace;
+    // [Header("States")]
+    
     public BulasikToplaState bulasikToplaState;
     public BulasikGoturIdle bulasikGoturIdle;
     public BeklemeYerineGitState beklemeYerineGitState;
@@ -16,13 +18,12 @@ public class Garson : Unit
     public TasiState tasiState;
     public YemekleBekleState yemekleBekleState;
     Animator animator;
+    [Header("Items")]
     [SerializeField] public Tabak plate;
-    public Tabak _plate;
-    public GameObject _pizza;
-    public Counter counter;
-    [SerializeField] public Chair _chair;
-    Transform garsonPos;
-    Transform chairTabakyeri;
+    [HideInInspector] public Tabak _plate;
+    [HideInInspector] public GameObject _pizza;
+    [HideInInspector] public Counter counter;
+    [HideInInspector] public Chair _chair;
     [SerializeField] private float _moveSpeed;
     public float moveSpeed{
         get => _moveSpeed;
@@ -42,7 +43,6 @@ public class Garson : Unit
         level = FindObjectOfType<Level>();
         agent.speed = moveSpeed;
         currState = idleState;
-        beklemeYeri = level.restaurant.garsonBeklemeYerleri[level.restaurant.garsonSayisi-1];
     }
     void Update()
     {
@@ -50,42 +50,40 @@ public class Garson : Unit
     }
     public Chair FindChair()
     {
-        if(level.restaurant.yemekBekleyenChairler.Count == 0)
+        if(level.restaurant.waitingForFoodChairs.Count == 0)
         {
             return null;
         }
         
-        var enYakinChair = level.restaurant.yemekBekleyenChairler[0];
-        for (int i = 0; i < level.restaurant.yemekBekleyenChairler.Count; i++)
+        var enYakinChair = level.restaurant.waitingForFoodChairs[0];
+        for (int i = 0; i < level.restaurant.waitingForFoodChairs.Count; i++)
         {
-            if(Vector3.Distance(transform.position,enYakinChair.transform.position) > Vector3.Distance(transform.position,level.restaurant.yemekBekleyenChairler[i].transform.position))
+            if(Vector3.Distance(transform.position,enYakinChair.transform.position) > Vector3.Distance(transform.position,level.restaurant.waitingForFoodChairs[i].transform.position))
             {
-                enYakinChair = level.restaurant.yemekBekleyenChairler[i];
+                enYakinChair = level.restaurant.waitingForFoodChairs[i];
             }
         }
-        chairTabakyeri = enYakinChair.tabakYeri;
-        level.restaurant.yemekBekleyenChairler.Remove(enYakinChair);
+        level.restaurant.waitingForFoodChairs.Remove(enYakinChair);
         this._chair = enYakinChair;
         return enYakinChair;
     }
    
     public Counter FindCounter()
     {
-        if(level.restaurant.yemegiHazirCounterler.Count == 0)
+        if(level.restaurant.foodReadyCounters.Count == 0)
             return null;
-        Counter nearestCounter = level.restaurant.yemegiHazirCounterler[0];
-        float nearestDistance = Vector3.Distance(level.restaurant.yemegiHazirCounterler[0].transform.position,this.transform.position);
-        for (int i = 0; i < level.restaurant.yemegiHazirCounterler.Count; i++)
+        Counter nearestCounter = level.restaurant.foodReadyCounters[0];
+        float nearestDistance = Vector3.Distance(level.restaurant.foodReadyCounters[0].transform.position,this.transform.position);
+        for (int i = 0; i < level.restaurant.foodReadyCounters.Count; i++)
         {
-            float distance = Vector3.Distance(level.restaurant.yemegiHazirCounterler[i].transform.position,transform.position);
+            float distance = Vector3.Distance(level.restaurant.foodReadyCounters[i].transform.position,transform.position);
             if(distance < nearestDistance)
             {
-                nearestCounter = level.restaurant.yemegiHazirCounterler[i];
+                nearestCounter = level.restaurant.foodReadyCounters[i];
             }
         }
         var _counter = nearestCounter;
-        garsonPos = _counter.garsonPos;
-        level.restaurant.yemegiHazirCounterler.Remove(nearestCounter);
+        level.restaurant.foodReadyCounters.Remove(nearestCounter);
         this.counter = _counter;
         return _counter;
     }

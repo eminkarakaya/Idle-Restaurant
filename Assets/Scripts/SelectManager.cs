@@ -7,8 +7,8 @@ using UnityEngine.EventSystems;
 public class SelectManager : MonoBehaviour
 {
     bool isMoved;
-    [SerializeField] private Button _geriBtn;
-    private GameObject _kapatilacakPanel;
+    [SerializeField] private Button _backBtn;
+    private GameObject _willBeClosedPanel;
     [SerializeField] private GameObject _selectedObject;
     [SerializeField] private Vector3 _oldPos;
     void Update()
@@ -22,15 +22,14 @@ public class SelectManager : MonoBehaviour
         // if(Input.touchCount > 0)    
         // {
 
-            // Touch parmak =  Input.GetTouch(0);
-                // if(parmak.phase == TouchPhase.Moved)
-                // {
-                //     Debug.Log("moved");
-                //     isMoved = true;
-                // }
+        //     Touch parmak =  Input.GetTouch(0);
+        //         if(parmak.phase == TouchPhase.Moved)
+        //         {
+        //             isMoved = true;
+        //         }
                 
                 // if(parmak.phase == TouchPhase.Ended && _selectedObject == null && !isMoved)
-                if(Input.GetMouseButton(0) && _selectedObject == null && !isMoved)
+                 if(Input.GetMouseButton(0) && _selectedObject == null && !isMoved)
                 {
                     RaycastHit hit = CastRay();
                     if(hit.collider == null)
@@ -42,35 +41,35 @@ public class SelectManager : MonoBehaviour
                         if(department.isLocked)
                         {
                             department.lockedPanel.GetComponent<Canvas>().enabled = true;
-                            _kapatilacakPanel = department.lockedPanel;
+                            _willBeClosedPanel = department.lockedPanel;
                         }
                         else
                         {
-                            department.acilacakPanel.GetComponent<Canvas>().enabled =true;
-                            _kapatilacakPanel = department.acilacakPanel;
+                            department.dataPanel.GetComponent<Canvas>().enabled =true;
+                            _willBeClosedPanel = department.dataPanel;
                         }
 
                         CameraMove.instance.MoveTarget(department.camPlace.position);
                         department.oldCamPlace = CameraMove.instance.transform;
                         _selectedObject = department.selectableCollider.gameObject;
-                        _geriBtn.gameObject.SetActive(true);
+                        _backBtn.gameObject.SetActive(true);
                         _oldPos = department.oldCamPlace.position;
-                        CameraMove.instance.kilitlen = true;
+                        CameraMove.instance.lockUp = true;
                     }
                     // isMoved = true;
                 }
-                // if(parmak.phase == TouchPhase.Ended)
-                //     isMoved = false;
+        //         if(parmak.phase == TouchPhase.Ended)
+        //             isMoved = false;
         // }
     }
     public void GeriButonu()
     {
-        CameraMove.instance.kilitlen = false;
+        CameraMove.instance.lockUp = false;
         _selectedObject.GetComponent<Collider>().enabled = true;
         CameraMove.instance.MoveTarget(_oldPos);
-        _geriBtn.gameObject.SetActive(false);
+        _backBtn.gameObject.SetActive(false);
         _selectedObject = null;
-        _kapatilacakPanel.GetComponent<Canvas>().enabled = false;
+        _willBeClosedPanel.GetComponent<Canvas>().enabled = false;
         // _kapatilacakPanel.SetActive(false);
     }
     private RaycastHit CastRay()

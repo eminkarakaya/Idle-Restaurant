@@ -4,33 +4,36 @@ using UnityEngine;
 
 public class QueueBekleState : StateBase
 {
-    public StateBase oncekiState;
+    public bool isCarrying;
+    public Action previousAction;
+    public StateBase previousState;
     Unit unit;
     public override void StartState(Action action)
     {
         unit = GetComponentInParent<Unit>();
         unit.transform.LookAt(item.transform);
-        // asci.agent.isStopped = true;
+        if(unit.TryGetComponent(out Musteri customer))
+        {
+            action.CustomerStandIdle();
+        }
+        else
+        {
+            if(isCarrying)
+            {
+                action.WaitWithFood();
+            }
+            else
+            {
+                action.Idle();
+            }
+        }
     }
     public override void UpdateState(Action action)
     {
-        if(unit.TryGetComponent(out Musteri musteri))
+        if(item.queue[0] == unit)
         {
-            var chair = musteri.FindEmptyChair();
-            action.MusteriAyaktaIdle();
-            if(item.queue[0] == unit && chair != null)
-            {
-                musteri.chair = chair;
-                unit.bekleImage.gameObject.SetActive(false);
-                musteri.currState = oncekiState;
-            }
-        }
-
-        else if(item.queue[0] == unit)// && unit.isReady)
-        {
-            unit.bekleImage.gameObject.SetActive(false);
-            // asci.agent.isStopped = false;
-            unit.currState = oncekiState;
+            unit.queueImage.gameObject.SetActive(false);
+            unit.currState = previousState;
         }
     }
 }

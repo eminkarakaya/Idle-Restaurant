@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldAnimPrefab: {fileID: 678281819213084791, guid: 9c02e59b485b200439302803bf19b612, type: 3}
-  distanceFactor: 0
-  radius: 0
-  goldPrefab: {fileID: 0}
+  distanceFactor: 40
+  radius: 40
+  goldPrefab: {fileID: 605411288423105013, guid: 370a8e1741fe3944f98b552c069f4443, type: 3}
   goldinScene: {fileID: 0}
-  ease: 0
+  ease: 8
   goldText: {fileID: 0}
   parent: {fileID: 0}
   goldOlusturulcakTransform: {fileID: 0}

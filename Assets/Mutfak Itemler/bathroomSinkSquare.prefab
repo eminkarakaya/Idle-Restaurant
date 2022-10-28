@@ -60,6 +60,36 @@ Transform:
   m_Father: {fileID: 3968650341471819865}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3091939301246248313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7649082014255514077}
+  m_Layer: 0
+  m_Name: BulasikciYeri (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7649082014255514077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091939301246248313}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.856, y: 0, z: -0.994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3968650341471819865}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4348413293163528931
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +120,8 @@ Transform:
   m_Children:
   - {fileID: 468207151255103898}
   - {fileID: 6875886114896888986}
+  - {fileID: 2394435758050795545}
+  - {fileID: 7649082014255514077}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -105,16 +137,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1d1ce1c76abf34c8e1d762cc7077a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tabakSayisi: 1
-  tabakKapasitesi: 1
-  ascilar: []
-  musteriler: []
-  bulasikcilar: []
+  plateCount: 0
+  chefs: []
+  customers: []
+  dishwashers: []
   createdQueueTransform:
   - {fileID: 6875886114896888986}
+  - {fileID: 2394435758050795545}
+  - {fileID: 7649082014255514077}
   _queue: []
-  asciYeri: {fileID: 6875886114896888986}
-  tabakYerleri:
+  chefPlace: {fileID: 6875886114896888986}
+  platePlaces:
   - {fileID: 468207151255103898}
   isFull: 0
-  bulasikciYeri: {fileID: 0}
+  dishwasherPlace: {fileID: 6875886114896888986}
+--- !u!1 &5040824294589538699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2394435758050795545}
+  m_Layer: 0
+  m_Name: BulasikciYeri (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2394435758050795545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040824294589538699}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.694}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3968650341471819865}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -6,21 +6,23 @@ using UnityEngine.AI;
 
 public class Musteri : Unit
 {
+
+    public MusteriChairBekleState musteriChairBekleState;
+    public MusteriEatingState customerEatingState;   
+    public MusteriSiparisState customerOrderState; 
+    public MusteriSittingIdleState sittingIdleState; 
+    public MusteriSitToStand sitToStand; 
+    public MusteriWalkState customerWalkState;   
+    public MusteriStandToSitState standToSitState;  
+    [Space(10)]
     public Transform parent;
     public Image earnMoneyImage;
-    public Image siparisImage;
-    public MusteriEatingState musteriEatingState;   
-    public MusteriSiparisState musteriSiparisState; 
-    public MusteriSittingIdleState musteriSittingIdleState; 
-    public MusteriSitToStand musteriSitToStand; 
-    public MusteriWalkState musteriWalkState;   
-    public MusteriStandToSitState musteriStandToSitState;  
-    // public IlkSiradaBekle IlkSiradaBekle; 
-    public float yemeSuresi;
-    public Transform kapi;
+    public Image orderImage;
+    public float eatingTime;
+    public Transform door;
     Animator animator;
     public Chair chair;
-    public Transform oturulcakYer;
+    public Transform placeToSit;
     void Awake()
     {
         // isReady = false;
@@ -31,7 +33,7 @@ public class Musteri : Unit
     }
     void Start()
     {
-        currState = musteriWalkState;
+        currState = customerWalkState;
     }
     void Update()
     {
@@ -39,20 +41,20 @@ public class Musteri : Unit
     }
     public void MasadanKalk()
     {
-        action.MusteriKalk();
+        action.CustomerStand();
     }
     public void MasadanKalkState()
     {
-        currState = musteriSitToStand;
+        currState = sitToStand;
     }
     public void SiparisStateGec()
     {
-        currState = musteriSiparisState;
+        currState = customerOrderState;
     }
     public void SiparisVer()
     {
-        level.restaurant.yemekBekleyenChairler.Add(chair);
-        currState = musteriSittingIdleState;
+        level.restaurant.waitingForFoodChairs.Add(chair);
+        currState = sittingIdleState;
     }
     public Chair FindEmptyChair()
     {
@@ -62,7 +64,8 @@ public class Musteri : Unit
         }
         var _chair = level.restaurant.emptyChairs[0];
         chair = _chair;
-        oturulcakYer = _chair.oturulcakYer;
+        placeToSit = _chair.placeToSit;
+        // Debug.Log("find " + _chair , _chair);
         level.restaurant.emptyChairs.Remove(level.restaurant.emptyChairs[0]);
         return _chair;
     }

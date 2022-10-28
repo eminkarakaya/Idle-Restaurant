@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class BulasikciState : StateBase
 {
-    public Bulasikci bulasikci;
+    public Bulasikci dishwasher;
     void Awake()
     {
-        bulasikci = GetComponentInParent<Bulasikci>();           
+        dishwasher = GetComponentInParent<Bulasikci>();           
     }
 }

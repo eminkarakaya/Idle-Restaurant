@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Action : MonoBehaviour
 {
-    Animator animator;
+    public Animator animator;
+    public Action(Animator animator)
+    {
+        this.animator = animator;
+    }
     void Awake()
     {
         animator = GetComponent<Animator>();
     }
-    public void YemekleDur()
+    public void WaitWithFood()
     {
         if(animator.GetBool("tasirkenDur") == true)
             return;
@@ -18,7 +22,7 @@ public class Action : MonoBehaviour
         animator.SetBool("idle",false);
         animator.SetBool("tasi",false);
     }
-    public void Yuru()
+    public void Walk()
     {
         if(animator.GetBool("yuru") == true)
             return;
@@ -36,7 +40,7 @@ public class Action : MonoBehaviour
         animator.SetBool("idle",true);
         animator.SetBool("tasi",false);
     }
-    public void Tasi()
+    public void Carry()
     {
         if(animator.GetBool("tasi") == true)
             return;
@@ -45,14 +49,14 @@ public class Action : MonoBehaviour
         animator.SetBool("idle",false);
         animator.SetBool("tasi",true);
     }
-    public void MusteriYuru()
+    public void CustomerWalk()
     {
         animator.SetBool("ayaktaIdle",false);
         animator.SetBool("yuru",true);
         animator.SetBool("eating",false);
         animator.SetBool("idle",false);        
     }
-    public void MusteriOtur()
+    public void CustomerSit()
     {
         animator.SetBool("ayaktaIdle",false);
         animator.SetTrigger("otur");
@@ -60,7 +64,7 @@ public class Action : MonoBehaviour
         animator.SetBool("eating",false);
         animator.SetBool("idle",false); 
     }
-    public void MusteriSiparis()
+    public void CustomerOrder()
     {
         animator.SetBool("ayaktaIdle",false);
         animator.SetTrigger("siparis");
@@ -68,14 +72,14 @@ public class Action : MonoBehaviour
         animator.SetBool("eating",false);
         animator.SetBool("idle",false); 
     }
-    public void MusteriOturIdle()
+    public void CustomerSitIdle()
     {
         animator.SetBool("ayaktaIdle",false);
         animator.SetBool("yuru",false);
         animator.SetBool("eating",false);
         animator.SetBool("idle",true); 
     }
-    public void MusteriKalk()
+    public void CustomerStand()
     {
         animator.SetBool("ayaktaIdle",false);
         animator.SetTrigger("kalk");
@@ -83,7 +87,7 @@ public class Action : MonoBehaviour
         animator.SetBool("eating",false);
         animator.SetBool("idle",false); 
     }
-    public void MusteriYe()
+    public void CustomerEat()
     {
         animator.SetBool("ayaktaIdle",false);
         animator.SetBool("idle",false); 
@@ -91,7 +95,7 @@ public class Action : MonoBehaviour
         animator.SetBool("eating",false);
         animator.SetBool("eating",true);
     }
-    public void MusteriAyaktaIdle()
+    public void CustomerStandIdle()
     {
         animator.SetBool("ayaktaIdle",true); 
         animator.SetBool("idle",false); 

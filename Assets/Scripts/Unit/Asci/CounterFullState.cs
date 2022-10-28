@@ -9,12 +9,12 @@ public class CounterFullState : AsciState
     float timeOffsetTemp;
     public override void StartState(Action action)
     {
-        asci.bekleImage.gameObject.SetActive(true);
-        action.YemekleDur();
+        chef.queueImage.gameObject.SetActive(true);
+        action.WaitWithFood();
     }
     public override void UpdateState(Action action)
     {
-        if(!asci.counter.isFull)
+        if(!chef.counter.isFull)
         {
             timeOffsetTemp += Time.deltaTime;
             if(timeOffsetTemp < timeOffset)
@@ -22,25 +22,23 @@ public class CounterFullState : AsciState
                 return;
             }
             timeOffsetTemp = 0;
-            asci.pizza.transform.SetParent(null);
-            asci.pizza.transform.position = asci.counter.tabakYerleri[asci.counter.tabakSayisi].position;
-            asci.counter.food = asci.pizza;
-            asci.counter.isFull = true;
+            chef.pizza.transform.SetParent(null);
+            chef.pizza.transform.position = chef.counter.platePlaces[0].position;
+            chef.counter.food = chef.pizza;
+            chef.counter.isFull = true;
             if(kuryeAscisimi)
             {
-                asci.level.parkinLot.yemegiHazirCounterler.Add(asci.counter);
+                chef.kitchen.parkinLot.foodReadyCounters.Add(chef.counter);
             }
             else
             {
-                asci.level.restaurant.yemegiHazirCounterler.Add(asci.counter);
+                chef.level.restaurant.foodReadyCounters.Add(chef.counter);
             }
             
-            asci.pizza.transform.rotation = Quaternion.Euler(new Vector3(-90,0,0));
-            asci.counter.UpdateQueue(asci);
-            asci.currState = asci.buzdolabiState;
-            // asci.counter.UpdateQueue(asci);
-            asci.bekleImage.gameObject.SetActive(false);
-            asci.currState = asci.buzdolabiState;
+            chef.pizza.transform.rotation = Quaternion.Euler(new Vector3(-90,0,0));
+            chef.counter.UpdateQueue(chef);
+            chef.queueImage.gameObject.SetActive(false);
+            chef.currState = chef.fridgeState;
         }
     }
 }

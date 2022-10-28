@@ -5,10 +5,10 @@ using UnityEngine;
 public class Chair : MonoBehaviour
 {
     public Level level;
-    [SerializeField] public Musteri musteri;
-    public Transform oturulcakYer;
-    public Transform tabakYeri;
-    public Tabak tabak;
+    [SerializeField] public Musteri customer;
+    public Transform placeToSit;
+    public Transform platePlace;
+    public Tabak plate;
     public GameObject pizza;
     void Awake()
     {
@@ -16,21 +16,21 @@ public class Chair : MonoBehaviour
     }
     public void SetMusteri(Musteri musteri)
     {
-        this.musteri = musteri;
+        this.customer = musteri;
     }
     public Musteri GetMusteri()
     {
-        return musteri;
+        return customer;
     }
 
     
     public void MasadanKalkma()
     {
-        level.restaurant.kirliTabaklar.Add(this);
-        Destroy(tabak.transform.GetChild(0).GetChild(1).gameObject);
+        level.restaurant.dirtyPlates.Add(this);
+        ObjectPool.instance.pools[0].pooledObjects.Enqueue(plate.transform.GetChild(0).GetChild(1).gameObject);
         // Destroy(tabak.gameObject);
         // tabak.isDirty = true;
-        musteri = null;
+        customer = null;
         
     }
     

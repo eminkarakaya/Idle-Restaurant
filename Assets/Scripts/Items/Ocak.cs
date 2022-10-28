@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ocak : Item
 {
-    public Light ocakLight;
-    public float pisirmeSuresi;
+    public Light ovenLight;
+    public float cookingTime;
     
 }

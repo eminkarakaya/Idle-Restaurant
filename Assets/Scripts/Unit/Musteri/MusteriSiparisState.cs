@@ -8,8 +8,8 @@ public class MusteriSiparisState : MusteriState
     
     public override void StartState(Action action)
     {
-        action.MusteriSiparis();
-        musteri.siparisImage.gameObject.SetActive(true);
+        action.CustomerOrder();
+        customer.orderImage.gameObject.SetActive(true);
     }
     public override void UpdateState(Action action)
     {

@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 522495165866790035}
   - component: {fileID: 1880401336254415472}
   m_Layer: 0
-  m_Name: Cube.031 (1)
+  m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,23 +269,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b354775ca2cda40866af5e7d0e1516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tabakSayisi: 0
-  tabakKapasitesi: 1
-  ascilar: []
-  musteriler: []
-  bulasikcilar: []
+  plateCount: 0
+  chefs: []
+  customers: []
+  dishwashers: []
   createdQueueTransform:
   - {fileID: 6028033941544277128}
   - {fileID: 1536590446210173061}
   - {fileID: 6550871995927508448}
   - {fileID: 6353297074737690656}
   _queue: []
-  asciYeri: {fileID: 4402664888500263860}
-  tabakYerleri:
+  chefPlace: {fileID: 4402664888500263860}
+  platePlaces:
   - {fileID: 2043302668632298249}
-  engel: {fileID: 1355059594309218876}
+  barrier: {fileID: 1355059594309218876}
   isFull: 0
-  garsonPos: {fileID: 9163251912894858694}
+  waiterPos: {fileID: 9163251912894858694}
   food: {fileID: 0}
 --- !u!1 &2164087838625106618
 GameObject:

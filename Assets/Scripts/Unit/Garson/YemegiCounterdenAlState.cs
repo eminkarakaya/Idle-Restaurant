@@ -6,31 +6,31 @@ public class YemegiCounterdenAlState : GarsonState
 {
     public override void StartState(Action action)
     {
-        action.Yuru();
+        action.Walk();
     }
     public override void UpdateState(Action action)
     {
-        if(garson.counter != null)
+        if(waiter.counter != null)
         {
-        garson.agent.SetDestination(garson.counter.garsonPos.position);
-            if(Vector3.Distance(garson.agent.transform.position,garson.counter.transform.position) < 0.5f)
+        waiter.agent.SetDestination(waiter.counter.waiterPos.position);
+            if(Vector3.Distance(waiter.agent.transform.position,waiter.counter.transform.position) < 0.5f)
             {
-                garson.currState = garson.tasiState;
+                waiter.currState = waiter.tasiState;
                 return;
             }
             return;
         }
-        var counter = garson.FindCounter();
-        if(garson.counter == null)
+        var counter = waiter.FindCounter();
+        if(waiter.counter == null)
         {
-            if(Vector3.Distance(garson.agent.transform.position,garson.beklemeYeri.position) < 0.3f)
+            if(Vector3.Distance(waiter.agent.transform.position,waiter.waitingPlace.position) < 0.3f)
             {
-                garson.currState = garson.idleState;
+                waiter.currState = waiter.idleState;
                 return;
             }
             return;
         }
-        garson.agent.SetDestination(garson.counter.garsonPos.position);
+        waiter.agent.SetDestination(waiter.counter.waiterPos.position);
     }
 
 }

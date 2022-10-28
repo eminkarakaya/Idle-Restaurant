@@ -45,8 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d81994a26d39b4aa46b1650184e3db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oturulcakYer: {fileID: 6610437858054059903}
-  tabakYeri: {fileID: 0}
+  level: {fileID: 0}
+  customer: {fileID: 0}
+  placeToSit: {fileID: 6610437858054059903}
+  platePlace: {fileID: 0}
+  plate: {fileID: 0}
+  pizza: {fileID: 0}
 --- !u!1 &6138751132159974719
 GameObject:
   m_ObjectHideFlags: 0

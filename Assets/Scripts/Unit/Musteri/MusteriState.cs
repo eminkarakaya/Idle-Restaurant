@@ -4,10 +4,10 @@ using UnityEngine;
 
 public abstract class MusteriState : StateBase
 {
-    public Musteri musteri;
+    public Musteri customer;
     void Awake()
     {
         item = kapi.instance;
-        musteri = GetComponentInParent<Musteri>();
+        customer = GetComponentInParent<Musteri>();
     }
 }

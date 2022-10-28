@@ -6,30 +6,30 @@ public class BeklemeYerineGitState : GarsonState
 {
     public override void StartState(Action action)
     {
-        action.Yuru();
-        garson.agent.SetDestination(garson.beklemeYeri.position);
+        action.Walk();
+        waiter.agent.SetDestination(waiter.waitingPlace.position);
     }
     public override void UpdateState(Action action)
     {
-        if(garson.targetKirli == null && garson.level.restaurant.kirliTabaklar.Count !=0)
-            garson.targetKirli = garson.level.restaurant.kirliTabaklar[0];
-        if(garson.targetKirli != null)
+        if(waiter.targetKirli == null && waiter.level.restaurant.dirtyPlates.Count !=0)
+            waiter.targetKirli = waiter.level.restaurant.dirtyPlates[0];
+        if(waiter.targetKirli != null)
         {
-            garson.currState = garson.bulasikToplaState;
+            waiter.currState = waiter.bulasikToplaState;
             return;
         }
-        if(garson._chair == null)
+        if(waiter._chair == null)
         {
-            garson._chair = garson.FindChair();
+            waiter._chair = waiter.FindChair();
         }
-        if(garson._chair != null)
+        if(waiter._chair != null)
         {
-            garson.currState = garson.yemegiCounterdenAlState;
+            waiter.currState = waiter.yemegiCounterdenAlState;
             return;
         }
-        if(Vector3.Distance(garson.transform.position, garson.beklemeYeri.transform.position)<.4f)
+        if(Vector3.Distance(waiter.transform.position, waiter.waitingPlace.transform.position)<.4f)
         {
-            garson.currState = garson.idleState;
+            waiter.currState = waiter.idleState;
         }
     }
 }

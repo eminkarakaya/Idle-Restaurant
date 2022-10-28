@@ -233,7 +233,307 @@ MonoBehaviour:
   currLevel: {fileID: 0}
   gameData:
     para: 0
-    levelDatas: []
+    levelData:
+    - lastLoginDate: 
+      levelIndex: 0
+      isUnlock: 0
+      kitchenCount: 0
+      parkinLotCount: 0
+      motorcycleSpeed: []
+      motorcycleCount: 
+      kitchenIsLocked: 
+      restaurantIsLock: 0
+      ovenCount: 
+      counterCount: 
+      pizzaCounterCount: 
+      chefCount: 
+      chefCost: 
+      ovenCost: 
+      counterCost: 
+      pizzaCounterCost: 
+      kitchenIndexes: 
+      dishwasherCount: 
+      sinkCount: 
+      dishCounterCount: 
+      sculleryIsLocked: 
+      tableCount: 0
+      waiterCount: 0
+      waiterSpeed: 0
+      waiterCost: 0
+      tableCost: 0
+      waiterSpeedCost: 0
+      customerFrequencyCost: 0
+      sculleryCount: 0
+    - lastLoginDate: 
+      levelIndex: 0
+      isUnlock: 0
+      kitchenCount: 0
+      parkinLotCount: 0
+      motorcycleSpeed: []
+      motorcycleCount: 
+      kitchenIsLocked: 
+      restaurantIsLock: 0
+      ovenCount: 
+      counterCount: 
+      pizzaCounterCount: 
+      chefCount: 
+      chefCost: 
+      ovenCost: 
+      counterCost: 
+      pizzaCounterCost: 
+      kitchenIndexes: 
+      dishwasherCount: 
+      sinkCount: 
+      dishCounterCount: 
+      sculleryIsLocked: 
+      tableCount: 0
+      waiterCount: 0
+      waiterSpeed: 0
+      waiterCost: 0
+      tableCost: 0
+      waiterSpeedCost: 0
+      customerFrequencyCost: 0
+      sculleryCount: 0
+    - lastLoginDate: 
+      levelIndex: 0
+      isUnlock: 0
+      kitchenCount: 0
+      parkinLotCount: 0
+      motorcycleSpeed: []
+      motorcycleCount: 
+      kitchenIsLocked: 
+      restaurantIsLock: 0
+      ovenCount: 
+      counterCount: 
+      pizzaCounterCount: 
+      chefCount: 
+      chefCost: 
+      ovenCost: 
+      counterCost: 
+      pizzaCounterCost: 
+      kitchenIndexes: 
+      dishwasherCount: 
+      sinkCount: 
+      dishCounterCount: 
+      sculleryIsLocked: 
+      tableCount: 0
+      waiterCount: 0
+      waiterSpeed: 0
+      waiterCost: 0
+      tableCost: 0
+      waiterSpeedCost: 0
+      customerFrequencyCost: 0
+      sculleryCount: 0
+    - lastLoginDate: 
+      levelIndex: 0
+      isUnlock: 0
+      kitchenCount: 0
+      parkinLotCount: 0
+      motorcycleSpeed: []
+      motorcycleCount: 
+      kitchenIsLocked: 
+      restaurantIsLock: 0
+      ovenCount: 
+      counterCount: 
+      pizzaCounterCount: 
+      chefCount: 
+      chefCost: 
+      ovenCost: 
+      counterCost: 
+      pizzaCounterCost: 
+      kitchenIndexes: 
+      dishwasherCount: 
+      sinkCount: 
+      dishCounterCount: 
+      sculleryIsLocked: 
+      tableCount: 0
+      waiterCount: 0
+      waiterSpeed: 0
+      waiterCost: 0
+      tableCost: 0
+      waiterSpeedCost: 0
+      customerFrequencyCost: 0
+      sculleryCount: 0
+    - lastLoginDate: 
+      levelIndex: 0
+      isUnlock: 0
+      kitchenCount: 0
+      parkinLotCount: 0
+      motorcycleSpeed: []
+      motorcycleCount: 
+      kitchenIsLocked: 
+      restaurantIsLock: 0
+      ovenCount: 
+      counterCount: 
+      pizzaCounterCount: 
+      chefCount: 
+      chefCost: 
+      ovenCost: 
+      counterCost: 
+      pizzaCounterCost: 
+      kitchenIndexes: 
+      dishwasherCount: 
+      sinkCount: 
+      dishCounterCount: 
+      sculleryIsLocked: 
+      tableCount: 0
+      waiterCount: 0
+      waiterSpeed: 0
+      waiterCost: 0
+      tableCost: 0
+      waiterSpeedCost: 0
+      customerFrequencyCost: 0
+      sculleryCount: 0
+    - lastLoginDate: 
+      levelIndex: 0
+      isUnlock: 0
+      kitchenCount: 0
+      parkinLotCount: 0
+      motorcycleSpeed: []
+      motorcycleCount: 
+      kitchenIsLocked: 
+      restaurantIsLock: 0
+      ovenCount: 
+      counterCount: 
+      pizzaCounterCount: 
+      chefCount: 
+      chefCost: 
+      ovenCost: 
+      counterCost: 
+      pizzaCounterCost: 
+      kitchenIndexes: 
+      dishwasherCount: 
+      sinkCount: 
+      dishCounterCount: 
+      sculleryIsLocked: 
+      tableCount: 0
+      waiterCount: 0
+      waiterSpeed: 0
+      waiterCost: 0
+      tableCost: 0
+      waiterSpeedCost: 0
+      customerFrequencyCost: 0
+      sculleryCount: 0
+    - lastLoginDate: 
+      levelIndex: 0
+      isUnlock: 0
+      kitchenCount: 0
+      parkinLotCount: 0
+      motorcycleSpeed: []
+      motorcycleCount: 
+      kitchenIsLocked: 
+      restaurantIsLock: 0
+      ovenCount: 
+      counterCount: 
+      pizzaCounterCount: 
+      chefCount: 
+      chefCost: 
+      ovenCost: 
+      counterCost: 
+      pizzaCounterCost: 
+      kitchenIndexes: 
+      dishwasherCount: 
+      sinkCount: 
+      dishCounterCount: 
+      sculleryIsLocked: 
+      tableCount: 0
+      waiterCount: 0
+      waiterSpeed: 0
+      waiterCost: 0
+      tableCost: 0
+      waiterSpeedCost: 0
+      customerFrequencyCost: 0
+      sculleryCount: 0
+    - lastLoginDate: 
+      levelIndex: 0
+      isUnlock: 0
+      kitchenCount: 0
+      parkinLotCount: 0
+      motorcycleSpeed: []
+      motorcycleCount: 
+      kitchenIsLocked: 
+      restaurantIsLock: 0
+      ovenCount: 
+      counterCount: 
+      pizzaCounterCount: 
+      chefCount: 
+      chefCost: 
+      ovenCost: 
+      counterCost: 
+      pizzaCounterCost: 
+      kitchenIndexes: 
+      dishwasherCount: 
+      sinkCount: 
+      dishCounterCount: 
+      sculleryIsLocked: 
+      tableCount: 0
+      waiterCount: 0
+      waiterSpeed: 0
+      waiterCost: 0
+      tableCost: 0
+      waiterSpeedCost: 0
+      customerFrequencyCost: 0
+      sculleryCount: 0
+    - lastLoginDate: 
+      levelIndex: 0
+      isUnlock: 0
+      kitchenCount: 0
+      parkinLotCount: 0
+      motorcycleSpeed: []
+      motorcycleCount: 
+      kitchenIsLocked: 
+      restaurantIsLock: 0
+      ovenCount: 
+      counterCount: 
+      pizzaCounterCount: 
+      chefCount: 
+      chefCost: 
+      ovenCost: 
+      counterCost: 
+      pizzaCounterCost: 
+      kitchenIndexes: 
+      dishwasherCount: 
+      sinkCount: 
+      dishCounterCount: 
+      sculleryIsLocked: 
+      tableCount: 0
+      waiterCount: 0
+      waiterSpeed: 0
+      waiterCost: 0
+      tableCost: 0
+      waiterSpeedCost: 0
+      customerFrequencyCost: 0
+      sculleryCount: 0
+    - lastLoginDate: 
+      levelIndex: 0
+      isUnlock: 0
+      kitchenCount: 0
+      parkinLotCount: 0
+      motorcycleSpeed: []
+      motorcycleCount: 
+      kitchenIsLocked: 
+      restaurantIsLock: 0
+      ovenCount: 
+      counterCount: 
+      pizzaCounterCount: 
+      chefCount: 
+      chefCost: 
+      ovenCost: 
+      counterCost: 
+      pizzaCounterCost: 
+      kitchenIndexes: 
+      dishwasherCount: 
+      sinkCount: 
+      dishCounterCount: 
+      sculleryIsLocked: 
+      tableCount: 0
+      waiterCount: 0
+      waiterSpeed: 0
+      waiterCost: 0
+      tableCost: 0
+      waiterSpeedCost: 0
+      customerFrequencyCost: 0
+      sculleryCount: 0
     currLevel: 0
     tumLeveller:
     - {fileID: 7990046155564673837, guid: 71e17c508da75d344a54fa0ff068de8c, type: 3}
@@ -247,16 +547,13 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
   fader: {fileID: 1112159326693723807}
-  _para: 300
+  _money: 99999999
   paraText: {fileID: 1112159325824141767}
   idleMoney: 0
   idleMoneyText: {fileID: 1185588459462786778}
   gold: 0
   goldText: {fileID: 1185588459181570060}
   allTextParse: []
-  acilanLeveller: 
-  tumLeveller:
-  - {fileID: 0}
 --- !u!223 &1112159326873994065
 Canvas:
   m_ObjectHideFlags: 0
@@ -543,7 +840,7 @@ PrefabInstance:
     - target: {fileID: 2241422003721397851, guid: 8d413817d392c354a9b7ea9f7784f3e2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0eadec5f8ee30dd45a05892c9d91cf5a, type: 3}
+      objectReference: {fileID: 21300000, guid: 96bac7c1a3f939a45ae2209719988381, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d413817d392c354a9b7ea9f7784f3e2, type: 3}
 --- !u!224 &1185588460050920753 stripped

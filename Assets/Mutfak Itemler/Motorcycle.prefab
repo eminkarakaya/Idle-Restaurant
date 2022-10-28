@@ -89,9 +89,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
+  isCarrying: 0
   isUpdate: 0
-  oncekiAction: {fileID: 0}
-  oncekiState: {fileID: 0}
+  previousState: {fileID: 0}
   _queuePlace: {x: 0, y: 0, z: 0}
 --- !u!1 &844742252
 GameObject:
@@ -137,7 +137,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
-  oncekiState: {fileID: 0}
+  isCarrying: 0
+  previousAction: {fileID: 0}
+  previousState: {fileID: 0}
 --- !u!1 &924965546
 GameObject:
   m_ObjectHideFlags: 0
@@ -2963,18 +2965,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5dacf8cf726d214da245c3404b598af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eliDolumu: 0
-  handSayisi: 1
-  hand:
-  - {fileID: 9012664011397085847}
+  isHandFull: 0
+  hand: {fileID: 9012664011397085847}
   level: {fileID: 0}
   slider: {fileID: 3985666903545840796}
-  bekleImage: {fileID: 6377091125596298407}
+  queueImage: {fileID: 6377091125596298407}
   action: {fileID: 0}
-  queueBekleState: {fileID: 844742254}
-  queueState: {fileID: 731295515}
   agent: {fileID: 6005485143265034207}
   _currState: {fileID: 0}
+  queueWaitState: {fileID: 844742254}
+  queueState: {fileID: 731295515}
   pizza: {fileID: 0}
   sira: {fileID: 0}
   baslangicPos: {fileID: 0}
@@ -2998,6 +2998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa19109320921849b4a3b7f981d5277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!195 &6005485143265034207
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3197,7 +3198,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d545ab86becbcb04f98fc7cce860dafd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f83d37d00b50d244af30464119020eb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

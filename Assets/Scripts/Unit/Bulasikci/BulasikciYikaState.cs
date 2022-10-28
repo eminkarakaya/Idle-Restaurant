@@ -4,28 +4,29 @@ using UnityEngine;
 
 public class BulasikciYikaState : BulasikciState
 {
-    [HideInInspector] public Tabak tabak;
-    public float yikamaSuresi;
-    float yikamaSuresiTemp;
+    [HideInInspector] public Tabak plate;
+    public float washingTime;
+    float washingTimeTemp;
     public override void StartState(Action action)
     {  
         action.Idle();
-        tabak.transform.SetParent(null);
-        tabak.transform.position = bulasikci.sink.tabakYerleri[bulasikci.sink.tabakSayisi-1].position;
-        bulasikci.slider.gameObject.SetActive(true);
-        bulasikci.slider.maxValue = yikamaSuresi;
-        bulasikci.slider.value = 0;
+        plate.transform.SetParent(null);
+        plate.transform.position = dishwasher.sink.platePlaces[0].position;
+        dishwasher.slider.gameObject.SetActive(true);
+        dishwasher.slider.maxValue = washingTime;
+        dishwasher.slider.value = 0;
     }
     public override void UpdateState(Action action)
     {
-        yikamaSuresiTemp += Time.deltaTime;
-        bulasikci.slider.value = yikamaSuresiTemp;
-        if(yikamaSuresiTemp > yikamaSuresi)
+        washingTimeTemp += Time.deltaTime;
+        dishwasher.slider.value = washingTimeTemp;
+        if(washingTimeTemp > washingTime)
         {
-            Destroy(tabak.gameObject);
-            yikamaSuresiTemp = 0;
-            bulasikci.slider.gameObject.SetActive(false);
-            bulasikci.currState = bulasikci.bulasikciTabakAl;
+            ObjectPool.instance.pools[1].pooledObjects.Enqueue(plate.gameObject);
+            washingTimeTemp = 0;
+            dishwasher.sink.UpdateQueue(dishwasher);
+            dishwasher.slider.gameObject.SetActive(false);
+            dishwasher.currState = dishwasher.takePlateState;
         }
     }
 }

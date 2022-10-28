@@ -5,33 +5,33 @@ using UnityEngine.UI;
 
 public class AsciFiriniBeklemeState : AsciState
 {
-    public Ocak ocak;
-    float time = 1f;
+    public Ocak oven;
+    public float time = 1f;
     float _timeTemp;
     public override void StartState(Action action)
     {
-        asci.slider.gameObject.SetActive(true);
-        asci.slider.maxValue = time;
-        asci.slider.value = 0;
+        chef.slider.gameObject.SetActive(true);
+        chef.slider.maxValue = time;
+        chef.slider.value = 0;
         _timeTemp = 0;
-       ocak = asci.ocak;
+       oven = chef.oven;
        action.Idle();
-       ocak.ocakLight.enabled = true;
+       oven.ovenLight.enabled = true;
     }
     public override void UpdateState(Action action)
     {
         _timeTemp += Time.deltaTime;
-        asci.slider.value = _timeTemp;
+        chef.slider.value = _timeTemp;
         if(_timeTemp >= time)
         {
-            ocak.UpdateQueue(asci);
-            asci.pizza.transform.SetParent(asci.hand[asci.handSayisi-1]);
-            asci.pizza.transform.position = asci.hand[asci.handSayisi-1].transform.position;
+            oven.UpdateQueue(chef);
+            chef.pizza.transform.SetParent(chef.hand);
+            chef.pizza.transform.position = chef.hand.transform.position;
             _timeTemp = time;
             // asci.pizza = null;
-            ocak.ocakLight.enabled = false;
-            asci.slider.gameObject.SetActive(false);
-            asci.currState = asci.countereKoymaState;
+            oven.ovenLight.enabled = false;
+            chef.slider.gameObject.SetActive(false);
+            chef.currState = chef.putOnCounterState;
         }
     }
 }

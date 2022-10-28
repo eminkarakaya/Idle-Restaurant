@@ -4,278 +4,297 @@ using UnityEngine;
 
 public class Kitchen : Department
 {
-    public int mutfakIndex;
-    [SerializeField] bool kuryeMutfagimi;
-    [Header("Listeler")]
-    public List<Transform> asciBeklemeTransform;
-    public List<Counter> allCounters;
-    // public List<GameObject> buzdolablari;
-    public List<PizzaAcmaCounter> kullanilanPizzaCounters;
-    public List<PizzaAcmaCounter> allPizzaCounters;
-    public List<Counter> kullanilanCounters;
-    public List<Ocak> allFirin;
-    public List<Ocak> kullanilanFirinlar;
-    public List<Transform> buzdolabiYerleri;
-    [Space(10)]
-    public Transform buzdolabi;
-    public int counterSayisi;
-    public int pizzaCounterSayisi;
-    public int firinSayisi;
-    public int asciSayisi;
-    [SerializeField] Gold unlockCost;
-    [SerializeField] GameObject _acilacakPanel;
+    
+    public ParkinLot parkinLot;
+    public MutfakData kitchenData; 
+    [Space(20)]
+    public int kitchenIndex;
+    [SerializeField] public bool kuryeMutfagimi;
+    public Transform fridge;
+    [HideInInspector] public int counterCount;
+    [HideInInspector] public int pizzaCounterCount;
+    [HideInInspector] public int ovenCount;
+    [HideInInspector] public int cookCount;
+    [SerializeField] GameObject _dataPanel;
     [SerializeField] Transform _camPlace;
     public override Level level {get; set;}
-    public override GameObject acilacakPanel { get; set; }
+    public override GameObject dataPanel { get; set; }
     [SerializeField] public override Transform camPlace { get; set; }
-    public Gold firinCost;
+    public Gold ovenCost;
     public Gold pizzaCounterCost;
     public Gold asciCost;
     public Gold counterCost;
-    public int asciKapasite;
-
-
+    public int chefCapacity;
+    [Space(10)]
+    [Header("Listeler")]
+    [SerializeField] private List<Ocak> UseableOvens;
+    [SerializeField] private List<Transform> chefWaitTransform;
+    public List<Counter> allCounters;
+    [SerializeField] private List<PizzaAcmaCounter> useablePizzaCounters;
+    [SerializeField] private List<PizzaAcmaCounter> allPizzaCounters;
+    public List<Counter> useableCounters;
+    public List<Asci> allChefs;
+    public List<Ocak> allOven;
     void OnEnable()
     {
         levelManager = FindObjectOfType<LevelManager>();
-        // LoadKitchen();
+        kitchenData = GetComponentInChildren<MutfakData>();
     }
    
-    void Start()
+    void Awake()
     {
-        if(!isLocked)
-            _lock.SetActive(false);
-        acilacakPanel = _acilacakPanel;
+        dataPanel = _dataPanel;
         camPlace = _camPlace;
         level = GetComponentInParent<Level>();
         selectableCollider = GetComponent<Collider>();
     }
-    // public void LoadKitchen()
-    // {
-    //     KitchenDataSave data = SaveSystem.LoadKitchen();
-    //     Debug.Log(this);
-    //     asciSayisi = data.asciSayisi;
-    //     Debug.Log(this.asciSayisi);
-    //     counterSayisi = data.counterSayisi;
-    //     pizzaCounterSayisi = data.pizzaCounterSayisi;
-    //     firinSayisi = data.firinSayisi;
-    //     isLocked = data.isLocked;
-    //     for (int i = 0; i < asciSayisi; i++)
-    //     {
-    //         AsciSatinAl(false);
-    //     }
-    // }
-    
-    public PizzaAcmaCounter GetEmptyPizzaAcmaCounter()
+    public PizzaAcmaCounter GetEmptyPizzaCounter()
     {
-        var enAz = kullanilanPizzaCounters[0];
-        for (int i = 0; i < kullanilanPizzaCounters.Count; i++)
+        var enAz = useablePizzaCounters[0];
+        for (int i = 0; i < useablePizzaCounters.Count; i++)
         {
-            if(kullanilanPizzaCounters[i].ascilar.Count < enAz.ascilar.Count)
+            if(useablePizzaCounters[i].chefs.Count < enAz.chefs.Count)
             {
-                enAz = kullanilanPizzaCounters[i];
+                enAz = useablePizzaCounters[i];
             }
         }
         return enAz;
     }
-    public Counter EnCokAsciliCounteriBul()
+    public Counter FindCounterWithMostCooks()
     {
-        var enCok = kullanilanCounters[0];
-        for (int i = 0; i < kullanilanCounters.Count; i++)
+        var enCok = useableCounters[0];
+        for (int i = 0; i < useableCounters.Count; i++)
         {
-            if(kullanilanCounters[i].ascilar.Count > enCok.ascilar.Count)
+            if(useableCounters[i].chefs.Count > enCok.chefs.Count)
             {
-                enCok = kullanilanCounters[i];
+                enCok = useableCounters[i];
             }
         }
         return enCok;
     }
-    public Ocak EnCokAsciliFirinBul()
+    public Ocak FindOvenWithMostCook()
     {
-        var enCok = kullanilanFirinlar[0];
-        for (int i = 0; i < kullanilanFirinlar.Count; i++)
+        var enCok = UseableOvens[0];
+        for (int i = 0; i < UseableOvens.Count; i++)
         {
-            if(kullanilanFirinlar[i].ascilar.Count > enCok.ascilar.Count)
+            if(UseableOvens[i].chefs.Count > enCok.chefs.Count)
             {
-                enCok = kullanilanFirinlar[i];
+                enCok = UseableOvens[i];
             }
         }
         return enCok;
     }
-    public PizzaAcmaCounter EnCokAsciliPizzaCounterBul()
+    public PizzaAcmaCounter FindPizzaCounterWithMostCook()
     {
-        var enCok = kullanilanPizzaCounters[0];
-        for (int i = 0; i < kullanilanPizzaCounters.Count; i++)
+        var enCok = useablePizzaCounters[0];
+        for (int i = 0; i < useablePizzaCounters.Count; i++)
         {
-            if(kullanilanPizzaCounters[i].ascilar.Count > enCok.ascilar.Count)
+                if(useablePizzaCounters[i].chefs.Count > enCok.chefs.Count)
             {
-                enCok = kullanilanPizzaCounters[i];
+                enCok = useablePizzaCounters[i];
             }
         }
         return enCok;
     }
     public Counter GetEmptyCounter()
     {
-        var enAz = kullanilanCounters[0];
-        for (int i = 0; i < kullanilanCounters.Count; i++)
+        var enAz = useableCounters[0];
+        for (int i = 0; i < useableCounters.Count; i++)
         {
-            if(kullanilanCounters[i].ascilar.Count < enAz.ascilar.Count)
+            if(useableCounters[i].chefs.Count < enAz.chefs.Count)
             {
-                enAz = kullanilanCounters[i];
+                enAz = useableCounters[i];
             }
         }
         return enAz;
     }
-    public Ocak GetEmptyFirin()
+    public Ocak GetEmptyOven()
     {
-        var enAz = kullanilanFirinlar[0];
-        for (int i = 0; i < kullanilanFirinlar.Count; i++)
+        var enAz = UseableOvens[0];
+        for (int i = 0; i < UseableOvens.Count; i++)
         {
-            if(kullanilanFirinlar[i].ascilar.Count < enAz.ascilar.Count)
+            if(UseableOvens[i].chefs.Count < enAz.chefs.Count)
             {
-                enAz = kullanilanFirinlar[i];
+                enAz = UseableOvens[i];
             }
         }
         return enAz;
     }
-    public void AsciSatinAl(bool ucretlimi)
+    public void AsciSatinAl(bool isPain)
     {
-        if(asciSayisi == asciKapasite)
+        if(cookCount == chefCapacity)
             return;
-        if(ucretlimi)
+        if(isPain)
         {
-            if(GameManager.instance.GetPara() < asciCost.GetGold())
+            if(GameManager.instance.GetMoney() < asciCost.GetGold())
                 return;    
             else
             {
-                GameManager.instance.SetPara(-asciCost.GetGold());
+                GameManager.instance.SetMoney(-asciCost.GetGold());
             }
         }
-        asciSayisi++;
-        Debug.Log(levelManager.asciPrefab);
-        Debug.Log(asciBeklemeTransform[0]);
-        var asci = Instantiate(levelManager.asciPrefab,asciBeklemeTransform[0].position,Quaternion.identity);
+        cookCount++;
+        var asci = Instantiate(levelManager.cookPrefab,chefWaitTransform[0].position,Quaternion.identity);
         var asciClass = asci.transform.GetChild(0).GetComponent<Asci>();
         if(kuryeMutfagimi)
         {
+            
             asciClass.counterFullState.kuryeAscisimi = true;
         }
+        allChefs.Add(asciClass);
         var counter = GetEmptyCounter();
         asciClass.counter = counter;
-        counter.ascilar.Add(asci);
-    
-        var pizzaCounter = GetEmptyPizzaAcmaCounter();
-        asciClass.pizzaAcmaCounter = pizzaCounter;   
-        pizzaCounter.ascilar.Add(asci);
-    
-        var ocak = GetEmptyFirin();
-        asciClass.ocak = ocak;
-        ocak.ascilar.Add(asci);
+        counter.chefs.Add(asci);
         
+        var pizzaCounter = GetEmptyPizzaCounter();
+        asciClass.rollOutPizzaCounter = pizzaCounter;   
+        pizzaCounter.chefs.Add(asci);
+    
+        var oven = GetEmptyOven();
+        asciClass.oven = oven;
+        oven.chefs.Add(asci);
         
-        asciClass.buzdolabi = buzdolabi;
-        asciClass.level = level;
+        asciClass.fridge = fridge;
         asciClass.kitchen = this;
+        asciClass.level = level;
+        kitchenData.UpdateData();
+        
     }
-    public void KasaSatinAl(bool ucretlimi)
+    public void BuyCounter(bool isPaid)
     {   
-        if(counterSayisi == allCounters.Count)
+        if(counterCount == allCounters.Count)
             return;
-        if(ucretlimi)
+        if(isPaid)
         {
-            if(GameManager.instance.GetPara() < counterCost.GetGold())
+            if(GameManager.instance.GetMoney() < counterCost.GetGold())
                 return;    
             else
             {
-                GameManager.instance.SetPara(-counterCost.GetGold());
+                GameManager.instance.SetMoney(-counterCost.GetGold());
             }
         }
-        counterSayisi ++;
-        var counter = allCounters[counterSayisi-1];
-        kullanilanCounters.Add(counter);
-        counter.engel.SetActive(false);
-        var encok = EnCokAsciliCounteriBul();
-        encok.ascilar[encok.ascilar.Count-1].transform.GetChild(0).GetComponent<Asci>().counter = counter;
-        counter.ascilar.Add(encok.ascilar[encok.ascilar.Count-1]);
-        var asci = encok.ascilar[encok.ascilar.Count-1].transform.GetChild(0).GetComponent<Asci>();
-        if(asci.currState == asci.queueState || asci.currState == asci.queueBekleState || asci.currState == asci.firiniBeklemeState)
+        counterCount ++;
+        var counter = allCounters[counterCount-1];
+        useableCounters.Add(counter);
+
+        counter.barrier.SetActive(false);
+        var most = FindCounterWithMostCooks();
+        if(most.chefs.Count == 0)
+            return;
+        most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Asci>().counter = counter;
+        counter.chefs.Add(most.chefs[most.chefs.Count-1]);
+        var cook = most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Asci>();
+        Debug.Log((cook.currState == cook.queueState || cook.currState == cook.queueWaitState) + " " +  (cook.queueState.previousState == cook.putOnCounterState),cook);
+        if((cook.currState == cook.queueState || cook.currState == cook.queueWaitState) && cook.queueState.previousState == cook.putOnCounterState)
         {
-            asci.currState = asci.countereKoymaState;
+            cook.currState = cook.putOnCounterState;
         }
         
-        if(encok.queue.Contains(encok.ascilar[encok.ascilar.Count-1].transform.GetChild(0).GetComponent<Asci>()))
-            encok.queue.Remove(encok.ascilar[encok.ascilar.Count-1].transform.GetChild(0).GetComponent<Asci>());    
-        encok.ascilar.Remove(encok.ascilar[encok.ascilar.Count-1]);
-        // while(EnCokAsciliCounteriBul().ascilar.Count >= counter.ascilar.Count)
-        // {
-        // }
-
+        if(most.queue.Contains(most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Asci>()))
+            most.queue.Remove(most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Asci>());    
+        most.chefs.Remove(most.chefs[most.chefs.Count-1]);
+        kitchenData.UpdateData();
     }
-    public void PizzaCounterSatinAl(bool ucretlimi)
+    public void PizzaCounterSatinAl(bool isPaid)
     {
-        if(pizzaCounterSayisi == allPizzaCounters.Count)
+        if(pizzaCounterCount == allPizzaCounters.Count)
             return;
-        if(ucretlimi)
+        if(isPaid)
         {
-            if(GameManager.instance.GetPara() < pizzaCounterCost.GetGold())
+            if(GameManager.instance.GetMoney() < pizzaCounterCost.GetGold())
                 return;    
             else
             {
-                GameManager.instance.SetPara(-pizzaCounterCost.GetGold());
+                GameManager.instance.SetMoney(-pizzaCounterCost.GetGold());
             }
         }
-        pizzaCounterSayisi ++;
-        var pizzaAcmaCounter = allPizzaCounters[pizzaCounterSayisi-1];
-        kullanilanPizzaCounters.Add(pizzaAcmaCounter);
-        var encok = EnCokAsciliPizzaCounterBul();
-        var asci = encok.ascilar[encok.ascilar.Count-1].transform.GetChild(0).GetComponent<Asci>();
-        asci.pizzaAcmaCounter = pizzaAcmaCounter;
-        pizzaAcmaCounter.ascilar.Add(encok.ascilar[encok.ascilar.Count-1]);
-        if(asci.currState == asci.queueState || asci.currState == asci.queueBekleState || asci.currState == asci.firiniBeklemeState)
+        pizzaCounterCount ++;
+        var pizzaAcmaCounter = allPizzaCounters[pizzaCounterCount-1];
+        useablePizzaCounters.Add(pizzaAcmaCounter);
+        var encok = FindPizzaCounterWithMostCook();
+        if(encok.chefs.Count == 0)
+            return;
+        var asci = encok.chefs[encok.chefs.Count-1].transform.GetChild(0).GetComponent<Asci>();
+        asci.rollOutPizzaCounter = pizzaAcmaCounter;
+        pizzaAcmaCounter.chefs.Add(encok.chefs[encok.chefs.Count-1]);
+        if((asci.currState == asci.queueState || asci.currState == asci.queueWaitState) && asci.queueState.previousState == asci.waitForOvenState)
         {
-            asci.currState = asci.pizzaAcmaState;
+            asci.currState = asci.rollOutPizzaState;
         }
         if(encok.queue.Contains(asci))
             encok.queue.Remove(asci);    
-        encok.ascilar.Remove(encok.ascilar[encok.ascilar.Count-1]);
+        encok.chefs.Remove(encok.chefs[encok.chefs.Count-1]);
+        kitchenData.UpdateData();
     }
     public void FirinSatinAl(bool ucretlimi)
     {
-        if(firinSayisi == allFirin.Count)
+        if(ovenCount == allOven.Count)
             return;
         if(ucretlimi)
         {
-            if(GameManager.instance.GetPara() < firinCost.GetGold())
+            if(GameManager.instance.GetMoney() < ovenCost.GetGold())
                 return;    
             else
             {
-                GameManager.instance.SetPara(-firinCost.GetGold());
+                GameManager.instance.SetMoney(-ovenCost.GetGold());
             }
         }
-        firinSayisi ++;
-            var firin = allFirin[firinSayisi-1];
-        kullanilanFirinlar.Add(firin);
-        var encok = EnCokAsciliFirinBul();
-        
-        encok.ascilar[encok.ascilar.Count-1].transform.GetChild(0).GetComponent<Asci>().ocak = firin;
-        firin.ascilar.Add(encok.ascilar[encok.ascilar.Count-1]);
-        var asci = encok.ascilar[encok.ascilar.Count-1].transform.GetChild(0).GetComponent<Asci>();
-        if(asci.currState == asci.queueState || asci.currState == asci.queueBekleState || asci.currState == asci.firiniBeklemeState)
+        ovenCount ++;
+            var firin = allOven[ovenCount-1];
+        UseableOvens.Add(firin);
+        var encok = FindOvenWithMostCook();
+        if(encok.chefs.Count == 0)
         {
-            asci.currState = asci.firinaKoymaState;
+            return;
+        }
+        encok.chefs[encok.chefs.Count-1].transform.GetChild(0).GetComponent<Asci>().oven = firin;
+        firin.chefs.Add(encok.chefs[encok.chefs.Count-1]);
+        var asci = encok.chefs[encok.chefs.Count-1].transform.GetChild(0).GetComponent<Asci>();
+        if((asci.currState == asci.queueState || asci.currState == asci.queueWaitState) && asci.queueState.previousState == asci.waitForOvenState)
+        {
+            asci.currState = asci.putOunOvenState;
         }
         if(encok.queue.Contains(asci))
             encok.queue.Remove(asci);
-        encok.ascilar.Remove(encok.ascilar[encok.ascilar.Count-1]);
+        encok.chefs.Remove(encok.chefs[encok.chefs.Count-1]);
+        kitchenData.UpdateData();
     }
     public void UnLock()
     {
-        if(unlockCost.GetGold() <= GameManager.instance.GetPara())
+        if(unlockCost.GetGold() <= GameManager.instance.GetMoney())
         {
-            level.kitchens.Add(this);
+            lockedPanel.SetActive(false);
             isLocked = false;
-            _lock.SetActive(false);
+            @lock.SetActive(false);
+            FirinSatinAl(false);
+            BuyCounter(false);
+            PizzaCounterSatinAl(false);
             AsciSatinAl(false);
+            kitchenData.UpdateData();
+            level.IsRestaurantReady(false);
         }
+    }
+    public float PizzaMakingTime()
+    {
+        if(allChefs.Count == 0)
+            return 0;
+        int pizzaCounterDiff = allChefs.Count - pizzaCounterCount;
+        int firinDiff = allChefs.Count - ovenCount;
+
+        float totalTime = 0;
+        for (int i = 0; i < allChefs.Count; i++)
+        {
+            totalTime += Vector3.Distance(allChefs[i].fridge.position,allChefs[i].rollOutPizzaCounter.transform.position)/allChefs[i].moveSpeed;
+            totalTime += allChefs[i].asciIdleState.rollOutPizzaTime;
+            totalTime += Vector3.Distance (allChefs[i].rollOutPizzaCounter.transform.position,allChefs[i].oven.transform.position)/allChefs[i].moveSpeed;
+            totalTime += allChefs[i].waitForOvenState.time;
+            totalTime += Vector3.Distance (allChefs[i].oven.transform.position,allChefs[i].counter.transform.position)/allChefs[i].moveSpeed;
+        }
+        totalTime /= allChefs.Count;
+        if(pizzaCounterDiff>0)
+            totalTime += allChefs[0].asciIdleState.rollOutPizzaTime;
+        if(firinDiff > 0)
+            totalTime += allChefs[0].waitForOvenState.time;
+        return totalTime/allChefs.Count;
     }
 }

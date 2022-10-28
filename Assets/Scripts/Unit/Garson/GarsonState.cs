@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class GarsonState : StateBase
 {
-    public Garson garson;
+    public Garson waiter;
     void Awake()
     {
-        garson = GetComponentInParent<Garson>();
+        waiter = GetComponentInParent<Garson>();
     }
 }

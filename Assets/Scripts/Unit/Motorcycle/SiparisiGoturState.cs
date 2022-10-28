@@ -9,7 +9,7 @@ public class SiparisiGoturState : MotorcycleState
     float timeTemp;
     public override void StartState(Action action)
     {
-        mapDisi = motorcycle.parkinLot.bitisYeri;
+        mapDisi = motorcycle.parkinLot.finishPos;
         motorcycle.agent.SetDestination(mapDisi.position);
     }
     public override void UpdateState(Action action)

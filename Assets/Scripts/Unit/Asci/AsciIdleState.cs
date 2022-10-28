@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class AsciIdleState : AsciState
 {
-    public PizzaAcmaCounter pizzaAcmaCounter;
-    public float pizzaAcmaTime = 0;
-    float _pizzaAcmaTimeTemp;
+    public PizzaAcmaCounter rollOutPizzaCounter;
+    public float rollOutPizzaTime = 0;
+    float _rollOutTimeTemp;
     public override void StartState(Action action)
     {
-        _pizzaAcmaTimeTemp = pizzaAcmaTime;
+        _rollOutTimeTemp = rollOutPizzaTime;
         action.Idle();
     }
     public override void UpdateState(Action action)
     {
-        _pizzaAcmaTimeTemp -= Time.deltaTime;
-        if(_pizzaAcmaTimeTemp < 0)
+        _rollOutTimeTemp -= Time.deltaTime;
+        if(_rollOutTimeTemp < 0)
         {
-            pizzaAcmaCounter.UpdateQueue(asci);
-            _pizzaAcmaTimeTemp = pizzaAcmaTime;
-            asci.pizza.transform.position = asci.hand[asci.handSayisi-1].position;
-            asci.pizza.transform.SetParent(asci.hand[asci.handSayisi-1]);
+            rollOutPizzaCounter.UpdateQueue(chef);
+            _rollOutTimeTemp = rollOutPizzaTime;
+            chef.pizza.transform.position = chef.hand.position;
+            chef.pizza.transform.SetParent(chef.hand);
             // asci.pizza = null;
-            asci.currState = asci.firinaKoymaState;
+            chef.currState = chef.putOunOvenState;
         }
     }
 }

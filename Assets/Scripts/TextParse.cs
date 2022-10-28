@@ -9,7 +9,7 @@ public class TextParse : Text
     public override Color color { get => base.color; set => base.color = value; }
     public void Check(int value)
     {
-        if(GameManager.instance.GetPara()<value)
+        if(GameManager.instance.GetMoney()<value)
             color =  Color.red;
         else
         {

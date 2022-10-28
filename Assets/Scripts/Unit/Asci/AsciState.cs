@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class AsciState : StateBase
 {
-    public Asci asci;
+    public Asci chef;
     void Awake()
     {
-        asci = GetComponentInParent<Asci>();
+        chef = GetComponentInParent<Asci>();
     }
 }

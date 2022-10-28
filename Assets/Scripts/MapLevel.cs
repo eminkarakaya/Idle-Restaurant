@@ -1,11 +1,11 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MapLevel : MonoBehaviour
 {
+    float time =0;
     [SerializeField] int levelIndex;
     [SerializeField] int levelSceneIndex;
     public bool isUnlocked;
@@ -14,28 +14,50 @@ public class MapLevel : MonoBehaviour
     public GameObject levelImage;
     public GameObject lockImage;
     public Level level;
-    Gold gold;
-    GameManager gameManager;
+    [SerializeField] Gold gold;
     void Start()
     {
+        isUnlocked = GameManager.instance.gameData.levelData[levelIndex].isUnlock;
         if(isUnlocked)
+        {
+            StartCoroutine(CalcLevelIdleGold());    
             levelImage.SetActive(true);
+        }
         else   
             lockImage.SetActive(true);
     }
     public void UnlockLevel()
     {
-        if(gold.GetGold() <= GameManager.instance.GetPara())
+        if(gold.GetGold() <= GameManager.instance.GetMoney())
         {
             isUnlocked = true;
-            GameManager.instance.SetPara(-gold.GetGold());
+            GameManager.instance.SetMoney(-gold.GetGold());
             levelImage.SetActive(true);
             lockImage.SetActive(false);
         }
-    }    
+    }   
     public void SelectLevel()
     {
-        Debug.Log("kekekw");
-        StartCoroutine(GameManager.instance.FadeScene(levelSceneIndex,1,1));
+        GameManager.LoadScene(levelSceneIndex);
+    }
+    IEnumerator CalcLevelIdleGold()
+    {        
+        while(true)
+        {
+            if(time > 0)
+            {
+                time -= Time.deltaTime;
+            }
+            else
+            {
+                DateTime _dateNow = Convert.ToDateTime(DateTime.Now);
+                DateTime _dateOld = Convert.ToDateTime(GameManager.instance.gameData.levelData[levelIndex].lastLoginDate);
+                TimeSpan diff = _dateNow.Subtract(_dateOld);
+                earnedGoldText.text = GameManager.CaclText((float)(GameManager.instance.gameData.levelData[levelIndex].goldEarnedPerSec * diff.TotalSeconds)/10);
+                time = 2;
+            }
+            yield return null;
+            // Debug.Log((GameManager.instance.gameData.levelData[levelIndex].goldEarnedPerSec * diff.TotalSeconds)/10);
+        }
     }
 }

@@ -6,20 +6,21 @@ using UnityEngine.AI;
 public class Asci : Unit
 {
     public Kitchen kitchen;
-    public AsciFiriniBeklemeState firiniBeklemeState;
+    ParkinLot parkinLot;
+    public AsciFiriniBeklemeState waitForOvenState;
     public CounterFullState counterFullState;
     public AsciIdleState asciIdleState;
-    public CountereKoymaState countereKoymaState;
-    public BuzdolabiState buzdolabiState;
-    public PizzaAcmaState pizzaAcmaState;
-    public FirinaKoymaState firinaKoymaState;
+    public CountereKoymaState putOnCounterState;
+    public BuzdolabiState fridgeState;
+    public PizzaAcmaState rollOutPizzaState;
+    public FirinaKoymaState putOunOvenState;
     public GameObject pizzaPrefab;
     public GameObject pizza;
-    public GameObject hamur;
-    public Ocak ocak;
-    public PizzaAcmaCounter pizzaAcmaCounter;
+    public GameObject dough;
+    public Ocak oven;
+    public PizzaAcmaCounter rollOutPizzaCounter;
     public Counter counter;
-    public Transform buzdolabi;
+    public Transform fridge;
     [SerializeField] private float _moveSpeed;
     public float moveSpeed{
         get => _moveSpeed;
@@ -30,14 +31,14 @@ public class Asci : Unit
     }
     void Start()
     {
+        // Debug.Log(kitchen);        
+        // fridge = kitchen.fridge;
+        // level = FindObjectOfType<Level>();
         action = GetComponent<Action>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = moveSpeed;
-        currState = buzdolabiState;
+        currState = fridgeState;
         currState.StartState(action);
-        counter = kitchen.GetEmptyCounter();
-        ocak = kitchen.GetEmptyFirin();
-        pizzaAcmaCounter = kitchen.GetEmptyPizzaAcmaCounter();
     }
     
     void Update()

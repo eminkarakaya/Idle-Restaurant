@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class QueueState : StateBase
 {
+    public bool isCarrying;
+
     public bool isUpdate;
-    public Action oncekiAction;
-    public StateBase oncekiState;
+    public StateBase previousState;
     Unit unit;
     [SerializeField] private Vector3 _queuePlace;
     public Vector3 queuePlace{
@@ -19,44 +20,32 @@ public class QueueState : StateBase
     public override void StartState(Action action)
     {
         unit = GetComponentInParent<Unit>();
-        unit.bekleImage.gameObject.SetActive(true);
-        // asci = GetComponentInParent<Asci>();
-        item = oncekiState.item;
+        unit.queueImage.gameObject.SetActive(true);
+        item = previousState.item;
         if(!isUpdate)
-        {
-            _queuePlace = item.createdQueueTransform[item.queue.Count].position;
+        {   
+            _queuePlace = item.createdQueueTransform[item.queue.Count-1].position;
         }
         isUpdate = false;
+        if(isCarrying)
+        {
+            action.Carry();
+        }
+        else
+        {
+            action.Walk();
+        }
         
     }
     public override void UpdateState(Action action)
-    {
-        if(unit.TryGetComponent(out Musteri musteri))
-        {
-            var chair = musteri.FindEmptyChair();
-            if(item.queue[0] == unit && chair != null)
-            {
-                musteri.chair = chair;
-                unit.bekleImage.gameObject.SetActive(false);
-                musteri.currState = oncekiState;
-            }
-        }
-        // else if(item.queue[0] == unit)// && unit.isReady)
-        // {
-        //     unit.bekleImage.gameObject.SetActive(false);
-        //     unit.currState = oncekiState;
-        // }
+    {   
         unit.agent.SetDestination(_queuePlace);
         if(Vector3.Distance(unit.transform.position,_queuePlace) < .7f)
         {
-            action.YemekleDur();
-            unit.queueBekleState.item = item;
-            unit.queueBekleState.oncekiState = oncekiState;
-            unit.currState = unit.queueBekleState;
+            unit.queueWaitState.item = item;
+            unit.queueWaitState.previousState = previousState;
+            unit.queueWaitState.isCarrying = isCarrying;
+            unit.currState = unit.queueWaitState;
         }
-        // else
-        // {
-        //     action.AsciTasi();
-        // }
     }
 }

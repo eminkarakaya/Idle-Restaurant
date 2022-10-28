@@ -6,38 +6,40 @@ public class BulasikciTabakKoy : BulasikciState
 {
     public Sink FindSink()
     {
-        List<Sink> allSinks = bulasikci.bulasikhane.kullanilanSinks;
+        List<Sink> allSinks = dishwasher.scullery.currentSinks;
         var enaz = allSinks[0];
         for (int i = 0; i < allSinks.Count; i++)
         {
-            if(allSinks[i].bulasikcilar.Count < enaz.bulasikcilar.Count)
+            if(allSinks[i].dishwashers.Count < enaz.dishwashers.Count)
             {
                 enaz = allSinks[i];
             }
         }
-        bulasikci.sink = enaz;
+        dishwasher.sink = enaz;
         return enaz;
     }
 
     public override void StartState(Action action)
     {
-        action.Tasi();
+        action.Carry();
         var sink = FindSink();
         item = sink;
-        item.CreateQueue(bulasikci);
-        if(item.queue[0] != bulasikci)
+        item.CreateQueue(dishwasher);
+        if(item.queue[0] != dishwasher)
         {
-            bulasikci.queueState.oncekiState = bulasikci.currState;
-            bulasikci.currState = bulasikci.queueState;
+            dishwasher.waitSinkState.item = item;
+            dishwasher.queueState.isCarrying = true;
+            dishwasher.queueState.previousState = dishwasher.waitSinkState;
+            dishwasher.currState = dishwasher.queueState;
         }
 
-        bulasikci.agent.SetDestination(sink.asciYeri.position);
+        dishwasher.agent.SetDestination(sink.chefPlace.position);
     }
     public override void UpdateState(Action action)
     {
-        if(Vector3.Distance(bulasikci.transform.position,bulasikci.sink.bulasikciYeri.transform.position) < .6f)
+        if(Vector3.Distance(dishwasher.transform.position,dishwasher.sink.dishwasherPlace.transform.position) < .6f)
         {
-            bulasikci.currState = bulasikci.bulasikciYikaState;
+            dishwasher.currState = dishwasher.washState;
         }
     }
 }

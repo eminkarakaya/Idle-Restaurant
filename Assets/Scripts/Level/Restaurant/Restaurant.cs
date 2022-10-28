@@ -4,129 +4,185 @@ using UnityEngine;
 
 public class Restaurant : Department 
 {
-    public List<Chair> kirliTabaklar;
-    public List<Chair> yemekBekleyenChairler;
-    public List<Counter> yemegiHazirCounterler;   
+    public int earnedMoneyFromCustomer;
+    public List<Chair> dirtyPlates;
+    public List<Chair> waitingForFoodChairs;
+    public List<Counter> foodReadyCounters;   
+    public int waiterCapacity;
     public List<Chair> emptyChairs;
-    public int garsonKapasitesi;
-    RestorantData restorantData;
-    public List<GameObject> tumGarsonlar;
-    public List<GameObject> tumMasalar;
-    public List<Transform> garsonBeklemeYerleri;
+    public List<Chair> allChairs;
+    public RestorantData restaurantData;
+    public List<GameObject> allWaiters;
+    public List<GameObject> allTables;
+    public List<Transform> waiterWaitPlace;
     public override Level level {get; set;}
-    public override GameObject acilacakPanel { get; set; }
+    public override GameObject dataPanel { get; set; }
     public override Transform camPlace { get; set; }
     [SerializeField] private Transform _camTransform;
-    [SerializeField] private GameObject _acilacakPanel;
-    public Gold garsonUcreti;
-    public Gold masaUcreti;
-    public Gold garsonMoveUcreti;
-    public Gold musteriSiklikUcreti;
-    [HideInInspector] public float frekansAzalisYuzdesi = 3;
-    [HideInInspector] public float hareketHiziArtisYuzdesi = 4;
-    [HideInInspector] public float frekansNext;
+    [SerializeField] private GameObject _dataPanel;
+    public Gold waiterCost;
+    public Gold tableCost;
+    public Gold waiterSpeedCost;
+    public Gold customerFrequencyCost;
+    [HideInInspector] public float frequencyDecreasePercentage = 3;
+    [HideInInspector] public float moveSpeedPercentageIncrease = 4;
+    [HideInInspector] public float frequencyNext;
     [HideInInspector] public float moveNext;
-    [HideInInspector]public int masaSayisi = 1;
-    [HideInInspector]public int masaKapasitesi = 11;
-    [HideInInspector]public int garsonSayisi = 1;
+    public int tableCount =0;
+    [HideInInspector]public int tableCapacity = 11;
+    public int customerCount = 0;
     public float moveSpeed = 2;
     void OnEnable()
     {
-        restorantData = GetComponentInChildren<RestorantData>();
+        
+    }
+    void Awake()
+    {
+        levelManager = FindObjectOfType<LevelManager>();
+        level = GetComponentInParent<Level>();
+        restaurantData = GetComponentInChildren<RestorantData>();
         
     }
     void Start()
     {
-        level = GetComponentInParent<Level>();
-        levelManager = FindObjectOfType<LevelManager>();
         camPlace = _camTransform;
         selectableCollider = GetComponent<Collider>();
-        acilacakPanel = _acilacakPanel;
+        dataPanel = _dataPanel;
     }
-    public void GarsonSatinAl(bool ucretlimi)
+    public void BuyWaiter(bool isPaid)
     {
-        if(garsonKapasitesi == garsonSayisi)
+        if(waiterCapacity == customerCount)
         {
             return;
         }
-        if(ucretlimi)
+        if(isPaid)
         {
-            if(GameManager.instance.GetPara() < garsonUcreti.GetGold())
+            if(GameManager.instance.GetMoney() < waiterCost.GetGold())
                 return;    
             else
             {
-                GameManager.instance.SetPara(-garsonUcreti.GetGold());
+                GameManager.instance.SetMoney(-waiterCost.GetGold());
             }
         }
-        GameManager.instance.SetPara(-garsonUcreti.GetGold());
-        garsonSayisi ++;
-        var garson = Instantiate(levelManager.garsonPrefab,garsonBeklemeYerleri[garsonSayisi].position,Quaternion.identity);
-        garson.GetComponentInChildren<Garson>().beklemeYeri = garsonBeklemeYerleri[garsonSayisi];
-        garson.GetComponentInChildren<Garson>().level = level;
-        garson.GetComponentInChildren<Garson>().moveSpeed = moveSpeed;
-        garsonUcreti.SetGold(100);
-        tumGarsonlar.Add(garson);
-        restorantData.UpdateData();
+        GameManager.instance.SetMoney(-waiterCost.GetGold());
+        customerCount ++;
+        var waiter = Instantiate(levelManager.waiterPrefab,waiterWaitPlace[customerCount-1].position,Quaternion.identity);
+        waiter.GetComponentInChildren<Garson>().waitingPlace = waiterWaitPlace[customerCount-1];
+        waiter.GetComponentInChildren<Garson>().level = level;
+        waiter.GetComponentInChildren<Garson>().moveSpeed = moveSpeed;
+        waiterCost.SetGold(100);
+        allWaiters.Add(waiter);
+        restaurantData.UpdateData();
     }
-    public void MasaSatinAl(bool ucretlimi)
+    public void BuyTable(bool isPaid)
     {
-        if(masaSayisi == masaKapasitesi)
+        if(tableCount == tableCapacity)
             return;
-        if(ucretlimi)
+        if(isPaid)
         {
-            if(GameManager.instance.GetPara() < masaUcreti.GetGold())
+            if(GameManager.instance.GetMoney() < tableCost.GetGold())
                 return;    
             else
             {
-                GameManager.instance.SetPara(-masaUcreti.GetGold());
-            }
-        }
-        masaSayisi ++;
-        tumMasalar[masaSayisi-1].gameObject.SetActive(true);
-        emptyChairs.Add(tumMasalar[masaSayisi-1].transform.GetChild(0).GetComponent<Chair>());
-        emptyChairs.Add(tumMasalar[masaSayisi-1].transform.GetChild(2).GetComponent<Chair>());
-        masaUcreti.SetGold(100);
-        restorantData.UpdateData();
-    }
-    public void GarsonHareketHiziArttir(bool ucretlimi)
-    {
-        if(ucretlimi)
-        {
-            if(GameManager.instance.GetPara() < garsonMoveUcreti.GetGold())
-                return;    
-            else
-            {
-                GameManager.instance.SetPara(-garsonMoveUcreti.GetGold());
+                GameManager.instance.SetMoney(-tableCost.GetGold());
             }
         }
 
-        GameManager.instance.SetPara(-garsonMoveUcreti.GetGold());
-        moveSpeed += moveSpeed * (hareketHiziArtisYuzdesi/100);
-        for (int i = 0; i < tumGarsonlar.Count; i++)
-        {
-            tumGarsonlar[i].transform.GetChild(0).GetComponent<Garson>().moveSpeed = moveSpeed;
-        }
-        moveNext = tumGarsonlar[0].transform.GetChild(0).GetComponent<Garson>().moveSpeed + tumGarsonlar[0].transform.GetChild(0).GetComponent<Garson>().moveSpeed * (hareketHiziArtisYuzdesi/100);            
-        garsonMoveUcreti.SetGold(100);
-        restorantData.UpdateData();
+        tableCount ++;
+        allTables[tableCount-1].gameObject.SetActive(true);
+        emptyChairs.Add(allTables[tableCount-1].transform.GetChild(0).GetComponent<Chair>());
+        emptyChairs.Add(allTables[tableCount-1].transform.GetChild(2).GetComponent<Chair>());
+        allChairs.Add(allTables[tableCount-1].transform.GetChild(0).GetComponent<Chair>());
+        allChairs.Add(allTables[tableCount-1].transform.GetChild(2).GetComponent<Chair>());
+        tableCost.SetGold(100);
+        restaurantData.UpdateData();
     }
-    public void MusteriSikligiArttir(bool ucretlimi)
+    public void IncreaseMovementSpeed(bool isPaid)
     {
-        if(ucretlimi)
+        if(isPaid)
         {
-            if(GameManager.instance.GetPara() < musteriSiklikUcreti.GetGold())
+            if(GameManager.instance.GetMoney() < waiterSpeedCost.GetGold())
                 return;    
             else
             {
-                GameManager.instance.SetPara(-musteriSiklikUcreti.GetGold());
+                GameManager.instance.SetMoney(-waiterSpeedCost.GetGold());
             }
         }
-        if(GameManager.instance.GetPara() < musteriSiklikUcreti.GetGold())
+
+        GameManager.instance.SetMoney(-waiterSpeedCost.GetGold());
+        moveSpeed += moveSpeed * (moveSpeedPercentageIncrease/100);
+        for (int i = 0; i < allWaiters.Count; i++)
+        {
+            allWaiters[i].transform.GetChild(0).GetComponent<Garson>().moveSpeed = moveSpeed;
+        }
+        moveNext = moveSpeed + moveSpeed * (moveSpeedPercentageIncrease/100);            
+        waiterSpeedCost.SetGold(100);
+        restaurantData.UpdateData();
+    }
+    public void MusteriSikligiArttir(bool isPaid)
+    {
+        if(isPaid)
+        {
+            if(GameManager.instance.GetMoney() < customerFrequencyCost.GetGold())
+                return;    
+            else
+            {
+                GameManager.instance.SetMoney(-customerFrequencyCost.GetGold());
+            }
+        }
+        if(GameManager.instance.GetMoney() < customerFrequencyCost.GetGold())
             return;
-        GameManager.instance.SetPara(-musteriSiklikUcreti.GetGold());
-        GetComponentInChildren<CustomerCreator>().frequency -= (GetComponentInChildren<CustomerCreator>().frequency * (frekansAzalisYuzdesi/100));
-        frekansNext = GetComponentInChildren<CustomerCreator>().frequency - (GetComponentInChildren<CustomerCreator>().frequency * (frekansAzalisYuzdesi/100));
-        musteriSiklikUcreti.SetGold(100);
-        restorantData.UpdateData();
+        GameManager.instance.SetMoney(-customerFrequencyCost.GetGold());
+        GetComponentInChildren<CustomerCreator>().frequency -= (GetComponentInChildren<CustomerCreator>().frequency * (frequencyDecreasePercentage/100));
+        frequencyNext = GetComponentInChildren<CustomerCreator>().frequency - (GetComponentInChildren<CustomerCreator>().frequency * (frequencyDecreasePercentage/100));
+        customerFrequencyCost.SetGold(100);
+        restaurantData.UpdateData();
+    }
+    public void UnlockRestaurant()
+    {
+        if(unlockCost.GetGold() <= GameManager.instance.GetMoney())
+        {
+            lockedPanel.SetActive(false);
+            BuyTable(false);
+            BuyWaiter(false);
+            isLocked = false;
+            @lock.SetActive(false);
+            restaurantData.UpdateData();
+            level.IsRestaurantReady(false);
+        }
+    }
+    public float PizzaDistributingTime()
+    {
+        float tableDistanceAverage =0;
+        for (int i = 0; i < allChairs.Count; i++)
+        {
+            tableDistanceAverage += Vector3.Distance (waiterWaitPlace[0].position,allChairs[i].transform.position);
+        }
+        tableDistanceAverage = (tableDistanceAverage / allChairs.Count)/moveSpeed;
+        float dishCounterAverageDistance =0;
+        var temp = 0;
+        for (int i = 0; i < level.scullery.Count; i++)
+        {
+            for (int j = 0; j < level.scullery[i].currentCounters.Count; j++)
+            {
+                dishCounterAverageDistance += Vector3.Distance(waiterWaitPlace[0].position,level.scullery[i].currentCounters[j].transform.position);
+                temp++;
+            }
+        }
+        var temp2 = 0;
+        dishCounterAverageDistance = (dishCounterAverageDistance / temp)/moveSpeed;
+        float counterAverageDistance = 0;
+        for (int i = 0; i < level.kitchens.Length; i++)
+        {
+                
+            for (int j = 0; j < level.kitchens[i].useableCounters.Count; j++)
+            {
+                counterAverageDistance += Vector3.Distance(waiterWaitPlace[0].position,level.kitchens[i].useableCounters[j].transform.position);
+                temp2 ++;
+            }
+        }
+        counterAverageDistance = (counterAverageDistance / temp2)/moveSpeed;
+        return (counterAverageDistance + dishCounterAverageDistance + tableDistanceAverage) / allWaiters.Count;
+        
     }
 }

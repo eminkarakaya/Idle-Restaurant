@@ -6,8 +6,8 @@ public class MusteriEatingState : MusteriState
 {
     public override void StartState(Action action)
     {
-        action.MusteriYe();
-        musteri.siparisImage.gameObject.SetActive(false);
+        action.CustomerEat();
+        customer.orderImage.gameObject.SetActive(false);
     }
     public override void UpdateState(Action action)
     {

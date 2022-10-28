@@ -54,4 +54,4 @@ MonoBehaviour:
   garsonPrefab: {fileID: 6310149824884937379, guid: 353aa53ed60ed3a469e352dc5f91df15, type: 3}
   asciPrefab: {fileID: 3300796612817049096, guid: 2f77055919495d44990f1028194c30a8, type: 3}
   motorPrefab: {fileID: 6887883146999402995, guid: ce10578448567d846b8535fba70ee5bf, type: 3}
-  bulasikciPrefab: {fileID: 0}
+  bulasikciPrefab: {fileID: 974518317174791217, guid: 3dd2dda4e09fee34d9dfce7c59ee3d3b, type: 3}

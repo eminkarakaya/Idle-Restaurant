@@ -10,22 +10,23 @@ public class BulasikToplaState : GarsonState
     // }
     public override void StartState(Action action)
     {
-        action.Yuru();
-        if(garson.level.restaurant.kirliTabaklar.Count != 0)
-            garson.targetKirli = garson.level.restaurant.kirliTabaklar[0];
-        garson.level.restaurant.kirliTabaklar.Remove(garson.targetKirli);
-        garson.level.restaurant.emptyChairs.Add(garson.targetKirli);
+        action.Walk();
+        if(waiter.level.restaurant.dirtyPlates.Count != 0)
+            waiter.targetKirli = waiter.level.restaurant.dirtyPlates[0];
+        waiter.level.restaurant.dirtyPlates.Remove(waiter.targetKirli);
+        waiter.level.restaurant.emptyChairs.Add(waiter.targetKirli);
+        // StartCoroutine(GameManager.instance.SetDestinationCouroutine(garson.targetKirli.transform.position,gar,this));
     }
     public override void UpdateState(Action action)
     {
-        garson.agent.SetDestination(garson.targetKirli.transform.position);
-        if(Vector3.Distance(garson.transform.position,garson.targetKirli.transform.position) < .4f)
+        waiter.agent.SetDestination(waiter.targetKirli.transform.position);
+        if(Vector3.Distance(waiter.transform.position,waiter.targetKirli.transform.position) < .4f)
         {
-            garson.targetKirli.tabak.transform.SetParent(garson.transform);
-            garson.targetKirli.tabak.transform.position = garson.hand[garson.handSayisi-1].position;
+            waiter.targetKirli.plate.transform.SetParent(waiter.transform);
+            waiter.targetKirli.plate.transform.position = waiter.hand.position;
 
-            garson.bulasikGoturState.tabak = garson.targetKirli.tabak;
-            garson.currState = garson.bulasikGoturState;
+            waiter.bulasikGoturState.tabak = waiter.targetKirli.plate;
+            waiter.currState = waiter.bulasikGoturState;
         }
     }
 }

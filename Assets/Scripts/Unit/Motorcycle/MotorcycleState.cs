@@ -11,6 +11,6 @@ public abstract class MotorcycleState : StateBase
     }
     void Start()
     {
-        item = motorcycle.parkinLot.sira;
+        item = motorcycle.parkinLot.queue;
     }
 }

@@ -4,80 +4,79 @@ using UnityEngine;
 
 public class Bulasikhane : Department
 {
-    BulasikhaneData bulasikhaneData;
+    public BulasikhaneData sculleryData;
     public override Level level {get; set;}
-    public override GameObject acilacakPanel { get; set; }
+    public override GameObject dataPanel { get; set; }
     public override Transform camPlace { get; set; }
-    [SerializeField] GameObject _acilacakPanel;
+    [SerializeField] GameObject _dataPanel;
     [SerializeField] Transform _camPlace;
-    public List<BulasikCounter> allBulasikCounter;
-    public List<BulasikCounter> kullanilanCounters;
+    public List<BulasikCounter> allDishCounter;
+    public List<BulasikCounter> currentCounters;
     public List<Sink> allSinks;
-    public List<Sink> kullanilanSinks;
-    public List<Bulasikci> allBulasikci;
-    public int bulasikciKapasitesi = 3;
-    public Gold bulasikCounterCost;
+    public List<Sink> currentSinks;
+    public List<Bulasikci> allDishwasher;
+    public int dishwasherCapacity = 3;
+    public Gold dishCounterCost;
     public Gold sinkCost;
-    public Gold bulasikciCost;
-    public Gold unlockCost;
-    public Transform bulasikciSpawn;
-    public int sinkSayisi;
-    public int bulasikciSayisi;
-    public int bulasikCounterSayisi;
+    public Gold dishwasherCost;
+    public Transform dishwasherSpawn;
+    public int sinkCount;
+    public int dishwasherCount;
+    public int dishCounterCount;
     void Awake()
     {
         level = GetComponentInParent<Level>();
         selectableCollider = GetComponent<Collider>();
-        acilacakPanel = _acilacakPanel;
+        dataPanel = _dataPanel;
         camPlace = _camPlace;
         levelManager = FindObjectOfType<LevelManager>();
-        bulasikhaneData = GetComponentInChildren<BulasikhaneData>();
+        sculleryData = GetComponentInChildren<BulasikhaneData>();
     }
-    public BulasikCounter FindEmptyBulasikCounter()
+    public BulasikCounter FindEmptyDishCounter()
     {
-        for (int i = 0; i < kullanilanCounters.Count; i++)
+        for (int i = 0; i < currentCounters.Count; i++)
         {
-            if(kullanilanCounters[i].tabaklar.Count == 0)
-                return kullanilanCounters[i];
+            if(currentCounters[i].plates.Count == 0)
+                return currentCounters[i];
         }
-        return kullanilanCounters[0];
+        return currentCounters[0];
     }
-    public BulasikCounter FindBulasikCounter()
+    public BulasikCounter FindDishCounter()
     {
-        var enaz = kullanilanCounters[0];
-        for (int i = 0; i < kullanilanCounters.Count; i++)
+        var least = currentCounters[0];
+        for (int i = 0; i < currentCounters.Count; i++)
         {
-            if(kullanilanCounters[i].bulasikcilar .Count == 0)
+            if(currentCounters[i].dishwashers .Count == 0)
             {
                 continue;
             }
-            if(kullanilanCounters[i].tabaklar.Count < enaz.tabaklar.Count)
+            if(currentCounters[i].plates.Count < least.plates.Count)
             {
-                enaz = kullanilanCounters[i];
+                least = currentCounters[i];
             }
         }
-        return enaz;
+        return least;
     }
-    public BulasikCounter EnCokBulasikciliCounteriBul()
+    public BulasikCounter FindCounterWithMostDishwasher()
     {
-        var enCok = kullanilanCounters[0];
-        for (int i = 0; i < kullanilanCounters.Count; i++)
+        var enCok = currentCounters[0];
+        for (int i = 0; i < currentCounters.Count; i++)
         {
-            if(kullanilanCounters[i].bulasikcilar.Count > enCok.bulasikcilar.Count)
+            if(currentCounters[i].dishwashers.Count > enCok.dishwashers.Count)
             {
-                enCok = kullanilanCounters[i];
+                enCok = currentCounters[i];
             }
         }
         return enCok;
     }
-    public Sink EnCokBulasikciliSinkiBul()
+    public Sink FindSinkWithMostDishwasher()
     {
-        var enCok = kullanilanSinks[0];
-        for (int i = 0; i < kullanilanSinks.Count; i++)
+        var enCok = currentSinks[0];
+        for (int i = 0; i < currentSinks.Count; i++)
         {
-            if(kullanilanSinks[i].bulasikcilar.Count > enCok.bulasikcilar.Count)
+            if(currentSinks[i].dishwashers.Count > enCok.dishwashers.Count)
             {
-                enCok = kullanilanSinks[i];
+                enCok = currentSinks[i];
             }
         }
         return enCok;
@@ -85,120 +84,162 @@ public class Bulasikhane : Department
     
     public BulasikCounter GetEmptyBulasikCounter()
     {
-        var enAz = kullanilanCounters[0];
-        for (int i = 0; i < kullanilanCounters.Count; i++)
+        var enAz = currentCounters[0];
+        for (int i = 0; i < currentCounters.Count; i++)
         {
-            if(kullanilanCounters[i].bulasikcilar.Count < enAz.bulasikcilar.Count)
+            if(currentCounters[i].dishwashers.Count < enAz.dishwashers.Count)
             {
-                enAz = kullanilanCounters[i];
+                enAz = currentCounters[i];
             }
         }
+    
         return enAz;
     }
     public Sink GetEmptySink()
     {
-        var enAz = kullanilanSinks[0];
-        for (int i = 0; i < kullanilanSinks.Count; i++)
+        var enAz = currentSinks[0];
+        for (int i = 0; i < currentSinks.Count; i++)
         {
-            if(kullanilanSinks[i].bulasikcilar.Count < enAz.bulasikcilar.Count)
+            if(currentSinks[i].dishwashers.Count < enAz.dishwashers.Count)
             {
-                enAz = kullanilanSinks[i];
+                enAz = currentSinks[i];
             }
         }
         return enAz;
     }
-    public void BulasikciSatinAl(bool ucretlimi)
+    public void BulasikciSatinAl(bool isPaid)
     {
-        if(allBulasikci.Count > bulasikciKapasitesi)
+        if(allDishwasher.Count > dishwasherCapacity)
         {
             return;
         }
-        if(ucretlimi)
+        if(isPaid)
         {
-            if(GameManager.instance.GetPara()< bulasikciCost.GetGold())
+            if(GameManager.instance.GetMoney()< dishwasherCost.GetGold())
                 return;
             else
             {
-                GameManager.instance.SetPara(-bulasikciCost.GetGold());
+                GameManager.instance.SetMoney(-dishwasherCost.GetGold());
             }
         }
-        bulasikciSayisi ++;
-        var bulasikci = Instantiate(levelManager.bulasikciPrefab,bulasikciSpawn.position,Quaternion.identity);
+        dishwasherCount ++;
+        var dishwasher = Instantiate(levelManager.dishwasherPrefab,dishwasherSpawn.position,Quaternion.identity);
+        var dishwasherClass = dishwasher.transform.GetChild(0).GetComponent<Bulasikci>();
+
         var counter = GetEmptyBulasikCounter();
-        bulasikci.transform.GetChild(0).GetComponent<Bulasikci>().bulasikhane = this;
-        bulasikci.transform.GetChild(0).GetComponent<Bulasikci>().bulasikCounter = counter;
-        var bulasikciClass = bulasikci.transform.GetChild(0).GetComponent<Bulasikci>();
-        allBulasikci.Add(bulasikciClass);
-        counter.bulasikcilar.Add(bulasikci);
+        dishwasherClass.dishCounter = counter;
+        allDishwasher.Add(dishwasherClass);
+        counter.dishwashers.Add(dishwasher);
     
         var sink = GetEmptySink();
-        bulasikciClass.sink = sink;   
-        sink.bulasikcilar.Add(bulasikci);
+        dishwasherClass.sink = sink;   
+        sink.dishwashers.Add(dishwasher);
 
-        bulasikciClass.level = level;
-        bulasikciClass.bulasikhane = this;
-        bulasikciCost.SetGold(100);
-        bulasikhaneData.UpdateData();
+        dishwasherClass.level = level;
+        dishwasherClass.scullery = this;
+        dishwasherCost.SetGold(100);
+        sculleryData.UpdateData();
 
     }
-    public void BulasikCounterSatinAl(bool ucretlimi)
+    public void BulasikCounterSatinAl(bool isPaid)
     {
-        if(kullanilanCounters.Count == allBulasikCounter.Count)
+        if(currentCounters.Count == allDishCounter.Count)
             return;
-        if(ucretlimi)
+        if(isPaid)
         {
-            if(GameManager.instance.GetPara()< bulasikCounterCost.GetGold())
+            if(GameManager.instance.GetMoney()< dishCounterCost.GetGold())
                 return;
             else
             {
-                GameManager.instance.SetPara(-bulasikCounterCost.GetGold());
+                GameManager.instance.SetMoney(-dishCounterCost.GetGold());
             }
         }
-        bulasikCounterSayisi++;
-        var counter = allBulasikCounter[kullanilanCounters.Count];
-        kullanilanCounters.Add(counter);
-        counter.engel.SetActive(false);
-        var encok = EnCokBulasikciliCounteriBul();
-        encok.bulasikcilar[encok.bulasikcilar.Count-1].transform.GetChild(0).GetComponent<Bulasikci>().bulasikCounter = counter;
-        counter.bulasikcilar.Add(encok.bulasikcilar[encok.bulasikcilar.Count-1]);
-        var bulasikci = encok.bulasikcilar[encok.bulasikcilar.Count-1].transform.GetChild(0).GetComponent<Bulasikci>();
-        if(bulasikci.currState == bulasikci.queueState || bulasikci.currState == bulasikci.queueBekleState || bulasikci.currState == bulasikci.bulasikTabakBekle)
+        dishCounterCount++;
+        var counter = allDishCounter[currentCounters.Count];
+        currentCounters.Add(counter);
+        counter.barrier.SetActive(false);
+        var most = FindCounterWithMostDishwasher();
+        if(most.dishwashers.Count == 0)
         {
-            if(encok.queue.Contains(bulasikci))
-                encok.queue.Remove(bulasikci);
-            bulasikci.currState = bulasikci.bulasikciTabakAl;
-        }
-        encok.bulasikcilar.Remove(encok.bulasikcilar[encok.bulasikcilar.Count-1]);
-        bulasikCounterCost.SetGold(100);
-        bulasikhaneData.UpdateData();
-    }
-    public void SinkSatinAl(bool ucretlimi)
-    {
-        if(kullanilanSinks.Count == allSinks.Count)
             return;
-        if(ucretlimi)
+        }
+        most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<Bulasikci>().dishCounter = counter;
+        counter.dishwashers.Add(most.dishwashers[most.dishwashers.Count-1]);
+        
+        var dishwasher = most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<Bulasikci>();
+        if((dishwasher.currState == dishwasher.queueState || dishwasher.currState == dishwasher.queueWaitState) && dishwasher.queueState.previousState == dishwasher.takePlateState)
         {
-            if(GameManager.instance.GetPara()< sinkCost.GetGold())
+            // if(encok.queue.Contains(bulasikci))
+            //     encok.queue.Remove(bulasikci);
+            dishwasher.currState = dishwasher.takePlateState;
+        }
+        if(dishwasher.currState == dishwasher.waitPlateState)
+        {
+            dishwasher.currState = dishwasher.takePlateState;
+        }
+        most.dishwashers.Remove(most.dishwashers[most.dishwashers.Count-1]);
+        dishCounterCost.SetGold(100);
+        sculleryData.UpdateData();
+    }
+    public void SinkSatinAl(bool isPaid)
+    {
+        if(currentSinks.Count == allSinks.Count)
+            return;
+        if(isPaid)
+        {
+            if(GameManager.instance.GetMoney()< sinkCost.GetGold())
                 return;
             else
             {
-                GameManager.instance.SetPara(-sinkCost.GetGold());
+                GameManager.instance.SetMoney(-sinkCost.GetGold());
             }
         }
-        sinkSayisi++;
-        var sink = allSinks[kullanilanSinks.Count];
+        sinkCount++;
+        var sink = allSinks[currentSinks.Count];
         sink.gameObject.SetActive(true);
-        kullanilanSinks.Add(sink);
-        var encok = EnCokBulasikciliSinkiBul();
-        encok.bulasikcilar[encok.bulasikcilar.Count-1].transform.GetChild(0).GetComponent<Bulasikci>().sink = sink;
-        sink.bulasikcilar.Add(encok.bulasikcilar[encok.bulasikcilar.Count-1]);
-        var bulasikci = encok.bulasikcilar[encok.bulasikcilar.Count-1].transform.GetChild(0).GetComponent<Bulasikci>();
-        if(bulasikci.currState == bulasikci.queueState || bulasikci.currState == bulasikci.queueBekleState || bulasikci.currState == bulasikci.sinkBekleState)
+        currentSinks.Add(sink);
+        var most = FindSinkWithMostDishwasher();
+        if(most.dishwashers.Count == 0)
         {
-            bulasikci.currState = bulasikci.bulasikciTabakKoy;
+            return;
         }
-        encok.bulasikcilar.Remove(encok.bulasikcilar[encok.bulasikcilar.Count-1]);
+        most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<Bulasikci>().sink = sink;
+        sink.dishwashers.Add(most.dishwashers[most.dishwashers.Count-1]);
+        var dishwasher = most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<Bulasikci>();
+        if((dishwasher.currState == dishwasher.queueState || dishwasher.currState == dishwasher.queueWaitState) && dishwasher.queueState.previousState == dishwasher.waitSinkState)
+        {
+            dishwasher.currState = dishwasher.putPlateState;
+        }
+        most.dishwashers.Remove(most.dishwashers[most.dishwashers.Count-1]);
         sinkCost.SetGold(100);
-        bulasikhaneData.UpdateData();
+        sculleryData.UpdateData();
     }
+    public void UnlockScullery()
+    {
+        if(unlockCost.GetGold() <= GameManager.instance.GetMoney())
+        {
+            lockedPanel.SetActive(false);
+            isLocked = false;
+            @lock.SetActive(false);
+            SinkSatinAl(false);
+            BulasikCounterSatinAl(false);
+            BulasikciSatinAl(false);
+            sculleryData.UpdateData();
+            level.IsRestaurantReady(false);
+        }
+    }
+    public float PizzaMakingTime()
+    {
+        float totalTime = 0f;
+        for (int i = 0; i < allDishwasher.Count; i++)
+        {
+            totalTime += Vector3.Distance(allDishwasher[i].sink.transform.position,allDishwasher[i].dishCounter.transform.position);
+            totalTime += Vector3.Distance(allDishwasher[i].sink.transform.position,allDishwasher[i].dishCounter.transform.position);
+            totalTime += allDishwasher[i].washState.washingTime;
+        }
+        totalTime /= allDishwasher.Count;
+
+        return totalTime/allDishwasher.Count;
+    }
+
 }

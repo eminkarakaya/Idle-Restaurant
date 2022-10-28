@@ -7,34 +7,36 @@ public class MusteriWalkState : MusteriState
     public override void StartState(Action action)
     {
         item = kapi.instance;
-        if(!item.queue.Contains(musteri))
-            item.CreateQueue(musteri);
-
-        if(musteri.chair == null)
-            musteri.chair = musteri.FindEmptyChair();
-        if(item.queue[0] != musteri || musteri.chair == null)
+        item.CreateQueue(customer);
+        if(item.queue[0] != customer)
         {
-            musteri.queueState.oncekiAction = musteri.action;
-            musteri.queueState.oncekiState = musteri.currState;
-            musteri.currState = musteri.queueState;
+            customer.queueState.isCarrying = false;
+            customer.queueState.previousState = customer.currState;
+            customer.currState = customer.queueState;
             return;
         }
-        item.UpdateQueue(musteri);
-        
+
+        if(customer.chair == null)
+        {
+            action.CustomerStandIdle();
+            customer.currState = customer.musteriChairBekleState;
+            return;
+        }
+        item.UpdateQueue(customer);        
        
-        action.MusteriYuru();
+        action.CustomerWalk();
+        StartCoroutine(GameManager.instance.SetDestinationCouroutine(customer.chair.placeToSit.position,customer,this));
     }
     public override void UpdateState(Action action)
     {
-        musteri.agent.SetDestination(musteri.chair.oturulcakYer.position);
-        if(Vector3.Distance(musteri.agent.transform.position,musteri.oturulcakYer.transform.position) > .3f)
+        if(Vector3.Distance(customer.agent.transform.position,customer.placeToSit.transform.position) > .3f)
         {
             return;
         }
-        transform.LookAt(musteri.chair.tabakYeri);
+        transform.LookAt(customer.chair.platePlace);
 
-        musteri.agent.isStopped = true;
-        musteri.chair.SetMusteri(musteri);
-        musteri.currState = musteri.musteriStandToSitState;
+        customer.agent.isStopped = true;
+        customer.chair.SetMusteri(customer);
+        customer.currState = customer.standToSitState;
     }
 }

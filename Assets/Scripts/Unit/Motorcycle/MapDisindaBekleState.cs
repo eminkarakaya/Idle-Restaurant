@@ -18,7 +18,7 @@ public class MapDisindaBekleState : MotorcycleState
         {
             Destroy(motorcycle.pizza);
             timeTemp = 0;
-            motorcycle.transform.position = motorcycle.parkinLot.baslangicYeri.position;
+            motorcycle.transform.position = motorcycle.parkinLot.startingPos.position;
             motorcycle.currState = motorcycle.siparisiAlState;
         }
     }

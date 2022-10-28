@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class BuzdolabiState : AsciState
 {
-    Transform _buzdolabiTransform;
-    GameObject _hamur;
-    GameObject hamur;
+    Transform _fridgeTransform;
+    GameObject _dough;
+    GameObject dough;
 
     public override void StartState(Action action)
     {
-        hamur = asci.hamur;
-        _buzdolabiTransform = asci.buzdolabi;
+        dough = chef.dough;
+        _fridgeTransform = chef.fridge;
         
-        asci.agent.SetDestination(_buzdolabiTransform.position);
-        action.Yuru();
+        chef.agent.SetDestination(_fridgeTransform.position);
+        action.Walk();
     }
     public override void UpdateState(Action action)
     {
-        if(Vector3.Distance(asci.agent.transform.position,_buzdolabiTransform.position) > 0.6f)
+        if(Vector3.Distance(chef.agent.transform.position,_fridgeTransform.position) > 0.6f)
         {
             return;
         }
-        asci.pizzaAcmaState.hamur = Instantiate(hamur,asci.hand[asci.handSayisi-1].position,Quaternion.identity,asci.hand[asci.handSayisi-1]);
-        asci.currState = asci.pizzaAcmaState;
+        chef.rollOutPizzaState.hamur = Instantiate(dough,chef.hand.position,Quaternion.identity,chef.hand);
+        chef.currState = chef.rollOutPizzaState;
         
     }
 }

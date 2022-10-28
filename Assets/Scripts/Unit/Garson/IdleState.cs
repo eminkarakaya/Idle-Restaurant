@@ -7,32 +7,32 @@ public class IdleState : GarsonState
     
     public override void StartState(Action action)
     {
-        garson.bekleImage.gameObject.SetActive(true);
-        garson.action.Idle();
+        waiter.queueImage.gameObject.SetActive(true);
+        waiter.action.Idle();
     }
     public override void UpdateState(Action action)
     {
-        if(garson.targetKirli == null && garson.level.restaurant.kirliTabaklar.Count !=0)
-            garson.targetKirli = garson.level.restaurant.kirliTabaklar[0];
-        if(garson.targetKirli != null)
+        if(waiter.targetKirli == null && waiter.level.restaurant.dirtyPlates.Count !=0)
+            waiter.targetKirli = waiter.level.restaurant.dirtyPlates[0];
+        if(waiter.targetKirli != null)
         {
-            garson.bekleImage.gameObject.SetActive(false);
-            garson.currState = garson.bulasikToplaState;
+            waiter.queueImage.gameObject.SetActive(false);
+            waiter.currState = waiter.bulasikToplaState;
             return;
         }
-        if(garson._chair == null)
+        if(waiter._chair == null)
         {
-            garson._chair = garson.FindChair();
+            waiter._chair = waiter.FindChair();
         }
-        if(garson.counter == null)
+        if(waiter.counter == null)
         {
-            var counter = garson.FindCounter();
+            var counter = waiter.FindCounter();
         }
         
-        if(garson._chair != null && garson.counter != null)
+        if(waiter._chair != null && waiter.counter != null)
         {
-            garson.bekleImage.gameObject.SetActive(false);
-            garson.currState = garson.yemegiCounterdenAlState;
+            waiter.queueImage.gameObject.SetActive(false);
+            waiter.currState = waiter.yemegiCounterdenAlState;
             return;
         }
     }    

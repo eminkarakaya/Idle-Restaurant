@@ -6,7 +6,7 @@ public class SiparisiAlState : MotorcycleState
 {
     public override void StartState(Action action)
     {
-        item = motorcycle.parkinLot.sira;
+        item = motorcycle.parkinLot.queue;
         var counter = motorcycle.FindCounter();
         motorcycle.counter = counter;
         if(!item.queue.Contains(motorcycle))
@@ -14,15 +14,15 @@ public class SiparisiAlState : MotorcycleState
         if(counter == null)
         {
             motorcycle.siparisiBekleState.item = item;
-            motorcycle.queueState.oncekiState = motorcycle.siparisiBekleState;
+            motorcycle.queueState.previousState = motorcycle.siparisiBekleState;
             motorcycle.currState = motorcycle.queueState;
             return;
         }
-        motorcycle.agent.SetDestination(counter.garsonPos.position);
+        motorcycle.agent.SetDestination(counter.waiterPos.position);
     }
     public override void UpdateState(Action action)
     {
-        if(Vector3.Distance(motorcycle.transform.position,motorcycle.counter.garsonPos.position) < 1)
+        if(Vector3.Distance(motorcycle.transform.position,motorcycle.counter.waiterPos.position) < 1)
         {
             motorcycle.currState = motorcycle.siparisiBekleState;
         }

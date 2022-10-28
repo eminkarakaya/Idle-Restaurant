@@ -7,8 +7,8 @@ public class ParkinlotData : MonoBehaviour
 {
     ParkinLot parkinLot;
     Level level;
-    [SerializeField] Text motorSayisi
-    ,motorAlCostText,motorHiziText,motorHiziTextCost;
+    [SerializeField] Text motorcycleCount
+    ,motorAlCostText,motorcycleSpeedText,motorcycleSpeedCost,motorcycleSpeedNext;
 
     void Start()
     {
@@ -18,9 +18,10 @@ public class ParkinlotData : MonoBehaviour
     }
     public void UpdateData()
     {
-        motorSayisi.text = parkinLot.tumMotorlar.Count.ToString() + "/" + parkinLot.motorKapasitesi;
+        motorcycleCount.text = parkinLot.allMotorcycle.Count.ToString() + "/" + parkinLot.motorcycleCapacity;
         motorAlCostText.text = GameManager.CaclText(parkinLot.motorCost.GetGold());
-        // motorHiziText.text = parkinLot.tumMotorlar[0].agent.speed.ToString();
-        motorHiziTextCost.text = GameManager.CaclText(parkinLot.motorHiziCost.GetGold());
+        motorcycleSpeedText.text = GameManager.CaclText(parkinLot.hiz) + " m/s";
+        motorcycleSpeedCost.text = GameManager.CaclText(parkinLot.motorcycleSpeedCost.GetGold());
+        motorcycleSpeedNext.text = "+" + GameManager.CaclText((parkinLot.hiz * (parkinLot.speedIncreasePercentage/100))) + " m/s";
     }
 }

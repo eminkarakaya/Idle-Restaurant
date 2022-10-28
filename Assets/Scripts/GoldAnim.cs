@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
 
@@ -14,11 +15,16 @@ public class GoldAnim : MonoBehaviour
     [SerializeField] Ease ease;
     [SerializeField] Text goldText;
     [SerializeField] Transform parent;
-    [SerializeField] Transform goldOlusturulcakTransform;
+    [SerializeField] Transform goldSpawnTransform;
     int gold;
     void Awake()
     {
         _instance = this;
+    }
+    void Start ()
+    {
+        parent = GameManager.instance.transform.GetChild(1);
+        goldinScene = GameManager.instance.transform.GetChild(1).GetChild(0).GetChild(1).transform.gameObject;
     }
     void SetGold(int count)
     {
@@ -34,7 +40,7 @@ public class GoldAnim : MonoBehaviour
         Color color = new Color(255,255,255,0);
         obj.GetComponent<SpriteRenderer>().DOColor(color,1);
         obj.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material.DOFade(0,1).OnComplete(()=> Destroy(obj)).OnComplete(()=>Destroy(obj.transform.GetChild(0).GetChild(1).gameObject));
-        GameManager.instance.SetPara(earnedGold);
+        GameManager.instance.SetMoney(earnedGold);
     }
     public IEnumerator EarnGoldAnim(int earnedGold , int count , Transform transform)
     {
@@ -44,21 +50,21 @@ public class GoldAnim : MonoBehaviour
         List<GameObject> list = new List<GameObject>();
         for (int i = 0; i < count; i++)
         {
-            var obj = Instantiate(goldPrefab,goldOlusturulcakTransform.position,Quaternion.identity, parent);
+            var obj = Instantiate(goldPrefab,goldSpawnTransform.position,Quaternion.identity, parent);
             list.Add(obj);
         }
         for (int i = 0; i < count; i++)
         {
             var x = distanceFactor * Mathf.Sqrt(i) * Mathf.Cos(i*radius);
             var y = distanceFactor * Mathf.Sqrt(i) * Mathf.Sin(i*radius);
-            var newPos = new Vector3(x,y,0) + goldOlusturulcakTransform.position;
+            var newPos = new Vector3(x,y,0) + goldSpawnTransform.position;
 
             list[i].transform.DOMove(newPos,.5f);
         }
         for (int i = 0; i < count; i++)
         {
-            list[i].transform.DOMove(goldinScene.transform.position,.5f).SetEase(ease).OnComplete(()=> GameManager.instance.SetPara(earnedGold15));//.OnComplete(()=> goldFlare.Play());
-            yield return new WaitForSeconds(0.05f);
+            list[i].transform.DOMove(goldinScene.transform.position,.5f).SetEase(ease).OnComplete(()=> GameManager.instance.SetMoney(earnedGold15));//.OnComplete(()=> goldFlare.Play());
+            yield return new WaitForSeconds(0.03f);
         }
         yield return new WaitForSeconds(.5f);
         for (int i = 0; i < count; i++)

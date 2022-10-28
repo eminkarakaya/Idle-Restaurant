@@ -6,7 +6,7 @@ public class SiparisiBekleState : MotorcycleState
 {
     public override void StartState(Action action)
     {
-        item = motorcycle.parkinLot.sira;
+        item = motorcycle.parkinLot.queue;
     }
     public override void UpdateState(Action action)
     {
