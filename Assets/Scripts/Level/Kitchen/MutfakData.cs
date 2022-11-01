@@ -23,7 +23,7 @@ public class MutfakData : MonoBehaviour
     }
     public void UpdateData()
     {
-        counterSayisi.text = "Tezgah sayısı: " + kitchen.counterCount + "/" + kitchen.allCounters.Count;
+        counterSayisi.text = "Tezgah sayısı: " + kitchen.useablePizzaCounters.Count + "/" + kitchen.allPizzaCounters.Count;
         asciSayisi.text = "Aşçı sayısı: " + kitchen.cookCount + "/" + kitchen.chefCapacity;
         firinSayisi.text = "Fırın sayısı: " + kitchen.ovenCount + "/" + kitchen.allOven.Count;
         kasaSayisi.text = "Kasa sayısı: " + kitchen.useableCounters.Count + "/" + kitchen.allCounters.Count;

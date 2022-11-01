@@ -6,11 +6,16 @@ using UnityEngine.EventSystems;
 
 public class SelectManager : MonoBehaviour
 {
+    public static SelectManager instance;
     bool isMoved;
     [SerializeField] private Button _backBtn;
     private GameObject _willBeClosedPanel;
     [SerializeField] private GameObject _selectedObject;
     [SerializeField] private Vector3 _oldPos;
+    void Awake()
+    {
+        instance=this;
+    }
     void Update()
     {
         Select();
@@ -19,17 +24,17 @@ public class SelectManager : MonoBehaviour
     
     public void Select()
     {
-        // if(Input.touchCount > 0)    
-        // {
+        if(Input.touchCount > 0)    
+        {
 
-        //     Touch parmak =  Input.GetTouch(0);
-        //         if(parmak.phase == TouchPhase.Moved)
-        //         {
-        //             isMoved = true;
-        //         }
+            Touch parmak =  Input.GetTouch(0);
+                if(parmak.phase == TouchPhase.Moved)
+                {
+                    isMoved = true;
+                }
                 
-                // if(parmak.phase == TouchPhase.Ended && _selectedObject == null && !isMoved)
-                 if(Input.GetMouseButton(0) && _selectedObject == null && !isMoved)
+                if(parmak.phase == TouchPhase.Ended && _selectedObject == null && !isMoved)
+                //  if(Input.GetMouseButton(0) && _selectedObject == null && !isMoved)
                 {
                     RaycastHit hit = CastRay();
                     if(hit.collider == null)
@@ -56,11 +61,11 @@ public class SelectManager : MonoBehaviour
                         _oldPos = department.oldCamPlace.position;
                         CameraMove.instance.lockUp = true;
                     }
-                    // isMoved = true;
+                    isMoved = true;
                 }
-        //         if(parmak.phase == TouchPhase.Ended)
-        //             isMoved = false;
-        // }
+                if(parmak.phase == TouchPhase.Ended)
+                    isMoved = false;
+        }
     }
     public void GeriButonu()
     {

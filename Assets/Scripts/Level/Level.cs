@@ -6,6 +6,9 @@ using TMPro;
 using System;
 public class Level : MonoBehaviour
 {
+    public Sprite orderSprite;
+    public GameObject dough;
+    public GameObject pizza;
     public GameObject idleMoneyCanvas;
     public TextMeshProUGUI earnedIdleMoneyText;
     public TextMeshProUGUI passedTimeText;
@@ -35,8 +38,8 @@ public class Level : MonoBehaviour
         // bulasikhane.Add(GetComponentInChildren<Bulasikhane>());
         // kitchens.Add(GetComponentInChildren<Kitchen>());
         levelManager = FindObjectOfType<LevelManager>();
-            // if(PlayerPrefs.HasKey("data"))
-            //     LoadLevel();
+            if(PlayerPrefs.HasKey("data"))
+                LoadLevel();
         var totalDishwasher =0;
         for (int i = 0; i < scullery.Count; i++)
         {
@@ -253,7 +256,7 @@ public class Level : MonoBehaviour
     {
         Save();
         gameManager = FindObjectOfType<GameManager>();
-        GameManager.LoadScene(0);
+        GameManager.LoadScene(1);
 
     }
     public float CalculateEarnedMoneyOfPerSeconds()
@@ -335,7 +338,7 @@ public class Level : MonoBehaviour
             StartCoroutine (CustomerCreator.instance.CustomerCreate());
             return true;
         }
-        if(sculleryCount == 1 && kitchenCount == 1 && !restaurant.isLocked)
+        if(sculleryCount >= 1 && kitchenCount >= 1 && !restaurant.isLocked)
         {
             Debug.Log("true");
             StartCoroutine (CustomerCreator.instance.CustomerCreate());

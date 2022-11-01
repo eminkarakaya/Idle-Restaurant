@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         SetMoney(0);
         idleMoneyText.text = CaclText(idleMoney);
         goldText.text = CaclText(gold);
-        // Load();
+        Load();
     }
     void OnDisable()
     {
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
     }
     public void OpenMap()
     {
-        StartCoroutine(FadeScene(0,1,1));
+        StartCoroutine(FadeScene(1,1,1));
     }
     public static void LoadScene(int index,float dur = 1,float waitTime = 1)
     {

@@ -30,8 +30,8 @@ public class Kitchen : Department
     [SerializeField] private List<Ocak> UseableOvens;
     [SerializeField] private List<Transform> chefWaitTransform;
     public List<Counter> allCounters;
-    [SerializeField] private List<PizzaAcmaCounter> useablePizzaCounters;
-    [SerializeField] private List<PizzaAcmaCounter> allPizzaCounters;
+    [SerializeField] public List<PizzaAcmaCounter> useablePizzaCounters;
+    [SerializeField] public List<PizzaAcmaCounter> allPizzaCounters;
     public List<Counter> useableCounters;
     public List<Asci> allChefs;
     public List<Ocak> allOven;
@@ -259,7 +259,7 @@ public class Kitchen : Department
         encok.chefs.Remove(encok.chefs[encok.chefs.Count-1]);
         kitchenData.UpdateData();
     }
-    public void UnLock()
+    public void UnLock(bool kuryeMutfagimi)
     {
         if(unlockCost.GetGold() <= GameManager.instance.GetMoney())
         {
@@ -272,6 +272,8 @@ public class Kitchen : Department
             AsciSatinAl(false);
             kitchenData.UpdateData();
             level.IsRestaurantReady(false);
+            if(kuryeMutfagimi)
+                SelectManager.instance.GeriButonu();
         }
     }
     public float PizzaMakingTime()

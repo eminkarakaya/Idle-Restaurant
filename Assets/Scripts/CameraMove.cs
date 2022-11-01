@@ -94,6 +94,7 @@ public class CameraMove : MonoBehaviour
                 Plane _plane = new Plane(Vector3.up, Vector3.zero);
                 Ray _ray = _camera.ScreenPointToRay(Input.mousePosition);
                 float _entry;
+                Debug.Log("kekw");
                 if(_plane.Raycast(_ray,out _entry))
                 {
                     dragStartPos = _ray.GetPoint(_entry);

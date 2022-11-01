@@ -31,6 +31,8 @@ public class Asci : Unit
     }
     void Start()
     {
+        dough = level.dough;
+        pizza = level.pizza;
         // Debug.Log(kitchen);        
         // fridge = kitchen.fridge;
         // level = FindObjectOfType<Level>();

@@ -149,6 +149,7 @@ public class Restaurant : Department
             @lock.SetActive(false);
             restaurantData.UpdateData();
             level.IsRestaurantReady(false);
+            SelectManager.instance.GeriButonu();
         }
     }
     public float PizzaDistributingTime()

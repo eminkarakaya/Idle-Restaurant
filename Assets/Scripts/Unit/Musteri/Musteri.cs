@@ -26,7 +26,8 @@ public class Musteri : Unit
     void Awake()
     {
         // isReady = false;
-        level = GetComponentInParent<Level>();
+        level = FindObjectOfType<Level>();
+        orderImage.sprite = level.orderSprite;
         action =  GetComponent<Action>();
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();

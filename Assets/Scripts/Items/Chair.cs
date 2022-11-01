@@ -27,6 +27,7 @@ public class Chair : MonoBehaviour
     public void MasadanKalkma()
     {
         level.restaurant.dirtyPlates.Add(this);
+        plate.transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
         ObjectPool.instance.pools[0].pooledObjects.Enqueue(plate.transform.GetChild(0).GetChild(1).gameObject);
         // Destroy(tabak.gameObject);
         // tabak.isDirty = true;
