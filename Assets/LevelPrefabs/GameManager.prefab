@@ -38,8 +38,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 540, y: 960}
-  m_SizeDelta: {x: 1080, y: 1920}
+  m_AnchoredPosition: {x: 540, y: 1170}
+  m_SizeDelta: {x: 1080, y: 2340}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1112159325552637921
 Canvas:
@@ -234,7 +234,10 @@ MonoBehaviour:
   gameData:
     para: 0
     levelData:
-    - lastLoginDate: 
+    - customerCount: 0
+      parkingLotIsLocked: 0
+      goldEarnedPerSec: 0
+      lastLoginDate: 
       levelIndex: 0
       isUnlock: 0
       kitchenCount: 0
@@ -256,6 +259,9 @@ MonoBehaviour:
       sinkCount: 
       dishCounterCount: 
       sculleryIsLocked: 
+      customerLocations: []
+      musteriState: []
+      waiterLocations: []
       tableCount: 0
       waiterCount: 0
       waiterSpeed: 0
@@ -264,7 +270,10 @@ MonoBehaviour:
       waiterSpeedCost: 0
       customerFrequencyCost: 0
       sculleryCount: 0
-    - lastLoginDate: 
+    - customerCount: 0
+      parkingLotIsLocked: 0
+      goldEarnedPerSec: 0
+      lastLoginDate: 
       levelIndex: 0
       isUnlock: 0
       kitchenCount: 0
@@ -286,6 +295,9 @@ MonoBehaviour:
       sinkCount: 
       dishCounterCount: 
       sculleryIsLocked: 
+      customerLocations: []
+      musteriState: []
+      waiterLocations: []
       tableCount: 0
       waiterCount: 0
       waiterSpeed: 0
@@ -294,7 +306,10 @@ MonoBehaviour:
       waiterSpeedCost: 0
       customerFrequencyCost: 0
       sculleryCount: 0
-    - lastLoginDate: 
+    - customerCount: 0
+      parkingLotIsLocked: 0
+      goldEarnedPerSec: 0
+      lastLoginDate: 
       levelIndex: 0
       isUnlock: 0
       kitchenCount: 0
@@ -316,6 +331,9 @@ MonoBehaviour:
       sinkCount: 
       dishCounterCount: 
       sculleryIsLocked: 
+      customerLocations: []
+      musteriState: []
+      waiterLocations: []
       tableCount: 0
       waiterCount: 0
       waiterSpeed: 0
@@ -324,7 +342,10 @@ MonoBehaviour:
       waiterSpeedCost: 0
       customerFrequencyCost: 0
       sculleryCount: 0
-    - lastLoginDate: 
+    - customerCount: 0
+      parkingLotIsLocked: 0
+      goldEarnedPerSec: 0
+      lastLoginDate: 
       levelIndex: 0
       isUnlock: 0
       kitchenCount: 0
@@ -346,6 +367,9 @@ MonoBehaviour:
       sinkCount: 
       dishCounterCount: 
       sculleryIsLocked: 
+      customerLocations: []
+      musteriState: []
+      waiterLocations: []
       tableCount: 0
       waiterCount: 0
       waiterSpeed: 0
@@ -354,7 +378,10 @@ MonoBehaviour:
       waiterSpeedCost: 0
       customerFrequencyCost: 0
       sculleryCount: 0
-    - lastLoginDate: 
+    - customerCount: 0
+      parkingLotIsLocked: 0
+      goldEarnedPerSec: 0
+      lastLoginDate: 
       levelIndex: 0
       isUnlock: 0
       kitchenCount: 0
@@ -376,6 +403,9 @@ MonoBehaviour:
       sinkCount: 
       dishCounterCount: 
       sculleryIsLocked: 
+      customerLocations: []
+      musteriState: []
+      waiterLocations: []
       tableCount: 0
       waiterCount: 0
       waiterSpeed: 0
@@ -384,7 +414,10 @@ MonoBehaviour:
       waiterSpeedCost: 0
       customerFrequencyCost: 0
       sculleryCount: 0
-    - lastLoginDate: 
+    - customerCount: 0
+      parkingLotIsLocked: 0
+      goldEarnedPerSec: 0
+      lastLoginDate: 
       levelIndex: 0
       isUnlock: 0
       kitchenCount: 0
@@ -406,6 +439,9 @@ MonoBehaviour:
       sinkCount: 
       dishCounterCount: 
       sculleryIsLocked: 
+      customerLocations: []
+      musteriState: []
+      waiterLocations: []
       tableCount: 0
       waiterCount: 0
       waiterSpeed: 0
@@ -414,7 +450,10 @@ MonoBehaviour:
       waiterSpeedCost: 0
       customerFrequencyCost: 0
       sculleryCount: 0
-    - lastLoginDate: 
+    - customerCount: 0
+      parkingLotIsLocked: 0
+      goldEarnedPerSec: 0
+      lastLoginDate: 
       levelIndex: 0
       isUnlock: 0
       kitchenCount: 0
@@ -436,6 +475,9 @@ MonoBehaviour:
       sinkCount: 
       dishCounterCount: 
       sculleryIsLocked: 
+      customerLocations: []
+      musteriState: []
+      waiterLocations: []
       tableCount: 0
       waiterCount: 0
       waiterSpeed: 0
@@ -444,7 +486,10 @@ MonoBehaviour:
       waiterSpeedCost: 0
       customerFrequencyCost: 0
       sculleryCount: 0
-    - lastLoginDate: 
+    - customerCount: 0
+      parkingLotIsLocked: 0
+      goldEarnedPerSec: 0
+      lastLoginDate: 
       levelIndex: 0
       isUnlock: 0
       kitchenCount: 0
@@ -466,6 +511,9 @@ MonoBehaviour:
       sinkCount: 
       dishCounterCount: 
       sculleryIsLocked: 
+      customerLocations: []
+      musteriState: []
+      waiterLocations: []
       tableCount: 0
       waiterCount: 0
       waiterSpeed: 0
@@ -474,7 +522,10 @@ MonoBehaviour:
       waiterSpeedCost: 0
       customerFrequencyCost: 0
       sculleryCount: 0
-    - lastLoginDate: 
+    - customerCount: 0
+      parkingLotIsLocked: 0
+      goldEarnedPerSec: 0
+      lastLoginDate: 
       levelIndex: 0
       isUnlock: 0
       kitchenCount: 0
@@ -496,6 +547,9 @@ MonoBehaviour:
       sinkCount: 
       dishCounterCount: 
       sculleryIsLocked: 
+      customerLocations: []
+      musteriState: []
+      waiterLocations: []
       tableCount: 0
       waiterCount: 0
       waiterSpeed: 0
@@ -504,7 +558,10 @@ MonoBehaviour:
       waiterSpeedCost: 0
       customerFrequencyCost: 0
       sculleryCount: 0
-    - lastLoginDate: 
+    - customerCount: 0
+      parkingLotIsLocked: 0
+      goldEarnedPerSec: 0
+      lastLoginDate: 
       levelIndex: 0
       isUnlock: 0
       kitchenCount: 0
@@ -526,6 +583,9 @@ MonoBehaviour:
       sinkCount: 
       dishCounterCount: 
       sculleryIsLocked: 
+      customerLocations: []
+      musteriState: []
+      waiterLocations: []
       tableCount: 0
       waiterCount: 0
       waiterSpeed: 0
@@ -534,18 +594,6 @@ MonoBehaviour:
       waiterSpeedCost: 0
       customerFrequencyCost: 0
       sculleryCount: 0
-    currLevel: 0
-    tumLeveller:
-    - {fileID: 7990046155564673837, guid: 71e17c508da75d344a54fa0ff068de8c, type: 3}
-    - {fileID: 282770219102103303, guid: d6b083d49041ca34897deeb7b8b705c0, type: 3}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
   fader: {fileID: 1112159326693723807}
   _money: 99999999
   paraText: {fileID: 1112159325824141767}

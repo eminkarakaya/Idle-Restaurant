@@ -29,7 +29,7 @@ public class Restaurant : Department
     [HideInInspector] public float frequencyNext;
     [HideInInspector] public float moveNext;
     public int tableCount =0;
-    [HideInInspector]public int tableCapacity = 11;
+    [HideInInspector]public int tableCapacity;
     public int customerCount = 0;
     public float moveSpeed = 2;
     void OnEnable()
@@ -45,6 +45,7 @@ public class Restaurant : Department
     }
     void Start()
     {
+        tableCapacity = allTables.Count;
         camPlace = _camTransform;
         selectableCollider = GetComponent<Collider>();
         dataPanel = _dataPanel;
@@ -64,7 +65,6 @@ public class Restaurant : Department
                 GameManager.instance.SetMoney(-waiterCost.GetGold());
             }
         }
-        GameManager.instance.SetMoney(-waiterCost.GetGold());
         customerCount ++;
         var waiter = Instantiate(levelManager.waiterPrefab,waiterWaitPlace[customerCount-1].position,Quaternion.identity);
         waiter.GetComponentInChildren<Garson>().waitingPlace = waiterWaitPlace[customerCount-1];
@@ -142,6 +142,7 @@ public class Restaurant : Department
     {
         if(unlockCost.GetGold() <= GameManager.instance.GetMoney())
         {
+            GameManager.instance.SetMoney(-unlockCost.GetGold());
             lockedPanel.SetActive(false);
             BuyTable(false);
             BuyWaiter(false);

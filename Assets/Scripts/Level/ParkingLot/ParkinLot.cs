@@ -36,7 +36,6 @@ public class ParkinLot : Department
     }
     public void MotorcycleAl(bool isPaid)
     {
-        Debug.Log("qwe ");
         if(motorcycleCount == motorcycleCapacity)
             return;
         if(isPaid)
@@ -81,11 +80,12 @@ public class ParkinLot : Department
     {
         if(unlockCost.GetGold() <= GameManager.instance.GetMoney())
         {
+
             MotorcycleAl(false);
             isLocked = false;
             @lock.SetActive(false);
             parkingLotData.UpdateData();
-            GameManager.instance.SetMoney(kitchen.unlockCost.GetGold());
+            GameManager.instance.SetMoney(-kitchen.unlockCost.GetGold());
             if(kitchen.isLocked)
                 kitchen.UnLock(false);
             SelectManager.instance.GeriButonu();

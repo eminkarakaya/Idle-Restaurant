@@ -12,6 +12,8 @@ public class BulasikGoturState : GarsonState
         for (int i = 0; i < waiter.level.scullery.Count; i++)
         {
             bulasikCounter = waiter.level.scullery[i].FindDishCounter();
+            if (bulasikCounter != null)
+                break;
         }
         item = bulasikCounter.waiterItem;
         item.CreateQueue(waiter);
@@ -29,7 +31,8 @@ public class BulasikGoturState : GarsonState
     }
     public override void UpdateState(Action action)
     {
-        if(Vector3.Distance(waiter.transform.position,bulasikCounter.dishwasherPlace.position) < .5f || bulasikCounter.plates.Count > 0)
+        Debug.Log(Vector3.Distance(waiter.transform.position, bulasikCounter.dishwasherPlace.position));
+        if(Vector3.Distance(waiter.transform.position,bulasikCounter.dishwasherPlace.position) < .6f || bulasikCounter.plates.Count > 0)
         {
             waiter.bulasikGoturIdle.tabak = tabak;
             waiter.bulasikGoturIdle.bulasikCounter = bulasikCounter;

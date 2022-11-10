@@ -218,6 +218,7 @@ public class Bulasikhane : Department
     {
         if(unlockCost.GetGold() <= GameManager.instance.GetMoney())
         {
+            GameManager.instance.SetMoney(-unlockCost.GetGold());
             lockedPanel.SetActive(false);
             isLocked = false;
             @lock.SetActive(false);
@@ -231,6 +232,8 @@ public class Bulasikhane : Department
     }
     public float PizzaMakingTime()
     {
+        if (allDishwasher.Count == 0)
+            return 0;
         float totalTime = 0f;
         for (int i = 0; i < allDishwasher.Count; i++)
         {

@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
+  isCarrying: 0
   isUpdate: 0
-  previousAction: {fileID: 0}
   previousState: {fileID: 0}
   _queuePlace: {x: 0, y: 0, z: 0}
 --- !u!1 &658283015
@@ -92,6 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
+  isCarrying: 0
+  previousAction: {fileID: 0}
   previousState: {fileID: 0}
 --- !u!1 &92120307554408307
 GameObject:
@@ -185,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa19109320921849b4a3b7f981d5277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!114 &92120307554408332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2149,7 +2152,7 @@ MonoBehaviour:
   item: {fileID: 0}
   dishwasher: {fileID: 0}
   plate: {fileID: 0}
-  washingTime: 0
+  washingTime: 3
 --- !u!1 &6565587323726727283
 GameObject:
   m_ObjectHideFlags: 0

@@ -48,6 +48,11 @@ public class Kitchen : Department
         level = GetComponentInParent<Level>();
         selectableCollider = GetComponent<Collider>();
     }
+    private void Start()
+    {
+        if(kuryeMutfagimi)
+            lockedPanel = parkinLot.lockedPanel;
+    }
     public PizzaAcmaCounter GetEmptyPizzaCounter()
     {
         var enAz = useablePizzaCounters[0];
@@ -263,6 +268,7 @@ public class Kitchen : Department
     {
         if(unlockCost.GetGold() <= GameManager.instance.GetMoney())
         {
+            GameManager.instance.SetMoney(-unlockCost.GetGold());
             lockedPanel.SetActive(false);
             isLocked = false;
             @lock.SetActive(false);

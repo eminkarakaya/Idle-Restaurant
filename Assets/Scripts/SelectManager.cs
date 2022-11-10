@@ -24,48 +24,48 @@ public class SelectManager : MonoBehaviour
     
     public void Select()
     {
-        if(Input.touchCount > 0)    
+        //if (Input.touchCount > 0)
+        //{
+
+        //    Touch parmak = Input.GetTouch(0);
+        //    if (parmak.phase == TouchPhase.Moved)
+        //    {
+        //        isMoved = true;
+        //    }
+
+        //    if (parmak.phase == TouchPhase.Ended && _selectedObject == null && !isMoved)
+        if (Input.GetMouseButton(0) && _selectedObject == null && !isMoved)
         {
-
-            Touch parmak =  Input.GetTouch(0);
-                if(parmak.phase == TouchPhase.Moved)
+                RaycastHit hit = CastRay();
+                if(hit.collider == null)
+                    return;
+                if(hit.collider.TryGetComponent(out Department department))
                 {
-                    isMoved = true;
-                }
-                
-                if(parmak.phase == TouchPhase.Ended && _selectedObject == null && !isMoved)
-                //  if(Input.GetMouseButton(0) && _selectedObject == null && !isMoved)
-                {
-                    RaycastHit hit = CastRay();
-                    if(hit.collider == null)
-                        return;
-                    if(hit.collider.TryGetComponent(out Department department))
-                    {
-                        department.selectableCollider.enabled = false;
+                    department.selectableCollider.enabled = false;
                         
-                        if(department.isLocked)
-                        {
-                            department.lockedPanel.GetComponent<Canvas>().enabled = true;
-                            _willBeClosedPanel = department.lockedPanel;
-                        }
-                        else
-                        {
-                            department.dataPanel.GetComponent<Canvas>().enabled =true;
-                            _willBeClosedPanel = department.dataPanel;
-                        }
-
-                        CameraMove.instance.MoveTarget(department.camPlace.position);
-                        department.oldCamPlace = CameraMove.instance.transform;
-                        _selectedObject = department.selectableCollider.gameObject;
-                        _backBtn.gameObject.SetActive(true);
-                        _oldPos = department.oldCamPlace.position;
-                        CameraMove.instance.lockUp = true;
+                    if(department.isLocked)
+                    {
+                        department.lockedPanel.GetComponent<Canvas>().enabled = true;
+                        _willBeClosedPanel = department.lockedPanel;
                     }
-                    isMoved = true;
+                    else
+                    {
+                        department.dataPanel.GetComponent<Canvas>().enabled =true;
+                        _willBeClosedPanel = department.dataPanel;
+                    }
+
+                    CameraMove.instance.MoveTarget(department.camPlace.position);
+                    department.oldCamPlace = CameraMove.instance.transform;
+                    _selectedObject = department.selectableCollider.gameObject;
+                    _backBtn.gameObject.SetActive(true);
+                    _oldPos = department.oldCamPlace.position;
+                    CameraMove.instance.lockUp = true;
                 }
-                if(parmak.phase == TouchPhase.Ended)
-                    isMoved = false;
-        }
+                //isMoved = true;
+            }
+        //    if (parmak.phase == TouchPhase.Ended)
+        //        isMoved = false;
+        //}
     }
     public void GeriButonu()
     {
@@ -93,7 +93,7 @@ public class SelectManager : MonoBehaviour
         Vector3 worldMousePosNear = Camera.main.ScreenToWorldPoint(screenMousePosNear);
         RaycastHit hit;
         Physics.Raycast(worldMousePosNear,worldMousePosFar - worldMousePosNear, out hit ,Mathf.Infinity);
-
+        
         return hit;
     }
 }

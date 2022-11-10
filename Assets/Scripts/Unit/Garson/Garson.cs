@@ -8,7 +8,7 @@ public class Garson : Unit
     [HideInInspector] public Chair targetKirli;
     public Transform waitingPlace;
     // [Header("States")]
-    
+    public Restaurant restaurant;
     public BulasikToplaState bulasikToplaState;
     public BulasikGoturIdle bulasikGoturIdle;
     public BeklemeYerineGitState beklemeYerineGitState;
@@ -19,11 +19,11 @@ public class Garson : Unit
     public YemekleBekleState yemekleBekleState;
     Animator animator;
     [Header("Items")]
+    public Chair chair;
+    public Counter counter;
     [SerializeField] public Tabak plate;
     [HideInInspector] public Tabak _plate;
     [HideInInspector] public GameObject _pizza;
-    [HideInInspector] public Counter counter;
-    [HideInInspector] public Chair _chair;
     [SerializeField] private float _moveSpeed;
     public float moveSpeed{
         get => _moveSpeed;
@@ -41,6 +41,7 @@ public class Garson : Unit
     void Start()
     {
         level = FindObjectOfType<Level>();
+        restaurant = level.restaurant;
         agent.speed = moveSpeed;
         currState = idleState;
     }
@@ -64,7 +65,6 @@ public class Garson : Unit
             }
         }
         level.restaurant.waitingForFoodChairs.Remove(enYakinChair);
-        this._chair = enYakinChair;
         return enYakinChair;
     }
    
@@ -84,7 +84,6 @@ public class Garson : Unit
         }
         var _counter = nearestCounter;
         level.restaurant.foodReadyCounters.Remove(nearestCounter);
-        this.counter = _counter;
         return _counter;
     }
     

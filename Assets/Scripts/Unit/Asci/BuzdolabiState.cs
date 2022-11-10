@@ -18,7 +18,7 @@ public class BuzdolabiState : AsciState
     }
     public override void UpdateState(Action action)
     {
-        if(Vector3.Distance(chef.agent.transform.position,_fridgeTransform.position) > 0.6f)
+        if(Vector3.Distance(chef.agent.transform.position,_fridgeTransform.position) > 0.7f)
         {
             return;
         }

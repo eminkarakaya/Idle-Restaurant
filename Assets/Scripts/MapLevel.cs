@@ -30,6 +30,7 @@ public class MapLevel : MonoBehaviour
     {
         if(gold.GetGold() <= GameManager.instance.GetMoney())
         {
+            GameManager.instance.gameData.levelData[levelIndex].isUnlock = true;
             isUnlocked = true;
             GameManager.instance.SetMoney(-gold.GetGold());
             levelImage.SetActive(true);

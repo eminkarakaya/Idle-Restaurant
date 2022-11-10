@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 public class Level : MonoBehaviour
 {
     public Sprite orderSprite;
@@ -20,7 +21,7 @@ public class Level : MonoBehaviour
     public int levelIndex;
     public bool isUnlock;
     public Restaurant restaurant;
-    public Kitchen [] kitchens = new Kitchen[3];
+    public Kitchen[] kitchens;
     public List<Bulasikhane> scullery;
     public List <ParkinLot> parkinLot;
 
@@ -35,11 +36,10 @@ public class Level : MonoBehaviour
     }
     void Start()
     {
-        // bulasikhane.Add(GetComponentInChildren<Bulasikhane>());
-        // kitchens.Add(GetComponentInChildren<Kitchen>());
+        kitchens = FindObjectsOfType<Kitchen>();
         levelManager = FindObjectOfType<LevelManager>();
-            if(PlayerPrefs.HasKey("data"))
-                LoadLevel();
+        if (PlayerPrefs.HasKey("data"))
+            LoadLevel();
         var totalDishwasher =0;
         for (int i = 0; i < scullery.Count; i++)
         {
@@ -63,25 +63,14 @@ public class Level : MonoBehaviour
         if(CalcPassingTime() > 86400)
         {
             str = t.ToString(@"dd\hh\:mm\:ss\:fff");
-            // string answer = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms", 
-            //     t.Hours, 
-            //     t.Minutes, 
-            //     t.Seconds, 
-            //     t.Milliseconds);
         }
         else if(CalcPassingTime() > 3600)
         {
             str = t.ToString(@"hh\:mm\:ss\:");
-            // string answer = string.Format("s:{1:D2} d:{2:D2} s",
-            //         t.Minutes, 
-            //         t.Seconds 
-            //         );
         }
         else if(CalcPassingTime() > 60)
         {
             str = t.ToString(@"mm") + " dk " + t.ToString(@"ss") + " sn";
-            // str = t.ToString(@"mm\:ss") + " sn";
-            // string answer = t.ToString("@d'd, 'hh\:mm\:ss")
         }
         else
         {
@@ -105,12 +94,13 @@ public class Level : MonoBehaviour
     {
         data = new LevelData(this);
         GameManager.instance.gameData.levelData[levelIndex] = new LevelData(this);
+        GameManager.instance.gameData.levelData[levelIndex].isUnlock = isUnlock;
         GameManager.instance.gameData.para = GameManager.instance.GetMoney();
         GameManager.instance.gameData.levelData[levelIndex].kitchenCount = kitchens.Length;
         GameManager.instance.gameData.levelData[levelIndex].goldEarnedPerSec = CalculateEarnedMoneyOfPerSeconds();
         GameManager.instance.gameData.levelData[levelIndex].lastLoginDate = DateTime.Now.ToString();
         GameManager.instance.gameData.levelData[levelIndex].parkinLotCount = parkinLot.Count;
-        
+        GameManager.instance.gameData.lastSceneIndex = SceneManager.GetActiveScene().buildIndex;
          
         for (int i = 0; i < GameManager.instance.gameData.levelData[levelIndex].kitchenCount; i++)
         {
@@ -149,7 +139,7 @@ public class Level : MonoBehaviour
     }
     public void LoadLevel()
     {
-        Debug.Log(GameManager.instance.gameData.levelData[levelIndex].lastLoginDate);
+        isUnlock = true;
         lastLoginDate =  GameManager.instance.gameData.levelData[levelIndex].lastLoginDate;
         restaurant.moveSpeed = GameManager.instance.gameData.levelData[levelIndex].waiterSpeed;
         for(int i = 0; i < GameManager.instance.gameData.levelData[levelIndex].kitchenCount; i++)
@@ -268,19 +258,23 @@ public class Level : MonoBehaviour
         var kitchenCount = 0;
         for (int i = 0; i < kitchens.Length; i++)
         {
+            //Debug.Log(kitchens[i] + " " + kitchens[i].PizzaMakingTime(), kitchens[i]);
             if(kitchens[i].PizzaMakingTime() == 0)
                 continue;
             kitchenTotal += kitchens[i].PizzaMakingTime();
             kitchenCount ++;
         }
         kitchenTotal = (kitchenTotal / kitchenCount) / kitchenCount;
-
+        Debug.Log(kitchenTotal + " kitchenTotal ");
         var sculleryTotal = 0f;
+           Debug.Log(scullery.Count+ " scullery.count");
         for (int i = 0; i < scullery.Count; i++)
         {
-            sculleryTotal = scullery[i].PizzaMakingTime();
+            Debug.Log(scullery[i].PizzaMakingTime()+ " scullery[i].PizzaMakingTime");
+            sculleryTotal += scullery[i].PizzaMakingTime();
         }        
-        sculleryTotal += (sculleryTotal/scullery.Count) /scullery.Count;
+            sculleryTotal = (sculleryTotal/scullery.Count) /scullery.Count;
+        Debug.Log(sculleryTotal + " sculleryTotal ");
         sort.Add(kitchenTotal);
         sort.Add(restaurant.PizzaDistributingTime());
         sort.Add(sculleryTotal);
@@ -290,7 +284,6 @@ public class Level : MonoBehaviour
     public void IdleMoneyCanvasActive()
     {
         idleMoneyCanvas.SetActive(false);
-        Debug.Log(" kapandı");
         StartCoroutine(GoldAnim.instance.EarnGoldAnim((int)(CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10),20,GameManager.instance.idleMoneyText.transform));
     }
     public int CalcPassingTime()

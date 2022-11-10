@@ -38,13 +38,12 @@ public class GoldAnim : MonoBehaviour
         obj.transform.GetChild(0).GetChild(0).GetComponent<TextMesh>().text = GameManager.CaclText(earnedGold);
         obj.transform.DOMove(pos,1f);
         Color color = new Color(255,255,255,0);
-        obj.GetComponent<SpriteRenderer>().DOColor(color,1);
+        //obj.GetComponent<SpriteRenderer>().DOColor(color,1);
         obj.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material.DOFade(0,1).OnComplete(()=> Destroy(obj)).OnComplete(()=>Destroy(obj.transform.GetChild(0).GetChild(1).gameObject));
         GameManager.instance.SetMoney(earnedGold);
     }
     public IEnumerator EarnGoldAnim(int earnedGold , int count , Transform transform)
     {
-        
         // GameManager.instance.idleMoneyCanvas.GetComponent<Canvas>().enabled = false;
         var earnedGold15 =  earnedGold / count;
         List<GameObject> list = new List<GameObject>();

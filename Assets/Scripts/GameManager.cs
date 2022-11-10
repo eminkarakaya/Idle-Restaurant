@@ -7,11 +7,11 @@ using System;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
-
+    int lastSceneIndex;
     public Level currLevel;
     public GameData gameData;
     public Image fader;
-    [SerializeField] private int _money = 99999999;
+    [SerializeField] private int _money;
     [SerializeField] private TextMeshProUGUI paraText;
     public int idleMoney;
     [SerializeField] public TextMeshProUGUI idleMoneyText;
@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
         goldText.text = CaclText(gold);
         Load();
     }
+    private void Start()
+    {
+        SceneManager.LoadScene(lastSceneIndex);
+    }
     void OnDisable()
     {
         Save();
@@ -50,6 +54,7 @@ public class GameManager : MonoBehaviour
             return;
         gameData = JsonUtility.FromJson<GameData>(PlayerPrefs.GetString("data"));
         _money = gameData.para;
+        lastSceneIndex = gameData.lastSceneIndex;
     }
     public void SetMoney(int value)
     {

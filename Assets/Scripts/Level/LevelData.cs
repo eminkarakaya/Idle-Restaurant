@@ -15,7 +15,7 @@ public class LevelData
     public float [] motorcycleSpeed = new float[10];
     public int [] motorcycleCount = new int[10];
     public bool [] kitchenIsLocked = new bool [10];
-    public bool restaurantIsLock;
+    public bool restaurantIsLock = true;
     public int [] ovenCount = new int[10];
     public int [] counterCount = new int[10];
     public int [] pizzaCounterCount = new int[10];
@@ -45,6 +45,7 @@ public class LevelData
     
     public LevelData(Level level)
     {
+        waiterSpeed = 2;
         motorcycleSpeed = new float[10];
         motorcycleCount = new int[10];
         kitchenIsLocked = new bool [10];
@@ -102,7 +103,12 @@ public class LevelData
 [System.Serializable]
 public class GameData 
 {
+    public int lastSceneIndex;
     public int para;
     public LevelData [] levelData = new LevelData[10];
-    
+    public GameData()
+    {
+        lastSceneIndex = 0;
+        para = 10000;
+    }
 }

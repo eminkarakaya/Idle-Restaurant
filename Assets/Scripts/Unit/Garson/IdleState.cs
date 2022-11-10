@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class IdleState : GarsonState
 {
-    
     public override void StartState(Action action)
     {
         waiter.queueImage.gameObject.SetActive(true);
@@ -20,18 +19,21 @@ public class IdleState : GarsonState
             waiter.currState = waiter.bulasikToplaState;
             return;
         }
-        if(waiter._chair == null)
+        if(waiter.chair == null)
         {
-            waiter._chair = waiter.FindChair();
+            waiter.chair = waiter.FindChair();
         }
         if(waiter.counter == null)
         {
-            var counter = waiter.FindCounter();
+            waiter.counter = waiter.FindCounter();
         }
         
-        if(waiter._chair != null && waiter.counter != null)
+        if(waiter.chair != null && waiter.counter != null)
         {
             waiter.queueImage.gameObject.SetActive(false);
+            waiter.tasiState.waiter.chair = waiter.chair;
+            waiter.yemegiCounterdenAlState.counter = waiter.counter;
+            waiter.counter = null;
             waiter.currState = waiter.yemegiCounterdenAlState;
             return;
         }

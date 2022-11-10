@@ -18,12 +18,13 @@ public class BeklemeYerineGitState : GarsonState
             waiter.currState = waiter.bulasikToplaState;
             return;
         }
-        if(waiter._chair == null)
+        if(waiter.chair == null)
         {
-            waiter._chair = waiter.FindChair();
+            waiter.chair = waiter.FindChair();
         }
-        if(waiter._chair != null)
+        if(waiter.chair != null)
         {
+            waiter.tasiState.waiter.chair = waiter.chair;
             waiter.currState = waiter.yemegiCounterdenAlState;
             return;
         }

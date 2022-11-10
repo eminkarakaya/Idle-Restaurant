@@ -163,7 +163,7 @@ MonoBehaviour:
   kitchenData: {fileID: 0}
   kitchenIndex: 0
   kuryeMutfagimi: 1
-  fridge: {fileID: 0}
+  fridge: {fileID: 1975162076470544313}
   counterCount: 0
   pizzaCounterCount: 0
   ovenCount: 0
@@ -174,9 +174,14 @@ MonoBehaviour:
   pizzaCounterCost: {fileID: 5022550089874216114}
   asciCost: {fileID: 7448062007129740129}
   counterCost: {fileID: 7448062008358229335}
-  chefCapacity: 0
+  chefCapacity: 3
   UseableOvens: []
-  chefWaitTransform: []
+  chefWaitTransform:
+  - {fileID: 1975162078220749225}
+  - {fileID: 1975162077271477089}
+  - {fileID: 1975162077911220562}
+  - {fileID: 1975162076603430995}
+  - {fileID: 2636358036284234352}
   allCounters:
   - {fileID: 3107382364659466582}
   - {fileID: 6390973381873796423}
@@ -2477,6 +2482,14 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 847954787853168725, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 96bac7c1a3f939a45ae2209719988381, type: 3}
+    - target: {fileID: 847954789586122339, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 96bac7c1a3f939a45ae2209719988381, type: 3}
     - target: {fileID: 1171941849025282357, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
@@ -2535,7 +2548,7 @@ PrefabInstance:
       objectReference: {fileID: 1975162076502626622}
     - target: {fileID: 1171941850272006703, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: KasaSatinAl
+      value: BuyCounter
       objectReference: {fileID: 0}
     - target: {fileID: 1171941850272006703, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -2545,6 +2558,10 @@ PrefabInstance:
       propertyPath: pizzaCikmaSuresi
       value: 
       objectReference: {fileID: 7322570929256163614}
+    - target: {fileID: 1588274422604729698, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d3b57ef432515464fbfc309fe382bcff, type: 3}
     - target: {fileID: 1588274424120988448, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2701,6 +2718,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 2966728930232185264, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 96bac7c1a3f939a45ae2209719988381, type: 3}
     - target: {fileID: 4131415635966665275, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2777,6 +2798,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuyPizzaCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 5400599307718879907, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 17aa7b7bf6eb5b04ba9d9b33388a3280, type: 3}
     - target: {fileID: 6639622258813259305, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
       propertyPath: m_Text
       value: 12
@@ -2797,6 +2822,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuyCook
       objectReference: {fileID: 0}
+    - target: {fileID: 7502348446553385798, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -9181055279593777276, guid: e7c55b3a544ac444bbee25634e86888a, type: 3}
+    - target: {fileID: 7502348446709312880, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5339211651226297310, guid: e7c55b3a544ac444bbee25634e86888a, type: 3}
     - target: {fileID: 7502348447088677069, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
       propertyPath: m_Name
       value: BuyCounter
@@ -2805,6 +2838,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8490296189762229873, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 96bac7c1a3f939a45ae2209719988381, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6b8eb0bedb45b4892d5c75965a0715, type: 3}
 --- !u!224 &5759705921037206112 stripped
