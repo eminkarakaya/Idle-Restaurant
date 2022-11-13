@@ -142,6 +142,8 @@ public class Restaurant : Department
     {
         if(unlockCost.GetGold() <= GameManager.instance.GetMoney())
         {
+            if (level.restoranTask.activeInHierarchy == true)
+                level.restoranTask.SetActive(false);
             GameManager.instance.SetMoney(-unlockCost.GetGold());
             lockedPanel.SetActive(false);
             BuyTable(false);

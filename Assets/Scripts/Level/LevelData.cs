@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
-public class LevelData  
+public class LevelData
 {
+    public bool task1, task2, task3;
     public int customerCount;
-    public bool parkingLotIsLocked;
     public float goldEarnedPerSec;
     public string lastLoginDate;
     public int levelIndex;
@@ -12,9 +12,9 @@ public class LevelData
     public int kitchenCount = 0;
     public int parkinLotCount = 0;
 
-    public float [] motorcycleSpeed = new float[10];
-    public int [] motorcycleCount = new int[10];
-    public bool [] kitchenIsLocked = new bool [10];
+    public float[] motorcycleSpeed = new float[10];
+    public int[] motorcycleCount = new int[10];
+    public bool[] kitchenIsLocked = new bool[10];
     public bool restaurantIsLock = true;
     public int [] ovenCount = new int[10];
     public int [] counterCount = new int[10];
@@ -45,6 +45,9 @@ public class LevelData
     
     public LevelData(Level level)
     {
+        task1 = false;
+        task2 = false;
+        task3 = false;
         waiterSpeed = 2;
         motorcycleSpeed = new float[10];
         motorcycleCount = new int[10];
@@ -75,8 +78,7 @@ public class LevelData
             pizzaCounterCount[level.levelIndex] = (level.kitchens[i].pizzaCounterCount);
             chefCount[level.levelIndex] = (level.kitchens[i].cookCount);
             kitchenIsLocked[level.levelIndex] = (level.kitchens[i].isLocked);
-            chefLocations = new Vector3[level.kitchens.Length,level.kitchens[i].allChefs.Count];
-            
+            chefLocations = new Vector3[level.kitchens.Length,level.kitchens[i].allChefs.Count];   
         }
         for (int i = 0; i < level.scullery.Count; i++)
         {
@@ -85,7 +87,7 @@ public class LevelData
             sculleryIsLocked[level.levelIndex] = level.scullery[i].isLocked;
             dishwasherCount[level.levelIndex] = level.scullery[i].dishwasherCount;
             bulasikciLocations = new Vector3[level.scullery.Count,level.scullery[i].dishwasherCount];
-        } 
+        }
         tableCount = level.restaurant.allTables.Count;
         waiterCount = level.restaurant.allWaiters.Count;
         waiterLocations = new Vector3[waiterCount];
@@ -96,6 +98,7 @@ public class LevelData
         customerFrequencyCost = level.restaurant.customerFrequencyCost.GetGold();
         customerCount = 0;
         customerLocations = new Vector3[customerCount];
+        
     }
 }
 
@@ -103,11 +106,13 @@ public class LevelData
 [System.Serializable]
 public class GameData 
 {
+    public bool isFirst;
     public int lastSceneIndex;
     public int para;
     public LevelData [] levelData = new LevelData[10];
     public GameData()
     {
+        isFirst = true;
         lastSceneIndex = 0;
         para = 10000;
     }

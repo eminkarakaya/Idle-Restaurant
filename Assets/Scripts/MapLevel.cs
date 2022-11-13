@@ -54,7 +54,8 @@ public class MapLevel : MonoBehaviour
                 DateTime _dateNow = Convert.ToDateTime(DateTime.Now);
                 DateTime _dateOld = Convert.ToDateTime(GameManager.instance.gameData.levelData[levelIndex].lastLoginDate);
                 TimeSpan diff = _dateNow.Subtract(_dateOld);
-                earnedGoldText.text = GameManager.CaclText((float)(GameManager.instance.gameData.levelData[levelIndex].goldEarnedPerSec * diff.TotalSeconds)/10);
+                Debug.Log(GameManager.CaclText((GameManager.instance.gameData.levelData[levelIndex].goldEarnedPerSec * (int)diff.TotalSeconds) / 10));
+                earnedGoldText.text = GameManager.CaclText((GameManager.instance.gameData.levelData[levelIndex].goldEarnedPerSec *(int) diff.TotalSeconds)/10);
                 time = 2;
             }
             yield return null;

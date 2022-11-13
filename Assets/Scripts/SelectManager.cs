@@ -24,9 +24,8 @@ public class SelectManager : MonoBehaviour
     
     public void Select()
     {
-        //if (Input.touchCount > 0)
+        //if (Input.touchCount > 0 && _selectedObject == null)
         //{
-
         //    Touch parmak = Input.GetTouch(0);
         //    if (parmak.phase == TouchPhase.Moved)
         //    {
@@ -34,8 +33,8 @@ public class SelectManager : MonoBehaviour
         //    }
 
         //    if (parmak.phase == TouchPhase.Ended && _selectedObject == null && !isMoved)
-        if (Input.GetMouseButton(0) && _selectedObject == null && !isMoved)
-        {
+                if (Input.GetMouseButton(0) && _selectedObject == null && !isMoved)
+                {
                 RaycastHit hit = CastRay();
                 if(hit.collider == null)
                     return;
@@ -62,10 +61,10 @@ public class SelectManager : MonoBehaviour
                     CameraMove.instance.lockUp = true;
                 }
                 //isMoved = true;
-            }
-        //    if (parmak.phase == TouchPhase.Ended)
-        //        isMoved = false;
-        //}
+            //}
+            //if (parmak.phase == TouchPhase.Ended)
+            //    isMoved = false;
+        }
     }
     public void GeriButonu()
     {

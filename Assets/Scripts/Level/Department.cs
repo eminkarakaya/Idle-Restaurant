@@ -9,7 +9,16 @@ public abstract class Department : MonoBehaviour
     [HideInInspector] public LevelManager levelManager;
     public GameObject @lock;
     public GameObject lockedPanel;
-    public bool isLocked;
+    [SerializeField] private bool _isLocked = true;
+    public bool isLocked
+    {
+        get => _isLocked;
+        set
+        {
+            _isLocked = value;
+            Debug.Log(_isLocked + " islocked");
+        }
+    }
     public abstract Level level {get; set;}
     public abstract GameObject dataPanel { get; set; }
     public abstract Transform camPlace { get; set; }

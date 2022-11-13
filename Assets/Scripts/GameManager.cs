@@ -72,6 +72,10 @@ public class GameManager : MonoBehaviour
     }
     public static string CaclText(float value)
     {
+        if(value == 0)
+        {
+            return "0";
+        }
         if(value < 1000)
         {
             return String.Format("{0:0.0}",value);

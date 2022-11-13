@@ -7,6 +7,7 @@ using System;
 using UnityEngine.SceneManagement;
 public class Level : MonoBehaviour
 {
+    public GameObject bulasikhaneTask, mutfakTask, restoranTask;
     public Sprite orderSprite;
     public GameObject dough;
     public GameObject pizza;
@@ -32,7 +33,6 @@ public class Level : MonoBehaviour
     void Awake()
     {
         restaurant = GetComponentInChildren<Restaurant>();
-        
     }
     void Start()
     {
@@ -101,7 +101,11 @@ public class Level : MonoBehaviour
         GameManager.instance.gameData.levelData[levelIndex].lastLoginDate = DateTime.Now.ToString();
         GameManager.instance.gameData.levelData[levelIndex].parkinLotCount = parkinLot.Count;
         GameManager.instance.gameData.lastSceneIndex = SceneManager.GetActiveScene().buildIndex;
-         
+
+
+        GameManager.instance.gameData.levelData[levelIndex].task1 = !bulasikhaneTask.activeInHierarchy;
+        GameManager.instance.gameData.levelData[levelIndex].task2 = !mutfakTask.activeInHierarchy;
+        GameManager.instance.gameData.levelData[levelIndex].task3 = !restoranTask.activeInHierarchy;
         for (int i = 0; i < GameManager.instance.gameData.levelData[levelIndex].kitchenCount; i++)
         {
             if(GameManager.instance.gameData.levelData[levelIndex].kitchenIsLocked == null) 
@@ -131,7 +135,7 @@ public class Level : MonoBehaviour
         
         for (int i = 0; i < GameManager.instance.gameData.levelData[levelIndex].parkinLotCount; i++)
         {
-            GameManager.instance.gameData.levelData[levelIndex].parkingLotIsLocked = parkinLot[i].isLocked;
+            //GameManager.instance.gameData.levelData[levelIndex].parkingLotIsLocked = parkinLot[i].isLocked;
             GameManager.instance.gameData.levelData[levelIndex].motorcycleCount[i] = parkinLot[i].allMotorcycle.Count;
             GameManager.instance.gameData.levelData[levelIndex].motorcycleSpeed[i] = parkinLot[i].hiz;
         }
@@ -142,11 +146,23 @@ public class Level : MonoBehaviour
         isUnlock = true;
         lastLoginDate =  GameManager.instance.gameData.levelData[levelIndex].lastLoginDate;
         restaurant.moveSpeed = GameManager.instance.gameData.levelData[levelIndex].waiterSpeed;
-        for(int i = 0; i < GameManager.instance.gameData.levelData[levelIndex].kitchenCount; i++)
+        bulasikhaneTask.SetActive(!GameManager.instance.gameData.levelData[levelIndex].task1);
+        mutfakTask.SetActive(!GameManager.instance.gameData.levelData[levelIndex].task2);
+        restoranTask.SetActive(!GameManager.instance.gameData.levelData[levelIndex].task3);
+        for (int i = 0; i < GameManager.instance.gameData.levelData[levelIndex].kitchenCount; i++)
         {
             kitchens[i].isLocked = GameManager.instance.gameData.levelData[levelIndex].kitchenIsLocked[i];
+            
             if(!kitchens[i].isLocked)
+            {
+                if(kitchens[i].kuryeMutfagimi)
+                {
+                    kitchens[i].parkinLot.@lock.gameObject.SetActive(false);
+                    kitchens[i].parkinLot.isLocked = false;
+
+                }
                 kitchens[i].@lock.gameObject.SetActive(false);
+            }
             // if(kitchens[i].isLocked)
             // {
             //     kitchens[i].counterSayisi = GameManager.instance.gameData.levelDatas[levelIndex].counterSayisi[i];
@@ -225,7 +241,7 @@ public class Level : MonoBehaviour
         }
         for (int i = 0; i <  GameManager.instance.gameData.levelData[levelIndex].parkinLotCount; i++)
         {
-            parkinLot[i].isLocked = GameManager.instance.gameData.levelData[levelIndex].parkingLotIsLocked;
+            //parkinLot[i].isLocked = GameManager.instance.gameData.levelData[levelIndex].parkingLotIsLocked;
             parkinLot[i].motorcycleCount = GameManager.instance.gameData.levelData[levelIndex].motorcycleCount[i];
             parkinLot[i].hiz = GameManager.instance.gameData.levelData[levelIndex].motorcycleSpeed[i];
             var motorTemp = GameManager.instance.gameData.levelData[levelIndex].motorcycleCount[i];
@@ -253,8 +269,11 @@ public class Level : MonoBehaviour
     {
         List<float> sort = new List<float>();
         var kitchenTotal = 0f;
-        if(kitchens.Length == 0)
+        if (kitchens.Length == 0)
+        {
+            Debug.Log("return 0");
             return 0;
+        }
         var kitchenCount = 0;
         for (int i = 0; i < kitchens.Length; i++)
         {
@@ -264,17 +283,25 @@ public class Level : MonoBehaviour
             kitchenTotal += kitchens[i].PizzaMakingTime();
             kitchenCount ++;
         }
+        if (kitchenTotal == 0)
+            return 0;
         kitchenTotal = (kitchenTotal / kitchenCount) / kitchenCount;
-        Debug.Log(kitchenTotal + " kitchenTotal ");
         var sculleryTotal = 0f;
-           Debug.Log(scullery.Count+ " scullery.count");
         for (int i = 0; i < scullery.Count; i++)
         {
-            Debug.Log(scullery[i].PizzaMakingTime()+ " scullery[i].PizzaMakingTime");
             sculleryTotal += scullery[i].PizzaMakingTime();
         }        
-            sculleryTotal = (sculleryTotal/scullery.Count) /scullery.Count;
-        Debug.Log(sculleryTotal + " sculleryTotal ");
+        if (sculleryTotal == 0)
+        {
+            Debug.Log("return 0");
+            return 0;
+        }
+        sculleryTotal = (sculleryTotal/scullery.Count) /scullery.Count;
+        if (restaurant.isLocked == false)
+        {
+            Debug.Log("return 0");
+            return 0;
+        }
         sort.Add(kitchenTotal);
         sort.Add(restaurant.PizzaDistributingTime());
         sort.Add(sculleryTotal);
