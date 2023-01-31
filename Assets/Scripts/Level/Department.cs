@@ -16,7 +16,6 @@ public abstract class Department : MonoBehaviour
         set
         {
             _isLocked = value;
-            Debug.Log(_isLocked + " islocked");
         }
     }
     public abstract Level level {get; set;}

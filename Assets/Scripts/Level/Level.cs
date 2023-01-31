@@ -7,7 +7,7 @@ using System;
 using UnityEngine.SceneManagement;
 public class Level : MonoBehaviour
 {
-    public GameObject bulasikhaneTask, mutfakTask, restoranTask;
+    //public GameObject bulasikhaneTask, mutfakTask, restoranTask;
     public Sprite orderSprite;
     public GameObject dough;
     public GameObject pizza;
@@ -103,9 +103,9 @@ public class Level : MonoBehaviour
         GameManager.instance.gameData.lastSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
 
-        GameManager.instance.gameData.levelData[levelIndex].task1 = !bulasikhaneTask.activeInHierarchy;
-        GameManager.instance.gameData.levelData[levelIndex].task2 = !mutfakTask.activeInHierarchy;
-        GameManager.instance.gameData.levelData[levelIndex].task3 = !restoranTask.activeInHierarchy;
+        //GameManager.instance.gameData.levelData[levelIndex].task1 = !bulasikhaneTask.activeInHierarchy;
+        //GameManager.instance.gameData.levelData[levelIndex].task2 = !mutfakTask.activeInHierarchy;
+        //GameManager.instance.gameData.levelData[levelIndex].task3 = !restoranTask.activeInHierarchy;
         for (int i = 0; i < GameManager.instance.gameData.levelData[levelIndex].kitchenCount; i++)
         {
             if(GameManager.instance.gameData.levelData[levelIndex].kitchenIsLocked == null) 
@@ -146,9 +146,9 @@ public class Level : MonoBehaviour
         isUnlock = true;
         lastLoginDate =  GameManager.instance.gameData.levelData[levelIndex].lastLoginDate;
         restaurant.moveSpeed = GameManager.instance.gameData.levelData[levelIndex].waiterSpeed;
-        bulasikhaneTask.SetActive(!GameManager.instance.gameData.levelData[levelIndex].task1);
-        mutfakTask.SetActive(!GameManager.instance.gameData.levelData[levelIndex].task2);
-        restoranTask.SetActive(!GameManager.instance.gameData.levelData[levelIndex].task3);
+        //bulasikhaneTask.SetActive(!GameManager.instance.gameData.levelData[levelIndex].task1);
+        //mutfakTask.SetActive(!GameManager.instance.gameData.levelData[levelIndex].task2);
+        //restoranTask.SetActive(!GameManager.instance.gameData.levelData[levelIndex].task3);
         for (int i = 0; i < GameManager.instance.gameData.levelData[levelIndex].kitchenCount; i++)
         {
             kitchens[i].isLocked = GameManager.instance.gameData.levelData[levelIndex].kitchenIsLocked[i];
@@ -265,6 +265,7 @@ public class Level : MonoBehaviour
         GameManager.LoadScene(1);
 
     }
+    [ContextMenu("CalculateEarnedMoneyOfPerSeconds")]
     public float CalculateEarnedMoneyOfPerSeconds()
     {
         List<float> sort = new List<float>();
@@ -283,8 +284,8 @@ public class Level : MonoBehaviour
             kitchenTotal += kitchens[i].PizzaMakingTime();
             kitchenCount ++;
         }
-        if (kitchenTotal == 0)
-            return 0;
+        if (kitchenCount == 0)
+            kitchenTotal = 0;
         kitchenTotal = (kitchenTotal / kitchenCount) / kitchenCount;
         var sculleryTotal = 0f;
         for (int i = 0; i < scullery.Count; i++)
@@ -296,21 +297,35 @@ public class Level : MonoBehaviour
             Debug.Log("return 0");
             return 0;
         }
-        sculleryTotal = (sculleryTotal/scullery.Count) /scullery.Count;
-        if (restaurant.isLocked == false)
+        if(scullery.Count == 0)
         {
-            Debug.Log("return 0");
-            return 0;
+            sculleryTotal = 0;
         }
+        else
+            sculleryTotal = (sculleryTotal/scullery.Count) /scullery.Count;
+        //if (restaurant.isLocked == false)
+        //{
+        //    Debug.Log("return 0");
+        //    return 0;
+        //}
         sort.Add(kitchenTotal);
         sort.Add(restaurant.PizzaDistributingTime());
         sort.Add(sculleryTotal);
         sort.Sort();
+        if (sort[0] == float.NaN)
+        {
+            Debug.Log("nan");
+            return 0;
+        }
+        if(restaurant.earnedMoneyFromCustomer == 0)
+            return 0;
+        Debug.Log(restaurant.earnedMoneyFromCustomer + " restaurant.earnedMoneyFromCustomer " + sort[0] + " sort[0]");
         return restaurant.earnedMoneyFromCustomer / sort[0];
     }
     public void IdleMoneyCanvasActive()
     {
         idleMoneyCanvas.SetActive(false);
+        Debug.Log(CalcPassingTime() + "  CalcPassingTime() " + CalculateEarnedMoneyOfPerSeconds() + " CalculateEarnedMoneyOfPerSeconds() " + (int)(CalcPassingTime() * (CalculateEarnedMoneyOfPerSeconds()) / 10) + " (int)(CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10)");
         StartCoroutine(GoldAnim.instance.EarnGoldAnim((int)(CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10),20,GameManager.instance.idleMoneyText.transform));
     }
     public int CalcPassingTime()

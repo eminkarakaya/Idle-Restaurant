@@ -31,7 +31,6 @@ public class BulasikGoturState : GarsonState
     }
     public override void UpdateState(Action action)
     {
-        Debug.Log(Vector3.Distance(waiter.transform.position, bulasikCounter.dishwasherPlace.position));
         if(Vector3.Distance(waiter.transform.position,bulasikCounter.dishwasherPlace.position) < .6f || bulasikCounter.plates.Count > 0)
         {
             waiter.bulasikGoturIdle.tabak = tabak;

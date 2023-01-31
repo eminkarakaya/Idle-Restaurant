@@ -268,8 +268,8 @@ public class Kitchen : Department
     {
         if(unlockCost.GetGold() <= GameManager.instance.GetMoney())
         {
-            if (level.mutfakTask.activeInHierarchy == true)
-                level.mutfakTask.SetActive(false);
+            //if (level.mutfakTask.activeInHierarchy == true)
+            //    level.mutfakTask.SetActive(false);
             GameManager.instance.SetMoney(-unlockCost.GetGold());
             lockedPanel.SetActive(false);
             isLocked = false;

@@ -218,8 +218,8 @@ public class Bulasikhane : Department
     {
         if(unlockCost.GetGold() <= GameManager.instance.GetMoney())
         {
-            if (level.bulasikhaneTask.activeInHierarchy == true)
-                level.bulasikhaneTask.SetActive(false);
+            //if (level.bulasikhaneTask.activeInHierarchy == true)
+            //    level.bulasikhaneTask.SetActive(false);
             GameManager.instance.SetMoney(-unlockCost.GetGold());
             lockedPanel.SetActive(false);
             isLocked = false;
