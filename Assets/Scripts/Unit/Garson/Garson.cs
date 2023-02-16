@@ -24,7 +24,7 @@ public class Garson : Unit
     [SerializeField] public Tabak plate;
     [HideInInspector] public Tabak _plate;
     [HideInInspector] public GameObject _pizza;
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _moveSpeed = 2;
     public float moveSpeed{
         get => _moveSpeed;
         set{
