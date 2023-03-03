@@ -281,7 +281,7 @@ public class Kitchen : Department
             kitchenData.UpdateData();
             level.IsRestaurantReady(false);
             if(kuryeMutfagimi)
-                SelectManager.instance.GeriButonu();
+                SelectManager.instance.BackButton();
         }
     }
     public float PizzaMakingTime()

@@ -88,7 +88,7 @@ public class ParkinLot : Department
             GameManager.instance.SetMoney(-kitchen.unlockCost.GetGold());
             if(kitchen.isLocked)
                 kitchen.UnLock(false);
-            SelectManager.instance.GeriButonu();
+            SelectManager.instance.BackButton();
         }
     }
 }

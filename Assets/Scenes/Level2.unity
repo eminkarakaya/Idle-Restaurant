@@ -5048,6 +5048,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4017377332403514444, guid: b088582b0fc3aa140b538fee3d917550, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4017377332403514447, guid: b088582b0fc3aa140b538fee3d917550, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
@@ -5164,6 +5168,10 @@ PrefabInstance:
       propertyPath: parkinLot.Array.data[0]
       value: 
       objectReference: {fileID: 7410609927591965760}
+    - target: {fileID: 4017377333357232935, guid: b088582b0fc3aa140b538fee3d917550, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 96bac7c1a3f939a45ae2209719988381, type: 3}
     - target: {fileID: 4017377333885874524, guid: b088582b0fc3aa140b538fee3d917550, type: 3}
       propertyPath: fridge
       value: 

@@ -145,7 +145,12 @@ public class Level : MonoBehaviour
     {
         isUnlock = true;
         lastLoginDate =  GameManager.instance.gameData.levelData[levelIndex].lastLoginDate;
-        restaurant.moveSpeed = GameManager.instance.gameData.levelData[levelIndex].waiterSpeed;
+        if(GameManager.instance.gameData.levelData[levelIndex].waiterSpeed == 0)
+        {
+            GameManager.instance.gameData.levelData[levelIndex].waiterSpeed =2;
+            restaurant.moveSpeed = GameManager.instance.gameData.levelData[levelIndex].waiterSpeed;
+        }
+
         //bulasikhaneTask.SetActive(!GameManager.instance.gameData.levelData[levelIndex].task1);
         //mutfakTask.SetActive(!GameManager.instance.gameData.levelData[levelIndex].task2);
         //restoranTask.SetActive(!GameManager.instance.gameData.levelData[levelIndex].task3);

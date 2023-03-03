@@ -6529,6 +6529,10 @@ PrefabInstance:
       propertyPath: parkinLot.Array.data[1]
       value: 
       objectReference: {fileID: 959140236}
+    - target: {fileID: 4017377333357232935, guid: b088582b0fc3aa140b538fee3d917550, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 96bac7c1a3f939a45ae2209719988381, type: 3}
     - target: {fileID: 4017377333450478884, guid: b088582b0fc3aa140b538fee3d917550, type: 3}
       propertyPath: _gold
       value: 1000
@@ -7061,6 +7065,10 @@ PrefabInstance:
       propertyPath: _gold
       value: 3000
       objectReference: {fileID: 0}
+    - target: {fileID: 7636872615943681241, guid: b088582b0fc3aa140b538fee3d917550, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 96bac7c1a3f939a45ae2209719988381, type: 3}
     - target: {fileID: 7636872616816674188, guid: b088582b0fc3aa140b538fee3d917550, type: 3}
       propertyPath: m_text
       value: Seviye 1 Mutfak

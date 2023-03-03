@@ -229,7 +229,7 @@ public class Bulasikhane : Department
             BulasikciSatinAl(false);
             sculleryData.UpdateData();
             level.IsRestaurantReady(false);
-            SelectManager.instance.GeriButonu();
+            SelectManager.instance.BackButton();
         }
     }
     public float PizzaMakingTime()

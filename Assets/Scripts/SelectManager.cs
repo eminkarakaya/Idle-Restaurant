@@ -26,6 +26,7 @@ public class SelectManager : MonoBehaviour
     {
         if (Input.touchCount > 0 && _selectedObject == null)
         {
+            if(CameraMove.instance.lockUp) return;
            Touch parmak = Input.GetTouch(0);
            if (parmak.phase == TouchPhase.Moved)
            {
@@ -66,7 +67,7 @@ public class SelectManager : MonoBehaviour
                isMoved = false;
         }
     }
-    public void GeriButonu()
+    public void BackButton()
     {
         CameraMove.instance.lockUp = false;
         _selectedObject.GetComponent<Collider>().enabled = true;
