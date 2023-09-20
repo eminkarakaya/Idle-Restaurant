@@ -30,7 +30,7 @@ public class LevelData
     public int [] dishCounterCount = new int[10];
     public bool [] sculleryIsLocked = new bool [10];
     public Vector3 [] customerLocations;
-    public MusteriState [] musteriState;
+    public CustomerBaseState [] musteriState;
     public Vector3 [] waiterLocations;
     public Vector3 [,] chefLocations;
     public Vector3 [,] bulasikciLocations;

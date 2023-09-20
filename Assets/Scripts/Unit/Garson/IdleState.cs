@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : GarsonState
+public class IdleState : WaiterBaseState
 {
     public override void StartState(Action action)
     {

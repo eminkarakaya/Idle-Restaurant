@@ -12,7 +12,7 @@ public class QueueBekleState : StateBase
     {
         unit = GetComponentInParent<Unit>();
         unit.transform.LookAt(item.transform);
-        if(unit.TryGetComponent(out Musteri customer))
+        if(unit.TryGetComponent(out Customer customer))
         {
             action.CustomerStandIdle();
         }

@@ -67,9 +67,9 @@ public class Restaurant : Department
         }
         customerCount ++;
         var waiter = Instantiate(levelManager.waiterPrefab,waiterWaitPlace[customerCount-1].position,Quaternion.identity);
-        waiter.GetComponentInChildren<Garson>().waitingPlace = waiterWaitPlace[customerCount-1];
-        waiter.GetComponentInChildren<Garson>().level = level;
-        waiter.GetComponentInChildren<Garson>().moveSpeed = moveSpeed;
+        waiter.GetComponentInChildren<Waiter>().waitingPlace = waiterWaitPlace[customerCount-1];
+        waiter.GetComponentInChildren<Waiter>().level = level;
+        waiter.GetComponentInChildren<Waiter>().moveSpeed = moveSpeed;
         waiterCost.SetGold(100);
         allWaiters.Add(waiter);
         restaurantData.UpdateData();
@@ -113,7 +113,7 @@ public class Restaurant : Department
         moveSpeed += moveSpeed * (moveSpeedPercentageIncrease/100);
         for (int i = 0; i < allWaiters.Count; i++)
         {
-            allWaiters[i].transform.GetChild(0).GetComponent<Garson>().moveSpeed = moveSpeed;
+            allWaiters[i].transform.GetChild(0).GetComponent<Waiter>().moveSpeed = moveSpeed;
         }
         moveNext = moveSpeed + moveSpeed * (moveSpeedPercentageIncrease/100);            
         waiterSpeedCost.SetGold(100);

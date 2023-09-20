@@ -26,7 +26,7 @@ public class CustomerCreator : MonoBehaviour
     {
         while(true)
         {
-            if(kapi.instance.queue.Count < queueCapacity)
+            if(Door.instance.queue.Count < queueCapacity)
                 frequencyTemp -= Time.deltaTime;
                 
             if(frequencyTemp < 0)
@@ -37,11 +37,11 @@ public class CustomerCreator : MonoBehaviour
                 musteri.transform.position = customerCreatedTransform.position;
                 musteri.transform.rotation = Quaternion.identity;
                 // var musteri = Instantiate(customerPrefab,customerCreatedTransform.position,Quaternion.identity);
-                musteri.transform.GetChild(0).GetComponent<Musteri>().door = kapi.instance.kapiTransform;
-                musteri.transform.GetChild(0).GetComponent<Musteri>().currState = musteri.transform.GetChild(0).GetComponent<Musteri>().customerWalkState;
-                musteri.transform.GetChild(0).GetComponent<Musteri>().level = level;
+                musteri.transform.GetChild(0).GetComponent<Customer>().door = Door.instance.kapiTransform;
+                musteri.transform.GetChild(0).GetComponent<Customer>().currState = musteri.transform.GetChild(0).GetComponent<Customer>().customerWalkState;
+                musteri.transform.GetChild(0).GetComponent<Customer>().level = level;
                 musteri.transform.SetParent(level.transform);
-                musteri.transform.GetChild(0).GetComponent<Musteri>().currState = musteri.transform.GetChild(0).GetComponent<Musteri>().customerWalkState;
+                musteri.transform.GetChild(0).GetComponent<Customer>().currState = musteri.transform.GetChild(0).GetComponent<Customer>().customerWalkState;
             }
             yield return null;
         }

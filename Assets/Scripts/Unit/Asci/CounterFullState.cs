@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CounterFullState : AsciState
+public class CounterFullState : ChefBaseState
 {
     public bool kuryeAscisimi;
     float timeOffset = .3f;

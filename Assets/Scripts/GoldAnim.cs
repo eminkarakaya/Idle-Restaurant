@@ -24,7 +24,7 @@ public class GoldAnim : MonoBehaviour
     void Start ()
     {
         parent = GameManager.instance.transform.GetChild(1);
-        goldinScene = GameManager.instance.transform.GetChild(1).GetChild(0).GetChild(1).transform.gameObject;
+        goldinScene = GameManager.instance.transform.GetChild(1).GetChild(1).GetChild(1).transform.gameObject;
     }
     void SetGold(int count)
     {

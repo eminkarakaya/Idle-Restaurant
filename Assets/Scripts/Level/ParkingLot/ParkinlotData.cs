@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class ParkinlotData : MonoBehaviour
 {
-    ParkinLot parkinLot;
+    [SerializeField] ParkinLot parkinLot;
     Level level;
     [SerializeField] Text motorcycleCount
     ,motorAlCostText,motorcycleSpeedText,motorcycleSpeedCost,motorcycleSpeedNext;
 
     void Start()
     {
-        parkinLot = GetComponentInParent<ParkinLot>();
+        // parkinLot = GetComponentInParent<ParkinLot>();
         level= GetComponentInParent<Level>();
         UpdateData();
     }

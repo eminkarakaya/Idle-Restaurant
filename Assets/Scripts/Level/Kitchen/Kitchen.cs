@@ -6,7 +6,7 @@ public class Kitchen : Department
 {
     
     public ParkinLot parkinLot;
-    public MutfakData kitchenData; 
+    public KitchenData kitchenData; 
     [Space(20)]
     public int kitchenIndex;
     [SerializeField] public bool kuryeMutfagimi;
@@ -27,18 +27,18 @@ public class Kitchen : Department
     public int chefCapacity;
     [Space(10)]
     [Header("Listeler")]
-    [SerializeField] private List<Ocak> UseableOvens;
+    [SerializeField] private List<Oven> UseableOvens;
     [SerializeField] private List<Transform> chefWaitTransform;
     public List<Counter> allCounters;
-    [SerializeField] public List<PizzaAcmaCounter> useablePizzaCounters;
-    [SerializeField] public List<PizzaAcmaCounter> allPizzaCounters;
+    [SerializeField] public List<RollOutPizzaCounter> useablePizzaCounters;
+    [SerializeField] public List<RollOutPizzaCounter> allPizzaCounters;
     public List<Counter> useableCounters;
-    public List<Asci> allChefs;
-    public List<Ocak> allOven;
+    public List<Chef> allChefs;
+    public List<Oven> allOven;
     void OnEnable()
     {
         levelManager = FindObjectOfType<LevelManager>();
-        kitchenData = GetComponentInChildren<MutfakData>();
+        kitchenData = GetComponentInChildren<KitchenData>();
     }
    
     void Awake()
@@ -53,7 +53,7 @@ public class Kitchen : Department
         if(kuryeMutfagimi)
             lockedPanel = parkinLot.lockedPanel;
     }
-    public PizzaAcmaCounter GetEmptyPizzaCounter()
+    public RollOutPizzaCounter GetEmptyPizzaCounter()
     {
         var enAz = useablePizzaCounters[0];
         for (int i = 0; i < useablePizzaCounters.Count; i++)
@@ -77,7 +77,7 @@ public class Kitchen : Department
         }
         return enCok;
     }
-    public Ocak FindOvenWithMostCook()
+    public Oven FindOvenWithMostCook()
     {
         var enCok = UseableOvens[0];
         for (int i = 0; i < UseableOvens.Count; i++)
@@ -89,7 +89,7 @@ public class Kitchen : Department
         }
         return enCok;
     }
-    public PizzaAcmaCounter FindPizzaCounterWithMostCook()
+    public RollOutPizzaCounter FindPizzaCounterWithMostCook()
     {
         var enCok = useablePizzaCounters[0];
         for (int i = 0; i < useablePizzaCounters.Count; i++)
@@ -113,7 +113,7 @@ public class Kitchen : Department
         }
         return enAz;
     }
-    public Ocak GetEmptyOven()
+    public Oven GetEmptyOven()
     {
         var enAz = UseableOvens[0];
         for (int i = 0; i < UseableOvens.Count; i++)
@@ -140,7 +140,7 @@ public class Kitchen : Department
         }
         cookCount++;
         var asci = Instantiate(levelManager.cookPrefab,chefWaitTransform[0].position,Quaternion.identity);
-        var asciClass = asci.transform.GetChild(0).GetComponent<Asci>();
+        var asciClass = asci.transform.GetChild(0).GetComponent<Chef>();
         if(kuryeMutfagimi)
         {
             
@@ -186,17 +186,17 @@ public class Kitchen : Department
         var most = FindCounterWithMostCooks();
         if(most.chefs.Count == 0)
             return;
-        most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Asci>().counter = counter;
+        most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Chef>().counter = counter;
         counter.chefs.Add(most.chefs[most.chefs.Count-1]);
-        var cook = most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Asci>();
+        var cook = most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Chef>();
         Debug.Log((cook.currState == cook.queueState || cook.currState == cook.queueWaitState) + " " +  (cook.queueState.previousState == cook.putOnCounterState),cook);
         if((cook.currState == cook.queueState || cook.currState == cook.queueWaitState) && cook.queueState.previousState == cook.putOnCounterState)
         {
             cook.currState = cook.putOnCounterState;
         }
         
-        if(most.queue.Contains(most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Asci>()))
-            most.queue.Remove(most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Asci>());    
+        if(most.queue.Contains(most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Chef>()))
+            most.queue.Remove(most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Chef>());    
         most.chefs.Remove(most.chefs[most.chefs.Count-1]);
         kitchenData.UpdateData();
     }
@@ -219,7 +219,7 @@ public class Kitchen : Department
         var encok = FindPizzaCounterWithMostCook();
         if(encok.chefs.Count == 0)
             return;
-        var asci = encok.chefs[encok.chefs.Count-1].transform.GetChild(0).GetComponent<Asci>();
+        var asci = encok.chefs[encok.chefs.Count-1].transform.GetChild(0).GetComponent<Chef>();
         asci.rollOutPizzaCounter = pizzaAcmaCounter;
         pizzaAcmaCounter.chefs.Add(encok.chefs[encok.chefs.Count-1]);
         if((asci.currState == asci.queueState || asci.currState == asci.queueWaitState) && asci.queueState.previousState == asci.waitForOvenState)
@@ -252,9 +252,9 @@ public class Kitchen : Department
         {
             return;
         }
-        encok.chefs[encok.chefs.Count-1].transform.GetChild(0).GetComponent<Asci>().oven = firin;
+        encok.chefs[encok.chefs.Count-1].transform.GetChild(0).GetComponent<Chef>().oven = firin;
         firin.chefs.Add(encok.chefs[encok.chefs.Count-1]);
-        var asci = encok.chefs[encok.chefs.Count-1].transform.GetChild(0).GetComponent<Asci>();
+        var asci = encok.chefs[encok.chefs.Count-1].transform.GetChild(0).GetComponent<Chef>();
         if((asci.currState == asci.queueState || asci.currState == asci.queueWaitState) && asci.queueState.previousState == asci.waitForOvenState)
         {
             asci.currState = asci.putOunOvenState;

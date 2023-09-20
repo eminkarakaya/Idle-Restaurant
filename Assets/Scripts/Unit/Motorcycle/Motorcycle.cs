@@ -8,10 +8,10 @@ public class Motorcycle : Unit
     public GameObject pizza;
     public Item sira;
     public Transform baslangicPos;
-    public MapDisindaBekleState mapDisindaBekleState;
-    public SiparisiAlState siparisiAlState;
-    public SiparisiBekleState siparisiBekleState;
-    public SiparisiGoturState siparisiGoturState;
+    public WaitOffMapState mapDisindaBekleState;
+    public TakeOrderState siparisiAlState;
+    public WaitOrderState siparisiBekleState;
+    public DeliverOrderState siparisiGoturState;
     public Counter counter;
     public Transform garsonPos;
     public ParkinLot parkinLot;

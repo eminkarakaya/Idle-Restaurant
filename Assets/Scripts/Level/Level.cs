@@ -23,7 +23,7 @@ public class Level : MonoBehaviour
     public bool isUnlock;
     public Restaurant restaurant;
     public Kitchen[] kitchens;
-    public List<Bulasikhane> scullery;
+    public List<Scullery> scullery;
     public List <ParkinLot> parkinLot;
 
     void OnApplicationQuit()
@@ -139,7 +139,6 @@ public class Level : MonoBehaviour
             GameManager.instance.gameData.levelData[levelIndex].motorcycleCount[i] = parkinLot[i].allMotorcycle.Count;
             GameManager.instance.gameData.levelData[levelIndex].motorcycleSpeed[i] = parkinLot[i].hiz;
         }
-        Debug.Log("saved");
     }
     public void LoadLevel()
     {
@@ -277,13 +276,11 @@ public class Level : MonoBehaviour
         var kitchenTotal = 0f;
         if (kitchens.Length == 0)
         {
-            Debug.Log("return 0");
             return 0;
         }
         var kitchenCount = 0;
         for (int i = 0; i < kitchens.Length; i++)
         {
-            //Debug.Log(kitchens[i] + " " + kitchens[i].PizzaMakingTime(), kitchens[i]);
             if(kitchens[i].PizzaMakingTime() == 0)
                 continue;
             kitchenTotal += kitchens[i].PizzaMakingTime();
@@ -299,7 +296,6 @@ public class Level : MonoBehaviour
         }        
         if (sculleryTotal == 0)
         {
-            Debug.Log("return 0");
             return 0;
         }
         if(scullery.Count == 0)
@@ -310,7 +306,6 @@ public class Level : MonoBehaviour
             sculleryTotal = (sculleryTotal/scullery.Count) /scullery.Count;
         //if (restaurant.isLocked == false)
         //{
-        //    Debug.Log("return 0");
         //    return 0;
         //}
         sort.Add(kitchenTotal);
@@ -319,18 +314,15 @@ public class Level : MonoBehaviour
         sort.Sort();
         if (sort[0] == float.NaN)
         {
-            Debug.Log("nan");
             return 0;
         }
         if(restaurant.earnedMoneyFromCustomer == 0)
             return 0;
-        Debug.Log(restaurant.earnedMoneyFromCustomer + " restaurant.earnedMoneyFromCustomer " + sort[0] + " sort[0]");
         return restaurant.earnedMoneyFromCustomer / sort[0];
     }
     public void IdleMoneyCanvasActive()
     {
         idleMoneyCanvas.SetActive(false);
-        Debug.Log(CalcPassingTime() + "  CalcPassingTime() " + CalculateEarnedMoneyOfPerSeconds() + " CalculateEarnedMoneyOfPerSeconds() " + (int)(CalcPassingTime() * (CalculateEarnedMoneyOfPerSeconds()) / 10) + " (int)(CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10)");
         StartCoroutine(GoldAnim.instance.EarnGoldAnim((int)(CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10),20,GameManager.instance.idleMoneyText.transform));
     }
     public int CalcPassingTime()
@@ -338,7 +330,6 @@ public class Level : MonoBehaviour
         string dateOld = lastLoginDate;
         if(string.IsNullOrEmpty(dateOld))
         {
-            Debug.Log("firstgame");
         }
         else
         {
@@ -380,7 +371,6 @@ public class Level : MonoBehaviour
         }
         if(sculleryCount >= 1 && kitchenCount >= 1 && !restaurant.isLocked)
         {
-            Debug.Log("true");
             StartCoroutine (CustomerCreator.instance.CustomerCreate());
             return true;
         }

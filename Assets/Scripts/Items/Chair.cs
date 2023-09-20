@@ -5,20 +5,20 @@ using UnityEngine;
 public class Chair : MonoBehaviour
 {
     public Level level;
-    [SerializeField] public Musteri customer;
+    [SerializeField] public Customer customer;
     public Transform placeToSit;
     public Transform platePlace;
-    public Tabak plate;
+    public Plate plate;
     public GameObject pizza;
     void Awake()
     {
         level = GetComponentInParent<Level>();
     }
-    public void SetMusteri(Musteri musteri)
+    public void SetMusteri(Customer musteri)
     {
         this.customer = musteri;
     }
-    public Musteri GetMusteri()
+    public Customer GetMusteri()
     {
         return customer;
     }
