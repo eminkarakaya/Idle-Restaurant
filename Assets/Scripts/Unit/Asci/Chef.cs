@@ -29,8 +29,9 @@ public class Chef : Unit
             agent.speed = _moveSpeed;
         }
     }
-    void Start()
+    public void InitializeChef()
     {
+        level = FindObjectOfType<Level>();
         dough = level.dough;
         pizza = level.pizza;
         // Debug.Log(kitchen);        
@@ -41,6 +42,10 @@ public class Chef : Unit
         agent.speed = moveSpeed;
         currState = fridgeState;
         currState.StartState(action);
+    }    
+    void Start()
+    {
+        
     }
     
     void Update()

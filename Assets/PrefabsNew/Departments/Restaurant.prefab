@@ -342,7 +342,17 @@ MonoBehaviour:
   waiterCapacity: 4
   emptyChairs: []
   allChairs: []
-  restaurantData: {fileID: 0}
+  restaurantUIData: {fileID: 7764845867768786693}
+  restaurantData:
+    restaurantIsLocked: 1
+    tableCount: 0
+    waiterCount: 0
+    customerFrequency: 2
+    waiterSpeed: 2
+    waiterCost: 0
+    tableCost: 0
+    waiterSpeedCost: 0
+    customerFrequencyCost: 0
   allWaiters: []
   allTables:
   - {fileID: 1439163817901279581}
@@ -886,6 +896,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 831cad3838ee24648ab16d3383fe0d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buyWaiterButton: {fileID: 3729923278661769042}
+  buyWaiterSpeedButton: {fileID: 8633842665588171072}
+  buyTableButton: {fileID: 5366006619884411319}
+  buyCustomerFrequencyButton: {fileID: 4074065630973519888}
   waiterMoveSpeedText: {fileID: 5575837514390544311}
   waiterMoveSpeedTextNext: {fileID: 1965013122805227599}
   customerFrequencyText: {fileID: 9174154210357815881}

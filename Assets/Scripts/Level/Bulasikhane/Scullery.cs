@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Scullery : Department
 {
-    public SculleryData sculleryData;
+    Restaurant restaurant;
+    SculleryData sculleryData;
+    [SerializeField] private int sculleryIndex;
+    public SculleryUIData sculleryUIData;
     public override Level level {get; set;}
     public override GameObject dataPanel { get; set; }
     public override Transform camPlace { get; set; }
     [SerializeField] GameObject _dataPanel;
     [SerializeField] Transform _camPlace;
     public List<SculleryCounter> allDishCounter;
-    public List<SculleryCounter> currentCounters;
+    public List<SculleryCounter> currentDishCounters;
     public List<Sink> allSinks;
     public List<Sink> currentSinks;
     public List<DishWasher> allDishwasher;
@@ -20,51 +24,128 @@ public class Scullery : Department
     public Gold sinkCost;
     public Gold dishwasherCost;
     public Transform dishwasherSpawn;
-    public int sinkCount;
-    public int dishwasherCount;
-    public int dishCounterCount;
+    public int sinkCount,dishCounterCount,dishwasherCount;
     void Awake()
     {
         level = GetComponentInParent<Level>();
+        restaurant = FindObjectOfType<Restaurant>();
         selectableCollider = GetComponent<Collider>();
         dataPanel = _dataPanel;
         camPlace = _camPlace;
         levelManager = FindObjectOfType<LevelManager>();
-        sculleryData = GetComponentInChildren<SculleryData>();
+        sculleryUIData = GetComponentInChildren<SculleryUIData>();
+        allSinks = GetComponentsInChildren<Sink>().ToList();
+        allDishCounter = GetComponentsInChildren<SculleryCounter>().ToList();
+    }
+    private void Start() {
+        
+    }
+    public void SaveScullery()
+    {
+        sculleryData = new SculleryData
+        {
+            sculleryIsLocked = isLocked,
+            sinkCount = sinkCount,
+            dishCounterCount = dishwasherCount,
+            dishwasherCount = dishCounterCount,
+            dishCounterCost = dishCounterCost.GetGold(),
+            sinkCost = sinkCost.GetGold(),
+            dishwasherCost = dishwasherCost.GetGold(),
+        };
+        level.levelData.sculleryData[sculleryIndex] = sculleryData;
+    }
+    public void LoadScullery() 
+    {
+        if(level.levelData.sculleryData[sculleryIndex] != null)
+        {
+            sculleryData = level.levelData.sculleryData[sculleryIndex];
+            isLocked =sculleryData.sculleryIsLocked; 
+            if(!isLocked)
+            {
+                level.unlockedSculleries.Add(this);
+                @lock.SetActive(false);
+                for (int i = 0; i < sculleryData.dishCounterCount; i++)
+                {
+                    BulasikCounterSatinAl(false);
+                }
+                for (int i = 0; i < sculleryData.sinkCount; i++)
+                {
+                    SinkSatinAl(false);
+                }
+                for (int i = 0; i < sculleryData.dishwasherCount; i++)
+                {
+                    BulasikciSatinAl(false);
+                }
+            }
+        }
+        else
+        {
+            sculleryData = new SculleryData();
+        }
+        dishCounterCost.SetGold(sculleryData.dishCounterCost);
+        sinkCost.SetGold(sculleryData.sinkCost);
+        dishwasherCost.SetGold(sculleryData.dishCounterCost);
+        sculleryUIData.UpdateData();
     }
     public SculleryCounter FindEmptyDishCounter()
     {
-        for (int i = 0; i < currentCounters.Count; i++)
+        for (int i = 0; i < currentDishCounters.Count; i++)
         {
-            if(currentCounters[i].plates.Count == 0)
-                return currentCounters[i];
+            if(currentDishCounters[i].plates.Count == 0)
+                return currentDishCounters[i];
         }
-        return currentCounters[0];
+        return currentDishCounters[0];
+    }
+    public SculleryCounter FindDishCounterForWaiters(Vector3 pos,List<SculleryCounter> sculleryCounters = null)
+    {
+        List<SculleryCounter> tempDishCounters = new List<SculleryCounter>();
+        for (int i = 0; i < currentDishCounters.Count; i++)
+        {
+            tempDishCounters.Add(currentDishCounters[i]);
+        }
+        if(sculleryCounters != null)
+        {
+            for (int i = 0; i < sculleryCounters.Count; i++)
+            {
+                tempDishCounters.Remove(sculleryCounters[i]);
+            }
+        }
+        if(tempDishCounters.Count == 0) 
+            return null;
+        SculleryCounter nearestSculleryCounter = tempDishCounters[0];
+        float nearestDistance = Vector3.Distance(nearestSculleryCounter.transform.position,pos);
+        for (int i = 0; i < tempDishCounters.Count; i++)
+        {
+            float nextDistanece = Vector3.Distance(tempDishCounters[i].transform.position,pos);
+            if(nextDistanece < nearestDistance)
+            {
+                nearestDistance = nextDistanece;
+                nearestSculleryCounter = tempDishCounters[i];
+            }
+        }
+        return nearestSculleryCounter;
     }
     public SculleryCounter FindDishCounter()
     {
-        var least = currentCounters[0];
-        for (int i = 0; i < currentCounters.Count; i++)
+        
+        var least = currentDishCounters[0];
+        for (int i = 0; i < currentDishCounters.Count; i++)
         {
-            if(currentCounters[i].dishwashers .Count == 0)
+            if(currentDishCounters[i].plates.Count < least.plates.Count)
             {
-                continue;
-            }
-            if(currentCounters[i].plates.Count < least.plates.Count)
-            {
-                least = currentCounters[i];
+                least = currentDishCounters[i];
             }
         }
         return least;
     }
     public SculleryCounter FindCounterWithMostDishwasher()
     {
-        var enCok = currentCounters[0];
-        for (int i = 0; i < currentCounters.Count; i++)
+        var enCok = currentDishCounters[0];
+        for (int i = 0; i < currentDishCounters.Count; i++)
         {
-            if(currentCounters[i].dishwashers.Count > enCok.dishwashers.Count)
+            if(currentDishCounters[i].dishwashers.Count > enCok.dishwashers.Count)
             {
-                enCok = currentCounters[i];
+                enCok = currentDishCounters[i];
             }
         }
         return enCok;
@@ -74,6 +155,8 @@ public class Scullery : Department
         var enCok = currentSinks[0];
         for (int i = 0; i < currentSinks.Count; i++)
         {
+            if(currentSinks[i].dishwashers.Count == 1)
+                continue;
             if(currentSinks[i].dishwashers.Count > enCok.dishwashers.Count)
             {
                 enCok = currentSinks[i];
@@ -84,12 +167,12 @@ public class Scullery : Department
     
     public SculleryCounter GetEmptyBulasikCounter()
     {
-        var enAz = currentCounters[0];
-        for (int i = 0; i < currentCounters.Count; i++)
+        var enAz = currentDishCounters[0];
+        for (int i = 0; i < currentDishCounters.Count; i++)
         {
-            if(currentCounters[i].dishwashers.Count < enAz.dishwashers.Count)
+            if(currentDishCounters[i].dishwashers.Count < enAz.dishwashers.Count)
             {
-                enAz = currentCounters[i];
+                enAz = currentDishCounters[i];
             }
         }
     
@@ -137,13 +220,13 @@ public class Scullery : Department
 
         dishwasherClass.level = level;
         dishwasherClass.scullery = this;
-        dishwasherCost.SetGold(100);
-        sculleryData.UpdateData();
+        dishwasherCost.IncreaseGold(100);
+        sculleryUIData.UpdateData();
 
     }
     public void BulasikCounterSatinAl(bool isPaid)
     {
-        if(currentCounters.Count == allDishCounter.Count)
+        if(currentDishCounters.Count == allDishCounter.Count)
             return;
         if(isPaid)
         {
@@ -155,11 +238,11 @@ public class Scullery : Department
             }
         }
         dishCounterCount++;
-        var counter = allDishCounter[currentCounters.Count];
-        currentCounters.Add(counter);
+        var counter = allDishCounter[currentDishCounters.Count];
+        currentDishCounters.Add(counter);
         counter.barrier.SetActive(false);
         var most = FindCounterWithMostDishwasher();
-        if(most.dishwashers.Count == 0)
+        if(most.dishwashers.Count == 0 || most.dishwashers.Count == 1)
         {
             return;
         }
@@ -178,8 +261,9 @@ public class Scullery : Department
             dishwasher.currState = dishwasher.takePlateState;
         }
         most.dishwashers.Remove(most.dishwashers[most.dishwashers.Count-1]);
-        dishCounterCost.SetGold(100);
-        sculleryData.UpdateData();
+        dishCounterCost.IncreaseGold(100);
+        restaurant.CheckWaiterButton();
+        sculleryUIData.UpdateData();
     }
     public void SinkSatinAl(bool isPaid)
     {
@@ -199,7 +283,7 @@ public class Scullery : Department
         sink.gameObject.SetActive(true);
         currentSinks.Add(sink);
         var most = FindSinkWithMostDishwasher();
-        if(most.dishwashers.Count == 0)
+        if(most.dishwashers.Count == 0 ||most.dishwashers.Count == 1)
         {
             return;
         }
@@ -211,9 +295,10 @@ public class Scullery : Department
             dishwasher.currState = dishwasher.putPlateState;
         }
         most.dishwashers.Remove(most.dishwashers[most.dishwashers.Count-1]);
-        sinkCost.SetGold(100);
-        sculleryData.UpdateData();
+        sinkCost.IncreaseGold(100);
+        sculleryUIData.UpdateData();
     }
+    // KILIDINI ACINCA
     public void UnlockScullery()
     {
         if(unlockCost.GetGold() <= GameManager.instance.GetMoney())
@@ -221,17 +306,20 @@ public class Scullery : Department
             //if (level.bulasikhaneTask.activeInHierarchy == true)
             //    level.bulasikhaneTask.SetActive(false);
             GameManager.instance.SetMoney(-unlockCost.GetGold());
-            lockedPanel.SetActive(false);
+            lockedPanel.SetActive (false);
             isLocked = false;
             @lock.SetActive(false);
             SinkSatinAl(false);
             BulasikCounterSatinAl(false);
             BulasikciSatinAl(false);
-            sculleryData.UpdateData();
-            level.IsRestaurantReady(false);
+            sculleryUIData.UpdateData();
+            level.RestaurantReady(false);
+            level.unlockedSculleries.Add(this);
+            restaurant.CheckWaiterButton();
             SelectManager.instance.BackButton();
         }
     }
+    // YIKAMA SURESI HESAPLAMA
     public float PizzaMakingTime()
     {
         if (allDishwasher.Count == 0)
@@ -247,5 +335,5 @@ public class Scullery : Department
 
         return totalTime/allDishwasher.Count;
     }
-
+    
 }

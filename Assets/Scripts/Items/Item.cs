@@ -35,4 +35,5 @@ public class Item : MonoBehaviour
             queue[i].currState = queue[i].queueState;
         }
     }
+    
 }

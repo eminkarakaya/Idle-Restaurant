@@ -10,9 +10,17 @@ public class Gold : MonoBehaviour
     public TextParse textParse;
     void Start()
     {
-        SetGold(0);
+        IncreaseGold(0);
     }
     public void SetGold(int value)
+    {
+        if(value == 0) return;
+        _gold = value;
+        textParse.Check(_gold);
+        textParse.text = GameManager.CaclText(_gold);     
+
+    }
+    public void IncreaseGold(int value)
     {
         _gold += value;
         textParse.Check(_gold);

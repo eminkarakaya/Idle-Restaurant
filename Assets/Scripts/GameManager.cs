@@ -7,8 +7,8 @@ using System;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
-    int lastSceneIndex;
-    public Level currLevel;
+    public bool resetData;
+    // int lastSceneIndex;
     public GameData gameData;
     public Image fader;
     [SerializeField] private int _money;
@@ -29,14 +29,18 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        SaveSystem.Init();
+        if(resetData)
+            return;
+        
+        Load();
         SetMoney(0);
         idleMoneyText.text = CaclText(idleMoney);
         goldText.text = CaclText(gold);
-        Load();
     }
     private void Start()
     {
-        SceneManager.LoadScene(lastSceneIndex);
+        // SceneManager.LoadScene(lastSceneIndex);
     }
     void OnDisable()
     {
@@ -44,17 +48,26 @@ public class GameManager : MonoBehaviour
     }
     public void Save()
     {
+        
         var data = JsonUtility.ToJson(gameData);
-        PlayerPrefs.SetString("data",data);
-
+        SaveSystem.Save(data);
     }
     public void Load()
     {
-        if(!PlayerPrefs.HasKey("data"))
-            return;
-        gameData = JsonUtility.FromJson<GameData>(PlayerPrefs.GetString("data"));
-        _money = gameData.para;
-        lastSceneIndex = gameData.lastSceneIndex;
+        string saveString = SaveSystem.Load();
+        if(saveString != null)
+        {
+            gameData = JsonUtility.FromJson<GameData>(saveString);
+        }
+        if(gameData.levelData.Length == 0)
+        {
+            gameData = new GameData();
+        }
+        // if(!PlayerPrefs.HasKey("data"))
+        //     return;
+        // gameData = JsonUtility.FromJson<GameData>(PlayerPrefs.GetString("data"));
+        // _money = gameData.para;
+        // lastSceneIndex = gameData.lastSceneIndex;
     }
     public void SetMoney(int value)
     {

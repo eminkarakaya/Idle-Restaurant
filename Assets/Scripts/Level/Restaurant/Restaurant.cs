@@ -11,7 +11,8 @@ public class Restaurant : Department
     public int waiterCapacity;
     public List<Chair> emptyChairs;
     public List<Chair> allChairs;
-    public RestorantData restaurantData;
+    public RestaurantUIData restaurantUIData;
+    public RestaurantData restaurantData;
     public List<GameObject> allWaiters;
     public List<GameObject> allTables;
     public List<Transform> waiterWaitPlace;
@@ -32,6 +33,7 @@ public class Restaurant : Department
     [HideInInspector]public int tableCapacity;
     public int customerCount = 0;
     public float moveSpeed = 2;
+    
     void OnEnable()
     {
         
@@ -40,8 +42,7 @@ public class Restaurant : Department
     {
         levelManager = FindObjectOfType<LevelManager>();
         level = GetComponentInParent<Level>();
-        restaurantData = GetComponentInChildren<RestorantData>();
-        
+        restaurantUIData = GetComponentInChildren<RestaurantUIData>();
     }
     void Start()
     {
@@ -49,6 +50,58 @@ public class Restaurant : Department
         camPlace = _camTransform;
         selectableCollider = GetComponent<Collider>();
         dataPanel = _dataPanel;
+        // LoadRestaurant();c
+    }
+    public void SaveRestaurant()
+    {
+        restaurantData = new RestaurantData
+        {
+            restaurantIsLocked = isLocked,
+            tableCount = tableCount,
+            waiterCount = allWaiters.Count,
+            waiterSpeed = moveSpeed,
+            customerFrequency = GetComponentInChildren<CustomerCreator>().frequency,
+            tableCost = tableCost.GetGold(),
+            waiterSpeedCost = waiterSpeedCost.GetGold(),
+            customerFrequencyCost = customerFrequencyCost.GetGold(),
+        };
+        level.levelData.restaurantData = restaurantData;
+    }
+    public void LoadRestaurant()
+    {
+        if(level.levelData.restaurantData != null)
+        {
+            restaurantData = level.levelData.restaurantData;
+            isLocked = restaurantData.restaurantIsLocked;
+            if(!isLocked)
+            {
+                @lock.SetActive(false);
+                for (int i = 0; i < restaurantData.tableCount; i++)
+                {
+                    BuyTable(false);
+                }
+                for (int i = 0; i < restaurantData.waiterCount; i++)
+                {
+                    BuyWaiter(false);
+                }
+            }
+        }
+        else
+        {
+            restaurantData = new RestaurantData();
+        }
+        GetComponentInChildren<CustomerCreator>().frequency = restaurantData.customerFrequency;
+        moveSpeed = restaurantData.waiterSpeed;
+        foreach (var item in allWaiters)
+        {
+            item.GetComponentInChildren<Waiter>().moveSpeed = moveSpeed;
+        }
+        tableCost.SetGold(restaurantData.tableCost);
+        waiterSpeedCost.SetGold(restaurantData.waiterSpeedCost);
+        customerFrequencyCost.SetGold(restaurantData.customerFrequencyCost);
+        moveNext = moveSpeed + moveSpeed * (moveSpeedPercentageIncrease/100);
+        frequencyNext = GetComponentInChildren<CustomerCreator>().frequency - (GetComponentInChildren<CustomerCreator>().frequency * (frequencyDecreasePercentage/100));
+        restaurantUIData.UpdateData();
     }
     public void BuyWaiter(bool isPaid)
     {
@@ -70,9 +123,10 @@ public class Restaurant : Department
         waiter.GetComponentInChildren<Waiter>().waitingPlace = waiterWaitPlace[customerCount-1];
         waiter.GetComponentInChildren<Waiter>().level = level;
         waiter.GetComponentInChildren<Waiter>().moveSpeed = moveSpeed;
-        waiterCost.SetGold(100);
+        waiterCost.IncreaseGold(100);
         allWaiters.Add(waiter);
-        restaurantData.UpdateData();
+        CheckWaiterButton();
+        restaurantUIData.UpdateData();
     }
     public void BuyTable(bool isPaid)
     {
@@ -94,8 +148,8 @@ public class Restaurant : Department
         emptyChairs.Add(allTables[tableCount-1].transform.GetChild(2).GetComponent<Chair>());
         allChairs.Add(allTables[tableCount-1].transform.GetChild(0).GetComponent<Chair>());
         allChairs.Add(allTables[tableCount-1].transform.GetChild(2).GetComponent<Chair>());
-        tableCost.SetGold(100);
-        restaurantData.UpdateData();
+        tableCost.IncreaseGold(100);
+        restaurantUIData.UpdateData();
     }
     public void IncreaseMovementSpeed(bool isPaid)
     {
@@ -115,9 +169,9 @@ public class Restaurant : Department
         {
             allWaiters[i].transform.GetChild(0).GetComponent<Waiter>().moveSpeed = moveSpeed;
         }
-        moveNext = moveSpeed + moveSpeed * (moveSpeedPercentageIncrease/100);            
-        waiterSpeedCost.SetGold(100);
-        restaurantData.UpdateData();
+        moveNext = moveSpeed + moveSpeed * (moveSpeedPercentageIncrease/100);
+        waiterSpeedCost.IncreaseGold(100);
+        restaurantUIData.UpdateData();
     }
     public void MusteriSikligiArttir(bool isPaid)
     {
@@ -135,8 +189,8 @@ public class Restaurant : Department
         GameManager.instance.SetMoney(-customerFrequencyCost.GetGold());
         GetComponentInChildren<CustomerCreator>().frequency -= (GetComponentInChildren<CustomerCreator>().frequency * (frequencyDecreasePercentage/100));
         frequencyNext = GetComponentInChildren<CustomerCreator>().frequency - (GetComponentInChildren<CustomerCreator>().frequency * (frequencyDecreasePercentage/100));
-        customerFrequencyCost.SetGold(100);
-        restaurantData.UpdateData();
+        customerFrequencyCost.IncreaseGold(100);
+        restaurantUIData.UpdateData();
     }
     public void UnlockRestaurant()
     {
@@ -145,13 +199,13 @@ public class Restaurant : Department
             //if (level.restoranTask.activeInHierarchy == true)
             //    level.restoranTask.SetActive(false);
             GameManager.instance.SetMoney(-unlockCost.GetGold());
-            lockedPanel.SetActive(false);
+            lockedPanel.SetActive (false);
             BuyTable(false);
             BuyWaiter(false);
             isLocked = false;
             @lock.SetActive(false);
-            restaurantData.UpdateData();
-            level.IsRestaurantReady(false);
+            restaurantUIData.UpdateData();
+            level.RestaurantReady(false);
             SelectManager.instance.BackButton();
         }
     }
@@ -165,28 +219,45 @@ public class Restaurant : Department
         tableDistanceAverage = (tableDistanceAverage / allChairs.Count)/moveSpeed;
         float dishCounterAverageDistance =0;
         var temp = 0;
-        for (int i = 0; i < level.scullery.Count; i++)
+        for (int i = 0; i < level.allSculleries.Count; i++)
         {
-            for (int j = 0; j < level.scullery[i].currentCounters.Count; j++)
+            for (int j = 0; j < level.allSculleries[i].currentDishCounters.Count; j++)
             {
-                dishCounterAverageDistance += Vector3.Distance(waiterWaitPlace[0].position,level.scullery[i].currentCounters[j].transform.position);
+                dishCounterAverageDistance += Vector3.Distance(waiterWaitPlace[0].position,level.allSculleries[i].currentDishCounters[j].transform.position);
                 temp++;
             }
         }
         var temp2 = 0;
         dishCounterAverageDistance = (dishCounterAverageDistance / temp)/moveSpeed;
         float counterAverageDistance = 0;
-        for (int i = 0; i < level.kitchens.Length; i++)
+        for (int i = 0; i < level.allKitchens.Count; i++)
         {
                 
-            for (int j = 0; j < level.kitchens[i].useableCounters.Count; j++)
+            for (int j = 0; j < level.allKitchens[i].useableCounters.Count; j++)
             {
-                counterAverageDistance += Vector3.Distance(waiterWaitPlace[0].position,level.kitchens[i].useableCounters[j].transform.position);
+                counterAverageDistance += Vector3.Distance(waiterWaitPlace[0].position,level.allKitchens[i].useableCounters[j].transform.position);
                 temp2 ++;
             }
         }
         counterAverageDistance = (counterAverageDistance / temp2)/moveSpeed;
         return (counterAverageDistance + dishCounterAverageDistance + tableDistanceAverage) / allWaiters.Count;
         
+    }
+    public void CheckWaiterButton()
+    {
+        int counterCount = 0;
+        for (int i = 0; i < level.unlockedSculleries.Count; i++)
+        {
+            counterCount += level.unlockedSculleries[i].currentDishCounters.Count;
+        }
+        int queueCount = 4;
+        if( allWaiters.Count >= counterCount*queueCount)
+        {
+            restaurantUIData.ToggleChefButton(false);
+        }
+        else
+        {
+            restaurantUIData.ToggleChefButton(true);
+        }
     }
 }

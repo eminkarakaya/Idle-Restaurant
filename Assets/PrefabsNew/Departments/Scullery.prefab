@@ -420,6 +420,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd2ff82bebe74c4ba822062f30c664a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buySinkButton: {fileID: 3235167348795914676}
+  buyDiswasherButton: {fileID: 4128688169798055775}
+  buyDishCounterButton: {fileID: 6063474749640398730}
   sinkCount: {fileID: 2021295301990310883}
   sinkCost: {fileID: 581964663751196307}
   dishwasherCount: {fileID: 6561174043563399342}
@@ -912,14 +915,15 @@ MonoBehaviour:
   _isLocked: 1
   oldCamPlace: {fileID: 0}
   selectableCollider: {fileID: 0}
-  sculleryData: {fileID: 0}
+  sculleryIndex: 0
+  sculleryUIData: {fileID: 709600337403337397}
   _dataPanel: {fileID: 382608208405765900}
   _camPlace: {fileID: 5219762122933554377}
   allDishCounter:
   - {fileID: 3695671555325675026}
   - {fileID: 4436231229852933812}
   - {fileID: 8366429804235070263}
-  currentCounters: []
+  currentDishCounters: []
   allSinks:
   - {fileID: 1243919244610922061}
   - {fileID: 1637737472070336996}
@@ -932,8 +936,8 @@ MonoBehaviour:
   dishwasherCost: {fileID: 6880178132898388741}
   dishwasherSpawn: {fileID: 4523826475176590356}
   sinkCount: 0
-  dishwasherCount: 0
   dishCounterCount: 0
+  dishwasherCount: 0
 --- !u!65 &3959346550446143315
 BoxCollider:
   m_ObjectHideFlags: 0

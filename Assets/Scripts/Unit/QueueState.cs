@@ -5,7 +5,7 @@ using UnityEngine;
 public class QueueState : StateBase
 {
     public bool isCarrying;
-
+    
     public bool isUpdate;
     public StateBase previousState;
     Unit unit;

@@ -1214,12 +1214,22 @@ MonoBehaviour:
   unlockCost: {fileID: 4818639257673251017}
   levelManager: {fileID: 0}
   lock: {fileID: 3202947114616904612}
-  lockedPanel: {fileID: 0}
+  lockedPanel: {fileID: 8470138047282944871}
   _isLocked: 1
   oldCamPlace: {fileID: 0}
   selectableCollider: {fileID: 0}
   parkinLot: {fileID: 0}
-  kitchenData: {fileID: 1926892101671210438}
+  kitchenUIData: {fileID: 1926892101671210438}
+  kitchenData:
+    kitchenIsLocked: 1
+    ovenCount: 0
+    counterCount: 0
+    pizzaCounterCount: 0
+    chefCount: 0
+    chefCost: 0
+    ovenCost: 0
+    counterCost: 0
+    pizzaCounterCost: 0
   kitchenIndex: 2
   kuryeMutfagimi: 1
   fridge: {fileID: 4818639256241273825}
@@ -1241,16 +1251,16 @@ MonoBehaviour:
   - {fileID: 4818639257824558346}
   - {fileID: 9016250453682103848}
   - {fileID: 4818639256377345035}
-  allCounters:
-  - {fileID: 8262331125600206094}
-  - {fileID: 188035145421002254}
-  - {fileID: 3170502487380532130}
   useablePizzaCounters: []
   allPizzaCounters:
   - {fileID: 580295995534626179}
   - {fileID: 3081059499369427140}
   - {fileID: 1579929043100628677}
   useableCounters: []
+  allCounters:
+  - {fileID: 8262331125600206094}
+  - {fileID: 188035145421002254}
+  - {fileID: 3170502487380532130}
   allChefs: []
   allOven:
   - {fileID: 5552593422420246904}
@@ -2659,6 +2669,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5af5e739b56014a86b73e97e7fdcb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buyOvenButton: {fileID: 1926892101508851903}
+  buyCounterButton: {fileID: 1926892102139079589}
+  buyPizzaCounterButton: {fileID: 1926892101508851889}
+  buyChefButton: {fileID: 1926892100952665483}
   firinSayisi: {fileID: 2086450732658112586}
   kasaSayisi: {fileID: 7125700554894188142}
   counterSayisi: {fileID: 4615319612207980427}

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Kitchen : Department
-{
-    
+{   
     public ParkinLot parkinLot;
+    public KitchenUIData kitchenUIData; 
     public KitchenData kitchenData; 
     [Space(20)]
     public int kitchenIndex;
@@ -29,16 +30,16 @@ public class Kitchen : Department
     [Header("Listeler")]
     [SerializeField] private List<Oven> UseableOvens;
     [SerializeField] private List<Transform> chefWaitTransform;
-    public List<Counter> allCounters;
     [SerializeField] public List<RollOutPizzaCounter> useablePizzaCounters;
     [SerializeField] public List<RollOutPizzaCounter> allPizzaCounters;
     public List<Counter> useableCounters;
+    public List<Counter> allCounters;
     public List<Chef> allChefs;
     public List<Oven> allOven;
     void OnEnable()
     {
         levelManager = FindObjectOfType<LevelManager>();
-        kitchenData = GetComponentInChildren<KitchenData>();
+        kitchenUIData = GetComponentInChildren<KitchenUIData>();
     }
    
     void Awake()
@@ -47,11 +48,78 @@ public class Kitchen : Department
         camPlace = _camPlace;
         level = GetComponentInParent<Level>();
         selectableCollider = GetComponent<Collider>();
+        allPizzaCounters = GetComponentsInChildren<RollOutPizzaCounter>().ToList();
+        allOven = GetComponentsInChildren<Oven>().ToList();
+        allCounters = GetComponentsInChildren<Counter>().ToList();
     }
     private void Start()
     {
-        if(kuryeMutfagimi)
-            lockedPanel = parkinLot.lockedPanel;
+        
+    }
+    
+    public void SaveKitchen()
+    {
+        kitchenData = new KitchenData{
+            kitchenIsLocked = isLocked,
+            ovenCount = ovenCount,
+            counterCount = counterCount,
+            chefCount = cookCount,
+            pizzaCounterCount = pizzaCounterCount,
+            chefCost = asciCost.GetGold(),
+            counterCost= counterCost.GetGold(),
+            ovenCost = ovenCost.GetGold(),
+            pizzaCounterCost = pizzaCounterCost.GetGold(),
+        };
+        if(parkinLot != null)
+            parkinLot.SaveParkinglot();
+        
+        level.levelData.kitchenData[kitchenIndex] = kitchenData;
+    }
+    public void LoadKitchen()
+    {
+        if(level.levelData.kitchenData[kitchenIndex] != null)
+        {
+            kitchenData = level.levelData.kitchenData[kitchenIndex];
+            isLocked = kitchenData.kitchenIsLocked;
+            if(!isLocked)
+            {    
+                if(kuryeMutfagimi)
+                {
+                    lockedPanel = parkinLot.lockedPanel;
+                    parkinLot.isLocked = false;
+                    parkinLot.LoadParkingLot();
+                    level.unlockedParkinLots.Add(parkinLot);
+                }
+                level.unlockedKitchens.Add(this);
+                @lock.SetActive(false);
+                for (int i = 0; i < kitchenData.ovenCount; i++)
+                {
+                    FirinSatinAl(false);
+                }
+                for (int i = 0; i < kitchenData.counterCount; i++)
+                {
+                    BuyCounter(false);
+                }
+                for (int i = 0; i < kitchenData.pizzaCounterCount; i++)
+                {
+                    PizzaCounterSatinAl(false);
+                }
+                for (int i = 0; i < kitchenData.chefCount; i++)
+                {
+                    AsciSatinAl(false);
+                }
+            }
+        }
+        else
+        {
+            kitchenData = new KitchenData();
+        }
+        
+        asciCost.SetGold(kitchenData.chefCost);
+        pizzaCounterCost.SetGold(kitchenData.pizzaCounterCost);
+        ovenCost.SetGold(kitchenData.ovenCost);
+        counterCost.SetGold(kitchenData.counterCost);
+        kitchenUIData.UpdateData();
     }
     public RollOutPizzaCounter GetEmptyPizzaCounter()
     {
@@ -162,7 +230,10 @@ public class Kitchen : Department
         asciClass.fridge = fridge;
         asciClass.kitchen = this;
         asciClass.level = level;
-        kitchenData.UpdateData();
+        asciClass.InitializeChef();
+        asciCost.IncreaseGold(100);
+        CheckChefButton();
+        kitchenUIData.UpdateData();
         
     }
     public void BuyCounter(bool isPaid)
@@ -189,7 +260,6 @@ public class Kitchen : Department
         most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Chef>().counter = counter;
         counter.chefs.Add(most.chefs[most.chefs.Count-1]);
         var cook = most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Chef>();
-        Debug.Log((cook.currState == cook.queueState || cook.currState == cook.queueWaitState) + " " +  (cook.queueState.previousState == cook.putOnCounterState),cook);
         if((cook.currState == cook.queueState || cook.currState == cook.queueWaitState) && cook.queueState.previousState == cook.putOnCounterState)
         {
             cook.currState = cook.putOnCounterState;
@@ -198,7 +268,9 @@ public class Kitchen : Department
         if(most.queue.Contains(most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Chef>()))
             most.queue.Remove(most.chefs[most.chefs.Count-1].transform.GetChild(0).GetComponent<Chef>());    
         most.chefs.Remove(most.chefs[most.chefs.Count-1]);
-        kitchenData.UpdateData();
+        counterCost.IncreaseGold(100);
+        CheckChefButton();
+        kitchenUIData.UpdateData();
     }
     public void PizzaCounterSatinAl(bool isPaid)
     {
@@ -229,7 +301,9 @@ public class Kitchen : Department
         if(encok.queue.Contains(asci))
             encok.queue.Remove(asci);    
         encok.chefs.Remove(encok.chefs[encok.chefs.Count-1]);
-        kitchenData.UpdateData();
+        pizzaCounterCost.IncreaseGold(100);
+        CheckChefButton();
+        kitchenUIData.UpdateData();
     }
     public void FirinSatinAl(bool ucretlimi)
     {
@@ -262,7 +336,9 @@ public class Kitchen : Department
         if(encok.queue.Contains(asci))
             encok.queue.Remove(asci);
         encok.chefs.Remove(encok.chefs[encok.chefs.Count-1]);
-        kitchenData.UpdateData();
+        ovenCost.IncreaseGold(100);
+        CheckChefButton();
+        kitchenUIData.UpdateData();
     }
     public void UnLock(bool kuryeMutfagimi)
     {
@@ -278,8 +354,9 @@ public class Kitchen : Department
             BuyCounter(false);
             PizzaCounterSatinAl(false);
             AsciSatinAl(false);
-            kitchenData.UpdateData();
-            level.IsRestaurantReady(false);
+            kitchenUIData.UpdateData();
+            level.RestaurantReady(false);
+            level.unlockedKitchens.Add(this);
             if(kuryeMutfagimi)
                 SelectManager.instance.BackButton();
         }
@@ -294,6 +371,7 @@ public class Kitchen : Department
         float totalTime = 0;
         for (int i = 0; i < allChefs.Count; i++)
         {
+            totalTime += Vector3.Distance(allChefs[i].counter.transform.position,fridge.transform.position);
             totalTime += Vector3.Distance(allChefs[i].fridge.position,allChefs[i].rollOutPizzaCounter.transform.position)/allChefs[i].moveSpeed;
             totalTime += allChefs[i].asciIdleState.rollOutPizzaTime;
             totalTime += Vector3.Distance (allChefs[i].rollOutPizzaCounter.transform.position,allChefs[i].oven.transform.position)/allChefs[i].moveSpeed;
@@ -306,5 +384,25 @@ public class Kitchen : Department
         if(firinDiff > 0)
             totalTime += allChefs[0].waitForOvenState.time;
         return totalTime/allChefs.Count;
+    }
+    private void CheckChefButton()
+    {
+        int queueCount = 4;
+        if( allChefs.Count >= useableCounters.Count*queueCount)
+        {
+            kitchenUIData.ToggleChefButton(false);
+        }
+        else if(allChefs.Count >= useablePizzaCounters.Count*queueCount)
+        {
+            kitchenUIData.ToggleChefButton(false);
+        }
+        else if(allChefs.Count >= UseableOvens.Count*queueCount)
+        {
+            kitchenUIData.ToggleChefButton(false);
+        }
+        else
+        {
+            kitchenUIData.ToggleChefButton(true);
+        }
     }
 }

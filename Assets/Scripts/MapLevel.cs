@@ -17,6 +17,7 @@ public class MapLevel : MonoBehaviour
     [SerializeField] Gold gold;
     void Start()
     {
+        earnedGoldText.text = "0";
         isUnlocked = GameManager.instance.gameData.levelData[levelIndex].isUnlock;
         if(isUnlocked)
         {
@@ -24,7 +25,10 @@ public class MapLevel : MonoBehaviour
             levelImage.SetActive(true);
         }
         else   
+        {
             lockImage.SetActive(true);
+
+        }
     }
     public void UnlockLevel()
     {
@@ -35,6 +39,7 @@ public class MapLevel : MonoBehaviour
             GameManager.instance.SetMoney(-gold.GetGold());
             levelImage.SetActive(true);
             lockImage.SetActive(false);
+            earnedGoldText.text = "0";
         }
     }   
     public void SelectLevel()
@@ -43,6 +48,11 @@ public class MapLevel : MonoBehaviour
     }
     IEnumerator CalcLevelIdleGold()
     {        
+        if(String.IsNullOrEmpty(GameManager.instance.gameData.levelData[levelIndex].lastLoginDate))
+        {
+            earnedGoldText.text = "0";
+            yield break;
+        }
         while(true)
         {
             if(time > 0)
@@ -54,12 +64,11 @@ public class MapLevel : MonoBehaviour
                 DateTime _dateNow = Convert.ToDateTime(DateTime.Now);
                 DateTime _dateOld = Convert.ToDateTime(GameManager.instance.gameData.levelData[levelIndex].lastLoginDate);
                 TimeSpan diff = _dateNow.Subtract(_dateOld);
-                //Debug.Log(GameManager.CaclText((GameManager.instance.gameData.levelData[levelIndex].goldEarnedPerSec * (int)diff.TotalSeconds) / 10));
+
                 earnedGoldText.text = GameManager.CaclText((GameManager.instance.gameData.levelData[levelIndex].goldEarnedPerSec *(int) diff.TotalSeconds)/10);
                 time = 2;
             }
             yield return null;
-            // Debug.Log((GameManager.instance.gameData.levelData[levelIndex].goldEarnedPerSec * diff.TotalSeconds)/10);
         }
     }
 }

@@ -15,7 +15,7 @@ public class TakingFoodFromCounterState : WaiterBaseState
         if(counter != null)
         {
             waiter.agent.SetDestination(counter.waiterPos.position);
-            if(Vector3.Distance(waiter.agent.transform.position,counter.transform.position) < 0.5f)
+            if(Vector3.Distance(waiter.agent.transform.position,counter.transform.position) < 0.8f)
             {
                 waiter.tasiState.waiter.counter = counter;
                 counter = null;
@@ -27,7 +27,7 @@ public class TakingFoodFromCounterState : WaiterBaseState
         counter = waiter.FindCounter();
         if(counter == null)
         {
-            if(Vector3.Distance(waiter.agent.transform.position,waiter.waitingPlace.position) < 0.3f)
+            if(Vector3.Distance(waiter.agent.transform.position,waiter.waitingPlace.position) < 0.5f)
             {
                 waiter.currState = waiter.idleState;
                 return;

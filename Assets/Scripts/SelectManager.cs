@@ -10,7 +10,7 @@ public class SelectManager : MonoBehaviour
     bool isMoved;
     [SerializeField] private Button _backBtn;
     private GameObject _willBeClosedPanel;
-    [SerializeField] private GameObject _selectedObject;
+    [SerializeField] private Department _selectedObject;
     [SerializeField] private Vector3 _oldPos;
     void Awake()
     {
@@ -23,18 +23,19 @@ public class SelectManager : MonoBehaviour
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
         foreach (var item in results)
         {
-            Debug.Log(item + " item");
+            if(item.gameObject.TryGetComponent(out RectTransform rectTransform))
+            {
+                return true;
+            
+            }
         }
-        return results.Count > 0;
+        return false;
 }
     void Update()
     {
-        // if(IsPointerOverUIObject()) 
-        // {
-        //     return;
-        // } 
             
-        Select();
+                
+            Select();
 
     }
     
@@ -49,9 +50,30 @@ public class SelectManager : MonoBehaviour
                isMoved = true;
            }
 
-           if (parmak.phase == TouchPhase.Ended && _selectedObject == null && !isMoved)
+            if (parmak.phase == TouchPhase.Ended && _selectedObject == null && !isMoved)
                 // if (Input.GetMouseButton(0) && _selectedObject == null && !isMoved)
-                {
+            {
+                // PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+                // eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+                // List<RaycastResult> results = new List<RaycastResult>();
+                // EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+                // Collider collider = null;
+                // foreach (var item in results)
+                // {
+                //     Debug.Log(item.gameObject,item.gameObject);
+                //     if(item.gameObject.TryGetComponent(out RectTransform rectTransform))
+                //     {
+                //         return;
+                //     }
+                //     if(item.gameObject.TryGetComponent(out Department department1))
+                //     {
+                //         collider = department1.GetComponent<Collider>();
+                //     }
+                // }
+                // if(!EventSystem.current.IsPointerOverGameObject())
+                // {
+                //     return;
+                // }
                 RaycastHit hit = CastRay();
                 if(hit.collider == null)
                     return;
@@ -66,16 +88,19 @@ public class SelectManager : MonoBehaviour
                     }
                     else
                     {
+                        Debug.Log(department.dataPanel.GetComponent<Canvas>(),department.dataPanel.GetComponent<Canvas>());
                         department.dataPanel.GetComponent<Canvas>().enabled =true;
                         _willBeClosedPanel = department.dataPanel;
                     }
 
                     CameraMove.instance.MoveTarget(department.camPlace.position);
                     department.oldCamPlace = CameraMove.instance.transform;
-                    _selectedObject = department.selectableCollider.gameObject;
+                    _selectedObject = department;
                     _backBtn.gameObject.SetActive(true);
                     _oldPos = department.oldCamPlace.position;
                     CameraMove.instance.lockUp = true;
+                    _selectedObject.level.OffAllColliders();
+                    
                 }
                 isMoved = true;
             }
@@ -89,9 +114,11 @@ public class SelectManager : MonoBehaviour
         _selectedObject.GetComponent<Collider>().enabled = true;
         CameraMove.instance.MoveTarget(_oldPos);
         _backBtn.gameObject.SetActive(false);
+        _selectedObject.level.OnAllColliders();
         _selectedObject = null;
         _willBeClosedPanel.GetComponent<Canvas>().enabled = false;
         // _kapatilacakPanel.SetActive(false);
+        
     }
     private RaycastHit CastRay()
     {

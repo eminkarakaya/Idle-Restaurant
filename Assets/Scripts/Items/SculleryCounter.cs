@@ -8,4 +8,8 @@ public class SculleryCounter : Item
     public List <Plate> plates;
     public Transform dishwasherPlace;
     public Item waiterItem;
+    public bool CheckQueueCapacityIsFull()
+    {
+        return waiterItem.queue.Count >= waiterItem.createdQueueTransform.Count;
+    }
 }
