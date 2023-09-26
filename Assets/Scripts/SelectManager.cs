@@ -8,7 +8,8 @@ public class SelectManager : MonoBehaviour
 {
     public static SelectManager instance;
     bool isMoved;
-    [SerializeField] private Button _backBtn;
+    bool isPointerOverGameObject = false;
+    [SerializeField] private GameObject _backBtn;
     private GameObject _willBeClosedPanel;
     [SerializeField] private Department _selectedObject;
     [SerializeField] private Vector3 _oldPos;
@@ -16,64 +17,44 @@ public class SelectManager : MonoBehaviour
     {
         instance=this;
     }
-    private bool IsPointerOverUIObject() {
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        foreach (var item in results)
-        {
-            if(item.gameObject.TryGetComponent(out RectTransform rectTransform))
-            {
-                return true;
-            
-            }
-        }
-        return false;
-}
+   
     void Update()
     {
-            
-                
-            Select();
-
+        Select();
     }
     
     public void Select()
     {
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            if(EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            {
+                Debug.Log(EventSystem.current.currentSelectedGameObject,EventSystem.current.currentSelectedGameObject);
+                isPointerOverGameObject = true;
+                return;
+            }
+        }
         if (Input.touchCount > 0 && _selectedObject == null)
         {
             if(CameraMove.instance.lockUp) return;
-           Touch parmak = Input.GetTouch(0);
-           if (parmak.phase == TouchPhase.Moved)
-           {
-               isMoved = true;
-           }
-
-            if (parmak.phase == TouchPhase.Ended && _selectedObject == null && !isMoved)
-                // if (Input.GetMouseButton(0) && _selectedObject == null && !isMoved)
+            Touch parmak = Input.GetTouch(0);
+            if (parmak.phase == TouchPhase.Moved)
             {
-                // PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-                // eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-                // List<RaycastResult> results = new List<RaycastResult>();
-                // EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-                // Collider collider = null;
-                // foreach (var item in results)
-                // {
-                //     Debug.Log(item.gameObject,item.gameObject);
-                //     if(item.gameObject.TryGetComponent(out RectTransform rectTransform))
-                //     {
-                //         return;
-                //     }
-                //     if(item.gameObject.TryGetComponent(out Department department1))
-                //     {
-                //         collider = department1.GetComponent<Collider>();
-                //     }
-                // }
-                // if(!EventSystem.current.IsPointerOverGameObject())
-                // {
-                //     return;
-                // }
+                isMoved = true;
+            }
+            
+            if (parmak.phase == TouchPhase.Ended && _selectedObject == null && !isMoved)
+            {
+                if(isPointerOverGameObject == true)
+                {
+                    isPointerOverGameObject = false;
+                    return;
+                }
+                if(EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                {
+                    Debug.Log(EventSystem.current.currentSelectedGameObject + " 2");
+                    return;
+                }
                 RaycastHit hit = CastRay();
                 if(hit.collider == null)
                     return;
@@ -88,7 +69,6 @@ public class SelectManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log(department.dataPanel.GetComponent<Canvas>(),department.dataPanel.GetComponent<Canvas>());
                         department.dataPanel.GetComponent<Canvas>().enabled =true;
                         _willBeClosedPanel = department.dataPanel;
                     }

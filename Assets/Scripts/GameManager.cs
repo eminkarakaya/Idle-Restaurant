@@ -31,7 +31,13 @@ public class GameManager : MonoBehaviour
         }
         SaveSystem.Init();
         if(resetData)
+        {
+            if(gameData.levelData.Length == 0)
+            {
+                gameData = new GameData();
+            }
             return;
+        }
         
         Load();
         SetMoney(0);

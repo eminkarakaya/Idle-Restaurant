@@ -295,9 +295,27 @@ public class Level : MonoBehaviour
         }
         restaurant.GetComponent<Collider>().enabled = false; 
     }
+    private IEnumerator OnAllCollidersCoroutine()
+    {
+        yield return new WaitForSeconds(0.1f);
+        foreach (var item in allKitchens)
+        {
+            item.GetComponent<Collider>().enabled = true;
+        }
+        foreach (var item in allSculleries)
+        {
+            item.GetComponent<Collider>().enabled = true;
+        }
+        foreach (var item in allParkinLots)
+        {
+            item.GetComponent<Collider>().enabled = true;
+        }
+        restaurant.GetComponent<Collider>().enabled = true; 
+    } 
     public void OnAllColliders()
     {
-        foreach (var item in allKitchens)
+        // StartCoroutine(OnAllCollidersCoroutine());
+         foreach (var item in allKitchens)
         {
             item.GetComponent<Collider>().enabled = true;
         }
