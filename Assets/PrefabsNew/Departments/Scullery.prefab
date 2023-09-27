@@ -938,6 +938,7 @@ MonoBehaviour:
   sinkCount: 0
   dishCounterCount: 0
   dishwasherCount: 0
+  washingTime: 2
 --- !u!65 &3959346550446143315
 BoxCollider:
   m_ObjectHideFlags: 0

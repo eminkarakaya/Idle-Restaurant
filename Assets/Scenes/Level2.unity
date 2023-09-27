@@ -399,11 +399,11 @@ PrefabInstance:
     - target: {fileID: 6782444399690646318, guid: 45f663dabb729c3488af5c12d2a854d9, type: 3}
       propertyPath: _backBtn
       value: 
-      objectReference: {fileID: 1721194256}
+      objectReference: {fileID: 1261234491}
     - target: {fileID: 6782444399690646318, guid: 45f663dabb729c3488af5c12d2a854d9, type: 3}
       propertyPath: _geriBtn
       value: 
-      objectReference: {fileID: 1721194256}
+      objectReference: {fileID: 0}
     - target: {fileID: 6782444399690646319, guid: 45f663dabb729c3488af5c12d2a854d9, type: 3}
       propertyPath: m_Name
       value: SelectManager
@@ -518,6 +518,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1261234491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8449275205489678151, guid: e11b41f45de853340a1165dfa5095e2f, type: 3}
+  m_PrefabInstance: {fileID: 1721194255}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1293398997
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,17 +977,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e11b41f45de853340a1165dfa5095e2f, type: 3}
---- !u!114 &1721194256 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8258311668383630345, guid: e11b41f45de853340a1165dfa5095e2f, type: 3}
-  m_PrefabInstance: {fileID: 1721194255}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1792479195
 PrefabInstance:
   m_ObjectHideFlags: 0

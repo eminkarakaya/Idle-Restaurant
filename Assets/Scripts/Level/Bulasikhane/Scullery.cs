@@ -25,6 +25,7 @@ public class Scullery : Department
     public Gold dishwasherCost;
     public Transform dishwasherSpawn;
     public int sinkCount,dishCounterCount,dishwasherCount;
+    public float washingTime = 2f;
     void Awake()
     {
         level = GetComponentInParent<Level>();
@@ -96,35 +97,7 @@ public class Scullery : Department
         }
         return currentDishCounters[0];
     }
-    public SculleryCounter FindDishCounterForWaiters(Vector3 pos,List<SculleryCounter> sculleryCounters = null)
-    {
-        List<SculleryCounter> tempDishCounters = new List<SculleryCounter>();
-        for (int i = 0; i < currentDishCounters.Count; i++)
-        {
-            tempDishCounters.Add(currentDishCounters[i]);
-        }
-        if(sculleryCounters != null)
-        {
-            for (int i = 0; i < sculleryCounters.Count; i++)
-            {
-                tempDishCounters.Remove(sculleryCounters[i]);
-            }
-        }
-        if(tempDishCounters.Count == 0) 
-            return null;
-        SculleryCounter nearestSculleryCounter = tempDishCounters[0];
-        float nearestDistance = Vector3.Distance(nearestSculleryCounter.transform.position,pos);
-        for (int i = 0; i < tempDishCounters.Count; i++)
-        {
-            float nextDistanece = Vector3.Distance(tempDishCounters[i].transform.position,pos);
-            if(nextDistanece < nearestDistance)
-            {
-                nearestDistance = nextDistanece;
-                nearestSculleryCounter = tempDishCounters[i];
-            }
-        }
-        return nearestSculleryCounter;
-    }
+   
     public SculleryCounter FindDishCounter()
     {
         
@@ -170,7 +143,7 @@ public class Scullery : Department
         var enAz = currentDishCounters[0];
         for (int i = 0; i < currentDishCounters.Count; i++)
         {
-            if(currentDishCounters[i].dishwashers.Count < enAz.dishwashers.Count)
+            if(currentDishCounters[i].dishwashers.Count < enAz.dishwashers.Count) 
             {
                 enAz = currentDishCounters[i];
             }
@@ -180,7 +153,8 @@ public class Scullery : Department
     }
     public Sink GetEmptySink()
     {
-        var enAz = currentSinks[0];
+        
+        Sink enAz = currentSinks[0];
         for (int i = 0; i < currentSinks.Count; i++)
         {
             if(currentSinks[i].dishwashers.Count < enAz.dishwashers.Count)
@@ -221,6 +195,7 @@ public class Scullery : Department
         dishwasherClass.level = level;
         dishwasherClass.scullery = this;
         dishwasherCost.IncreaseGold(100);
+        restaurant.CheckWaiterButton();
         sculleryUIData.UpdateData();
 
     }
@@ -246,7 +221,15 @@ public class Scullery : Department
         {
             return;
         }
+        // dıger dishcounter ın queue sından cıkarmak lazım 
+
+        DishWasher dishWasher = most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<DishWasher>(); 
+        if(most.queue.Contains(dishWasher))
+        {
+            most.queue.Remove(dishWasher);
+        }
         most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<DishWasher>().dishCounter = counter;
+        dishWasher.currState = dishWasher.takePlateState;
         counter.dishwashers.Add(most.dishwashers[most.dishwashers.Count-1]);
         
         var dishwasher = most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<DishWasher>();
@@ -329,7 +312,7 @@ public class Scullery : Department
         {
             totalTime += Vector3.Distance(allDishwasher[i].sink.transform.position,allDishwasher[i].dishCounter.transform.position);
             totalTime += Vector3.Distance(allDishwasher[i].sink.transform.position,allDishwasher[i].dishCounter.transform.position);
-            totalTime += allDishwasher[i].washState.washingTime;
+            totalTime += washingTime;
         }
         totalTime /= allDishwasher.Count;
 

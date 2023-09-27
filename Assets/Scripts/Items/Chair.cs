@@ -26,6 +26,9 @@ public class Chair : MonoBehaviour
     
     public void MasadanKalkma()
     {
+        Debug.Log(level + " level");
+        Debug.Log(level.restaurant + " level.restaurant");
+        Debug.Log(level.restaurant.dirtyPlates + " level.restaurant.dirty");
         level.restaurant.dirtyPlates.Add(this);
         plate.transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
         ObjectPool.instance.pools[0].pooledObjects.Enqueue(plate.transform.GetChild(0).GetChild(1).gameObject);

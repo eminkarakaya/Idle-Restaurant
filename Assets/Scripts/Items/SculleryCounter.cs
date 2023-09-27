@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SculleryCounter : Item
 {
+    public Scullery scullery;
     public GameObject barrier;
     public List <Plate> plates;
     public Transform dishwasherPlace;
@@ -11,5 +12,8 @@ public class SculleryCounter : Item
     public bool CheckQueueCapacityIsFull()
     {
         return waiterItem.queue.Count >= waiterItem.createdQueueTransform.Count;
+    }
+    private void Start() {
+        scullery = GetComponentInParent<Scullery>();
     }
 }

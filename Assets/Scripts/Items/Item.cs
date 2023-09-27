@@ -6,7 +6,6 @@ public class Item : MonoBehaviour
 {
     public int plateCount;
     public List<GameObject> chefs;
-    public List<GameObject> customers;
     public List<GameObject> dishwashers;
     public List<Transform> createdQueueTransform;
     [SerializeField] private List<Unit> _queue;

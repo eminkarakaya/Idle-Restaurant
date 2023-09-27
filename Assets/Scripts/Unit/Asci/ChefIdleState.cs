@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChefIdleState : ChefBaseState
 {
+    // pızza acma state
     public RollOutPizzaCounter rollOutPizzaCounter;
     public float rollOutPizzaTime = 0;
     float _rollOutTimeTemp;
@@ -22,6 +23,7 @@ public class ChefIdleState : ChefBaseState
             chef.pizza.transform.position = chef.hand.position;
             chef.pizza.transform.SetParent(chef.hand);
             // asci.pizza = null;
+        // pizza actıktan sonra fırına gıdıyor
             chef.currState = chef.putOunOvenState;
         }
     }

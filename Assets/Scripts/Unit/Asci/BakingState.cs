@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class BakingState : ChefBaseState
 {
+    // fırına gıtme state
     Transform firinTransform;
     float offset = .3f;
     public override void StartState(Action action)
     {
+
         item = chef.oven;
         firinTransform = item.chefPlace.transform;
         if(!item.queue.Contains(chef))
             item.CreateQueue(chef);
         
-        if(item.queue[0] != chef)//&& item.queue[0] != asci)
+        if(item.queue[0] != chef && item.queue[0] != chef)
         {
             chef.queueState.isCarrying = true;
             chef.queueState.previousState = chef.currState;
             chef.currState = chef.queueState;
+            return;
         }
         chef.agent.SetDestination(firinTransform.position);
         action.Carry();
@@ -25,6 +28,7 @@ public class BakingState : ChefBaseState
     }
     public override void UpdateState(Action action)
     {
+        // eger fırına yaklasırsa pişirmek ıcın bekle state başlar
         if(Vector3.Distance(chef.agent.transform.position,firinTransform.position) > offset)
         {
             return;

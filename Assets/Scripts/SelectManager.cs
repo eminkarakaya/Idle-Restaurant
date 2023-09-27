@@ -29,7 +29,6 @@ public class SelectManager : MonoBehaviour
         {
             if(EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
             {
-                Debug.Log(EventSystem.current.currentSelectedGameObject,EventSystem.current.currentSelectedGameObject);
                 isPointerOverGameObject = true;
                 return;
             }
@@ -52,7 +51,6 @@ public class SelectManager : MonoBehaviour
                 }
                 if(EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
                 {
-                    Debug.Log(EventSystem.current.currentSelectedGameObject + " 2");
                     return;
                 }
                 RaycastHit hit = CastRay();

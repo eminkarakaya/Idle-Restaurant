@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Restaurant : Department 
@@ -248,16 +249,16 @@ public class Restaurant : Department
         int counterCount = 0;
         for (int i = 0; i < level.unlockedSculleries.Count; i++)
         {
-            counterCount += level.unlockedSculleries[i].currentDishCounters.Count;
+            counterCount += level.unlockedSculleries[i].currentDishCounters.Where(x=>x.dishwashers.Count > 0).Count();
         }
         int queueCount = 4;
         if( allWaiters.Count >= counterCount*queueCount)
         {
-            restaurantUIData.ToggleChefButton(false);
+            restaurantUIData.ToggleWaiterButton(false);
         }
         else
         {
-            restaurantUIData.ToggleChefButton(true);
+            restaurantUIData.ToggleWaiterButton(true);
         }
     }
 }

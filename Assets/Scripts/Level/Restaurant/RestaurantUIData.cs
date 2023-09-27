@@ -39,7 +39,7 @@ public class RestaurantUIData : MonoBehaviour
         else
             pizzaDistributingTime.text = GameManager.CaclText(restaurant.unlockCost.GetGold()) + "$";
     }
-    public void ToggleChefButton(bool state)
+    public void ToggleWaiterButton(bool state)
     {
         buyWaiterButton.interactable = state;
     }
