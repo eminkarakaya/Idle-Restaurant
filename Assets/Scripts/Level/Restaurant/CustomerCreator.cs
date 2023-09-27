@@ -38,10 +38,10 @@ public class CustomerCreator : MonoBehaviour
                 musteri.transform.rotation = Quaternion.identity;
                 // var musteri = Instantiate(customerPrefab,customerCreatedTransform.position,Quaternion.identity);
                 musteri.transform.GetChild(0).GetComponent<Customer>().door = Door.instance.kapiTransform;
-                musteri.transform.GetChild(0).GetComponent<Customer>().currState = musteri.transform.GetChild(0).GetComponent<Customer>().customerWalkState;
+                // musteri.transform.GetChild(0).GetComponent<Customer>().currState = musteri.transform.GetChild(0).GetComponent<Customer>().customerWalkState;
                 musteri.transform.GetChild(0).GetComponent<Customer>().level = level;
                 musteri.transform.SetParent(level.transform);
-                musteri.transform.GetChild(0).GetComponent<Customer>().currState = musteri.transform.GetChild(0).GetComponent<Customer>().customerWalkState;
+                // musteri.transform.GetChild(0).GetComponent<Customer>().currState = musteri.transform.GetChild(0).GetComponent<Customer>().customerWalkState;
             }
             yield return null;
         }

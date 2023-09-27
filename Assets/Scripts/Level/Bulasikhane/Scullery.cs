@@ -223,26 +223,26 @@ public class Scullery : Department
         }
         // dıger dishcounter ın queue sından cıkarmak lazım 
 
-        DishWasher dishWasher = most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<DishWasher>(); 
-        if(most.queue.Contains(dishWasher))
+        DishWasher dishwasher = most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<DishWasher>(); 
+        if(most.queue.Contains(dishwasher))
         {
-            most.queue.Remove(dishWasher);
+            most.queue.Remove(dishwasher);
         }
-        most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<DishWasher>().dishCounter = counter;
-        dishWasher.currState = dishWasher.takePlateState;
+        dishwasher.dishCounter = counter;
+        dishwasher.currState = dishwasher.takePlateState;
         counter.dishwashers.Add(most.dishwashers[most.dishwashers.Count-1]);
         
-        var dishwasher = most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<DishWasher>();
-        if((dishwasher.currState == dishwasher.queueState || dishwasher.currState == dishwasher.queueWaitState) && dishwasher.queueState.previousState == dishwasher.takePlateState)
-        {
-            // if(encok.queue.Contains(bulasikci))
-            //     encok.queue.Remove(bulasikci);
-            dishwasher.currState = dishwasher.takePlateState;
-        }
-        if(dishwasher.currState == dishwasher.waitPlateState)
-        {
-            dishwasher.currState = dishwasher.takePlateState;
-        }
+        // var dishwasher = most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<DishWasher>();
+        // if((dishwasher.currState == dishwasher.queueState || dishwasher.currState == dishwasher.queueWaitState) && dishwasher.queueState.previousState == dishwasher.takePlateState)
+        // {
+        //     // if(encok.queue.Contains(bulasikci))
+        //     //     encok.queue.Remove(bulasikci);
+        //     dishwasher.currState = dishwasher.takePlateState;
+        // }
+        // if(dishwasher.currState == dishwasher.waitPlateState)
+        // {
+        //     dishwasher.currState = dishwasher.takePlateState;
+        // }
         most.dishwashers.Remove(most.dishwashers[most.dishwashers.Count-1]);
         dishCounterCost.IncreaseGold(100);
         restaurant.CheckWaiterButton();

@@ -1251,6 +1251,10 @@ PrefabInstance:
       propertyPath: earnedIdleMoneyText
       value: 
       objectReference: {fileID: 1792479198}
+    - target: {fileID: 3736303231389642149, guid: febbae85b1a17ae42a6a3deec2c9001e, type: 3}
+      propertyPath: _isLocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4652410772852763937, guid: febbae85b1a17ae42a6a3deec2c9001e, type: 3}
       propertyPath: m_RootOrder
       value: 8

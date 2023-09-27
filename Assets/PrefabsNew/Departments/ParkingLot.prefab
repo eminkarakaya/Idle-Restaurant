@@ -1851,7 +1851,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plateCount: 0
   chefs: []
-  customers: []
   dishwashers: []
   createdQueueTransform:
   - {fileID: 6980659156676698560}
@@ -1981,6 +1980,7 @@ MonoBehaviour:
   _isLocked: 1
   oldCamPlace: {fileID: 0}
   selectableCollider: {fileID: 0}
+  parkingLotIndex: 0
   kitchen: {fileID: 0}
   queue: {fileID: 6980659157792275762}
   spawnPoint: {fileID: 5780408031495919300}
@@ -2768,11 +2768,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parkinLot: {fileID: 6980659158349058897}
+  buyMotorCycleButton: {fileID: 7132621394415849772}
+  buySpeedButton: {fileID: 7132621394415849762}
   motorcycleCount: {fileID: 7256729004827361753}
   motorAlCostText: {fileID: 3358303223424507440}
   motorcycleSpeedText: {fileID: 4057026167796803096}
   motorcycleSpeedCost: {fileID: 8242556700456401393}
   motorcycleSpeedNext: {fileID: 4057026167878693362}
+  pizzaCikmaSuresi: {fileID: 3253253586555848547}
+  speechBubble: {fileID: 8672697442359796247}
 --- !u!1 &7256729006512352946
 GameObject:
   m_ObjectHideFlags: 0
@@ -3031,6 +3035,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpeecBubbleDepartmant
       objectReference: {fileID: 0}
+    - target: {fileID: 5833995090157678334, guid: b85b27442cc80ae458ba4c9117db91cd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7510850226284127219, guid: b85b27442cc80ae458ba4c9117db91cd, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -3043,6 +3051,22 @@ PrefabInstance:
 --- !u!224 &2054258738150332139 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3760275549176633858, guid: b85b27442cc80ae458ba4c9117db91cd, type: 3}
+  m_PrefabInstance: {fileID: 2931033843365563625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3253253586555848547 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 398849109263289226, guid: b85b27442cc80ae458ba4c9117db91cd, type: 3}
+  m_PrefabInstance: {fileID: 2931033843365563625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &8672697442359796247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5833995090157678334, guid: b85b27442cc80ae458ba4c9117db91cd, type: 3}
   m_PrefabInstance: {fileID: 2931033843365563625}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9153025262468445824

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,9 @@ public class ParkinglotUIData : MonoBehaviour
     [SerializeField] Text motorcycleCount
     ,motorAlCostText,motorcycleSpeedText,motorcycleSpeedCost,motorcycleSpeedNext;
 
+    [SerializeField] TextMeshProUGUI pizzaCikmaSuresi;
+    [SerializeField] private GameObject speechBubble;
+
     void Awake()
     {
         // parkinLot = GetComponentInParent<ParkinLot>();
@@ -19,6 +23,7 @@ public class ParkinglotUIData : MonoBehaviour
     }
     public void UpdateData()
     {
+        speechBubble.SetActive(true);
         motorcycleCount.text = parkinLot.allMotorcycle.Count.ToString() + "/" + parkinLot.motorcycleCapacity;
         motorAlCostText.text = GameManager.CaclText(parkinLot.motorCost.GetGold());
         motorcycleSpeedText.text = GameManager.CaclText(parkinLot.hiz) + " m/s";

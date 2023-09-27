@@ -1587,10 +1587,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 996985469}
     m_Modifications:
-    - target: {fileID: 212528842657676952, guid: c4bb3ab89b48941409002cd7cc82e9a3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 212528843773196606, guid: c4bb3ab89b48941409002cd7cc82e9a3, type: 3}
       propertyPath: m_Name
       value: Italy
@@ -1678,6 +1674,14 @@ PrefabInstance:
     - target: {fileID: 212528843773196607, guid: c4bb3ab89b48941409002cd7cc82e9a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 323525099094704551, guid: c4bb3ab89b48941409002cd7cc82e9a3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180681539923951733, guid: c4bb3ab89b48941409002cd7cc82e9a3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 349
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

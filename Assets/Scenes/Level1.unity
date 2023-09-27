@@ -357,9 +357,25 @@ PrefabInstance:
       propertyPath: lockedPanel
       value: 
       objectReference: {fileID: 1022890377}
+    - target: {fileID: 4880716312689355828, guid: 13afa7bc19e3b5d4591b230c21f5f05f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880716312689355828, guid: 13afa7bc19e3b5d4591b230c21f5f05f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.442
+      objectReference: {fileID: 0}
     - target: {fileID: 8090585855025851230, guid: 13afa7bc19e3b5d4591b230c21f5f05f, type: 3}
       propertyPath: m_Name
       value: Kitchen (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8566464069462035344, guid: 13afa7bc19e3b5d4591b230c21f5f05f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8566464069462035344, guid: 13afa7bc19e3b5d4591b230c21f5f05f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.861
       objectReference: {fileID: 0}
     - target: {fileID: 8985885571113721497, guid: 13afa7bc19e3b5d4591b230c21f5f05f, type: 3}
       propertyPath: m_IsActive
@@ -8194,6 +8210,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8391105151480075776}
     m_Modifications:
+    - target: {fileID: 421961065490164849, guid: 05bae030eda91344382744cb032f0792, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439163817901279581, guid: 05bae030eda91344382744cb032f0792, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1439163818007588240, guid: 05bae030eda91344382744cb032f0792, type: 3}
       propertyPath: m_Name
       value: Restaurant (1)
@@ -8244,6 +8268,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1439163818007588241, guid: 05bae030eda91344382744cb032f0792, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856814968874027997, guid: 05bae030eda91344382744cb032f0792, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2987672593782335725, guid: 05bae030eda91344382744cb032f0792, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838367558968728887, guid: 05bae030eda91344382744cb032f0792, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3874384039519290875, guid: 05bae030eda91344382744cb032f0792, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4136011794143331514, guid: 05bae030eda91344382744cb032f0792, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373908297202860347, guid: 05bae030eda91344382744cb032f0792, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672551477048234598, guid: 05bae030eda91344382744cb032f0792, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900056801597919779, guid: 05bae030eda91344382744cb032f0792, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688330537894757968, guid: 05bae030eda91344382744cb032f0792, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -18748,6 +18808,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8391105151480075776}
     m_Modifications:
+    - target: {fileID: 5256702407702330623, guid: d7dc23c635209e843b4d5f00f176cdf1, type: 3}
+      propertyPath: speechBubble
+      value: 
+      objectReference: {fileID: 302714319}
+    - target: {fileID: 5256702407702330623, guid: d7dc23c635209e843b4d5f00f176cdf1, type: 3}
+      propertyPath: pizzaCikmaSuresi
+      value: 
+      objectReference: {fileID: 302714320}
     - target: {fileID: 6980659158349058896, guid: d7dc23c635209e843b4d5f00f176cdf1, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -18827,6 +18895,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67d898851eec3654e82c1f6f42e36df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &302714319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8672697442359796247, guid: d7dc23c635209e843b4d5f00f176cdf1, type: 3}
+  m_PrefabInstance: {fileID: 302714316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &302714320 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3253253586555848547, guid: d7dc23c635209e843b4d5f00f176cdf1, type: 3}
+  m_PrefabInstance: {fileID: 302714316}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &304532949
@@ -77721,11 +77805,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239577742}
   m_Mesh: {fileID: -4000674856761465243, guid: 8b71766c55a7bed4383e15aecd14ad3f, type: 3}
---- !u!223 &1240852695 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 2086450733605993135, guid: bf51ca4a41f9b884d9ef437154131259, type: 3}
-  m_PrefabInstance: {fileID: 2003112435}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1242330070
 GameObject:
   m_ObjectHideFlags: 0
@@ -95901,6 +95980,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542511943}
   m_Mesh: {fileID: -3686231805539933165, guid: 8b71766c55a7bed4383e15aecd14ad3f, type: 3}
+--- !u!1 &1543103666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2086450733605993131, guid: bf51ca4a41f9b884d9ef437154131259, type: 3}
+  m_PrefabInstance: {fileID: 2003112435}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1543250408
 GameObject:
   m_ObjectHideFlags: 0
@@ -105162,11 +105246,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1671804359}
   m_Mesh: {fileID: -6700488682695860286, guid: 8b71766c55a7bed4383e15aecd14ad3f, type: 3}
---- !u!1 &1672017363 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8470138047282944871, guid: bf51ca4a41f9b884d9ef437154131259, type: 3}
-  m_PrefabInstance: {fileID: 2003112435}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1674496760
 GameObject:
   m_ObjectHideFlags: 0
@@ -125083,11 +125162,11 @@ PrefabInstance:
     - target: {fileID: 4818639256276299110, guid: bf51ca4a41f9b884d9ef437154131259, type: 3}
       propertyPath: _dataPanel
       value: 
-      objectReference: {fileID: 1240852695}
+      objectReference: {fileID: 1543103666}
     - target: {fileID: 4818639256276299110, guid: bf51ca4a41f9b884d9ef437154131259, type: 3}
       propertyPath: lockedPanel
       value: 
-      objectReference: {fileID: 1672017363}
+      objectReference: {fileID: 425284536}
     - target: {fileID: 4818639256276299110, guid: bf51ca4a41f9b884d9ef437154131259, type: 3}
       propertyPath: kitchenIndex
       value: 1
@@ -134793,12 +134872,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1112159326873994068, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
+      propertyPath: _money
+      value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112159326873994068, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
       propertyPath: currLevel
       value: 
       objectReference: {fileID: 7603362783641944687}
     - target: {fileID: 1112159326873994068, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
       propertyPath: resetData
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112159326873994068, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
+      propertyPath: gameData.money
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 1112159326873994068, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
       propertyPath: gameData.levelData.Array.size
@@ -134815,6 +134902,10 @@ PrefabInstance:
     - target: {fileID: 1112159326873994068, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
       propertyPath: gameData.levelData.Array.data[0].restaurantData.restaurantIsLocked
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075087758985275681, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
+      propertyPath: m_Name
+      value: ParaText
       objectReference: {fileID: 0}
     - target: {fileID: 7832599795830825438, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
       propertyPath: m_AnchorMax.x

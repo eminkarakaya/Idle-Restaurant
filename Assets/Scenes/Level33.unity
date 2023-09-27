@@ -386,8 +386,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16469852}
-  m_LocalRotation: {x: 0.4384978, y: 0.13244909, z: -0.065236606, w: 0.88652194}
-  m_LocalPosition: {x: -2.3778803, y: 9.939854, z: -8.177118}
+  m_LocalRotation: {x: 0.14007851, y: -0.85696965, z: 0.3832408, w: 0.31481352}
+  m_LocalPosition: {x: 5.702306, y: 9.156592, z: 6.1300764}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5798,15 +5798,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7018067407967488452, guid: 7b4ba5d405645a04084e85945f9be24d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.74
+      value: -24.71
       objectReference: {fileID: 0}
     - target: {fileID: 7018067407967488452, guid: 7b4ba5d405645a04084e85945f9be24d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.919994
+      value: 18.24
       objectReference: {fileID: 0}
     - target: {fileID: 7018067407967488452, guid: 7b4ba5d405645a04084e85945f9be24d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.67
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 7018067407967488452, guid: 7b4ba5d405645a04084e85945f9be24d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5841,12 +5841,16 @@ PrefabInstance:
       value: Camera Rig
       objectReference: {fileID: 0}
     - target: {fileID: 7018067408063207473, guid: 7b4ba5d405645a04084e85945f9be24d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018067408063207473, guid: 7b4ba5d405645a04084e85945f9be24d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.29
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7018067408063207473, guid: 7b4ba5d405645a04084e85945f9be24d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7018067408063207475, guid: 7b4ba5d405645a04084e85945f9be24d, type: 3}
       propertyPath: m_EventMask.m_Bits
@@ -17156,8 +17160,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547093185}
-  m_LocalRotation: {x: 0.4384978, y: 0.13244909, z: -0.065236606, w: 0.88652194}
-  m_LocalPosition: {x: -2.3778803, y: 9.939854, z: -8.177118}
+  m_LocalRotation: {x: 0.21308444, y: 0.7846516, z: -0.37173313, w: 0.44803056}
+  m_LocalPosition: {x: -4.843601, y: 8.557269, z: 2.7221372}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18243,6 +18247,34 @@ PrefabInstance:
     - target: {fileID: 4913810189000291035, guid: 95e6ab008080b14418070637d53c7f05, type: 3}
       propertyPath: kitchenData.kitchenIsLocked
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230383405253388440, guid: 95e6ab008080b14418070637d53c7f05, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.473148
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230383405253388440, guid: 95e6ab008080b14418070637d53c7f05, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.260949
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230383405253388440, guid: 95e6ab008080b14418070637d53c7f05, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.0077314
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230383405253388440, guid: 95e6ab008080b14418070637d53c7f05, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.35141116
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230383405253388440, guid: 95e6ab008080b14418070637d53c7f05, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.16409591
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230383405253388440, guid: 95e6ab008080b14418070637d53c7f05, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8345007
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230383405253388440, guid: 95e6ab008080b14418070637d53c7f05, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.3913967
       objectReference: {fileID: 0}
     - target: {fileID: 8687571055287027308, guid: 95e6ab008080b14418070637d53c7f05, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28119,8 +28151,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7360524692074360596}
-  m_LocalRotation: {x: 0.43275955, y: 0.16797346, z: -0.08293905, w: 0.88183063}
-  m_LocalPosition: {x: -4.6489058, y: 9.111742, z: -8.002722}
+  m_LocalRotation: {x: 0.32432422, y: -0.3946214, z: 0.15198234, w: 0.84616137}
+  m_LocalPosition: {x: 5.2359004, y: 7.3908906, z: -4.8471956}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -62386,8 +62418,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7969592188025679128}
-  m_LocalRotation: {x: 0.4384978, y: 0.13244909, z: -0.065236606, w: 0.88652194}
-  m_LocalPosition: {x: -2.3778803, y: 9.939854, z: -8.177118}
+  m_LocalRotation: {x: 0.4167754, y: 0.3199654, z: -0.15882027, w: 0.8358807}
+  m_LocalPosition: {x: -3.7265828, y: 10.650221, z: -6.70574}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -65138,8 +65170,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8438955892974608895}
-  m_LocalRotation: {x: 0.43275955, y: 0.16797346, z: -0.08293905, w: 0.88183063}
-  m_LocalPosition: {x: -4.6489058, y: 9.111742, z: -8.002722}
+  m_LocalRotation: {x: 0.37173522, y: -0.44802278, z: 0.21308075, w: 0.78465605}
+  m_LocalPosition: {x: 9.552282, y: 8.94739, z: -11.849441}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -81308,7 +81340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlockCost: {fileID: 3109119741570944993}
   levelManager: {fileID: 0}
-  lock: {fileID: 0}
+  lock: {fileID: 8409596619234258237}
   lockedPanel: {fileID: 2521365590086570075}
   _isLocked: 1
   oldCamPlace: {fileID: 0}

@@ -6,7 +6,7 @@ public class CustomerWaitForChairState : CustomerBaseState
 {
     public override void StartState(Action action)
     {
-
+        
     }
     public override void UpdateState(Action action)
     {
