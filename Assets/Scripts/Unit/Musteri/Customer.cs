@@ -23,14 +23,22 @@ public class Customer : Unit
     Animator animator;
     public Chair chair;
     public Transform placeToSit;
+    Restaurant restaurant;
     void Awake()
     {
         // isReady = false;
         level = FindObjectOfType<Level>();
+        restaurant = level.restaurant;
         orderImage.sprite = level.orderSprite;
         action =  GetComponent<Action>();
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+    }
+    private void OnEnable() {
+        
+    }
+    private void OnDisable() {
+        
     }
     void Start()
     {
@@ -56,6 +64,7 @@ public class Customer : Unit
     {
         level.restaurant.waitingForFoodChairs.Add(chair);
         currState = sittingIdleState;
+        restaurant.WaiterDeliverFood?.Invoke();
     }
     public Chair FindEmptyChair()
     {

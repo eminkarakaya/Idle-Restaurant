@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class SaveSystem 
 {
-    public static string SAVE_FOLDER = Application.dataPath + "/Saves/";
+    public static string SAVE_FOLDER = Application.persistentDataPath + "/Saves/";
 
     public static void Init()
     {

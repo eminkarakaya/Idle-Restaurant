@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: StringTable_pt
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: pt
+  m_SharedData: {fileID: 11400000, guid: 4de8cc9e1cd4a2c4ca3322dc30cbe316, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 166298456064
+    m_Localized: Desbloqueie a cozinha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 885281853440
+    m_Localized: "N\xFAmero de fornos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35143211880448
+    m_Localized: "N\xFAmero de barracas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35781714972672
+    m_Localized: "N\xFAmero de check-out"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103813535567872
+    m_Localized: "N\xFAmero de chefs"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 123811960262656
+    m_Localized: "N\xFAmero de gar\xE7ons"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 124060506329088
+    m_Localized: "N\xFAmero da tabela"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 124228093939712
+    m_Localized: "Velocidade de movimento do gar\xE7om"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 124470713454592
+    m_Localized: "Frequ\xEAncia do cliente"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 125484766138368
+    m_Localized: "N\xFAmero de pias"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 125800039387136
+    m_Localized: "N\xFAmero de barracas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126001491808256
+    m_Localized: "N\xFAmero de m\xE1quina de lavar lou\xE7a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127533255823360
+    m_Localized: "N\xFAmero de motocicleta"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 308989034827776
+    m_Localized: "Dinheiro ganho enquanto voc\xEA estava fora"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 311772928610304
+    m_Localized: Desbloqueie comida para viagem e cozinha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127700562415616
+    m_Localized: Velocidade de movimento da motocicleta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 319854031212544
+    m_Localized: Desbloqueie a copa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331420722073600
+    m_Localized: Desbloqueie o restaurante
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345389914460160
+    m_Localized: Dinheiro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345533682618368
+    m_Localized: Gema
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345682353917952
+    m_Localized: Dinheiro ocioso
+    m_Metadata:
+      m_Items: []
+  - m_Id: 346228213223424
+    m_Localized: Digitar
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

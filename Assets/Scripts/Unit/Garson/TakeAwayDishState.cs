@@ -73,46 +73,15 @@ public class TakeAwayDishState : WaiterBaseState
                 prevWashingTimeXqueue = item.Key.scullery.washingTime*(item.Key.waiterItem.queue.Count+1);
                 continue;
             }
-            Debug.Log(prevWashingTimeXqueue + " prevWashingTimeXqueue " + prevMoveTime + " prevMoveTime " + " prevWashingTimeXqueue +  prevMoveTime = " + (prevWashingTimeXqueue+prevMoveTime) + "  " + item.Value + " item.Value " + (1+item.Key.waiterItem.queue.Count) *item.Key.scullery.washingTime + " (1+item.Key.queue.Count) *item.Key.scullery.washingTime");
             if(prevWashingTimeXqueue + prevMoveTime > item.Value + (1+item.Key.waiterItem.queue.Count) *item.Key.scullery.washingTime)
             {
                 leastCounter = item.Key;
-                // Debug.Log("break");
                 prevWashingTimeXqueue = item.Key.scullery.washingTime*(item.Key.waiterItem.queue.Count+1);
                 prevMoveTime = item.Value;
             }
         }
-        // Debug.Log(leastCounter + " leastCounter "  , leastCounter);
         return leastCounter;
     }
-    // public Scullery FindNearestScullery(Vector3 pos , List<Scullery> sculleries = null)
-    // {
-    //     List<Scullery> tempSculleries = new List<Scullery>();
-    //     for (int i = 0; i < waiter.level.unlockedSculleries.Count; i++)
-    //     {
-    //         tempSculleries.Add (waiter.level.unlockedSculleries[i]);
-    //     }
-    //     if(sculleries != null)
-    //     {
-    //         for (int i = 0; i < sculleries.Count; i++)
-    //         {
-    //             tempSculleries.Remove(sculleries[i]);
-    //         }
-    //     }
-    //     if(tempSculleries.Count == 0) return null;
-    //     Scullery nearestScullery = tempSculleries[0];
-    //     float nearestDistance = Vector3.Distance(pos,nearestScullery.transform.position);
-    //     for (int i = 0; i < tempSculleries.Count; i++)
-    //     {
-    //         float newDistance = Vector3.Distance(pos,tempSculleries[i].transform.position);
-    //         if(newDistance < nearestDistance)
-    //         {
-    //             nearestDistance = newDistance;
-    //             nearestScullery = tempSculleries[i]; 
-    //         }
-    //     }
-    //     return nearestScullery;
-    // }
   
     public SculleryCounter FindDishCounterForWaiters(Vector3 pos,List<SculleryCounter> sculleryCounters = null)
     {

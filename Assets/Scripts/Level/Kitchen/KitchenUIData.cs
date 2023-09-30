@@ -19,10 +19,10 @@ public class KitchenUIData : MonoBehaviour
     }
     public void UpdateData()
     {
-        counterSayisi.text = "Tezgah sayısı: " + kitchen.useablePizzaCounters.Count + "/" + kitchen.allPizzaCounters.Count;
-        asciSayisi.text = "Aşçı sayısı: " + kitchen.cookCount + "/" + kitchen.chefCapacity;
-        firinSayisi.text = "Fırın sayısı: " + kitchen.ovenCount + "/" + kitchen.allOven.Count;
-        kasaSayisi.text = "Kasa sayısı: " + kitchen.useableCounters.Count + "/" + kitchen.allCounters.Count;
+        counterSayisi.text = kitchen.useablePizzaCounters.Count + "/" + kitchen.allPizzaCounters.Count;
+        asciSayisi.text =  kitchen.cookCount + "/" + kitchen.chefCapacity;
+        firinSayisi.text = kitchen.ovenCount + "/" + kitchen.allOven.Count;
+        kasaSayisi.text =  kitchen.useableCounters.Count + "/" + kitchen.allCounters.Count;
         firinAlCost.text = GameManager.CaclText(kitchen.ovenCost.GetGold());
         asciAlCost.text = GameManager.CaclText(kitchen.asciCost.GetGold());
         kasaAlCost.text = GameManager.CaclText(kitchen.counterCost.GetGold());

@@ -34,10 +34,18 @@ public class Restaurant : Department
     [HideInInspector]public int tableCapacity;
     public int customerCount = 0;
     public float moveSpeed = 2;
-    
+    public System.Action WaiterDeliverFood;
+    public System.Action WaiterCollectDirties;
+    public List<Waiter> availableWaiters;
     void OnEnable()
     {
+        WaiterDeliverFood += CheckDeliverWaiter;
+        WaiterCollectDirties += CheckCollectDirties;
+    }
+    private void OnDisable() {
         
+        WaiterDeliverFood -= CheckDeliverWaiter;
+        WaiterCollectDirties -= CheckCollectDirties;
     }
     void Awake()
     {
@@ -52,6 +60,26 @@ public class Restaurant : Department
         selectableCollider = GetComponent<Collider>();
         dataPanel = _dataPanel;
         // LoadRestaurant();c
+    }
+    private void CheckCollectDirties()
+    {
+        Waiter waiter = GetAvailableWaiter();
+        if(waiter == null) 
+            return;
+        waiter.CheckDirtyPlate();
+    }
+    private void CheckDeliverWaiter()
+    {
+        Waiter waiter = GetAvailableWaiter();
+        if(waiter == null) 
+            return;
+        waiter.CheckDeliver();
+    }
+    public Waiter GetAvailableWaiter()
+    {
+        if(availableWaiters.Count == 0) 
+            return null;
+        return availableWaiters[0];
     }
     public void SaveRestaurant()
     {
@@ -120,12 +148,14 @@ public class Restaurant : Department
             }
         }
         customerCount ++;
-        var waiter = Instantiate(levelManager.waiterPrefab,waiterWaitPlace[customerCount-1].position,Quaternion.identity);
-        waiter.GetComponentInChildren<Waiter>().waitingPlace = waiterWaitPlace[customerCount-1];
-        waiter.GetComponentInChildren<Waiter>().level = level;
-        waiter.GetComponentInChildren<Waiter>().moveSpeed = moveSpeed;
+        GameObject waiterGameobject = Instantiate(levelManager.waiterPrefab,waiterWaitPlace[customerCount-1].position,Quaternion.identity);
+        Waiter waiter = waiterGameobject.GetComponentInChildren<Waiter>(); 
+        waiter.waitingPlace = waiterWaitPlace[customerCount-1];
+        waiter.level = level;
+        waiter.moveSpeed = moveSpeed;
         waiterCost.IncreaseGold(100);
-        allWaiters.Add(waiter);
+        allWaiters.Add(waiterGameobject);
+        availableWaiters.Add(waiter);
         CheckWaiterButton();
         restaurantUIData.UpdateData();
     }

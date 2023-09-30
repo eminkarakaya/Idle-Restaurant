@@ -324,20 +324,23 @@ public class Kitchen : Department
         var encok = FindOvenWithMostCook();
         if(encok.chefs.Count == 0 || encok.chefs.Count == 1)
         {
-            return;
+            
         }
-        var asci = encok.chefs[encok.chefs.Count-1].transform.GetChild(0).GetComponent<Chef>();
-        if(encok.queue.Contains(asci))
+        else
         {
-            encok.queue.Remove(asci);
+            var asci = encok.chefs[encok.chefs.Count-1].transform.GetChild(0).GetComponent<Chef>();
+            if(encok.queue.Contains(asci))
+            {
+                encok.queue.Remove(asci);
+            }
+            asci.oven = firin;
+            asci.currState = asci.putOunOvenState;
+            firin.chefs.Add(encok.chefs[encok.chefs.Count-1]);
+            encok.chefs.Remove(encok.chefs[encok.chefs.Count-1]);
         }
-        asci.oven = firin;
         // if((asci.currState == asci.queueState || asci.currState == asci.queueWaitState) && asci.queueState.previousState == asci.waitForOvenState)
         // {
         // }
-        asci.currState = asci.putOunOvenState;
-        firin.chefs.Add(encok.chefs[encok.chefs.Count-1]);
-        encok.chefs.Remove(encok.chefs[encok.chefs.Count-1]);
         ovenCost.IncreaseGold(100);
         CheckChefButton();
         kitchenUIData.UpdateData();

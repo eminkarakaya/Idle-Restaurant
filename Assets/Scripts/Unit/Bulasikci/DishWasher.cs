@@ -29,5 +29,18 @@ public class DishWasher : Unit
     {
         currState.UpdateState(action);
     }
-    
+    public void CheckCounter()
+    {
+        if(dishCounter.plates.Count != 0)
+        {
+            queueImage.gameObject.SetActive(false);
+            dishCounter.plates[dishCounter.plates.Count-1].transform.SetParent(transform);
+            dishCounter.plates[dishCounter.plates.Count-1].transform.position = hand.position;
+            dishCounter.plates[dishCounter.plates.Count-1].transform.rotation = Quaternion.Euler(new Vector3(-90,0,0));
+            washState.plate = dishCounter.plates[dishCounter.plates.Count-1];
+            dishCounter.plates.RemoveAt(dishCounter.plates.Count-1);
+            currState = putPlateState;
+            dishCounter.UpdateQueue(this);
+        }
+    }
 }

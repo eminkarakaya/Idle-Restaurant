@@ -25,6 +25,9 @@ public class TakeAwayDishIdleState : WaiterBaseState
             waiter.bulasikGoturState.bulasikCounter.waiterItem.UpdateQueue(waiter);
             waiter.queueImage.gameObject.SetActive(false);
             waiter.currState = waiter.beklemeYerineGitState;
+            bulasikCounter.CheckCounter();
+            // bulasıkcı bulasıgı al tetıklencek
         }
+
     }
 }

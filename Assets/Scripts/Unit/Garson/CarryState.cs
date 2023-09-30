@@ -9,10 +9,12 @@ public class CarryState : WaiterBaseState
         if(waiter.counter ==null)
         {
             waiter.counter = waiter.FindCounter();
+            waiter.RemoveCounter(waiter.counter);
         }
         if(waiter.chair == null)
         {
             waiter.chair = waiter.FindChair();
+            waiter.RemoveChair(waiter.chair);
         }
         action.Carry();
         if(!waiter.isHandFull)

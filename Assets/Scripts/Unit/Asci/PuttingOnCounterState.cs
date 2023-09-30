@@ -12,10 +12,10 @@ public class PuttingOnCounterState : ChefBaseState
         item.CreateQueue(chef);
         if(item.queue[0] != chef)
         {
-            
             chef.queueState.isCarrying = true;            
             chef.queueState.previousState = chef.currState;            
             chef.currState = chef.queueState;
+            
         }
         action.Carry();
         

@@ -8,26 +8,32 @@ public class WaiterGoToWaitingPlaceState : WaiterBaseState
     {
         action.Walk();
         waiter.agent.SetDestination(waiter.waitingPlace.position);
+        if(!waiter.restaurant.availableWaiters.Contains(waiter))
+        {
+            waiter.restaurant.availableWaiters.Add(waiter);
+        }
+        if(waiter.CheckDeliver())
+        {
+            return;
+        }
+
+
+        waiter.CheckDirtyPlate();
     }
     public override void UpdateState(Action action)
     {
-        if(waiter.targetKirli == null && waiter.level.restaurant.dirtyPlates.Count !=0)
-            waiter.targetKirli = waiter.level.restaurant.dirtyPlates[0];
-        if(waiter.targetKirli != null)
-        {
-            waiter.currState = waiter.bulasikToplaState;
-            return;
-        }
-        if(waiter.chair == null)
-        {
-            waiter.chair = waiter.FindChair();
-        }
-        if(waiter.chair != null)
-        {
-            waiter.tasiState.waiter.chair = waiter.chair;
-            waiter.currState = waiter.yemegiCounterdenAlState;
-            return;
-        }
+        // if(waiter.targetKirli == null && waiter.level.restaurant.dirtyPlates.Count !=0)
+        //     waiter.targetKirli = waiter.level.restaurant.dirtyPlates[0];
+        // if(waiter.targetKirli != null)
+        // {
+        //     if(waiter.restaurant.availableWaiters.Contains(waiter))
+        //     {
+        //         waiter.restaurant.availableWaiters.Remove(waiter);
+        //     }
+        //     waiter.currState = waiter.bulasikToplaState;
+        //     return;
+        // }
+      
         if(Vector3.Distance(waiter.transform.position, waiter.waitingPlace.transform.position)<.4f)
         {
             waiter.currState = waiter.idleState;

@@ -38,6 +38,7 @@ public class Scullery : Department
         allSinks = GetComponentsInChildren<Sink>().ToList();
         allDishCounter = GetComponentsInChildren<SculleryCounter>().ToList();
     }
+    
     private void Start() {
         
     }
@@ -88,6 +89,7 @@ public class Scullery : Department
         dishwasherCost.SetGold(sculleryData.dishCounterCost);
         sculleryUIData.UpdateData();
     }
+   
     public SculleryCounter FindEmptyDishCounter()
     {
         for (int i = 0; i < currentDishCounters.Count; i++)
@@ -268,16 +270,19 @@ public class Scullery : Department
         var most = FindSinkWithMostDishwasher();
         if(most.dishwashers.Count == 0 ||most.dishwashers.Count == 1)
         {
-            return;
+            
         }
-        most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<DishWasher>().sink = sink;
-        sink.dishwashers.Add(most.dishwashers[most.dishwashers.Count-1]);
-        var dishwasher = most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<DishWasher>();
-        if((dishwasher.currState == dishwasher.queueState || dishwasher.currState == dishwasher.queueWaitState) && dishwasher.queueState.previousState == dishwasher.waitSinkState)
+        else
         {
-            dishwasher.currState = dishwasher.putPlateState;
+            most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<DishWasher>().sink = sink;
+            sink.dishwashers.Add(most.dishwashers[most.dishwashers.Count-1]);
+            var dishwasher = most.dishwashers[most.dishwashers.Count-1].transform.GetChild(0).GetComponent<DishWasher>();
+            if((dishwasher.currState == dishwasher.queueState || dishwasher.currState == dishwasher.queueWaitState) && dishwasher.queueState.previousState == dishwasher.waitSinkState)
+            {
+                dishwasher.currState = dishwasher.putPlateState;
+            }
+            most.dishwashers.Remove(most.dishwashers[most.dishwashers.Count-1]);
         }
-        most.dishwashers.Remove(most.dishwashers[most.dishwashers.Count-1]);
         sinkCost.IncreaseGold(100);
         sculleryUIData.UpdateData();
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class Waiter : Unit
 {
@@ -16,7 +17,6 @@ public class Waiter : Unit
     public TakeAwayDishState bulasikGoturState;
     public IdleState idleState;
     public CarryState tasiState;
-    public WaiterWaitingWithFoodState yemekleBekleState;
     Animator animator;
     [Header("Items")]
     public Chair chair;
@@ -32,6 +32,8 @@ public class Waiter : Unit
             agent.speed = _moveSpeed;
         }
     }
+    
+    
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -49,6 +51,48 @@ public class Waiter : Unit
     {
         currState.UpdateState(action);
     }
+    public void CheckDirtyPlate()
+    {
+        if(targetKirli == null && level.restaurant.dirtyPlates.Count !=0)
+            targetKirli = level.restaurant.dirtyPlates[0];
+        if(targetKirli != null)
+        {
+            queueImage.gameObject.SetActive(false);
+            if(restaurant.availableWaiters.Contains(this))
+            {
+                restaurant.availableWaiters.Remove(this);
+            }
+            currState = bulasikToplaState;
+            return;
+        }
+    }
+    public bool CheckDeliver()
+    {
+        Chair tempChair = null;
+        Counter tempCounter = null;
+        tempChair = FindChair();
+        tempCounter = FindCounter();
+        if(tempChair != null && tempCounter != null)
+        {
+            counter = tempCounter;
+            chair = tempChair;
+            RemoveCounter(counter);
+            RemoveChair(chair);
+            restaurant.availableWaiters.Remove(this);
+            queueImage.gameObject.SetActive(false);
+            // this.chair = chair;
+            yemegiCounterdenAlState.counter = counter;
+            counter = null;
+            currState = yemegiCounterdenAlState;
+            return true;
+        }
+        return false;
+    }
+    public void RemoveChair(Chair chair)
+    {
+        restaurant.waitingForFoodChairs.Remove(chair);
+    }
+   
     public Chair FindChair()
     {
         if(level.restaurant.waitingForFoodChairs.Count == 0)
@@ -64,8 +108,11 @@ public class Waiter : Unit
                 enYakinChair = level.restaurant.waitingForFoodChairs[i];
             }
         }
-        level.restaurant.waitingForFoodChairs.Remove(enYakinChair);
         return enYakinChair;
+    }
+    public void RemoveCounter(Counter counter)
+    {
+        restaurant.foodReadyCounters.Remove(counter);
     }
    
     public Counter FindCounter()
@@ -83,7 +130,7 @@ public class Waiter : Unit
             }
         }
         var _counter = nearestCounter;
-        level.restaurant.foodReadyCounters.Remove(nearestCounter);
+        
         return _counter;
     }
     

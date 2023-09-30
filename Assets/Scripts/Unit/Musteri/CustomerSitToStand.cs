@@ -9,6 +9,7 @@ public class MusteriSitToStand : CustomerBaseState
         GoldAnim.instance.EarnGoldAnim2(customer.level.restaurant.earnedMoneyFromCustomer,customer.transform);
         action.CustomerWalk();
         customer.chair.MasadanKalkma();
+        customer.level.restaurant.WaiterCollectDirties?.Invoke();
         customer.agent.isStopped = false;
         customer.agent.SetDestination(Door.instance.kapiTransform.position);
     }

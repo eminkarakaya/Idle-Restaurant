@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // SceneManager.LoadScene(lastSceneIndex);
+        LanguageManager.Instance.ChangeLanguage(gameData.languageIndex);
     }
     void OnDisable()
     {

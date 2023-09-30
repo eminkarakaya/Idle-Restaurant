@@ -38,6 +38,7 @@ public class CounterFullState : ChefBaseState
             chef.pizza.transform.rotation = Quaternion.Euler(new Vector3(-90,0,0));
             chef.counter.UpdateQueue(chef);
             chef.queueImage.gameObject.SetActive(false);
+            chef.level.restaurant.WaiterDeliverFood?.Invoke();
             chef.currState = chef.fridgeState;
         }
     }

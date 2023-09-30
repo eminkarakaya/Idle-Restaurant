@@ -29,7 +29,7 @@ public class TakingFoodFromCounterState : WaiterBaseState
         {
             if(Vector3.Distance(waiter.agent.transform.position,waiter.waitingPlace.position) < 0.5f)
             {
-                waiter.currState = waiter.idleState;
+                waiter.currState = waiter.beklemeYerineGitState;
                 return;
             }
             return;

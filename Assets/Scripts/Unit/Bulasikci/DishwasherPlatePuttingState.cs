@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class DishwasherPlatePuttingState : DishWasherBaseState
 {
-    public Sink FindSink()
-    {
-        List<Sink> allSinks = dishwasher.scullery.currentSinks;
-        var enaz = allSinks[0];
-        for (int i = 0; i < allSinks.Count; i++)
-        {
-            if(allSinks[i].dishwashers.Count < enaz.dishwashers.Count)
-            {
-                enaz = allSinks[i];
-            }
-        }
-        dishwasher.sink = enaz;
-        return enaz;
-    }
+    // public Sink FindSink()
+    // {
+    //     List<Sink> allSinks = dishwasher.scullery.currentSinks;
+    //     var enaz = allSinks[0];
+    //     for (int i = 0; i < allSinks.Count; i++)
+    //     {
+    //         if(allSinks[i].dishwashers.Count < enaz.dishwashers.Count)
+    //         {
+    //             enaz = allSinks[i];
+    //         }
+    //     }
+    //     dishwasher.sink = enaz;
+    //     return enaz;
+    // }
 
     public override void StartState(Action action)
     {
         action.Carry();
-        var sink = FindSink();
-        item = sink;
+        
+        item = dishwasher.sink;
         item.CreateQueue(dishwasher);
         if(item.queue[0] != dishwasher)
         {
@@ -33,7 +33,7 @@ public class DishwasherPlatePuttingState : DishWasherBaseState
             dishwasher.currState = dishwasher.queueState;
         }
 
-        dishwasher.agent.SetDestination(sink.chefPlace.position);
+        dishwasher.agent.SetDestination(dishwasher.sink.chefPlace.position);
     }
     public override void UpdateState(Action action)
     {

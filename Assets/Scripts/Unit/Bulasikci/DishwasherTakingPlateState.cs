@@ -22,9 +22,7 @@ public class DishwasherTakingPlateState : DishWasherBaseState
         dishwasher.agent.SetDestination(dishwasher.dishCounter.chefPlace.position);
         if(Vector3.Distance(dishwasher.agent.transform.position,dishwasher.dishCounter.chefPlace.position) < .4f)
         {
-            
-                dishwasher.currState = dishwasher.waitPlateState;
-            
+            dishwasher.currState = dishwasher.waitPlateState;   
         }
     }
 }

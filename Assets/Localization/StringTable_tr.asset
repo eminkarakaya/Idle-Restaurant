@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: StringTable_tr
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: tr
+  m_SharedData: {fileID: 11400000, guid: 4de8cc9e1cd4a2c4ca3322dc30cbe316, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 166298456064
+    m_Localized: "Mutfa\u011F\u0131n Kilidini A\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 885281853440
+    m_Localized: "F\u0131r\u0131n Say\u0131s\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35143211880448
+    m_Localized: "Tezgah Say\u0131s\u0131 "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35781714972672
+    m_Localized: "Kasa Say\u0131s\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103813535567872
+    m_Localized: "A\u015F\xE7\u0131 Say\u0131s\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 123811960262656
+    m_Localized: "Garson Say\u0131s\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 124060506329088
+    m_Localized: "Masa Say\u0131s\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 124228093939712
+    m_Localized: "Garson Hareket H\u0131z\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 124470713454592
+    m_Localized: "M\xFC\u015Fteri S\u0131kl\u0131\u011F\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 125484766138368
+    m_Localized: "Lavabo Say\u0131s\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 125800039387136
+    m_Localized: "Tezgah Say\u0131s\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 126001491808256
+    m_Localized: "Bula\u015F\u0131k\xE7\u0131 Say\u0131s\u0131 "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127533255823360
+    m_Localized: "Motosiklet Say\u0131s\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 308989034827776
+    m_Localized: "Sen yokken kazan\u0131lan para "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 311772928610304
+    m_Localized: "Paket Servis ve Mutfa\u011F\u0131n Kilidini A\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127700562415616
+    m_Localized: "Motosiklet Hareket H\u0131z\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 319854031212544
+    m_Localized: "Bula\u015F\u0131khanenin Kilidini A\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331420722073600
+    m_Localized: "Restoran\u0131n Kilidini A\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345389914460160
+    m_Localized: Para
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345533682618368
+    m_Localized: "M\xFCcevher"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 345682353917952
+    m_Localized: "Bo\u015Fta Para"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 346228213223424
+    m_Localized: Gir
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

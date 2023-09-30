@@ -28,8 +28,8 @@ public class RestaurantUIData : MonoBehaviour
         waiterBuyCost.text = GameManager.CaclText(restaurant.waiterCost.GetGold());
         customerFrequencyCost.text = GameManager.CaclText(restaurant.customerFrequencyCost.GetGold());
         waiterSpeedCost.text = GameManager.CaclText(restaurant.waiterSpeedCost.GetGold());
-        waiterCountText.text = "Garson Sayısı: " +  restaurant.customerCount+ "/" +restaurant.waiterCapacity;
-        tableCountText.text = "Masa Sayısı: " + restaurant.tableCount + "/" + restaurant.tableCapacity;
+        waiterCountText.text = restaurant.customerCount+ "/" +restaurant.waiterCapacity;
+        tableCountText.text = restaurant.tableCount + "/" + restaurant.tableCapacity;
         waiterMoveSpeedText.text = GameManager.CaclText(restaurant.moveSpeed);
         waiterMoveSpeedTextNext.text = GameManager.CaclText (restaurant.moveNext);
         customerFrequencyText.text = GameManager.CaclText(restaurant.GetComponentInChildren<CustomerCreator>().frequency);

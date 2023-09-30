@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 9174594088177777328}
   - component: {fileID: 7286668812581108111}
   m_Layer: 5
-  m_Name: Para
+  m_Name: Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -174,7 +174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -59}
+  m_AnchoredPosition: {x: 0, y: -70.999985}
   m_SizeDelta: {x: 221.6112, y: 78.2837}
   m_Pivot: {x: 0.5, y: 0.93620604}
 --- !u!222 &9174594088177777328
@@ -326,7 +326,7 @@ RectTransform:
   - {fileID: 1112159326693723804}
   - {fileID: 7832599795830825438}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -345,392 +345,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4368852eb17164d8fd155134c69c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currLevel: {fileID: 0}
+  resetData: 0
   gameData:
     isFirst: 1
     lastSceneIndex: 0
-    para: 0
-    levelData:
-    - task1: 0
-      task2: 0
-      task3: 0
-      customerCount: 0
-      goldEarnedPerSec: 0
-      lastLoginDate: 
-      levelIndex: 0
-      isUnlock: 0
-      kitchenCount: 0
-      parkinLotCount: 0
-      motorcycleSpeed: []
-      motorcycleCount: 
-      kitchenIsLocked: 
-      restaurantIsLock: 0
-      ovenCount: 
-      counterCount: 
-      pizzaCounterCount: 
-      chefCount: 
-      chefCost: 
-      ovenCost: 
-      counterCost: 
-      pizzaCounterCost: 
-      kitchenIndexes: 
-      dishwasherCount: 
-      sinkCount: 
-      dishCounterCount: 
-      sculleryIsLocked: 
-      customerLocations: []
-      musteriState: []
-      waiterLocations: []
-      tableCount: 0
-      waiterCount: 0
-      waiterSpeed: 0
-      waiterCost: 0
-      tableCost: 0
-      waiterSpeedCost: 0
-      customerFrequencyCost: 0
-      sculleryCount: 0
-    - task1: 0
-      task2: 0
-      task3: 0
-      customerCount: 0
-      goldEarnedPerSec: 0
-      lastLoginDate: 
-      levelIndex: 0
-      isUnlock: 0
-      kitchenCount: 0
-      parkinLotCount: 0
-      motorcycleSpeed: []
-      motorcycleCount: 
-      kitchenIsLocked: 
-      restaurantIsLock: 0
-      ovenCount: 
-      counterCount: 
-      pizzaCounterCount: 
-      chefCount: 
-      chefCost: 
-      ovenCost: 
-      counterCost: 
-      pizzaCounterCost: 
-      kitchenIndexes: 
-      dishwasherCount: 
-      sinkCount: 
-      dishCounterCount: 
-      sculleryIsLocked: 
-      customerLocations: []
-      musteriState: []
-      waiterLocations: []
-      tableCount: 0
-      waiterCount: 0
-      waiterSpeed: 0
-      waiterCost: 0
-      tableCost: 0
-      waiterSpeedCost: 0
-      customerFrequencyCost: 0
-      sculleryCount: 0
-    - task1: 0
-      task2: 0
-      task3: 0
-      customerCount: 0
-      goldEarnedPerSec: 0
-      lastLoginDate: 
-      levelIndex: 0
-      isUnlock: 0
-      kitchenCount: 0
-      parkinLotCount: 0
-      motorcycleSpeed: []
-      motorcycleCount: 
-      kitchenIsLocked: 
-      restaurantIsLock: 0
-      ovenCount: 
-      counterCount: 
-      pizzaCounterCount: 
-      chefCount: 
-      chefCost: 
-      ovenCost: 
-      counterCost: 
-      pizzaCounterCost: 
-      kitchenIndexes: 
-      dishwasherCount: 
-      sinkCount: 
-      dishCounterCount: 
-      sculleryIsLocked: 
-      customerLocations: []
-      musteriState: []
-      waiterLocations: []
-      tableCount: 0
-      waiterCount: 0
-      waiterSpeed: 0
-      waiterCost: 0
-      tableCost: 0
-      waiterSpeedCost: 0
-      customerFrequencyCost: 0
-      sculleryCount: 0
-    - task1: 0
-      task2: 0
-      task3: 0
-      customerCount: 0
-      goldEarnedPerSec: 0
-      lastLoginDate: 
-      levelIndex: 0
-      isUnlock: 0
-      kitchenCount: 0
-      parkinLotCount: 0
-      motorcycleSpeed: []
-      motorcycleCount: 
-      kitchenIsLocked: 
-      restaurantIsLock: 0
-      ovenCount: 
-      counterCount: 
-      pizzaCounterCount: 
-      chefCount: 
-      chefCost: 
-      ovenCost: 
-      counterCost: 
-      pizzaCounterCost: 
-      kitchenIndexes: 
-      dishwasherCount: 
-      sinkCount: 
-      dishCounterCount: 
-      sculleryIsLocked: 
-      customerLocations: []
-      musteriState: []
-      waiterLocations: []
-      tableCount: 0
-      waiterCount: 0
-      waiterSpeed: 0
-      waiterCost: 0
-      tableCost: 0
-      waiterSpeedCost: 0
-      customerFrequencyCost: 0
-      sculleryCount: 0
-    - task1: 0
-      task2: 0
-      task3: 0
-      customerCount: 0
-      goldEarnedPerSec: 0
-      lastLoginDate: 
-      levelIndex: 0
-      isUnlock: 0
-      kitchenCount: 0
-      parkinLotCount: 0
-      motorcycleSpeed: []
-      motorcycleCount: 
-      kitchenIsLocked: 
-      restaurantIsLock: 0
-      ovenCount: 
-      counterCount: 
-      pizzaCounterCount: 
-      chefCount: 
-      chefCost: 
-      ovenCost: 
-      counterCost: 
-      pizzaCounterCost: 
-      kitchenIndexes: 
-      dishwasherCount: 
-      sinkCount: 
-      dishCounterCount: 
-      sculleryIsLocked: 
-      customerLocations: []
-      musteriState: []
-      waiterLocations: []
-      tableCount: 0
-      waiterCount: 0
-      waiterSpeed: 0
-      waiterCost: 0
-      tableCost: 0
-      waiterSpeedCost: 0
-      customerFrequencyCost: 0
-      sculleryCount: 0
-    - task1: 0
-      task2: 0
-      task3: 0
-      customerCount: 0
-      goldEarnedPerSec: 0
-      lastLoginDate: 
-      levelIndex: 0
-      isUnlock: 0
-      kitchenCount: 0
-      parkinLotCount: 0
-      motorcycleSpeed: []
-      motorcycleCount: 
-      kitchenIsLocked: 
-      restaurantIsLock: 0
-      ovenCount: 
-      counterCount: 
-      pizzaCounterCount: 
-      chefCount: 
-      chefCost: 
-      ovenCost: 
-      counterCost: 
-      pizzaCounterCost: 
-      kitchenIndexes: 
-      dishwasherCount: 
-      sinkCount: 
-      dishCounterCount: 
-      sculleryIsLocked: 
-      customerLocations: []
-      musteriState: []
-      waiterLocations: []
-      tableCount: 0
-      waiterCount: 0
-      waiterSpeed: 0
-      waiterCost: 0
-      tableCost: 0
-      waiterSpeedCost: 0
-      customerFrequencyCost: 0
-      sculleryCount: 0
-    - task1: 0
-      task2: 0
-      task3: 0
-      customerCount: 0
-      goldEarnedPerSec: 0
-      lastLoginDate: 
-      levelIndex: 0
-      isUnlock: 0
-      kitchenCount: 0
-      parkinLotCount: 0
-      motorcycleSpeed: []
-      motorcycleCount: 
-      kitchenIsLocked: 
-      restaurantIsLock: 0
-      ovenCount: 
-      counterCount: 
-      pizzaCounterCount: 
-      chefCount: 
-      chefCost: 
-      ovenCost: 
-      counterCost: 
-      pizzaCounterCost: 
-      kitchenIndexes: 
-      dishwasherCount: 
-      sinkCount: 
-      dishCounterCount: 
-      sculleryIsLocked: 
-      customerLocations: []
-      musteriState: []
-      waiterLocations: []
-      tableCount: 0
-      waiterCount: 0
-      waiterSpeed: 0
-      waiterCost: 0
-      tableCost: 0
-      waiterSpeedCost: 0
-      customerFrequencyCost: 0
-      sculleryCount: 0
-    - task1: 0
-      task2: 0
-      task3: 0
-      customerCount: 0
-      goldEarnedPerSec: 0
-      lastLoginDate: 
-      levelIndex: 0
-      isUnlock: 0
-      kitchenCount: 0
-      parkinLotCount: 0
-      motorcycleSpeed: []
-      motorcycleCount: 
-      kitchenIsLocked: 
-      restaurantIsLock: 0
-      ovenCount: 
-      counterCount: 
-      pizzaCounterCount: 
-      chefCount: 
-      chefCost: 
-      ovenCost: 
-      counterCost: 
-      pizzaCounterCost: 
-      kitchenIndexes: 
-      dishwasherCount: 
-      sinkCount: 
-      dishCounterCount: 
-      sculleryIsLocked: 
-      customerLocations: []
-      musteriState: []
-      waiterLocations: []
-      tableCount: 0
-      waiterCount: 0
-      waiterSpeed: 0
-      waiterCost: 0
-      tableCost: 0
-      waiterSpeedCost: 0
-      customerFrequencyCost: 0
-      sculleryCount: 0
-    - task1: 0
-      task2: 0
-      task3: 0
-      customerCount: 0
-      goldEarnedPerSec: 0
-      lastLoginDate: 
-      levelIndex: 0
-      isUnlock: 0
-      kitchenCount: 0
-      parkinLotCount: 0
-      motorcycleSpeed: []
-      motorcycleCount: 
-      kitchenIsLocked: 
-      restaurantIsLock: 0
-      ovenCount: 
-      counterCount: 
-      pizzaCounterCount: 
-      chefCount: 
-      chefCost: 
-      ovenCost: 
-      counterCost: 
-      pizzaCounterCost: 
-      kitchenIndexes: 
-      dishwasherCount: 
-      sinkCount: 
-      dishCounterCount: 
-      sculleryIsLocked: 
-      customerLocations: []
-      musteriState: []
-      waiterLocations: []
-      tableCount: 0
-      waiterCount: 0
-      waiterSpeed: 0
-      waiterCost: 0
-      tableCost: 0
-      waiterSpeedCost: 0
-      customerFrequencyCost: 0
-      sculleryCount: 0
-    - task1: 0
-      task2: 0
-      task3: 0
-      customerCount: 0
-      goldEarnedPerSec: 0
-      lastLoginDate: 
-      levelIndex: 0
-      isUnlock: 0
-      kitchenCount: 0
-      parkinLotCount: 0
-      motorcycleSpeed: []
-      motorcycleCount: 
-      kitchenIsLocked: 
-      restaurantIsLock: 0
-      ovenCount: 
-      counterCount: 
-      pizzaCounterCount: 
-      chefCount: 
-      chefCost: 
-      ovenCost: 
-      counterCost: 
-      pizzaCounterCost: 
-      kitchenIndexes: 
-      dishwasherCount: 
-      sinkCount: 
-      dishCounterCount: 
-      sculleryIsLocked: 
-      customerLocations: []
-      musteriState: []
-      waiterLocations: []
-      tableCount: 0
-      waiterCount: 0
-      waiterSpeed: 0
-      waiterCost: 0
-      tableCost: 0
-      waiterSpeedCost: 0
-      customerFrequencyCost: 0
-      sculleryCount: 0
+    money: 5000
+    levelData: []
   fader: {fileID: 1112159326693723807}
   _money: 1000000
   paraText: {fileID: 5935481935393776672}
@@ -841,7 +461,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -352, y: -59}
+  m_AnchoredPosition: {x: -352, y: -70.999985}
   m_SizeDelta: {x: 221.6112, y: 78.2837}
   m_Pivot: {x: 0.5, y: 0.93620604}
 --- !u!222 &3516897820993616849
@@ -893,6 +513,7 @@ GameObject:
   - component: {fileID: 8066327557685218231}
   - component: {fileID: 5160840148517802635}
   - component: {fileID: 8628706447026743224}
+  - component: {fileID: 8970541509269244057}
   m_Layer: 5
   m_Name: TitleText
   m_TagString: Untagged
@@ -948,7 +569,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Para
+  m_text: Money
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1017,6 +638,46 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8970541509269244057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2803925114180622138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:4de8cc9e1cd4a2c4ca3322dc30cbe316
+    m_TableEntryReference:
+      m_KeyId: 345389914460160
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8628706447026743224}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &3225266143500875073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,6 +841,7 @@ GameObject:
   - component: {fileID: 7583312825899080383}
   - component: {fileID: 4453579873568214668}
   - component: {fileID: 384129126613595216}
+  - component: {fileID: 5462641917603364934}
   m_Layer: 5
   m_Name: TitleText
   m_TagString: Untagged
@@ -1235,9 +897,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gold
-
-'
+  m_text: Gem
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1306,6 +966,46 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5462641917603364934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4667598092310395730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:4de8cc9e1cd4a2c4ca3322dc30cbe316
+    m_TableEntryReference:
+      m_KeyId: 345533682618368
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 384129126613595216}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &5075087758985275681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,7 +1018,7 @@ GameObject:
   - component: {fileID: 9137740819187495173}
   - component: {fileID: 5935481935393776672}
   m_Layer: 5
-  m_Name: GoldText
+  m_Name: ParaText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1452,6 +1152,7 @@ GameObject:
   - component: {fileID: 2621796955969974025}
   - component: {fileID: 784839089413840506}
   - component: {fileID: 7889245241261470270}
+  - component: {fileID: 3747473863904079657}
   m_Layer: 5
   m_Name: TitleText
   m_TagString: Untagged
@@ -1507,7 +1208,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Idle Para
+  m_text: Idle Money
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1576,6 +1277,46 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3747473863904079657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5692987102154971063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:4de8cc9e1cd4a2c4ca3322dc30cbe316
+    m_TableEntryReference:
+      m_KeyId: 345682353917952
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7889245241261470270}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &6002626535546541156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,11 +1427,11 @@ RectTransform:
   m_Father: {fileID: 1112159326873994064}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 540, y: 720}
-  m_SizeDelta: {x: 1080, y: 1440}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -49}
+  m_SizeDelta: {x: 1080, y: 2337}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &6876875222323998093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,7 +1579,7 @@ GameObject:
   - component: {fileID: 8898005305251104443}
   - component: {fileID: 2894191188962669231}
   m_Layer: 5
-  m_Name: Gold
+  m_Name: Gem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1865,7 +1606,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 327, y: -59}
+  m_AnchoredPosition: {x: 327, y: -71}
   m_SizeDelta: {x: 221.6112, y: 78.2837}
   m_Pivot: {x: 0.5, y: 0.93620604}
 --- !u!222 &8898005305251104443

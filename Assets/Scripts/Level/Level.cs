@@ -124,6 +124,10 @@ public class Level : MonoBehaviour
     {
         levelData = GameManager.instance.gameData.levelData[levelIndex];
         isUnlock = levelData.isUnlock;
+        if(isUnlock)
+        {
+            idleMoneyCanvas.SetActive(true);
+        }
         if(levelIndex == 0)
         {
             isUnlock = true;
@@ -202,6 +206,14 @@ public class Level : MonoBehaviour
     {
         StartCoroutine(WaitOneFrame());
         StartCoroutine(GoldAnim.instance.EarnGoldAnim((int)(CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10),20,GameManager.instance.idleMoneyText.transform));
+    }
+    public void ShowRewardedAd()
+    {
+        AdManager.Instance.LoadRewardedAd(()=>
+        {
+            StartCoroutine(WaitOneFrame());
+            StartCoroutine(GoldAnim.instance.EarnGoldAnim((int)((CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10)*2),20,GameManager.instance.idleMoneyText.transform));
+        });
     }
     public int CalcPassingTime()
     {

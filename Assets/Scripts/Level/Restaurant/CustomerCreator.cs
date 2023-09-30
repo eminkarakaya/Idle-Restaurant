@@ -32,15 +32,17 @@ public class CustomerCreator : MonoBehaviour
             if(frequencyTemp < 0)
             {
                 frequencyTemp = frequency;
-                var musteri = ObjectPool.instance.GetPooledObject(2);
-                musteri.SetActive(true);
-                musteri.transform.position = customerCreatedTransform.position;
-                musteri.transform.rotation = Quaternion.identity;
+                GameObject customerGameobject = ObjectPool.instance.GetPooledObject(2);
+                Customer customer = customerGameobject.transform.GetChild(0).GetComponent<Customer>();
+                customer.currState = customer.customerWalkState;
+                customerGameobject.transform.position = customerCreatedTransform.position;
+                customerGameobject.SetActive(true);
+                customerGameobject.transform.rotation = Quaternion.identity;
                 // var musteri = Instantiate(customerPrefab,customerCreatedTransform.position,Quaternion.identity);
-                musteri.transform.GetChild(0).GetComponent<Customer>().door = Door.instance.kapiTransform;
+                customer.door = Door.instance.kapiTransform;
                 // musteri.transform.GetChild(0).GetComponent<Customer>().currState = musteri.transform.GetChild(0).GetComponent<Customer>().customerWalkState;
-                musteri.transform.GetChild(0).GetComponent<Customer>().level = level;
-                musteri.transform.SetParent(level.transform);
+                customer.level = level;
+                customerGameobject.transform.SetParent(level.transform);
                 // musteri.transform.GetChild(0).GetComponent<Customer>().currState = musteri.transform.GetChild(0).GetComponent<Customer>().customerWalkState;
             }
             yield return null;

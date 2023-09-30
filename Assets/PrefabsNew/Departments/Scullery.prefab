@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.4, y: 7}
+  m_AnchoredPosition: {x: -22.999998, y: 7}
   m_SizeDelta: {x: 163.8019, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6064507455315338845
@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 6126419573139098447}
   - component: {fileID: 709600337403337397}
   m_Layer: 0
-  m_Name: BulasikhaneCanvas
+  m_Name: SculleryCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -423,11 +423,11 @@ MonoBehaviour:
   buySinkButton: {fileID: 3235167348795914676}
   buyDiswasherButton: {fileID: 4128688169798055775}
   buyDishCounterButton: {fileID: 6063474749640398730}
-  sinkCount: {fileID: 2021295301990310883}
+  sinkCount: {fileID: 5236546890586691524}
   sinkCost: {fileID: 581964663751196307}
-  dishwasherCount: {fileID: 6561174043563399342}
+  dishwasherCount: {fileID: 5298565114515239028}
   dishwasherCost: {fileID: 7924444698783714456}
-  dishCounterText: {fileID: 7865527010037946955}
+  dishCounterText: {fileID: 5582930002570534502}
   dishCounterCost: {fileID: 1380898799301766489}
   dishWashingTime: {fileID: 6764436764768946593}
 --- !u!1 &457489492105014282
@@ -455,7 +455,7 @@ RectTransform:
   m_GameObject: {fileID: 457489492105014282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0972, y: 1.313129, z: 1.0972}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2364239508344027345}
@@ -467,7 +467,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: -678}
+  m_AnchoredPosition: {x: -7, y: -942.16}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &895027160461837039
@@ -506,7 +506,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.4, y: 7}
+  m_AnchoredPosition: {x: -23, y: 7}
   m_SizeDelta: {x: 163.8019, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2752368183337823829
@@ -693,7 +693,7 @@ GameObject:
   - component: {fileID: 7924444698783714456}
   - component: {fileID: 6880178132898388741}
   m_Layer: 0
-  m_Name: MasaAlCost
+  m_Name: BuyDishwasherCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -894,7 +894,7 @@ Transform:
   - {fileID: 7393791185404672528}
   - {fileID: 6287153743204315334}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5603976420238125916
 MonoBehaviour:
@@ -960,6 +960,86 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6, y: 1, z: 6}
   m_Center: {x: 0, y: 1.24, z: 0}
+--- !u!1 &1577794708003669554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3903140584658559471}
+  - component: {fileID: 2792111950850419893}
+  - component: {fileID: 5236546890586691524}
+  m_Layer: 0
+  m_Name: WaiterCountText (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3903140584658559471
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577794708003669554}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.10816308, y: 0.90928656, z: 0.6796752}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5015493934308084093}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 41.841, y: -0.29863}
+  m_SizeDelta: {x: 150.87, y: 96.0929}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2792111950850419893
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577794708003669554}
+  m_CullTransparentMesh: 1
+--- !u!114 &5236546890586691524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577794708003669554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 39
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 1/10
 --- !u!1 &1769076986278148945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,7 +1215,7 @@ GameObject:
   - component: {fileID: 1421057198500458078}
   - component: {fileID: 9082868360730177203}
   m_Layer: 0
-  m_Name: GarsonImage
+  m_Name: WaiterImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1429,7 +1509,7 @@ GameObject:
   - component: {fileID: 8603104473912948159}
   - component: {fileID: 2553716223550936642}
   m_Layer: 0
-  m_Name: Kasa Sayisi
+  m_Name: CounterCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1451,6 +1531,7 @@ RectTransform:
   - {fileID: 4991179722552694247}
   - {fileID: 1791867745064820907}
   - {fileID: 8046813165958621460}
+  - {fileID: 9206784099363869322}
   m_Father: {fileID: 7067541735580700555}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1497,6 +1578,86 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2554057717307922656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9206784099363869322}
+  - component: {fileID: 8917113862338250911}
+  - component: {fileID: 5582930002570534502}
+  m_Layer: 0
+  m_Name: CounterCountText (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &9206784099363869322
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2554057717307922656}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.10816308, y: 0.90928656, z: 0.6796752}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8799307646972710555}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 43.878, y: -0.29863}
+  m_SizeDelta: {x: 113.19, y: 96.0929}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8917113862338250911
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2554057717307922656}
+  m_CullTransparentMesh: 1
+--- !u!114 &5582930002570534502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2554057717307922656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 39
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 1/10
 --- !u!1 &2560317545576709615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,8 +1669,9 @@ GameObject:
   - component: {fileID: 4991179722552694247}
   - component: {fileID: 2348152634048590488}
   - component: {fileID: 7865527010037946955}
+  - component: {fileID: 638737805926297803}
   m_Layer: 0
-  m_Name: GarsonSayisiText
+  m_Name: CounterCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1532,8 +1694,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22.1, y: -0.29863}
-  m_SizeDelta: {x: 466.34766, y: 96.0929}
+  m_AnchoredPosition: {x: 11.613, y: -0.29863}
+  m_SizeDelta: {x: 449.87, y: 96.0929}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2348152634048590488
 CanvasRenderer:
@@ -1565,12 +1727,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 49
+    m_FontSize: 39
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 300
-    m_Alignment: 1
+    m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1579,6 +1741,46 @@ MonoBehaviour:
   m_Text: 'Kasa Sayisi
 
 '
+--- !u!114 &638737805926297803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560317545576709615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:4de8cc9e1cd4a2c4ca3322dc30cbe316
+    m_TableEntryReference:
+      m_KeyId: 125800039387136
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7865527010037946955}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &3116372019446901828
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,7 +1793,7 @@ GameObject:
   - component: {fileID: 5893816620409235213}
   - component: {fileID: 4965272713435777635}
   m_Layer: 0
-  m_Name: BulasikciSayisi
+  m_Name: DishwasherCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1613,6 +1815,7 @@ RectTransform:
   - {fileID: 7725869398126956287}
   - {fileID: 4169520192315042490}
   - {fileID: 1759238039708971440}
+  - {fileID: 8983086963481252075}
   m_Father: {fileID: 7067541735580700555}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1671,7 +1874,7 @@ GameObject:
   - component: {fileID: 8637114457784624830}
   - component: {fileID: 6574241229904320884}
   m_Layer: 0
-  m_Name: GarsonImage
+  m_Name: DishwasherImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1847,7 +2050,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22.3, y: -33}
+  m_AnchoredPosition: {x: 22.3, y: -46}
   m_SizeDelta: {x: 156.07715, y: 72.929}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9115818401908578558
@@ -1880,10 +2083,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 49
+    m_FontSize: 35
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 300
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -1903,8 +2106,9 @@ GameObject:
   - component: {fileID: 2736693089753760654}
   - component: {fileID: 1456298172249781372}
   - component: {fileID: 2021295301990310883}
+  - component: {fileID: 8572516493551502027}
   m_Layer: 0
-  m_Name: GarsonSayisiText
+  m_Name: WaiterCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1927,8 +2131,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23.4, y: -0.29863}
-  m_SizeDelta: {x: 466.34766, y: 96.0929}
+  m_AnchoredPosition: {x: 12.27217, y: -0.29863}
+  m_SizeDelta: {x: 359.5772, y: 96.0929}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1456298172249781372
 CanvasRenderer:
@@ -1960,18 +2164,58 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 49
+    m_FontSize: 39
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 300
-    m_Alignment: 1
+    m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Sink Say\u0131s\u0131"
+--- !u!114 &8572516493551502027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3689104836166795977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:4de8cc9e1cd4a2c4ca3322dc30cbe316
+    m_TableEntryReference:
+      m_KeyId: 125484766138368
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2021295301990310883}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &3735104928305601353
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,6 +2533,7 @@ GameObject:
   - component: {fileID: 3735104929839840482}
   - component: {fileID: 3735104929839840480}
   - component: {fileID: 3735104929839840481}
+  - component: {fileID: 939253179277395462}
   m_Layer: 0
   m_Name: Title
   m_TagString: Untagged
@@ -2413,6 +2658,46 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &939253179277395462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3735104929839840483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:4de8cc9e1cd4a2c4ca3322dc30cbe316
+    m_TableEntryReference:
+      m_KeyId: 319854031212544
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3735104929839840481}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &3858472833711089326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2534,7 +2819,7 @@ GameObject:
   - component: {fileID: 581964663751196307}
   - component: {fileID: 8955123983579095928}
   m_Layer: 0
-  m_Name: GarsonSatinAlText
+  m_Name: BuyWaiterText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2650,6 +2935,7 @@ RectTransform:
   - {fileID: 2736693089753760654}
   - {fileID: 2743930017466304843}
   - {fileID: 4033898970890516460}
+  - {fileID: 3903140584658559471}
   m_Father: {fileID: 7067541735580700555}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2817,7 +3103,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.4, y: 7}
+  m_AnchoredPosition: {x: -22.999998, y: 7}
   m_SizeDelta: {x: 163.8019, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &266692458335819713
@@ -2870,7 +3156,7 @@ GameObject:
   - component: {fileID: 620446311946375469}
   - component: {fileID: 3174597837475085601}
   m_Layer: 0
-  m_Name: GarsonImageBackground
+  m_Name: WaiterImageBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3135,7 +3421,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22.3, y: -33}
+  m_AnchoredPosition: {x: 22.3, y: -42}
   m_SizeDelta: {x: 156.07715, y: 72.929}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8117899592830560096
@@ -3168,10 +3454,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 49
+    m_FontSize: 35
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 300
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -3193,7 +3479,7 @@ GameObject:
   - component: {fileID: 1380898799301766489}
   - component: {fileID: 4415720114247897959}
   m_Layer: 0
-  m_Name: GarsonSatinAlText
+  m_Name: BuyCounterText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3461,6 +3747,7 @@ GameObject:
   - component: {fileID: 7725869398126956287}
   - component: {fileID: 7656948944446117669}
   - component: {fileID: 6561174043563399342}
+  - component: {fileID: 242682736436646175}
   m_Layer: 0
   m_Name: MasaSayisiText
   m_TagString: Untagged
@@ -3485,8 +3772,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22.1, y: -0.29863}
-  m_SizeDelta: {x: 466.34766, y: 96.0929}
+  m_AnchoredPosition: {x: 13.258665, y: -0.29863}
+  m_SizeDelta: {x: 465.25363, y: 96.0929}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7656948944446117669
 CanvasRenderer:
@@ -3518,18 +3805,58 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 49
+    m_FontSize: 39
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 300
-    m_Alignment: 1
+    m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Bulas\u0131kc\u0131 Say\u0131s\u0131"
+--- !u!114 &242682736436646175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281482733447324687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:4de8cc9e1cd4a2c4ca3322dc30cbe316
+    m_TableEntryReference:
+      m_KeyId: 126001491808256
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6561174043563399342}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &7445741642377012474
 GameObject:
   m_ObjectHideFlags: 0
@@ -3542,7 +3869,7 @@ GameObject:
   - component: {fileID: 6018152976138057856}
   - component: {fileID: 3624173481831067728}
   m_Layer: 0
-  m_Name: GarsonImageBackground
+  m_Name: DishwasherCountBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3674,8 +4001,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22.3, y: -33}
-  m_SizeDelta: {x: 156.07715, y: 72.929}
+  m_AnchoredPosition: {x: 22.3, y: -43}
+  m_SizeDelta: {x: 105.62622, y: 63.3695}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7088316636543759442
 CanvasRenderer:
@@ -3707,10 +4034,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 49
+    m_FontSize: 35
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 300
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -3804,6 +4131,86 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8505209285697922562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8983086963481252075}
+  - component: {fileID: 473522714513239104}
+  - component: {fileID: 5298565114515239028}
+  m_Layer: 0
+  m_Name: MasaSayisiText (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8983086963481252075
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8505209285697922562}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.10816308, y: 0.90928656, z: 0.6796752}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5475478590889652193}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 44.552, y: 4.2083}
+  m_SizeDelta: {x: 100.74, y: 86.1798}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &473522714513239104
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8505209285697922562}
+  m_CullTransparentMesh: 1
+--- !u!114 &5298565114515239028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8505209285697922562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 39
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 1/10
 --- !u!1 &8558220949989984647
 GameObject:
   m_ObjectHideFlags: 0
@@ -4007,7 +4414,7 @@ GameObject:
   - component: {fileID: 5133127397148114047}
   - component: {fileID: 4651973681293072284}
   m_Layer: 0
-  m_Name: GarsonImageBackground
+  m_Name: CounterImageBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4085,7 +4492,7 @@ GameObject:
   - component: {fileID: 7354942007871457827}
   - component: {fileID: 8097569777191981300}
   m_Layer: 0
-  m_Name: GarsonImage
+  m_Name: CounterImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

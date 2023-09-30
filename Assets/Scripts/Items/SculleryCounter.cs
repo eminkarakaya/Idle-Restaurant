@@ -9,6 +9,14 @@ public class SculleryCounter : Item
     public List <Plate> plates;
     public Transform dishwasherPlace;
     public Item waiterItem;
+    
+    public void CheckCounter()
+    {
+        if(queue.Count > 0)
+        {
+            queue[0].GetComponent<DishWasher>().CheckCounter();
+        }
+    }
     public bool CheckQueueCapacityIsFull()
     {
         return waiterItem.queue.Count >= waiterItem.createdQueueTransform.Count;
