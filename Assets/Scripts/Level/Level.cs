@@ -33,8 +33,11 @@ public class Level : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        Save();
+        
     }
+    // private void OnDisable() {
+    //     Save();
+    // }
     void Awake()
     {
         restaurant = GetComponentInChildren<Restaurant>();
@@ -47,15 +50,7 @@ public class Level : MonoBehaviour
         restaurant = FindObjectOfType<Restaurant>();
         levelManager = FindObjectOfType<LevelManager>();
         LoadLevel();
-        foreach (var item in allKitchens)
-        {
-            item.LoadKitchen();
-        }
-        foreach (var item in allSculleries)
-        {
-            item.LoadScullery();
-        }
-        restaurant.LoadRestaurant();
+        
         lastLoginDate = levelData.lastLoginDate;
         // Debug.Log((CalculateEarnedMoneyOfPerSeconds()) + " CalculateEarnedMoneyOfPerSeconds())/10");
         earnedIdleMoneyText.text = GameManager.CaclText((CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10)) + "$";
@@ -114,15 +109,24 @@ public class Level : MonoBehaviour
     {
         return _gold;
     }
-    public void Save()
+    
+    public void OpenMap()
     {
+        
+        GameManager gameManager = FindObjectOfType<GameManager>();
         SaveLevel();
         GameManager.instance.Save();
+        gameManager.OpenMap();
+        // GameManager.LoadScene(1);
+
     }
-    
     public void LoadLevel()
     {
         levelData = GameManager.instance.gameData.levelData[levelIndex];
+        if(levelData == null ||levelData.kitchenData == null || levelData.kitchenData.Length == 0)
+        {
+            levelData = new LevelData(allSculleries.Count,allParkinLots.Count,allKitchens.Count);
+        }
         isUnlock = levelData.isUnlock;
         if(isUnlock)
         {
@@ -132,19 +136,18 @@ public class Level : MonoBehaviour
         {
             isUnlock = true;
         }
-        if(levelData == null ||levelData.kitchenData == null || levelData.kitchenData.Length == 0)
-        {
-            levelData = new LevelData(allSculleries.Count,allParkinLots.Count,allKitchens.Count);
-        }
-    }
-    GameManager gameManager;
-    public void OpenMap()
-    {
-        Save();
-        gameManager = FindObjectOfType<GameManager>();
-        GameManager.LoadScene(1);
 
+        foreach (var item in allKitchens)
+        {
+            item.LoadKitchen();
+        }
+        foreach (var item in allSculleries)
+        {
+            item.LoadScullery();
+        }
+        restaurant.LoadRestaurant();
     }
+    
     [ContextMenu("CalculateEarnedMoneyOfPerSeconds")]
     public float CalculateEarnedMoneyOfPerSeconds()
     {

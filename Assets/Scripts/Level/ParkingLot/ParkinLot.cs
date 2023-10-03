@@ -128,6 +128,7 @@ public class ParkinLot : Department
             if(kitchen.isLocked)
                 kitchen.UnLock(false);
             SelectManager.instance.BackButton();
+            
         }
     }
 }

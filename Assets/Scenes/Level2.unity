@@ -1035,6 +1035,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2849071186065946448, guid: 13afa7bc19e3b5d4591b230c21f5f05f, type: 3}
+      propertyPath: _isLocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8090585855025851230, guid: 13afa7bc19e3b5d4591b230c21f5f05f, type: 3}
       propertyPath: m_Name
       value: Kitchen
@@ -1500,6 +1504,10 @@ PrefabInstance:
     - target: {fileID: 2771576477326364700, guid: bbab44e65e1ee0449a6d76bc6ee203ba, type: 3}
       propertyPath: m_Name
       value: MapCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771576478317633001, guid: bbab44e65e1ee0449a6d76bc6ee203ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2771576478317633001, guid: bbab44e65e1ee0449a6d76bc6ee203ba, type: 3}
       propertyPath: m_AnchoredPosition.x

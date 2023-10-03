@@ -29,6 +29,57 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+       
+        
+        Load();
+        SetMoney(0);
+        idleMoneyText.text = CaclText(idleMoney);
+        goldText.text = CaclText(gold);
+    }
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    public void OpenMap()
+    {
+        StartCoroutine(FadeScene(1,1,1));
+    }
+    
+    private void Start()
+    {
+        
+        // SceneManager.LoadScene(lastSceneIndex);
+        if(gameData.languageIndex != null)
+        {
+            LanguageManager.Instance.ChangeLanguage((int)gameData.languageIndex);
+        }
+    }
+    // void OnDisable()
+    // {
+    //     Save();
+    // }
+    private void OnApplicationQuit() {
+        Save();
+    }
+    // private void OnApplicationFocus(bool focusStatus) {
+    //     Save();
+    // }
+    // private void OnFocus() {
+    //     Save();
+    // }
+   
+    
+    public void Save()
+    {
+        Level level = FindObjectOfType<Level>();
+        if(level != null)
+            level.SaveLevel();
+        var data = JsonUtility.ToJson(gameData);
+        SaveSystem.Save(data);
+        Debug.Log("SAVED");
+    }
+    public void Load()
+    {
         SaveSystem.Init();
         if(resetData)
         {
@@ -38,30 +89,9 @@ public class GameManager : MonoBehaviour
             }
             return;
         }
-        
-        Load();
-        SetMoney(0);
-        idleMoneyText.text = CaclText(idleMoney);
-        goldText.text = CaclText(gold);
-    }
-    private void Start()
-    {
-        // SceneManager.LoadScene(lastSceneIndex);
-        LanguageManager.Instance.ChangeLanguage(gameData.languageIndex);
-    }
-    void OnDisable()
-    {
-        Save();
-    }
-    public void Save()
-    {
-        
-        var data = JsonUtility.ToJson(gameData);
-        SaveSystem.Save(data);
-    }
-    public void Load()
-    {
         string saveString = SaveSystem.Load();
+
+        // Debug.Log(saveString);
         if(saveString != null)
         {
             gameData = JsonUtility.FromJson<GameData>(saveString);
@@ -126,10 +156,10 @@ public class GameManager : MonoBehaviour
         }
         return value.ToString();
     }
-    public void OpenMap()
-    {
-        StartCoroutine(FadeScene(1,1,1));
-    }
+    // public void OpenMap()
+    // {
+        
+    // }
     public static void LoadScene(int index,float dur = 1,float waitTime = 1)
     {
         instance.StartCoroutine(instance.FadeScene(index,dur,waitTime));

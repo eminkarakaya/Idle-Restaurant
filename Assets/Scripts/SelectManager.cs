@@ -25,6 +25,35 @@ public class SelectManager : MonoBehaviour
     
     public void Select()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            RaycastHit hit = CastRay();
+            if(hit.collider == null)
+                return;
+            if(hit.collider.TryGetComponent(out Department department))
+            {
+                department.selectableCollider.enabled = false;
+                    
+                if(department.isLocked)
+                {
+                    department.lockedPanel.GetComponent<Canvas>().enabled = true;
+                    _willBeClosedPanel = department.lockedPanel;
+                }
+                else
+                {
+                    department.dataPanel.GetComponent<Canvas>().enabled =true;
+                    _willBeClosedPanel = department.dataPanel;
+                }
+
+                CameraMove.instance.MoveTarget(department.camPlace.position);
+                department.oldCamPlace = CameraMove.instance.transform;
+                _selectedObject = department;
+                _backBtn.gameObject.SetActive(true);
+                _oldPos = department.oldCamPlace.position;
+                CameraMove.instance.lockUp = true;
+                _selectedObject.level.OffAllColliders();
+            }
+        }
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             if(EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))

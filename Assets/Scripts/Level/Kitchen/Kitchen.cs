@@ -364,6 +364,7 @@ public class Kitchen : Department
             level.unlockedKitchens.Add(this);
             if(kuryeMutfagimi)
                 SelectManager.instance.BackButton();
+                
         }
     }
     public float PizzaMakingTime()

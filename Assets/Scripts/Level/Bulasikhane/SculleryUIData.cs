@@ -34,6 +34,7 @@ public class SculleryUIData : MonoBehaviour
             dishWashingTime.text = GameManager.CaclText(scullery.PizzaMakingTime())+" s";
         else
             dishWashingTime.text = GameManager.CaclText(scullery.unlockCost.GetGold())+"$";
+        
 
     }
 }

@@ -10,7 +10,7 @@ public class GameData
     public int lastSceneIndex;
     public int money;
     public LevelData[] levelData;
-    public int languageIndex;
+    public int? languageIndex = null;
     public GameData()
     {
         levelData = new LevelData[10];

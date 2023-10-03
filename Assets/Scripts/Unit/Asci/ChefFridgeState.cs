@@ -12,7 +12,8 @@ public class ChefFridgeState : ChefBaseState
     {
         dough = chef.dough;
         _fridgeTransform = chef.fridge;
-        
+        Debug.Log(chef + " chef",chef);
+        Debug.Log(_fridgeTransform.position + " _fridgeTransform.position");
         chef.agent.SetDestination(_fridgeTransform.position);
         action.Walk();
     }

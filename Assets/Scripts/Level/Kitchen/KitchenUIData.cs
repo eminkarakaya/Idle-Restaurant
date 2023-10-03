@@ -31,6 +31,7 @@ public class KitchenUIData : MonoBehaviour
             pizzaCikmaSuresi.text = GameManager.CaclText(kitchen.PizzaMakingTime())+" s";
         else
             pizzaCikmaSuresi.text = GameManager.CaclText(kitchen.unlockCost.GetGold())+"$";
+        
     }
     public void ToggleChefButton(bool state)
     {

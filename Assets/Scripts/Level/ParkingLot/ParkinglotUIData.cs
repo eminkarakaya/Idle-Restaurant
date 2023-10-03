@@ -29,5 +29,6 @@ public class ParkinglotUIData : MonoBehaviour
         motorcycleSpeedText.text = GameManager.CaclText(parkinLot.hiz) + " m/s";
         motorcycleSpeedCost.text = GameManager.CaclText(parkinLot.motorcycleSpeedCost.GetGold());
         motorcycleSpeedNext.text = "+" + GameManager.CaclText((parkinLot.hiz * (parkinLot.speedIncreasePercentage/100))) + " m/s";
+        
     }
 }
