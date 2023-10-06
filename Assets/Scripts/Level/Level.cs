@@ -83,7 +83,6 @@ public class Level : MonoBehaviour
     }
     public void SetVolume(float volume)
     {
-        Debug.Log(volume + " volume");
         audioSource.volume = volume;
     }
     public void SaveLevel()

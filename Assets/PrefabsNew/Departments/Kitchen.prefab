@@ -1106,7 +1106,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2849071186065946448}
         m_TargetAssemblyTypeName: Kitchen, Assembly-CSharp
-        m_MethodName: AsciSatinAl
+        m_MethodName: BuyChef
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3674,7 +3674,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2849071186065946448}
         m_TargetAssemblyTypeName: Kitchen, Assembly-CSharp
-        m_MethodName: PizzaCounterSatinAl
+        m_MethodName: BuyPizzaCounter
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8724,7 +8724,7 @@ Transform:
   - {fileID: 5810047384809705713}
   - {fileID: 8290658880072115214}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2849071186065946449
 BoxCollider:
@@ -8767,6 +8767,13 @@ MonoBehaviour:
   oldCamPlace: {fileID: 0}
   selectableCollider: {fileID: 0}
   parkinLot: {fileID: 0}
+  kuryeMutfagimi: 0
+  fridge: {fileID: 2849071186100904407}
+  kitchenIndex: 0
+  counterCount: 0
+  pizzaCounterCount: 0
+  ovenCount: 0
+  cookCount: 0
   kitchenUIData: {fileID: 9217570815045097456}
   kitchenData:
     kitchenIsLocked: 1
@@ -8778,13 +8785,6 @@ MonoBehaviour:
     ovenCost: 0
     counterCost: 0
     pizzaCounterCost: 0
-  kitchenIndex: 0
-  kuryeMutfagimi: 0
-  fridge: {fileID: 2849071186100904407}
-  counterCount: 0
-  pizzaCounterCount: 0
-  ovenCount: 0
-  cookCount: 0
   _dataPanel: {fileID: 8764671293861339293}
   _camPlace: {fileID: 1261150191338761491}
   ovenCost: {fileID: 3388679395861025167}
@@ -9943,7 +9943,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2849071186065946448}
         m_TargetAssemblyTypeName: Kitchen, Assembly-CSharp
-        m_MethodName: FirinSatinAl
+        m_MethodName: BuyOven
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

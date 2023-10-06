@@ -56,11 +56,9 @@ public class GameManager : MonoBehaviour
     }
     private void OnApplicationQuit() {
         
-    }
-    private void OnApplicationPause(bool pauseStatus) {
-        
         Save();
     }
+    
     
     public void SetIdleMoneyText(float moneyPerSecond)
     {
