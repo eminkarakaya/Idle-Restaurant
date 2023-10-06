@@ -7,23 +7,27 @@ public class Scullery : Department
 {
     Restaurant restaurant;
     SculleryData sculleryData;
-    [SerializeField] private int sculleryIndex;
-    public SculleryUIData sculleryUIData;
     public override Level level {get; set;}
     public override GameObject dataPanel { get; set; }
     public override Transform camPlace { get; set; }
+    [Header("Panels")]
     [SerializeField] GameObject _dataPanel;
     [SerializeField] Transform _camPlace;
+    [Header("Lists")]
     public List<SculleryCounter> allDishCounter;
     public List<SculleryCounter> currentDishCounters;
     public List<Sink> allSinks;
     public List<Sink> currentSinks;
     public List<DishWasher> allDishwasher;
     public int dishwasherCapacity = 3;
+    [Header("Costs")]
     public Gold dishCounterCost;
     public Gold sinkCost;
     public Gold dishwasherCost;
     public Transform dishwasherSpawn;
+    [Header("Data")]
+    [SerializeField] private int sculleryIndex;
+    public SculleryUIData sculleryUIData;
     public int sinkCount,dishCounterCount,dishwasherCount;
     public float washingTime = 2f;
     void Awake()
@@ -248,6 +252,7 @@ public class Scullery : Department
         most.dishwashers.Remove(most.dishwashers[most.dishwashers.Count-1]);
         dishCounterCost.IncreaseGold(100);
         restaurant.CheckWaiterButton();
+        GameManager.instance.SetIdleMoneyText(level.CalculateEarnedMoneyOfPerSeconds());
         sculleryUIData.UpdateData();
     }
     public void SinkSatinAl(bool isPaid)
@@ -284,6 +289,7 @@ public class Scullery : Department
             most.dishwashers.Remove(most.dishwashers[most.dishwashers.Count-1]);
         }
         sinkCost.IncreaseGold(100);
+        GameManager.instance.SetIdleMoneyText(level.CalculateEarnedMoneyOfPerSeconds());
         sculleryUIData.UpdateData();
     }
     // KILIDINI ACINCA
@@ -304,6 +310,7 @@ public class Scullery : Department
             level.RestaurantReady(false);
             level.unlockedSculleries.Add(this);
             restaurant.CheckWaiterButton();
+            GameManager.instance.SetIdleMoneyText(level.CalculateEarnedMoneyOfPerSeconds());
             SelectManager.instance.BackButton();
         }
     }

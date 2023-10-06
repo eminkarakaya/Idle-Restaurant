@@ -19,7 +19,7 @@ public class PuttingOnCounterState : ChefBaseState
         }
         action.Carry();
         
-        StartCoroutine(GameManager.instance.SetDestinationCouroutine(item.chefPlace.position,chef,this));
+        StartCoroutine(GameManager.instance.SetDestinationCouroutine(item.chefPlace.position,chef,this)); // Degiscek
     }
     public override void UpdateState(Action action)
     {

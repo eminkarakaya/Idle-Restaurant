@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public Image fader;
     [SerializeField] private int _money;
     [SerializeField] private TextMeshProUGUI paraText;
-    public int idleMoney;
+    public float idleMoneyPerSec;
     [SerializeField] public TextMeshProUGUI idleMoneyText;
     public int gold;
     [SerializeField] private TextMeshProUGUI goldText;
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         
         Load();
         SetMoney(0);
-        idleMoneyText.text = CaclText(idleMoney);
+        idleMoneyText.text = CaclText(idleMoneyPerSec);
         goldText.text = CaclText(gold);
     }
     public void Quit()
@@ -54,21 +54,19 @@ public class GameManager : MonoBehaviour
             LanguageManager.Instance.ChangeLanguage((int)gameData.languageIndex);
         }
     }
-    // void OnDisable()
-    // {
-    //     Save();
-    // }
     private void OnApplicationQuit() {
+        
+    }
+    private void OnApplicationPause(bool pauseStatus) {
+        
         Save();
     }
-    // private void OnApplicationFocus(bool focusStatus) {
-    //     Save();
-    // }
-    // private void OnFocus() {
-    //     Save();
-    // }
-   
     
+    public void SetIdleMoneyText(float moneyPerSecond)
+    {
+        idleMoneyPerSec = moneyPerSecond;
+        idleMoneyText.text = CaclText(idleMoneyPerSec) + "/s";
+    }
     public void Save()
     {
         Level level = FindObjectOfType<Level>();
@@ -76,7 +74,6 @@ public class GameManager : MonoBehaviour
             level.SaveLevel();
         var data = JsonUtility.ToJson(gameData);
         SaveSystem.Save(data);
-        Debug.Log("SAVED");
     }
     public void Load()
     {

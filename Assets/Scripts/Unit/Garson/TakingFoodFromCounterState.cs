@@ -4,37 +4,26 @@ using UnityEngine;
 
 public class TakingFoodFromCounterState : WaiterBaseState
 {
-
+    AudioSource audioSource;
+    [SerializeField] private AudioClip puttingTableAudio;
     public Counter counter;
+    private void Start() {
+        audioSource = GetComponent<AudioSource>();
+    }
     public override void StartState(Action action)
     {
         action.Walk();
     }
     public override void UpdateState(Action action)
     {
-        if(counter != null)
-        {
-            waiter.agent.SetDestination(counter.waiterPos.position);
-            if(Vector3.Distance(waiter.agent.transform.position,counter.transform.position) < 0.8f)
-            {
-                waiter.tasiState.waiter.counter = counter;
-                counter = null;
-                waiter.currState = waiter.tasiState;
-                return;
-            }
-            return;
-        }
-        counter = waiter.FindCounter();
-        if(counter == null)
-        {
-            if(Vector3.Distance(waiter.agent.transform.position,waiter.waitingPlace.position) < 0.5f)
-            {
-                waiter.currState = waiter.beklemeYerineGitState;
-                return;
-            }
-            return;
-        }
         waiter.agent.SetDestination(counter.waiterPos.position);
+        if(Vector3.Distance(waiter.agent.transform.position,counter.transform.position) < 0.8f)
+        {
+            waiter.tasiState.waiter.counter = counter;
+            audioSource.PlayOneShot(puttingTableAudio);
+            counter = null;
+            waiter.currState = waiter.tasiState;   
+        }  
     }
 
 }

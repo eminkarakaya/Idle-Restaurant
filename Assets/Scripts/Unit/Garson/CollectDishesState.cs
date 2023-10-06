@@ -8,6 +8,11 @@ public class CollectDishesState : WaiterBaseState
     // {
     // musteri.level.restaurant.emptyChairs.Add(musteri.chair);
     // }
+    AudioSource audioSource;
+    [SerializeField] private AudioClip puttingTableAudio;
+    private void Start() {
+        audioSource = GetComponent<AudioSource>();
+    }
     public override void StartState(Action action)
     {
         action.Walk();
@@ -24,7 +29,7 @@ public class CollectDishesState : WaiterBaseState
         {
             waiter.targetKirli.plate.transform.SetParent(waiter.transform);
             waiter.targetKirli.plate.transform.position = waiter.hand.position;
-
+            audioSource.PlayOneShot(puttingTableAudio);
             waiter.bulasikGoturState.tabak = waiter.targetKirli.plate;
             waiter.currState = waiter.bulasikGoturState;
         }

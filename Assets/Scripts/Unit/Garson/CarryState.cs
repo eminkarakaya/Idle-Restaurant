@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class CarryState : WaiterBaseState
 {
+    AudioSource audioSource;
+    [SerializeField] private AudioClip puttingTableAudio;
+    private void Start() {
+        audioSource = GetComponent<AudioSource>();
+    }
     public override void StartState(Action action)
     {
         if(waiter.counter ==null)
@@ -54,6 +59,7 @@ public class CarryState : WaiterBaseState
             waiter.chair.plate = waiter._plate;
             waiter.isHandFull = false;
             var musteri = waiter.chair.GetMusteri();
+            audioSource.PlayOneShot(puttingTableAudio);
             musteri.currState = musteri.customerEatingState;
             waiter.chair = null;
             waiter.counter = null;

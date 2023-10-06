@@ -5,9 +5,14 @@ using UnityEngine.UI;
 
 public class ChefWaitingForOvenState : ChefBaseState
 {
+    AudioSource audioSource;
+    [SerializeField] private AudioClip ovenDingClip;
     public Oven oven;
     public float time = 1f;
     float _timeTemp;
+    private void Start() {
+        audioSource = GetComponent<AudioSource>();
+    }
     public override void StartState(Action action)
     {
         chef.slider.gameObject.SetActive(true);
@@ -22,8 +27,11 @@ public class ChefWaitingForOvenState : ChefBaseState
     {
         _timeTemp += Time.deltaTime;
         chef.slider.value = _timeTemp;
+        
         if(_timeTemp >= time)
         {
+            oven.VoiceCanvas();
+            audioSource.PlayOneShot(ovenDingClip);
             oven.UpdateQueue(chef);
             chef.pizza.transform.SetParent(chef.hand);
             chef.pizza.transform.position = chef.hand.transform.position;

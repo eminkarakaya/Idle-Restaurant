@@ -6,7 +6,11 @@ public class TakeAwayDishIdleState : WaiterBaseState
 {
     public SculleryCounter bulasikCounter;
     public Plate tabak;
-
+    AudioSource audioSource;
+    [SerializeField] private AudioClip puttingTableAudio;
+    private void Start() {
+        audioSource = GetComponent<AudioSource>();
+    }
     public override void StartState(Action action)
     {
         waiter.queueImage.gameObject.SetActive(true);
@@ -17,6 +21,7 @@ public class TakeAwayDishIdleState : WaiterBaseState
     {
         if(bulasikCounter.plates.Count < 1)
         {
+            audioSource.PlayOneShot(puttingTableAudio);
             tabak.transform.SetParent(null);
             tabak.transform.position = bulasikCounter.platePlaces[bulasikCounter.plateCount].position;
             waiter.queueState.previousState = this;

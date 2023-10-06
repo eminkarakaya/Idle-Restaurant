@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class MusteriSitToStand : CustomerBaseState
 {
+    
+    AudioSource audioSource;
+    [SerializeField] private AudioClip gainGoldClip;
+    private void Start() {
+        audioSource = GetComponent<AudioSource>();
+    }
     public override void StartState(Action action)
     {
-        GoldAnim.instance.EarnGoldAnim2(customer.level.restaurant.earnedMoneyFromCustomer,customer.transform);
+        GoldAnim.Instance.EarnGoldAnim2(customer.level.restaurant.earnedMoneyFromCustomer,customer.transform);
+        audioSource.PlayOneShot(gainGoldClip);
         action.CustomerWalk();
         customer.chair.MasadanKalkma();
         customer.level.restaurant.WaiterCollectDirties?.Invoke();

@@ -95,6 +95,7 @@ public class ParkinLot : Department
         motor.GetComponent<Motorcycle>().parkinLot = this;
         motor.GetComponent<Motorcycle>().sira = queue;
         motor.GetComponent<Motorcycle>().agent.speed = hiz;
+        GameManager.instance.SetIdleMoneyText(level.CalculateEarnedMoneyOfPerSeconds());
         parkingLotUIData.UpdateData();
     }
     public void MotorHiziArttir(bool isPaid)
@@ -113,6 +114,7 @@ public class ParkinLot : Department
         {
             allMotorcycle[i].agent.speed = hiz;            
         }
+        GameManager.instance.SetIdleMoneyText(level.CalculateEarnedMoneyOfPerSeconds());
         parkingLotUIData.UpdateData();
     }
     public void UnlockTakeaway()

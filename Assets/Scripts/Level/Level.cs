@@ -9,7 +9,10 @@ using System.Linq;
 
 public class Level : MonoBehaviour
 {
+    [SerializeField] private AudioClip environmentClip, restaurantClip;
+
     //public GameObject bulasikhaneTask, mutfakTask, restoranTask;
+    AudioSource audioSource;
     public Sprite orderSprite;
     public GameObject dough;
     public GameObject pizza;
@@ -31,19 +34,14 @@ public class Level : MonoBehaviour
     public List <ParkinLot> allParkinLots;
     public List <ParkinLot> unlockedParkinLots;
 
-    void OnApplicationQuit()
-    {
-        
-    }
-    // private void OnDisable() {
-    //     Save();
-    // }
+    
     void Awake()
     {
         restaurant = GetComponentInChildren<Restaurant>();
     }
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         allKitchens = FindObjectsOfType<Kitchen>().ToList();
         allSculleries = FindObjectsOfType<Scullery>().ToList();
         allParkinLots = FindObjectsOfType<ParkinLot>().ToList();
@@ -72,15 +70,22 @@ public class Level : MonoBehaviour
         {
             str = t.ToString(@"ss") + " sn";
         }
-
+        audioSource.clip = environmentClip;
+        audioSource.Play();
         passedTimeText.text = str;
         if(IsRestaurantReady() == false)
         {
             idleMoneyCanvas.SetActive(false);
         }
+        
         RestaurantReady(true);
+        GameManager.instance.SetIdleMoneyText(CalculateEarnedMoneyOfPerSeconds());
     }
-   
+    public void SetVolume(float volume)
+    {
+        Debug.Log(volume + " volume");
+        audioSource.volume = volume;
+    }
     public void SaveLevel()
     {
         foreach (var item in allKitchens)
@@ -112,13 +117,10 @@ public class Level : MonoBehaviour
     
     public void OpenMap()
     {
-        
         GameManager gameManager = FindObjectOfType<GameManager>();
         SaveLevel();
         GameManager.instance.Save();
         gameManager.OpenMap();
-        // GameManager.LoadScene(1);
-
     }
     public void LoadLevel()
     {
@@ -183,10 +185,6 @@ public class Level : MonoBehaviour
         }
         else
             sculleryTotal = (sculleryTotal/allSculleries.Count) /allSculleries.Count;
-        //if (restaurant.isLocked == false)
-        //{
-        //    return 0;
-        //}
         sort.Add(kitchenTotal);
         sort.Add(restaurant.PizzaDistributingTime());
         sort.Add(sculleryTotal);
@@ -208,14 +206,14 @@ public class Level : MonoBehaviour
     public void IdleMoneyCanvasActive()
     {
         StartCoroutine(WaitOneFrame());
-        StartCoroutine(GoldAnim.instance.EarnGoldAnim((int)(CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10),20,GameManager.instance.idleMoneyText.transform));
+        StartCoroutine(GoldAnim.Instance.EarnGoldAnim((int)(CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10),20,GameManager.instance.idleMoneyText.transform));
     }
     public void ShowRewardedAd()
     {
         AdManager.Instance.LoadRewardedAd(()=>
         {
             StartCoroutine(WaitOneFrame());
-            StartCoroutine(GoldAnim.instance.EarnGoldAnim((int)((CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10)*2),20,GameManager.instance.idleMoneyText.transform));
+            StartCoroutine(GoldAnim.Instance.EarnGoldAnim((int)((CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10)*2),20,GameManager.instance.idleMoneyText.transform));
         });
     }
     public int CalcPassingTime()
@@ -235,6 +233,7 @@ public class Level : MonoBehaviour
         
         return 0;
     }
+    // customer create
     public bool RestaurantReady(bool isStart)
     {
         if(restaurant.isLocked)
@@ -260,16 +259,23 @@ public class Level : MonoBehaviour
         if(isStart)
         {
             StartCoroutine (CustomerCreator.instance.CustomerCreate());
+            audioSource.clip = restaurantClip;
+            audioSource.Play();
             return true;
         }
         if(sculleryCount >= 1 && kitchenCount >= 1 && !restaurant.isLocked)
         {
+            audioSource.clip = restaurantClip;
+            audioSource.Play();
             StartCoroutine (CustomerCreator.instance.CustomerCreate());
             return true;
         }
         
+        audioSource.clip = environmentClip;
+        audioSource.Play();
         return false;
     }
+    // only check
     public bool IsRestaurantReady()
     {
         if(restaurant.isLocked)

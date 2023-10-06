@@ -5,38 +5,46 @@ using UnityEngine;
 
 public class Restaurant : Department 
 {
-    public int earnedMoneyFromCustomer;
+    [Header("Sound")]
+    [SerializeField] private AnimationCurve crowdSoundVolumeCurve;
+
+    [Header("Lists")]
     public List<Chair> dirtyPlates;
     public List<Chair> waitingForFoodChairs;
     public List<Counter> foodReadyCounters;   
-    public int waiterCapacity;
     public List<Chair> emptyChairs;
-    public List<Chair> allChairs;
-    public RestaurantUIData restaurantUIData;
-    public RestaurantData restaurantData;
-    public List<GameObject> allWaiters;
-    public List<GameObject> allTables;
-    public List<Transform> waiterWaitPlace;
+    [SerializeField] private List<Chair> allChairs;
+    [SerializeField] private List<GameObject> allWaiters;
+    [SerializeField] private List<GameObject> allTables;
+    [SerializeField] private List<Transform> waiterWaitPlace;
+    public List<Waiter> availableWaiters;
+
     public override Level level {get; set;}
     public override GameObject dataPanel { get; set; }
     public override Transform camPlace { get; set; }
+    [Header("UI")]
     [SerializeField] private Transform _camTransform;
     [SerializeField] private GameObject _dataPanel;
+    [Header("Costs")]
     public Gold waiterCost;
     public Gold tableCost;
     public Gold waiterSpeedCost;
     public Gold customerFrequencyCost;
-    [HideInInspector] public float frequencyDecreasePercentage = 3;
+    [HideInInspector] private float frequencyDecreasePercentage = 3;
     [HideInInspector] public float moveSpeedPercentageIncrease = 4;
     [HideInInspector] public float frequencyNext;
     [HideInInspector] public float moveNext;
+    [HideInInspector] public int tableCapacity;
+    [Header("Data")]
+    [SerializeField] private RestaurantUIData restaurantUIData;
+    [SerializeField] private RestaurantData restaurantData;
+    public int earnedMoneyFromCustomer;
     public int tableCount =0;
-    [HideInInspector]public int tableCapacity;
-    public int customerCount = 0;
+    public int waiterCapacity;
+    public int waiterCount = 0;
     public float moveSpeed = 2;
     public System.Action WaiterDeliverFood;
     public System.Action WaiterCollectDirties;
-    public List<Waiter> availableWaiters;
     void OnEnable()
     {
         WaiterDeliverFood += CheckDeliverWaiter;
@@ -60,6 +68,11 @@ public class Restaurant : Department
         selectableCollider = GetComponent<Collider>();
         dataPanel = _dataPanel;
         // LoadRestaurant();c
+    }
+    public float GetClowdVolume()
+    {
+        float value =  (float)(tableCount)/(float)(allTables.Count); 
+        return value;
     }
     private void CheckCollectDirties()
     {
@@ -134,7 +147,7 @@ public class Restaurant : Department
     }
     public void BuyWaiter(bool isPaid)
     {
-        if(waiterCapacity == customerCount)
+        if(waiterCapacity == waiterCount)
         {
             return;
         }
@@ -147,16 +160,17 @@ public class Restaurant : Department
                 GameManager.instance.SetMoney(-waiterCost.GetGold());
             }
         }
-        customerCount ++;
-        GameObject waiterGameobject = Instantiate(levelManager.waiterPrefab,waiterWaitPlace[customerCount-1].position,Quaternion.identity);
+        waiterCount ++;
+        GameObject waiterGameobject = Instantiate(levelManager.waiterPrefab,waiterWaitPlace[waiterCount-1].position,Quaternion.identity);
         Waiter waiter = waiterGameobject.GetComponentInChildren<Waiter>(); 
-        waiter.waitingPlace = waiterWaitPlace[customerCount-1];
+        waiter.waitingPlace = waiterWaitPlace[waiterCount-1];
         waiter.level = level;
         waiter.moveSpeed = moveSpeed;
         waiterCost.IncreaseGold(100);
         allWaiters.Add(waiterGameobject);
         availableWaiters.Add(waiter);
         CheckWaiterButton();
+        GameManager.instance.SetIdleMoneyText(level.CalculateEarnedMoneyOfPerSeconds());
         restaurantUIData.UpdateData();
     }
     public void BuyTable(bool isPaid)
@@ -180,6 +194,8 @@ public class Restaurant : Department
         allChairs.Add(allTables[tableCount-1].transform.GetChild(0).GetComponent<Chair>());
         allChairs.Add(allTables[tableCount-1].transform.GetChild(2).GetComponent<Chair>());
         tableCost.IncreaseGold(100);
+        level.SetVolume(GetClowdVolume());
+        GameManager.instance.SetIdleMoneyText(level.CalculateEarnedMoneyOfPerSeconds());
         restaurantUIData.UpdateData();
     }
     public void IncreaseMovementSpeed(bool isPaid)
@@ -202,6 +218,7 @@ public class Restaurant : Department
         }
         moveNext = moveSpeed + moveSpeed * (moveSpeedPercentageIncrease/100);
         waiterSpeedCost.IncreaseGold(100);
+        GameManager.instance.SetIdleMoneyText(level.CalculateEarnedMoneyOfPerSeconds());
         restaurantUIData.UpdateData();
     }
     public void MusteriSikligiArttir(bool isPaid)
@@ -221,6 +238,7 @@ public class Restaurant : Department
         GetComponentInChildren<CustomerCreator>().frequency -= (GetComponentInChildren<CustomerCreator>().frequency * (frequencyDecreasePercentage/100));
         frequencyNext = GetComponentInChildren<CustomerCreator>().frequency - (GetComponentInChildren<CustomerCreator>().frequency * (frequencyDecreasePercentage/100));
         customerFrequencyCost.IncreaseGold(100);
+        GameManager.instance.SetIdleMoneyText(level.CalculateEarnedMoneyOfPerSeconds());
         restaurantUIData.UpdateData();
     }
     public void UnlockRestaurant()
