@@ -14436,72 +14436,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1112159326873994068, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: resetData
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2337822878650144204, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3345905813510834916, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876875222323998093, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_Name
-      value: IdleGoldText
-      objectReference: {fileID: 0}
-    - target: {fileID: 7832599795830825438, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164680569526313450, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -155
-      objectReference: {fileID: 0}
-    - target: {fileID: 9011217973626249985, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_Pivot.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9011217973626249985, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9011217973626249985, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9011217973626249985, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9011217973626249985, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9011217973626249985, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9011217973626249985, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 323.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 9011217973626249985, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 243.3928
-      objectReference: {fileID: 0}
-    - target: {fileID: 9011217973626249985, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -26
-      objectReference: {fileID: 0}
-    - target: {fileID: 9011217973626249985, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 253
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3093555295850682575, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
+    - {fileID: 8280509278088693775, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 304bd150f695b4e48801e460c6b0181b, type: 3}
@@ -15229,6 +15167,10 @@ PrefabInstance:
     - target: {fileID: 2771576477326364700, guid: bbab44e65e1ee0449a6d76bc6ee203ba, type: 3}
       propertyPath: m_Name
       value: IdleMoneyAndMapCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771576478317633000, guid: bbab44e65e1ee0449a6d76bc6ee203ba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2771576478317633001, guid: bbab44e65e1ee0449a6d76bc6ee203ba, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -17572,7 +17514,7 @@ MonoBehaviour:
   environmentClip: {fileID: 8300000, guid: b8fe4df3425a42840a6747c932d1a796, type: 3}
   restaurantClip: {fileID: 8300000, guid: 266bfa52fc7f5d7498085f60e2d93fa8, type: 3}
   orderSprite: {fileID: 21300000, guid: 0f5af370c2b64ca43882e7ef54aa32f3, type: 3}
-  dough: {fileID: 7047953069300288970, guid: 57d3884f169d78f4eae6d8cfe9a87c0d, type: 3}
+  pastry: {fileID: 0}
   pizza: {fileID: 8442142888100667037, guid: 9c4fb90553315624eb85c91c60a274af, type: 3}
   idleMoneyCanvas: {fileID: 754272869}
   earnedIdleMoneyText: {fileID: 1372840597}

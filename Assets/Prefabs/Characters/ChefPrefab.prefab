@@ -648,7 +648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   chef: {fileID: 0}
-  hamur: {fileID: 7047953069300288970, guid: 57d3884f169d78f4eae6d8cfe9a87c0d, type: 3}
+  pastry: {fileID: 7047953069300288970, guid: 57d3884f169d78f4eae6d8cfe9a87c0d, type: 3}
 --- !u!1 &3824459278372643499
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   chef: {fileID: 0}
+  pastry: {fileID: 7047953069300288970, guid: 57d3884f169d78f4eae6d8cfe9a87c0d, type: 3}
 --- !u!1 &4199127799718939215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1842,7 +1843,7 @@ MonoBehaviour:
   putOunOvenState: {fileID: 3824459276722957919}
   pizzaPrefab: {fileID: 8442142888100667037, guid: 9c4fb90553315624eb85c91c60a274af, type: 3}
   pizza: {fileID: 919132149155446097, guid: 69f9dbb052b8c3949a5ee331b98f7ad4, type: 3}
-  dough: {fileID: 7047953069300288970, guid: 57d3884f169d78f4eae6d8cfe9a87c0d, type: 3}
+  pastry: {fileID: 7047953069300288970, guid: 57d3884f169d78f4eae6d8cfe9a87c0d, type: 3}
   oven: {fileID: 0}
   rollOutPizzaCounter: {fileID: 0}
   counter: {fileID: 0}

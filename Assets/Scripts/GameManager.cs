@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
     }
     public void OpenMap()
     {
+        Level level = FindObjectOfType<Level>();
+        level.SaveLevel();
         StartCoroutine(FadeScene(1,1,1));
     }
     

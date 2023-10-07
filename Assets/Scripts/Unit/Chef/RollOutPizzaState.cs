@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class RollOutPizzaState : ChefBaseState
 {
-    [HideInInspector] public GameObject pastry;
-    private void Start() {
-        pastry = chef.level.pastry;
-    }
+    public GameObject pastry;
+  
     public override void StartState(Action action)
     {
         item = chef.rollOutPizzaCounter;

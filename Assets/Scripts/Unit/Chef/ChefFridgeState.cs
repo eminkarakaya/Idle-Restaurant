@@ -5,12 +5,10 @@ using UnityEngine;
 public class ChefFridgeState : ChefBaseState
 {
     Transform _fridgeTransform;
-    GameObject _pastry;
-    GameObject pastry;
+    [SerializeField] GameObject pastry;
 
     public override void StartState(Action action)
     {
-        pastry = chef.pastry;
         _fridgeTransform = chef.fridge;
         chef.agent.SetDestination(_fridgeTransform.position);
         action.Walk();
@@ -22,7 +20,6 @@ public class ChefFridgeState : ChefBaseState
             return;
         }
         chef.rollOutPizzaState.pastry = Instantiate(pastry,chef.hand.position,Quaternion.identity,chef.hand);
-        chef.currState = chef.rollOutPizzaState;
-        
+        chef.currState = chef.rollOutPizzaState;            
     }
 }
