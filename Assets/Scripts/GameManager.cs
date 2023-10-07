@@ -8,7 +8,6 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public bool resetData;
-    // int lastSceneIndex;
     public GameData gameData;
     public Image fader;
     [SerializeField] private int _money;
@@ -36,19 +35,9 @@ public class GameManager : MonoBehaviour
         idleMoneyText.text = CaclText(idleMoneyPerSec);
         goldText.text = CaclText(gold);
     }
-    public void Quit()
-    {
-        Application.Quit();
-    }
-    public void OpenMap()
-    {
-        StartCoroutine(FadeScene(1,1,1));
-    }
-    
     private void Start()
     {
         
-        // SceneManager.LoadScene(lastSceneIndex);
         if(gameData.languageIndex != null)
         {
             LanguageManager.Instance.ChangeLanguage((int)gameData.languageIndex);
@@ -59,11 +48,20 @@ public class GameManager : MonoBehaviour
         Save();
     }
     
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    public void OpenMap()
+    {
+        StartCoroutine(FadeScene(1,1,1));
+    }
+    
     
     public void SetIdleMoneyText(float moneyPerSecond)
     {
         idleMoneyPerSec = moneyPerSecond;
-        idleMoneyText.text = CaclText(idleMoneyPerSec) + "/s";
+        idleMoneyText.text = CaclText(idleMoneyPerSec) + "$/s";
     }
     public void Save()
     {
@@ -86,7 +84,6 @@ public class GameManager : MonoBehaviour
         }
         string saveString = SaveSystem.Load();
 
-        // Debug.Log(saveString);
         if(saveString != null)
         {
             gameData = JsonUtility.FromJson<GameData>(saveString);
@@ -95,11 +92,6 @@ public class GameManager : MonoBehaviour
         {
             gameData = new GameData();
         }
-        // if(!PlayerPrefs.HasKey("data"))
-        //     return;
-        // gameData = JsonUtility.FromJson<GameData>(PlayerPrefs.GetString("data"));
-        // _money = gameData.para;
-        // lastSceneIndex = gameData.lastSceneIndex;
     }
     public void SetMoney(int value)
     {
@@ -151,17 +143,13 @@ public class GameManager : MonoBehaviour
         }
         return value.ToString();
     }
-    // public void OpenMap()
-    // {
         
-    // }
     public static void LoadScene(int index,float dur = 1,float waitTime = 1)
     {
         instance.StartCoroutine(instance.FadeScene(index,dur,waitTime));
     }
     public IEnumerator FadeScene(int level,float duration , float waitTime)
     {
-        // fader.transform.position = Vector3.zero;
         float passed = 0f;
         fader = transform.GetChild(0).GetComponent<Image>();
         fader.gameObject.SetActive(true);
@@ -193,7 +181,6 @@ public class GameManager : MonoBehaviour
         {
             if(state != unit.currState)
                 break;
-                // yield return null;
             yield return new WaitForSeconds(.2f);
             unit.agent.SetDestination(destination);
         }

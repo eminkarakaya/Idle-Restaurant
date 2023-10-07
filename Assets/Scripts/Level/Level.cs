@@ -14,7 +14,7 @@ public class Level : MonoBehaviour
     //public GameObject bulasikhaneTask, mutfakTask, restoranTask;
     AudioSource audioSource;
     public Sprite orderSprite;
-    public GameObject dough;
+    public GameObject pastry;
     public GameObject pizza;
     public GameObject idleMoneyCanvas;
     public TextMeshProUGUI earnedIdleMoneyText;
@@ -31,8 +31,8 @@ public class Level : MonoBehaviour
     public List<Kitchen> unlockedKitchens;
     public List<Scullery> allSculleries;
     public List<Scullery> unlockedSculleries;
-    public List <ParkinLot> allParkinLots;
-    public List <ParkinLot> unlockedParkinLots;
+    public List <Takeaway> allParkinLots;
+    public List <Takeaway> unlockedParkinLots;
 
     
     void Awake()
@@ -44,13 +44,12 @@ public class Level : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         allKitchens = FindObjectsOfType<Kitchen>().ToList();
         allSculleries = FindObjectsOfType<Scullery>().ToList();
-        allParkinLots = FindObjectsOfType<ParkinLot>().ToList();
+        allParkinLots = FindObjectsOfType<Takeaway>().ToList();
         restaurant = FindObjectOfType<Restaurant>();
         levelManager = FindObjectOfType<LevelManager>();
         LoadLevel();
         
         lastLoginDate = levelData.lastLoginDate;
-        // Debug.Log((CalculateEarnedMoneyOfPerSeconds()) + " CalculateEarnedMoneyOfPerSeconds())/10");
         earnedIdleMoneyText.text = GameManager.CaclText((CalcPassingTime()*(CalculateEarnedMoneyOfPerSeconds())/10)) + "$";
         TimeSpan t = TimeSpan.FromSeconds( CalcPassingTime() );
         string str;

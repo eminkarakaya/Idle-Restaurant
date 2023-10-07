@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Door : Item
 {
-    public Transform kapiTransform;
+    public Transform doorTransform;
     public static Door instance;
     void Awake()
     {
         instance = this;
-        kapiTransform = transform;
+        doorTransform = transform;
     }
 }

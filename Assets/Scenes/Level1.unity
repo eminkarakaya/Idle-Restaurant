@@ -1368,7 +1368,7 @@ PrefabInstance:
       objectReference: {fileID: 425284536}
     - target: {fileID: 6980659158349058899, guid: d7dc23c635209e843b4d5f00f176cdf1, type: 3}
       propertyPath: m_Name
-      value: FoodOrder
+      value: TakeAway
       objectReference: {fileID: 0}
     - target: {fileID: 6980659158349058899, guid: d7dc23c635209e843b4d5f00f176cdf1, type: 3}
       propertyPath: m_IsActive

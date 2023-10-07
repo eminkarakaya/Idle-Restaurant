@@ -953,6 +953,10 @@ PrefabInstance:
       propertyPath: chefCapacity
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4913810189000291035, guid: 95e6ab008080b14418070637d53c7f05, type: 3}
+      propertyPath: kitchenIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8687571055287027308, guid: 95e6ab008080b14418070637d53c7f05, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.3
@@ -1444,6 +1448,10 @@ PrefabInstance:
     - target: {fileID: 1440935874535747285, guid: 95e6ab008080b14418070637d53c7f05, type: 3}
       propertyPath: m_Name
       value: Kitchen Level2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913810189000291035, guid: 95e6ab008080b14418070637d53c7f05, type: 3}
+      propertyPath: chefCapacity
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8230383405253388440, guid: 95e6ab008080b14418070637d53c7f05, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3747,6 +3755,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -6
       objectReference: {fileID: 0}
+    - target: {fileID: 5603976420238125916, guid: 76389552bd741ea4fabc68b6416b5b91, type: 3}
+      propertyPath: sculleryIndex
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4209,6 +4221,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 5.66
       objectReference: {fileID: 0}
+    - target: {fileID: 5603976420238125916, guid: 76389552bd741ea4fabc68b6416b5b91, type: 3}
+      propertyPath: sculleryIndex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4448,6 +4464,10 @@ PrefabInstance:
     - target: {fileID: 2771576478317633006, guid: bbab44e65e1ee0449a6d76bc6ee203ba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Level, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6702506714488152923, guid: bbab44e65e1ee0449a6d76bc6ee203ba, type: 3}
+      propertyPath: m_Name
+      value: money earned while you were away
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6818,7 +6838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startTransform: {fileID: 1729183942}
   pools:
-  - objectPrefab: {fileID: 8442142888100667037, guid: 9c4fb90553315624eb85c91c60a274af, type: 3}
+  - objectPrefab: {fileID: 6186678263901055727, guid: 029b156603d5159438e21d2a05fc7d91, type: 3}
     poolSize: 30
   - objectPrefab: {fileID: 8702327040799630807, guid: db63542d048880d47b2e587ff6141c20, type: 3}
     poolSize: 40
@@ -7629,9 +7649,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1ec3ee5df392a41905595f48fde1fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orderSprite: {fileID: 21300000, guid: 0f5af370c2b64ca43882e7ef54aa32f3, type: 3}
-  dough: {fileID: 7047953069300288970, guid: 57d3884f169d78f4eae6d8cfe9a87c0d, type: 3}
-  pizza: {fileID: 8442142888100667037, guid: 9c4fb90553315624eb85c91c60a274af, type: 3}
+  environmentClip: {fileID: 8300000, guid: b8fe4df3425a42840a6747c932d1a796, type: 3}
+  restaurantClip: {fileID: 8300000, guid: 266bfa52fc7f5d7498085f60e2d93fa8, type: 3}
+  orderSprite: {fileID: 21300000, guid: 062b24368899c69489b71866cd45973f, type: 3}
+  pastry: {fileID: 7047953069300288970, guid: 57d3884f169d78f4eae6d8cfe9a87c0d, type: 3}
+  pizza: {fileID: 6186678263901055727, guid: 029b156603d5159438e21d2a05fc7d91, type: 3}
   idleMoneyCanvas: {fileID: 1824799318}
   earnedIdleMoneyText: {fileID: 999326073}
   passedTimeText: {fileID: 527845554}
@@ -7851,6 +7873,7 @@ GameObject:
   - component: {fileID: 7764931203613494649}
   - component: {fileID: 2525030464903967400}
   - component: {fileID: 1571804629274840339}
+  - component: {fileID: 7764931203613494650}
   m_Layer: 0
   m_Name: Level1
   m_TagString: Untagged
@@ -12659,6 +12682,102 @@ Transform:
   m_Father: {fileID: 4652410773023077126}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &7764931203613494650
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2730796408216754104}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!65 &7793728024993687957
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13612,11 +13731,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 506240439707822997, guid: ef3704a1be449834fa20c9d7db9a799d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.34
+      value: 23.34
       objectReference: {fileID: 0}
     - target: {fileID: 506240439707822997, guid: ef3704a1be449834fa20c9d7db9a799d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.31
+      value: -16.06
       objectReference: {fileID: 0}
     - target: {fileID: 3044347774878298694, guid: ef3704a1be449834fa20c9d7db9a799d, type: 3}
       propertyPath: m_Name
@@ -13673,6 +13792,26 @@ PrefabInstance:
     - target: {fileID: 4438189608918703430, guid: ef3704a1be449834fa20c9d7db9a799d, type: 3}
       propertyPath: m_LocalPosition.z
       value: -4.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5985775646860964305, guid: ef3704a1be449834fa20c9d7db9a799d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 5985775646860964305, guid: ef3704a1be449834fa20c9d7db9a799d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 5985775646860964305, guid: ef3704a1be449834fa20c9d7db9a799d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.41821542
+      objectReference: {fileID: 0}
+    - target: {fileID: 5985775646860964305, guid: ef3704a1be449834fa20c9d7db9a799d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.90834785
+      objectReference: {fileID: 0}
+    - target: {fileID: 5985775646860964305, guid: ef3704a1be449834fa20c9d7db9a799d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -130.556
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

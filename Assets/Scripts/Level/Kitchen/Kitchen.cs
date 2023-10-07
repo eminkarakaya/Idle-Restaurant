@@ -7,7 +7,7 @@ public class Kitchen : Department
 {   
     [Header("Data")]
     [Space(20)]
-    public ParkinLot parkinLot;
+    public Takeaway parkinLot;
     [SerializeField] public bool kuryeMutfagimi;
     public Transform fridge;
     public int kitchenIndex;

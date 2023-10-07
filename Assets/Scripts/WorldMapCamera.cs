@@ -28,7 +28,6 @@ public class WorldMapCamera : MonoBehaviour
             float direction = dragOrigin - GetWorldPosition(groundZ).x;
             Vector3 pos = ClampCamera(new Vector3(Camera.main.transform.position.x + direction,transform.position.y,transform.position.z));
             Camera.main.transform.position = pos;
-            //Camera.main.transform.position += direction;
         }
     }
     private Vector3 GetWorldPosition(float z)
@@ -47,10 +46,7 @@ public class WorldMapCamera : MonoBehaviour
 
         float _minX = minX + camWidth;
         float _maxX = maxX - camWidth;
-        //float _minY = minY + camHeight;
-        //float _maxY = maxY - camHeight;
         float newX = Mathf.Clamp(targetPos.x, _minX, _maxX);
-        //float newY = Mathf.Clamp(targetPos.y, _minY, _maxY);
 
         return new Vector3(newX, targetPos.y, targetPos.z);
     }

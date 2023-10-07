@@ -39,7 +39,7 @@ public class CustomerCreator : MonoBehaviour
                 customerGameobject.SetActive(true);
                 customerGameobject.transform.rotation = Quaternion.identity;
                 // var musteri = Instantiate(customerPrefab,customerCreatedTransform.position,Quaternion.identity);
-                customer.door = Door.instance.kapiTransform;
+                customer.door = Door.instance.doorTransform;
                 // musteri.transform.GetChild(0).GetComponent<Customer>().currState = musteri.transform.GetChild(0).GetComponent<Customer>().customerWalkState;
                 customer.level = level;
                 customerGameobject.transform.SetParent(level.transform);

@@ -14,7 +14,7 @@ public class Motorcycle : Unit
     public DeliverOrderState siparisiGoturState;
     public Counter counter;
     public Transform garsonPos;
-    public ParkinLot parkinLot;
+    public Takeaway parkinLot;
     public Transform tabakPos;
     
     void Awake()

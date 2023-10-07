@@ -17,27 +17,11 @@ public static class SaveSystem
     public static void Save(string saveString)
     {
         File.WriteAllText(SAVE_FOLDER + "/save.txt",saveString);
-        // PlayerPrefs.SetString(SAVE_FOLDER,saveString);
-        // PlayerPrefs.Save();
-// #if UNITY_EDITOR
-//         if(saveString == PlayerPrefs.GetString(SAVE_FOLDER))
-//         {
-//             Debug.Log("UNITY_EDITOR");
-//         }
-// #endif
-//         if(saveString == PlayerPrefs.GetString(SAVE_FOLDER))
-//         {
-//             Debug.Log("sföğaofkağfkpsa");
-//         }
+       
     }
     public static string Load()
     {
-        // if(PlayerPrefs.HasKey(SAVE_FOLDER))
-        // {
-            // string saveString = PlayerPrefs.GetString(SAVE_FOLDER);
-            string saveString = File.ReadAllText(SAVE_FOLDER + "/save.txt");
-            return saveString;
-        // }
-        // return null;
+        string saveString = File.ReadAllText(SAVE_FOLDER + "/save.txt");
+        return saveString;
     }
 }
