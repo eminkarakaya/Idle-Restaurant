@@ -9,6 +9,9 @@ State machine and unity navigation were used in AI
 
 Localization
 
+https://github.com/eminkarakaya/Idle-Restaurant/assets/71080980/b3131cd3-2c68-456a-b49f-3d7a22975800
+
+
 
 
 https://user-images.githubusercontent.com/71080980/204285564-ddc62f35-6e5b-45c9-a383-3beb36b120d8.mp4
