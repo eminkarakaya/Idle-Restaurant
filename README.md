@@ -1,6 +1,8 @@
 # Idle-Restaurant
 Restaurant management game in the idle genre.
 
+Dotween was used for animations
+
 State machine and unity navigation were used in AI
 
 ![restaurant Idle diyagram drawio](https://github.com/eminkarakaya/Idle-Restaurant/assets/71080980/161b05f4-0883-47c2-b9f3-21c0760254b0)
