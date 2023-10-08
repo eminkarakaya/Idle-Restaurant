@@ -18,6 +18,8 @@ Localization
 https://github.com/eminkarakaya/Idle-Restaurant/assets/71080980/b3131cd3-2c68-456a-b49f-3d7a22975800
 
 
+Admob
+
 
 
 
