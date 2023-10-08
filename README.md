@@ -20,7 +20,7 @@ https://github.com/eminkarakaya/Idle-Restaurant/assets/71080980/b3131cd3-2c68-45
 
 Admob
 
-
+https://github.com/eminkarakaya/Idle-Restaurant/assets/71080980/d0fa5d5f-012f-464f-966d-763b350fdf3e
 
 
 Gameplay Video
