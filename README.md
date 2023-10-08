@@ -2,6 +2,8 @@
 Restaurant management game in the idle genre.
 
 Dotween was used for animations
+
+
 ![Movie_004](https://github.com/eminkarakaya/Idle-Restaurant/assets/71080980/204748da-5e83-4e11-ba0f-c7953e248965)
 
 
