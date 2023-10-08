@@ -14,4 +14,7 @@ https://github.com/eminkarakaya/Idle-Restaurant/assets/71080980/b3131cd3-2c68-45
 
 
 
+
+Gameplay Video
+
 https://user-images.githubusercontent.com/71080980/204285564-ddc62f35-6e5b-45c9-a383-3beb36b120d8.mp4
