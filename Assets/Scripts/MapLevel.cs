@@ -43,6 +43,7 @@ public class MapLevel : MonoBehaviour
             levelImage.SetActive(true);
             lockImage.SetActive(false);
             goldPerSecText.text = "0";
+            GameManager.instance.Save();
         }
     }   
     public void SelectLevel()

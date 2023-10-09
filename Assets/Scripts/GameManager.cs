@@ -7,6 +7,7 @@ using System;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private float saveFrequency = 3f;
     public bool resetData;
     public GameData gameData;
     public Image fader;
@@ -42,10 +43,20 @@ public class GameManager : MonoBehaviour
         {
             LanguageManager.Instance.ChangeLanguage((int)gameData.languageIndex);
         }
+        StartCoroutine(SaveCoroutine());
     }
+
     private void OnApplicationQuit() {
         
         Save();
+    }
+    private IEnumerator SaveCoroutine()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(saveFrequency);
+            Save();
+        }
     }
     
     public void Quit()
@@ -69,7 +80,9 @@ public class GameManager : MonoBehaviour
     {
         Level level = FindObjectOfType<Level>();
         if(level != null)
+        {
             level.SaveLevel();
+        }
         var data = JsonUtility.ToJson(gameData);
         SaveSystem.Save(data);
     }
