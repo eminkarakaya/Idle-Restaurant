@@ -1,4 +1,7 @@
 # Idle-Restaurant
+
+Playstore : https://play.google.com/store/apps/details?id=com.eminkarakaya.RestaurantTycoon
+
 Restaurant management game in the idle genre.
 
 Dotween was used for animations
