@@ -35,3 +35,12 @@ https://github.com/eminkarakaya/Idle-Restaurant/assets/71080980/d0fa5d5f-012f-46
 Gameplay Video
 
 https://user-images.githubusercontent.com/71080980/204285564-ddc62f35-6e5b-45c9-a383-3beb36b120d8.mp4
+
+
+## CONTACT
+
+  meminkkaya1@gmail.com
+  
+  https://www.linkedin.com/in/muhammet-emin-karakaya/
+  
+  [@eminkarakaya](https://github.com/eminkarakaya)
