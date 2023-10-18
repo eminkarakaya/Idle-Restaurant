@@ -79,9 +79,10 @@ public class GoldAnim : MonoBehaviour
         }
         for (int i = 0; i < count; i++)
         {
-            list[i].transform.DOMove(goldinScene.transform.position,.5f).SetEase(ease).OnComplete(()=> GameManager.instance.SetMoney(earnedGold15)).OnComplete(()=>
+            list[i].transform.DOMove(goldinScene.transform.position,.5f).SetEase(ease).OnComplete(()=>
             {
                     audioSource.PlayOneShot(GetRandomAudio());
+                    GameManager.instance.SetMoney(earnedGold15);
 
             });
             yield return new WaitForSeconds(0.03f);
