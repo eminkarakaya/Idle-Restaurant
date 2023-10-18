@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
        
         
         Load();
-        SetMoney(0);
+        
         idleMoneyText.text = CaclText(idleMoneyPerSec);
         goldText.text = CaclText(gold);
     }
@@ -107,6 +107,8 @@ public class GameManager : MonoBehaviour
         {
             gameData = new GameData();
         }
+        _money = gameData.money;
+        paraText.text = CaclText(_money );
     }
     public void SetMoney(int value)
     {
