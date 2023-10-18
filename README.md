@@ -5,9 +5,11 @@ Playstore : https://play.google.com/store/apps/details?id=com.eminkarakaya.Resta
 Restaurant management game in the idle genre.
 
 Dotween was used for animations
+![Movie_004](https://github.com/eminkarakaya/Hexagon-Board-Game/assets/71080980/154c0c9f-c87d-4b80-a73b-b8f590453175)
 
 
-![Movie_004](https://github.com/eminkarakaya/Idle-Restaurant/assets/71080980/204748da-5e83-4e11-ba0f-c7953e248965)
+
+
 
 
 State machine and unity navigation were used in AI
